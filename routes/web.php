@@ -83,3 +83,4 @@ Route::group(['middleware'=>['auth', 'delivery'], 'namespace'=>'Delivery', 'pref
 
 Route::get('/user', 'User\UserController@index')->name('User')->middleware(['auth', 'user']);
 
+Route::get('/test', 'TestController@index')->name('test');
