@@ -1,17 +1,26 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
+@import 'media';
+
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 @font-face {
-    font-family: 'helvetica-neue';
+    font-family: 'Neue';
     font-style: normal;
     font-weight: 900;
-    src: url('/public/fonts/HelveticaNeue\Medium.ttf');
+    src: url('/public/fonts/HelveticaNeue.ttf');
+}
+
+@font-face {
+    font-family: 'Neue-medium';
+    font-style:normal;
+    font-weight: normal;
+    src: url('/public/fonts/HelveticaNeueMedium.ttf');
 }
 
 *:focus, *:active{
@@ -23,6 +32,12 @@
 //     font-family: 'helvetica-neue';
 // }
 
+body{
+    font-family: 'Neue';
+    font-size: 16px;
+    font-weight: normal;
+}
+
 
 header{
     .top-header{
@@ -30,20 +45,24 @@ header{
             width: 100%;
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             .about{
                 width: 50%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px;
+                padding: 15px 0;
                 margin: 0;
                 li{
                     list-style: none;
                     a{
-                        color: #000;
-                        font-family: 'helvetica-neue';
+                        color: #31373B;
+                        font-family: 'Neue-medium';
                         font-size: 16px;
+                        &:hover{
+                            text-decoration: none;
+                        }
                     }
                 }
             }
@@ -55,11 +74,15 @@ header{
                 justify-content: flex-end;
                 align-items: center;
                 margin: 0;
-                padding: 0;
+                padding: 15px 0;
                 li{
-                    padding-left: 5rem;
+                    margin: 0 25px;
                     a{
+                        font-family: 'Neue-medium';
                         color: $pink-color;
+                    }
+                    &:last-child{
+                        margin: 0;
                     }
                 }
             }
@@ -224,6 +247,130 @@ header{
     }
 }
 
+footer{
+    .subscribe{
+        background-color: #fff;
+        .subscribe_inner{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 100%;
+            gap: 10px;
+            .subscribe_info{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                .subscribe_info_text{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                }
+                .subscribe_info_form{
+                    width: 100%;
+                    form{
+                        display: grid;
+                        grid-template-columns: 2fr 1fr;
+                        gap: 10px;
+                        width: 100%;
+                        input{
+                            outline: none;
+                            border: none;
+                            padding: 5px;
+                            border-radius: 25px;
+                            background-color: $grey-bg;
+                            &::placeholder{
+                                font-family: 'Poppins';
+                            }
+                        }
+                        button{
+                            background-color: $pink-color;
+                            border-radius: 25px;
+                            outline: none;
+                            border: none;
+                            padding: 5px;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .subscribe_banner{
+                padding: 15px;
+                svg{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .popular{
+        background-color: #f7f7f7;
+        .popular_inner{
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            justify-content: space-around;
+            padding: 30px;
+            li{
+                list-style-type: none;
+                a{
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+        }
+    }
+    .helpdesk{
+        background-color: $grey-bg;
+        .helpdesk_inner{
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            .helpdesk_contact{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+                .helpdesk_contact_img_wrap{
+                    svg{
+                        width: 100%;
+                    }
+                }
+            }
+            .helpdesk_col_wrap{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                h2{
+                    font-weight: normal;
+                    text-align: center;
+                    text-decoration:underline
+                }
+                ul{
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    text-decoration: none;
+                    list-style-type: none;
+                    li{
+                        a{
+                            color: #000;
+                        }
+                    }
+                }
+            }  
+        }
+    }
+    .copyright{
+        text-align: center;
+        padding: 20px;
+    }
+}
+
 // COMPONENTS
 .grey-bg{
     background-color: $grey-bg;
@@ -257,3 +404,4 @@ header{
     justify-content: center;
     align-items: center;
 }
+

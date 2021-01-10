@@ -1,4 +1,21 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap);@charset "UTF-8";
+
+@media screen and (max-width: 995px) {
+  header .top-header .top_header_nav .about {
+    width: 100% !important;
+  }
+
+  header .top-header .top_header_nav .account {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  header .top-header {
+    display: none;
+  }
+}
 
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
@@ -10929,9 +10946,16 @@ a.text-dark:focus {
 }
 
 @font-face {
-  font-family: "helvetica-neue";
+  font-family: "Neue";
   font-style: normal;
   font-weight: 900;
+  src: url("/public/fonts/HelveticaNeue.ttf");
+}
+
+@font-face {
+  font-family: "Neue-medium";
+  font-style: normal;
+  font-weight: normal;
   src: url("/public/fonts/HelveticaNeueMedium.ttf");
 }
 
@@ -10941,10 +10965,17 @@ a.text-dark:focus {
   outline: none;
 }
 
+body {
+  font-family: "Neue";
+  font-size: 16px;
+  font-weight: normal;
+}
+
 header .top-header .top_header_nav {
   width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 header .top-header .top_header_nav .about {
@@ -10953,7 +10984,7 @@ header .top-header .top_header_nav .about {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 15px 0;
   margin: 0;
 }
 
@@ -10962,9 +10993,13 @@ header .top-header .top_header_nav .about li {
 }
 
 header .top-header .top_header_nav .about li a {
-  color: #000;
-  font-family: "helvetica-neue";
+  color: #31373B;
+  font-family: "Neue-medium";
   font-size: 16px;
+}
+
+header .top-header .top_header_nav .about li a:hover {
+  text-decoration: none;
 }
 
 header .top-header .top_header_nav .account {
@@ -10975,15 +11010,20 @@ header .top-header .top_header_nav .account {
   justify-content: flex-end;
   align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 15px 0;
 }
 
 header .top-header .top_header_nav .account li {
-  padding-left: 5rem;
+  margin: 0 25px;
 }
 
 header .top-header .top_header_nav .account li a {
+  font-family: "Neue-medium";
   color: #ea4967;
+}
+
+header .top-header .top_header_nav .account li:last-child {
+  margin: 0;
 }
 
 header .bottom-header {
@@ -11166,6 +11206,158 @@ header .bottom-header .bottom_header_nav .items .basket_description {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+footer .subscribe {
+  background-color: #fff;
+}
+
+footer .subscribe .subscribe_inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  gap: 10px;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form {
+  width: 100%;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form input {
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 25px;
+  background-color: #efefef;
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form input::-moz-placeholder {
+  font-family: "Poppins";
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form input:-ms-input-placeholder {
+  font-family: "Poppins";
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form input::-ms-input-placeholder {
+  font-family: "Poppins";
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form input::placeholder {
+  font-family: "Poppins";
+}
+
+footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form button {
+  background-color: #ea4967;
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #fff;
+}
+
+footer .subscribe .subscribe_inner .subscribe_banner {
+  padding: 15px;
+}
+
+footer .subscribe .subscribe_inner .subscribe_banner svg {
+  width: 100%;
+}
+
+footer .popular {
+  background-color: #f7f7f7;
+}
+
+footer .popular .popular_inner {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: space-around;
+  padding: 30px;
+}
+
+footer .popular .popular_inner li {
+  list-style-type: none;
+}
+
+footer .popular .popular_inner li a {
+  text-decoration: none;
+  color: #000;
+}
+
+footer .helpdesk {
+  background-color: #efefef;
+}
+
+footer .helpdesk .helpdesk_inner {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_contact .helpdesk_contact_img_wrap svg {
+  width: 100%;
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_col_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_col_wrap h2 {
+  font-weight: normal;
+  text-align: center;
+  text-decoration: underline;
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_col_wrap ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+footer .helpdesk .helpdesk_inner .helpdesk_col_wrap ul li a {
+  color: #000;
+}
+
+footer .copyright {
+  text-align: center;
+  padding: 20px;
 }
 
 .grey-bg {

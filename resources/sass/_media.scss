@@ -1,0 +1,23 @@
+@media screen and (max-width: 995px) {
+    header{
+        .top-header{
+            .top_header_nav{
+                .about{
+                    width: 100%!important;
+                }
+                .account{
+                    width: 100%!important;
+                    justify-content: center!important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 500px){
+    header{
+        .top-header{
+            display: none;
+        }
+    }
+}
