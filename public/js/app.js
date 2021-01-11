@@ -6477,7 +6477,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.vueperslides__progress {\n    background: rgba(0, 0, 0, 0.25);\n    color: #ea4967;\n}\n", ""]);
+exports.push([module.i, "\n.container{\n    padding: 0;\n}\n.vueperslides__progress {\n    background: rgba(0, 0, 0, 0.25);\n    color: #ea4967;\n}\n", ""]);
 
 // exports
 
@@ -38276,7 +38276,7 @@ var render = function() {
     [
       _c(
         "vueper-slides",
-        { attrs: { fractions: "", progress: "", autoplay: "" } },
+        { attrs: { progress: "", autoplay: "" } },
         _vm._l(_vm.slides, function(slide, i) {
           return _c("vueper-slide", {
             key: i,

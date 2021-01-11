@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <vueper-slides fractions progress autoplay>
+        <vueper-slides progress autoplay>
             <vueper-slide
                 v-for="(slide, i) in slides"
                 :key="i"
@@ -41,6 +41,9 @@
 </script>
 
 <style >
+    .container{
+        padding: 0;
+    }
     .vueperslides__progress {
         background: rgba(0, 0, 0, 0.25);
         color: #ea4967;
