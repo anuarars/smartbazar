@@ -10939,7 +10939,28 @@ a.text-dark:focus {
   font-family: "Neue Medium";
   font-style: normal;
   font-weight: normal;
-  src: url("/public/fonts/HelveticaNeue.ttc");
+  src: url("/public/fonts/Helvetica.ttc");
+}
+
+@font-face {
+  font-family: "Helvetica Neue Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Helvetica Neue Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.ttf");
+}
+
+@font-face {
+  font-family: "Helvetica";
+  font-style: normal;
+  font-weight: normal;
+  src: url("/public/fonts/Helvetica/Helvetica.ttf");
 }
 
 *:focus,
@@ -10977,8 +10998,9 @@ header .top-header .top_header_nav .about li {
 
 header .top-header .top_header_nav .about li a {
   color: #31373B;
-  font-family: "Neue Medium";
+  font-family: "Helvetica Neue Medium";
   font-size: 16px;
+  font-weight: normal;
 }
 
 header .top-header .top_header_nav .account {
@@ -10997,9 +11019,10 @@ header .top-header .top_header_nav .account li {
 }
 
 header .top-header .top_header_nav .account li a {
-  font-family: "Neue Medium";
+  font-family: "Helvetica Neue Medium";
   color: #ea4967;
   font-size: 16px;
+  font-weight: normal;
 }
 
 header .top-header .top_header_nav .account li:last-child {
@@ -11011,12 +11034,17 @@ header .bottom-header {
   margin-top: 20px;
 }
 
+header .bottom-header .removeBasket {
+  display: grid;
+  grid-template-columns: 2fr 5fr !important;
+}
+
 header .bottom-header .bottom_header_nav {
   display: grid;
-  grid-template-columns: 30% 40% 30%;
+  grid-template-columns: 2fr 3fr 2fr;
   gap: 30px;
   align-content: center;
-  padding: 25px 0;
+  padding: 15px 0;
 }
 
 header .bottom-header .bottom_header_nav .logo {
@@ -11115,7 +11143,8 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
 }
 
 .menu .dropdown_nav {
-  padding: 10px;
+  padding: 10px 0;
+  position: relative;
 }
 
 .menu .dropdown_nav a {
@@ -11125,6 +11154,74 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
 
 .menu .dropdown_nav a span {
   margin: 0 5px;
+}
+
+.menu .dropdown_nav .megamenu {
+  width: 100%;
+  position: absolute;
+  background-color: #efefef;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  display: block;
+  float: left;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories {
+  padding-left: 0;
+  list-style-type: none;
+  width: 30%;
+  background-color: #f7f7f7;
+  color: #31373B;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Helvetica Neue Bold";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category .megamenu_submenu ul {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style-type: none;
+  width: 70%;
+  right: 0;
+  grid-template-rows: repeat(3, 1fr);
+  height: 100%;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category .megamenu_submenu ul li {
+  font-family: "Helvetica Neue Bold";
+  font-size: 16px;
+  font-weight: bold;
+  color: #ea4967;
+  position: relative;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category .megamenu_submenu ul li ul {
+  position: absolute;
+  list-style-type: none;
+  padding-left: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category .megamenu_submenu ul li ul li a {
+  color: #31373B;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: lighter;
+  font-family: "Helvetica Neue Medium";
+}
+
+.menu .dropdown_nav .megamenu .megamenu_categories .megamenu_category .megamenu_submenu ul li ul li:last-child a {
+  color: #007DD1;
 }
 
 .slider {
@@ -11156,10 +11253,20 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
 
 .products_body .product_item .product_item_image {
   width: 100%;
+  position: relative;
 }
 
 .products_body .product_item .product_item_image img {
   width: 100%;
+}
+
+.products_body .product_item .product_item_image img.favorite {
+  z-index: 5;
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 20px;
+  height: 20px;
 }
 
 .products_body .product_item .product_item_category {
@@ -11375,6 +11482,7 @@ footer .helpdesk .helpdesk_inner .helpdesk_contact span {
 footer .helpdesk .helpdesk_inner .helpdesk_contact ul {
   padding-left: 0;
   list-style: none;
+  margin: 0;
 }
 
 footer .helpdesk .helpdesk_inner .helpdesk_contact ul li {
@@ -11384,6 +11492,7 @@ footer .helpdesk .helpdesk_inner .helpdesk_contact ul li {
 
 footer .helpdesk .helpdesk_inner .helpdesk_contact .helpdesk_contact_img_wrap img {
   width: 100%;
+  margin: 5px;
 }
 
 footer .helpdesk .helpdesk_inner .helpdesk_col_wrap {
@@ -11481,6 +11590,293 @@ footer .copyright {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.smb_modal {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.61);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 20;
+}
+
+.smb_modal .modal_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  width: 100vw;
+  height: 100vh;
+}
+
+.smb_modal .modal_container .auth {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 40px;
+  background-color: #fff;
+  z-index: 25;
+  gap: 12px;
+  position: relative;
+}
+
+.smb_modal .modal_container .auth a.close_modal {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.smb_modal .modal_container .auth h4 {
+  color: #31373B;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.smb_modal .modal_container .auth small {
+  font-family: "helvetica Neue Medium";
+}
+
+.smb_modal .modal_container .auth input {
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid #707070;
+  padding: 5px;
+}
+
+.smb_modal .modal_container .auth input::-moz-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .auth input:-ms-input-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .auth input::-ms-input-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .auth input::placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .auth .auth_buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.smb_modal .modal_container .auth .auth_buttons button {
+  background-color: #ea4967;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  width: 48%;
+}
+
+.smb_modal .modal_container .auth .auth_buttons button:last-child {
+  background-color: #EFEFEF;
+  color: #8D8D8D;
+}
+
+.smb_modal .modal_container .auth span {
+  font-family: "Helvetica Neue Medium";
+  font-size: 16px;
+  color: #31373B;
+}
+
+.smb_modal .modal_container .register {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 40px;
+  background-color: #fff;
+  z-index: 25;
+  gap: 12px;
+  position: relative;
+  min-width: 40vw;
+}
+
+.smb_modal .modal_container .register a.close_modal {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+}
+
+.smb_modal .modal_container .register h4 {
+  color: #31373B;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.smb_modal .modal_container .register .register_top_buttons,
+.smb_modal .modal_container .register .register_bottom_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.smb_modal .modal_container .register .register_top_buttons button:first-child {
+  background-color: #efefef;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #8F989F;
+  font-weight: bold;
+  width: 48%;
+}
+
+.smb_modal .modal_container .register .register_top_buttons button:last-child {
+  background-color: #8F989F;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  width: 48%;
+}
+
+.smb_modal .modal_container .register .register_bottom_buttons button:first-child {
+  background-color: #efefef;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #8F989F;
+  font-weight: bold;
+  width: 48%;
+}
+
+.smb_modal .modal_container .register .register_bottom_buttons button:last-child {
+  background-color: #ea4967;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  color: #fff;
+  font-weight: bold;
+  width: 48%;
+}
+
+.smb_modal .modal_container .register input {
+  width: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: 2px solid #707070;
+  padding: 5px;
+}
+
+.smb_modal .modal_container .register input::-moz-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .register input:-ms-input-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .register input::-ms-input-placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.smb_modal .modal_container .register input::placeholder {
+  color: #C1C8CE;
+  font-size: 14px;
+  font-family: "Helvetica Neue Medium";
+  font-weight: lighter;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  -webkit-animation: bounce-in 0.5s;
+          animation: bounce-in 0.5s;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+@-webkit-keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.mode-fade-enter-active,
+.mode-fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.mode-fade-enter-from,
+.mode-fade-leave-to {
+  opacity: 0;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {

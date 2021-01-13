@@ -3,6 +3,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// @import 'container';
 
 // Fonts
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
@@ -18,7 +19,28 @@
     font-family: 'Neue Medium';
     font-style:normal;
     font-weight: normal;
-    src: url('/public/fonts/HelveticaNeue.ttc');
+    src: url('/public/fonts/Helvetica.ttc');
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Bold';
+    font-style:normal;
+    font-weight: normal;
+    src: url('/public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Helvetica Neue Medium';
+    font-style:normal;
+    font-weight: normal;
+    src: url('/public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    font-style:normal;
+    font-weight: normal;
+    src: url('/public/fonts/Helvetica/Helvetica.ttf');
 }
 
 *:focus, *:active{
@@ -56,8 +78,9 @@ header{
                     list-style: none;
                     a{
                         color: #31373B;
-                        font-family: 'Neue Medium';
+                        font-family: 'Helvetica Neue Medium';
                         font-size: 16px;
+                        font-weight: normal;
                     }
                 }
             }
@@ -73,9 +96,10 @@ header{
                 li{
                     margin: 0 25px;
                     a{
-                        font-family: 'Neue Medium';
+                        font-family: 'Helvetica Neue Medium';
                         color: $pink-color;
                         font-size: 16px;
+                        font-weight: normal;
                     }
                     &:last-child{
                         margin: 0;
@@ -88,12 +112,16 @@ header{
         // background: rgb(159,52,131);
         background: linear-gradient(360deg, rgba(210,27,90,1) 0%, rgba(220,34,85,1) 51%, rgba(236,45,77,1) 100%);
         margin-top: 20px;
+        .removeBasket{
+            display: grid;
+            grid-template-columns: 2fr 5fr!important;
+        }
         .bottom_header_nav{
             display: grid;
-            grid-template-columns: 30% 40% 30%;
+            grid-template-columns: 2fr 3fr 2fr;
             gap: 30px;
             align-content: center;
-            padding: 25px 0;
+            padding: 15px 0;
             .logo{
                 color: #fff;
                 text-transform: uppercase;
@@ -178,12 +206,80 @@ header{
 .menu{
     margin-top: 10px;
     .dropdown_nav {
-        padding: 10px;
+        padding: 10px 0;
+        position: relative;
         a{
             color: $pink-color;
             text-decoration: none;
             span{
                 margin: 0 5px;
+            }
+        }
+        .megamenu{
+            width: 100%;
+            position: absolute;
+            background-color: $grey-bg;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            display: block;
+            float: left;
+            .megamenu_categories{
+                padding-left: 0;
+                list-style-type: none;
+                width: 30%;
+                background-color: $main-bg;
+                color: #31373B;
+                .megamenu_category{
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: 'Helvetica Neue Bold';
+                    font-size: 16px;
+                    font-weight: bold;
+                    .megamenu_submenu{
+                        ul{
+                            position: absolute;
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            list-style-type: none;
+                            width: 70%;
+                            right: 0;
+                            grid-template-rows: repeat(3, 1fr);
+                            height: 100%;
+                            li{
+                                font-family: 'Helvetica Neue Bold';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: $pink-color;
+                                position: relative;
+                                ul{
+                                    position: absolute;
+                                    list-style-type: none;
+                                    padding-left: 0;
+                                    left: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    li{
+                                        a{
+                                            color: #31373B;
+                                            text-decoration: none;
+                                            font-size: 14px;
+                                            font-weight: lighter;
+                                            font-family: 'Helvetica Neue Medium';
+                                        }
+
+                                        &:last-child{
+                                            a{
+                                                color: #007DD1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -216,8 +312,17 @@ header{
         }
         .product_item_image{
             width: 100%;
+            position: relative;
             img{
                 width: 100%;
+            }
+            img.favorite{
+                z-index: 5;
+                position: absolute;
+                bottom: 5%;
+                right: 5%;
+                width: 20px;
+                height: 20px;
             }
         }
         .product_item_category{
@@ -392,6 +497,7 @@ footer{
                 ul{
                     padding-left: 0;
                     list-style: none;
+                    margin: 0;
                     li{
                         font-family: 'Helvetica Neue';
                         font-size: 16px;
@@ -400,6 +506,7 @@ footer{
                 .helpdesk_contact_img_wrap{
                     img{
                         width: 100%;
+                        margin: 5px;
                     }
                 }
             }
@@ -497,4 +604,179 @@ footer{
     align-items: center;
 }
 
+.smb_modal{
+    position: fixed;
+    background: rgba(0,0,0,0.61);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    z-index: 20;
+    .modal_container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        width: 100vw;
+        height: 100vh;
+        .auth{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            padding: 40px;
+            background-color: #fff;
+            z-index: 25;
+            gap: 12px;
+            position: relative;
+            a.close_modal{
+                position: absolute;
+                top: 5%;
+                right: 5%;
+            }
+            h4{
+                color: #31373B;
+                font-family: 'Helvetica';
+                font-weight: bold;
+                font-size: 25px;
+            }
+            small{
+                font-family: 'helvetica Neue Medium';
+            }
+            input{
+                width: 100%;
+                border-radius: 5px;
+                outline: none;
+                border: 2px solid #707070;  
+                padding: 5px;         
+                &::placeholder{
+                    color: #C1C8CE;
+                    font-size: 14px;
+                    font-family: 'Helvetica Neue Medium';
+                    font-weight: lighter;
+                }
+            }
+            .auth_buttons{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                width: 100%;
+                button{
+                    background-color: $pink-color;
+                    border-radius: 5px;
+                    outline: none;
+                    border: none;
+                    padding: 5px;
+                    color: #fff;
+                    font-weight: bold;
+                    width: 48%;
+                    &:last-child{
+                        background-color: #EFEFEF;
+                        color: #8D8D8D;
+                    }
+                }
+            }
+            span{
+                font-family: 'Helvetica Neue Medium';
+                font-size: 16px;
+                color: #31373B;
+            }
+        }
+        .register{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            padding: 40px;
+            background-color: #fff;
+            z-index: 25;
+            gap: 12px;
+            position: relative;
+            min-width: 40vw;
+            a.close_modal{
+                position: absolute;
+                top: 5%;
+                right: 5%;
+            }
+            h4{
+                color: #31373B;
+                font-family: 'Helvetica';
+                font-weight: bold;
+                font-size: 25px;
+            }
+            .register_top_buttons, .register_bottom_buttons{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .register_top_buttons{
+                button{
+                    &:first-child{
+                        background-color: $grey-bg;
+                        border-radius: 5px;
+                        outline: none;
+                        border: none;
+                        padding: 5px;
+                        color: #8F989F;
+                        font-weight: bold;
+                        width: 48%;
+                    }
+                    &:last-child{
+                        background-color: #8F989F;
+                        border-radius: 5px;
+                        outline: none;
+                        border: none;
+                        padding: 5px;
+                        color: #fff;
+                        font-weight: bold;
+                        width: 48%;
+                    }
+                }
+            }
+            .register_bottom_buttons{
+                button{
+                    &:first-child{
+                        background-color: $grey-bg;
+                        border-radius: 5px;
+                        outline: none;
+                        border: none;
+                        padding: 5px;
+                        color: #8F989F;
+                        font-weight: bold;
+                        width: 48%;
+                    }
+                    &:last-child{
+                        background-color: $pink-color;
+                        border-radius: 5px;
+                        outline: none;
+                        border: none;
+                        padding: 5px;
+                        color: #fff;
+                        font-weight: bold;
+                        width: 48%;
+                    }
+                }
+            }
+            input{
+                width: 100%;
+                border-radius: 5px;
+                outline: none;
+                border: 2px solid #707070;  
+                padding: 5px;         
+                &::placeholder{
+                    color: #C1C8CE;
+                    font-size: 14px;
+                    font-family: 'Helvetica Neue Medium';
+                    font-weight: lighter;
+                }
+            }
+        }
+    }
+}
+
+@import 'animation';
 @import 'media';

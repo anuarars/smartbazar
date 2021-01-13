@@ -31,4 +31,10 @@ Vue.component('star-component', require('./components/StarComponent.vue').defaul
 
 const app = new Vue({
     el: '#app',
+    data: {
+        hiddenMenu: true,
+        hiddenAuth: true,
+        isLogin: true,
+        searchFocused: false,
+    }
 });

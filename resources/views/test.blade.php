@@ -37,7 +37,7 @@
                                 </li>
                                 <li>
                                     <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-                                    <a href="#">Кабинет</a>
+                                    <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Кабинет</a>
                                 </li>
                             </ul>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="bottom-header">
                     <div class="container">
-                        <div class="bottom_header_nav">
+                        <div class="bottom_header_nav" :class="{removeBasket: searchFocused}">
                             <a href="#" class="logo">
                                 <div class="logo_img">
                                   <img src="{{asset('icons/logo.svg')}}" alt="logo">                     
@@ -53,10 +53,15 @@
                                 <div class="logo_title">smart bazar</div>
                             </a>
                             <div class="search">
-                                <input type="text" id="search" placeholder="Поиск товаров">
+                                <input 
+                                    type="text" 
+                                    id="search" 
+                                    placeholder="Поиск товаров" 
+                                    v-on:focus="searchFocused = true" 
+                                    v-on:blur="searchFocused = !searchFocused">
                                 <img src="{{asset('icons/search.svg')}}" alt="search">
                             </div>
-                            <div class="items">
+                            <div v-if="!searchFocused" class="items">
                                 <div class="wishlist">
                                     <div class="circle-badge">12</div>
                                     <img src="{{asset('icons/heart.svg')}}" alt="heart">
@@ -82,11 +87,75 @@
             <div class="menu grey-bg">
                 <div class="container">
                     <div class="dropdown_nav">
-                        <a href="#">
+                        <a href="#" v-on:click.prevent="hiddenMenu = !hiddenMenu">
                             <img src="{{asset('icons/dropdown.svg')}}" alt="dropdown">
                             <span>Каталог товаров</span>
                             <img src="{{asset('icons/arrow_right.svg')}}" alt="arrow_right">
                         </a>
+                        <div class="megamenu" v-if="!hiddenMenu">
+                            <ul class="megamenu_categories">
+                                <li class="megamenu_category">Аксессуары и украшения 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                    <div class="megamenu_submenu">
+                                        <ul>
+                                            <li>Бакалея
+                                                <ul>
+                                                    <li><a href="#">Пищевые добавки</a></li>
+                                                    <li><a href="#">Консервы</a></li>
+                                                    <li><a href="#">Пряности, специи, приправы</a></li>
+                                                    <li><a href="#">Мука и отруби</a></li>
+                                                    <li><a href="#">Смотреть больше</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>Сладости</li>
+                                            <li>Детское питание</li>
+                                            <li>Напитки</li>
+                                            <li>Мясо и мясная продукция</li>
+                                            <li>Замороженные полуфабрикаты</li>
+                                            <li>Молочные продукты</li>
+                                            <li>Рыба и морепродукты</li>
+                                            <li>Готовые блюда</li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="megamenu_category">Материалы для ремонта 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Одежда и обувь 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                                <li class="megamenu_category">Категория 
+                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -241,9 +310,10 @@
                                     <button>Купить</button>
                                 </div>
                                 <div class="product_item">
-                                    <div class="product_item_image">
+                                    <a href="#" class="product_item_image">
                                         <img src="https://via.placeholder.com/500/500" alt="">
-                                    </div>
+                                        <img src="{{asset('icons/heart.svg')}}" alt="heart" class="favorite">
+                                    </a>
                                     <star-component></star-component>
                                     <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
                                     <div class="product_item_country">Lorem.</div>
@@ -545,6 +615,48 @@
                 </div>
             </footer>
         </section>
+        <transition name="bounce">
+            <div class="smb_modal" v-if="!hiddenAuth">
+                <div class="modal_container">
+                    <div class="auth" v-if="isLogin">
+                        <a href="#" @click.prevent="hiddenAuth = true" class="close_modal">
+                            <img src="{{asset('icons/close.svg')}}" alt="close">
+                        </a>
+                        <h4>Войти в аккаунт</h4>
+                        <small>Войдите, чтобы мы могли сохранить для вас товар</small>
+                        <input type="text" placeholder="Email адрес">
+                        <input type="text" placeholder="Пароль">
+                        <div class="auth_buttons">
+                            <button>Войти</button>
+                            <button v-on:click="isLogin = false">Регистрация</button>
+                        </div>
+                        <span>Нет профиля?
+                            <a href="#">Зарегистрируйтесь</a>
+                        </span>
+                    </div>
+                    <div class="register" v-if="!isLogin">
+                        <a href="#" @click.prevent="hiddenAuth = true" class="close_modal">
+                            <img src="{{asset('icons/close.svg')}}" alt="close">
+                        </a>
+                        <h4>Зарегистрируйтесь</h4>
+                        <div class="register_top_buttons">
+                            <button>Компания</button>
+                            <button>Клиент</button>
+                        </div>
+                        <input type="text" placeholder="Имя">
+                        <input type="text" placeholder="Фамилия">
+                        <input type="text" placeholder="E-mail адрес">
+                        <input type="text" placeholder="Телефон">
+                        <input type="text" placeholder="Пароль">
+                        <input type="text" placeholder="Подтверждение пароля">
+                        <div class="register_bottom_buttons">
+                            <button v-on:click.prevent="isLogin = true">Войти</button>
+                            <button>Регистрация</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
     </div>
 </body>
 </html>
