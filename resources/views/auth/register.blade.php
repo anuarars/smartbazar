@@ -39,6 +39,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Phone</label>
+                            <div class="col-md-6">
+                                <input id="name" type="tel" class="form-control" name="phone" value="{{ old('phone') }}" required autofocus>
+                         
+                             @if ($errors->has('phone'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('phone') }}</strong>
+                                </span>
+                            @endif
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

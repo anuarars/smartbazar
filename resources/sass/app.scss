@@ -642,17 +642,25 @@ footer{
             small{
                 font-family: 'helvetica Neue Medium';
             }
-            input{
+            .login_inputs_wrapper{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
                 width: 100%;
-                border-radius: 5px;
-                outline: none;
-                border: 2px solid #707070;  
-                padding: 5px;         
-                &::placeholder{
-                    color: #C1C8CE;
-                    font-size: 14px;
-                    font-family: 'Helvetica Neue Medium';
-                    font-weight: lighter;
+                input{
+                    margin: 5px 0;
+                    width: 100%;
+                    border-radius: 5px;
+                    outline: none;
+                    border: 2px solid #707070;  
+                    padding: 5px;         
+                    &::placeholder{
+                        color: #C1C8CE;
+                        font-size: 14px;
+                        font-family: 'Helvetica Neue Medium';
+                        font-weight: lighter;
+                    }
                 }
             }
             .auth_buttons{

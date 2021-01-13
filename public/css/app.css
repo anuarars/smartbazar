@@ -11639,7 +11639,16 @@ footer .copyright {
   font-family: "helvetica Neue Medium";
 }
 
-.smb_modal .modal_container .auth input {
+.smb_modal .modal_container .auth .login_inputs_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.smb_modal .modal_container .auth .login_inputs_wrapper input {
+  margin: 5px 0;
   width: 100%;
   border-radius: 5px;
   outline: none;
@@ -11647,28 +11656,28 @@ footer .copyright {
   padding: 5px;
 }
 
-.smb_modal .modal_container .auth input::-moz-placeholder {
+.smb_modal .modal_container .auth .login_inputs_wrapper input::-moz-placeholder {
   color: #C1C8CE;
   font-size: 14px;
   font-family: "Helvetica Neue Medium";
   font-weight: lighter;
 }
 
-.smb_modal .modal_container .auth input:-ms-input-placeholder {
+.smb_modal .modal_container .auth .login_inputs_wrapper input:-ms-input-placeholder {
   color: #C1C8CE;
   font-size: 14px;
   font-family: "Helvetica Neue Medium";
   font-weight: lighter;
 }
 
-.smb_modal .modal_container .auth input::-ms-input-placeholder {
+.smb_modal .modal_container .auth .login_inputs_wrapper input::-ms-input-placeholder {
   color: #C1C8CE;
   font-size: 14px;
   font-family: "Helvetica Neue Medium";
   font-weight: lighter;
 }
 
-.smb_modal .modal_container .auth input::placeholder {
+.smb_modal .modal_container .auth .login_inputs_wrapper input::placeholder {
   color: #C1C8CE;
   font-size: 14px;
   font-family: "Helvetica Neue Medium";

@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "vue-star-rating": "^1.7.0",
+        "vue-the-mask": "^0.11.1",
         "vueperslides": "^2.12.1"
     }
 }
