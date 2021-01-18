@@ -23,12 +23,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('slider-component', require('./components/SliderComponent.vue').default);
 Vue.component('star-component', require('./components/StarComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
+Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
+
 
 const app = new Vue({
     el: '#app',
@@ -37,5 +42,31 @@ const app = new Vue({
         hiddenAuth: true,
         isLogin: true,
         searchFocused: false,
+        wishlist: '',
+    },
+    methods: {
+        registerUser(evt){
+            evt.preventDefault();
+            document.getElementById("registerUser").submit();
+        },
+        loginUser(evt){
+            evt.preventDefault();
+            document.getElementById("loginUser").submit();
+        },
+        addWishlist: function(product_id){
+            axios.post('wishlist', {
+                product_id: product_id,
+            }).then(response => {
+                this.countWishlist();
+            });
+        },
+        countWishlist(){
+            axios.get('wishlist/count').then((response) => {
+                this.wishlist = response.data;
+            })
+        }
+    },
+    created(){
+        this.countWishlist();
     }
 });

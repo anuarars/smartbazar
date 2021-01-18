@@ -131,202 +131,30 @@
                     </div>
                 </div>
                 <div class="products_body">
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Продукция такая.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
+                    @foreach ($products as $product)
+                        <div class="product_item">
+                            <a href="{{route('product', $product)}}" class="product_item_image">
+                                <img src="{{$product->image}}" alt="{{$product->image}}">
+                            </a>
+                            <a href="#" class="add_to_favorite" @click.prevent="addWishlist({{$product->id}})">
+                                <img src="{{asset('icons/heart.svg')}}" alt="heart" class="favorite">
+                            </a>
+                            <star-component
+                                :rating = "{{$product->avgRating()}}"
+                            ></star-component>
+                            <div class="product_item_title">{{$product->description}}</div>
+                            <div class="product_item_country">{{$product->discountPercent}}</div>
+                            <div class="product_item_seller">{{$product->company->name}}</div>
+                            <div class="product_item_info">
+                                <div class="product_item_price">
+                                    <div class="new_price">{{$product->discount}} тг.</div>
+                                    <div class="old_price">{{$product->price}} тг.</div>
+                                </div>
+                                <div class="product_item_place">Lorem.</div>
                             </div>
-                            <div class="product_item_place">Lorem.</div>
+                            <button>Купить</button>
                         </div>
-                        <button>Купить</button>
-                    </div>
-                    <div class="product_item">
-                        <a href="#" class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                            <img src="{{asset('icons/heart.svg')}}" alt="heart" class="favorite">
-                        </a>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                        <button>Купить</button>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                    </div>
-                    <div class="product_item">
-                        <div class="product_item_image">
-                            <img src="https://via.placeholder.com/500/500" alt="">
-                        </div>
-                        <star-component></star-component>
-                        <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                        <div class="product_item_country">Lorem.</div>
-                        <div class="product_item_seller">Lorem.</div>
-                        <div class="product_item_info">
-                            <div class="product_item_price">
-                                <div class="new_price">200 tg</div>
-                                <div class="old_price">500 tg</div>
-                            </div>
-                            <div class="product_item_place">Lorem.</div>
-                        </div>
-                        <button>Купить</button>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="pink_btn_lg">Показать больше</button>
             </div>

@@ -26,32 +26,32 @@ class UserSeeder extends Seeder
 
         $user = User::create([
             'name' => 'user',
-            'email' => 'user@user.com',
+            'phone' => '1111111111',
             'company_id' => '1',
             'password' => Hash::make('12345678')
         ]);
 
         $seller = User::create([
             'name' => 'seller',
-            'email' => 'seller@seller.com',
+            'phone' => '2222222222',
             'password' => Hash::make('12345678')
         ]);
 
         $packer = User::create([
             'name' => 'packer',
-            'email' => 'packer@packer.com',
+            'phone' => '3333333333',
             'password' => Hash::make('12345678')
         ]);
 
         $delivery = User::create([
             'name' => 'delivery',
-            'email' => 'delivery@delivery.com',
+            'phone' => '4444444444',
             'password' => Hash::make('12345678')
         ]);
 
         $admin = User::create([
             'name' => 'admin',
-            'email' => 'admin@admin.com',
+            'phone' => '5555555555',
             'password' => Hash::make('12345678')
         ]);
 

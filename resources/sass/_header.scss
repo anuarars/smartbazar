@@ -1,0 +1,225 @@
+header{
+    .top-header{
+        .top_header_nav{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            .about{
+                width: 55%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+                margin: 0;
+                li{
+                    list-style: none;
+                    a{
+                        color: #31373B;
+                        font-family: 'Helvetica Neue Medium';
+                        font-size: 16px;
+                        font-weight: normal;
+                    }
+                }
+            }
+            .account{
+                width: 45%;
+                display: flex;
+                flex-direction: row;
+                list-style: none;
+                justify-content: flex-end;
+                align-items: center;
+                margin: 0;
+                padding: 15px 0;
+                li{
+                    margin: 0 25px;
+                    a{
+                        font-family: 'Helvetica Neue Medium';
+                        color: $pink-color;
+                        font-size: 16px;
+                        font-weight: normal;
+                    }
+                    &:last-child{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+    .bottom-header{
+        // background: rgb(159,52,131);
+        background: linear-gradient(360deg, rgba(210,27,90,1) 0%, rgba(220,34,85,1) 51%, rgba(236,45,77,1) 100%);
+        margin-top: 20px;
+        .removeBasket{
+            display: grid;
+            grid-template-columns: 2fr 5fr!important;
+        }
+        .bottom_header_nav{
+            display: grid;
+            grid-template-columns: 2fr 3fr 2fr;
+            gap: 30px;
+            align-content: center;
+            padding: 15px 0;
+            .logo{
+                color: #fff;
+                text-transform: uppercase;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                text-decoration: none;
+                font-family: 'Poppins';
+                .logo_title{
+                    font-size: 1.7rem;
+                    font-weight: bold;
+                    margin-left: 20px;
+                }
+            }
+            .search{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                input{
+                    width: 100%;
+                    border-radius: 25px;
+                    border: none;
+                    padding: 10px;
+                }
+                img{
+                    position: absolute;
+                    right: 5%;
+                }
+            }
+            .items{
+                color: #fff;
+                display: grid;
+                grid-template-columns: 1fr 1fr 4fr;
+                align-content: center;
+                .wishlist, .basket{
+                    position: relative;
+                    width: 30px;
+                    height: 30px;
+                    align-self: center;
+                    justify-self: end;
+                    .circle-badge{
+                        position: absolute;
+                        bottom: 70%;
+                        right: 70%;
+                        height: 25px;
+                        width: 25px;
+                        background-color: #fff335;
+                        border-radius: 50%;
+                        display: inline-block;
+                        color: #000;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    img{
+                        width: 100%;
+                    }
+                }
+                .basket_description{
+                    font-family: 'Helvetica Neue';
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 16px;
+                    // font-weight: bold;
+                    align-items: flex-start;
+                    justify-content: center;
+                    margin-left: 30px;
+                }
+                .hamburger{
+                    display: none;
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.menu{
+    margin-top: 10px;
+    .dropdown_nav {
+        padding: 10px 0;
+        position: relative;
+        a{
+            color: $pink-color;
+            text-decoration: none;
+            span{
+                margin: 0 5px;
+            }
+        }
+        .megamenu{
+            width: 100%;
+            position: absolute;
+            background-color: $grey-bg;
+            z-index: 10;
+            top: 100%;
+            left: 0;
+            display: block;
+            float: left;
+            .megamenu_categories{
+                padding-left: 0;
+                list-style-type: none;
+                width: 30%;
+                background-color: $main-bg;
+                color: #31373B;
+                .megamenu_category{
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    font-family: 'Helvetica Neue Bold';
+                    font-size: 16px;
+                    font-weight: bold;
+                    .megamenu_submenu{
+                        ul{
+                            position: absolute;
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            list-style-type: none;
+                            width: 70%;
+                            right: 0;
+                            grid-template-rows: repeat(3, 1fr);
+                            height: 100%;
+                            li{
+                                font-family: 'Helvetica Neue Bold';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: $pink-color;
+                                position: relative;
+                                ul{
+                                    position: absolute;
+                                    list-style-type: none;
+                                    padding-left: 0;
+                                    left: 0;
+                                    display: flex;
+                                    flex-direction: column;
+                                    li{
+                                        a{
+                                            color: #31373B;
+                                            text-decoration: none;
+                                            font-size: 14px;
+                                            font-weight: lighter;
+                                            font-family: 'Helvetica Neue Medium';
+                                        }
+
+                                        &:last-child{
+                                            a{
+                                                color: #007DD1;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

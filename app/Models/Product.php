@@ -41,6 +41,10 @@ class Product extends Model
         return $this->hasMany(Rating::class);
     }
 
+    public function wishlist(){
+        return $this->hasMany(Wishlist::class);
+    }
+
     public function userRating(){
         $user_id = Auth::id();
         $userRating = $this->ratings->where('user_id', $user_id)->first();
@@ -110,52 +114,57 @@ class Product extends Model
 
     public function avgRating(){
         $average_rating = $this->ratings->avg('rate');
-        if($average_rating == 1){
-            echo 
-            '<div class="product_rating">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($average_rating == 2){
-            echo 
-            '<div class="product_rating">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($average_rating == 3){
-            echo 
-            '<div class="product_rating">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($average_rating == 4){
-            echo 
-            '<div class="product_rating">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
+        if($average_rating == null){
+            return 5;
         }else{
-            echo 
-            '<div class="product_rating">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-            </div>';
-        };
+            return $average_rating;
+        }
+        // if($average_rating == 1){
+        //     echo 
+        //     '<div class="product_rating">
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //     </div>';
+        // }else if($average_rating == 2){
+        //     echo 
+        //     '<div class="product_rating">
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //     </div>';
+        // }else if($average_rating == 3){
+        //     echo 
+        //     '<div class="product_rating">
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //     </div>';
+        // }else if($average_rating == 4){
+        //     echo 
+        //     '<div class="product_rating">
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="far fa-star" style="color:#000"></i>
+        //     </div>';
+        // }else{
+        //     echo 
+        //     '<div class="product_rating">
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //         <i class="fa fa-star" style="color:green"></i>
+        //     </div>';
+        // };
     }
 
     public function get_price_for_count(){
@@ -164,4 +173,11 @@ class Product extends Model
         }
         return $this->price;
     }
+
+
+    // ACCESSOR
+    public function getdiscountPercentAttribute(){
+        return ceil(($this->price - $this->discount)/$this->price *100);
+    }
+
 }

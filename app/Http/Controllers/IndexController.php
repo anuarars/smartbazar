@@ -7,14 +7,18 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
+use Illuminate\Support\Facades\DB;
 
 use function GuzzleHttp\Promise\all;
 
 class IndexController extends Controller
 {
     public function index(){
-        $latest_products = Product::OrderBy('created_at', 'desc')->take(6)->get();
-        return view('index', compact('latest_products'));
+        $products = Product::where('discount', '!=', 'null')
+            ->get()
+            ->sortByDesc('discountPercent')
+            ->take(10);
+        return view('index', compact('products'));
     }
 
     public function product($id = null){

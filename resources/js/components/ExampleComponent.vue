@@ -1,16 +1,14 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="wishlist_items">
+        <ul>
+            <li class="wishlist_items_head">
+                <ul>
+                    <li>Название</li>
+                    <li>Продавец</li>
+                    <li></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </template>
 

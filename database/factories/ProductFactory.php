@@ -6,6 +6,10 @@ use App\Models\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
+    $discountPrice = rand(0, 4000);
+    if($discountPrice < 2000){
+        $discountPrice = null;
+    }
     $color = substr($faker->hexcolor, 1);
     $data = [    
         'category_id' => rand(4, 10),
@@ -18,7 +22,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'description' => $faker->sentence(rand(3, 8), true),
         'price' => rand(5000, 6000),
         'count' => rand(10, 50),
-        'discount' => rand(4500, 5000),
+        'discount' => $discountPrice,
         'image' => "https://via.placeholder.com/400x400/$color"
     ];
 

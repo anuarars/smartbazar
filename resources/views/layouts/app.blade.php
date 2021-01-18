@@ -40,10 +40,26 @@
                                     <img src="{{asset('icons/location.svg')}}" alt="location">                               
                                     <a href="#">Нур-Султан (Астана)</a>
                                 </li>
-                                <li>
-                                    <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-                                    <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Кабинет</a>
-                                </li>
+                                @guest
+                                    <li>
+                                        <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти/Регистрация</a>
+                                    </li>
+                                @else
+                                    <li>
+                                        <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
+                                        <a href="#">Кабинет</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                      document.getElementById('logout-form').submit();">
+                                         Выйти
+                                     </a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                @endguest
                             </ul>
                         </div>
                     </div>
@@ -67,10 +83,10 @@
                                 <img src="{{asset('icons/search.svg')}}" alt="search">
                             </div>
                             <div v-if="!searchFocused" class="items">
-                                <div class="wishlist">
-                                    <div class="circle-badge">12</div>
+                                <a href="{{route('wishlist.index')}}" class="wishlist">
+                                    <div class="circle-badge" v-text="wishlist"></div>
                                     <img src="{{asset('icons/heart.svg')}}" alt="heart">
-                                </div>
+                                </a>
                                 <div class="basket">
                                     <div class="circle-badge">6</div>
                                     <img src="{{asset('icons/basket.svg')}}" alt="basket">
@@ -299,9 +315,21 @@
                         </a>
                         <h4>Войти в аккаунт</h4>
                         <small>Войдите, чтобы мы могли сохранить для вас товар</small>
-                        <login-component></login-component>
+                        <form class="login_inputs_wrapper" action="{{ route('login') }}" id="loginUser" method="POST">
+                            @csrf
+                            <input 
+                                type="text"
+                                v-mask="'+7 (###) ### ####'" 
+                                placeholder="Телефон"
+                                required
+                                name="phone"
+                             />
+                            <input type="password" 
+                                placeholder="Пароль"
+                                name="password">
+                        </form>
                         <div class="auth_buttons">
-                            <button>Войти</button>
+                            <button v-on:click="loginUser($event)">Войти</button>
                             <button v-on:click="isLogin = false">Регистрация</button>
                         </div>
                         <span>Нет профиля?
@@ -317,15 +345,13 @@
                             <button>Компания</button>
                             <button>Клиент</button>
                         </div>
-                        <input type="text" placeholder="Имя">
-                        <input type="text" placeholder="Фамилия">
-                        <input type="text" placeholder="E-mail адрес">
-                        <input type="text" placeholder="Телефон">
-                        <input type="text" placeholder="Пароль">
-                        <input type="text" placeholder="Подтверждение пароля">
+                        <form method="POST" action="{{ route('register') }}" id="registerUser">
+                            @csrf
+                            <register-component></register-component>
+                        </form>
                         <div class="register_bottom_buttons">
                             <button v-on:click.prevent="isLogin = true">Войти</button>
-                            <button>Регистрация</button>
+                            <button v-on:click="registerUser($event)">Регистрация</button>
                         </div>
                     </div>
                 </div>
