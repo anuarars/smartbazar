@@ -29,9 +29,15 @@ Route::get('/products/{id}', 'IndexController@product')->name('product');
 
 /*-----------------AUTH ROUTES GROUPES--------------------------------------------------------------------------------------------------------------*/
 Route::group(['middleware'=>['auth']], function(){
+    
+    // Wishlist Controllers---------
     Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index');
     Route::post('/wishlist', 'WishlistController@store')->name('wishlist.store');
     Route::get('/wishlist/count', 'WishlistController@count')->name('wishlist.count');
+    Route::get('/wishlist/get', 'WishlistController@getData')->name('wishlist.get');
+    Route::delete('/wishlist/{wishlist}', 'WishlistController@destroy')->name('wishlist.destroy');
+    // --------------
+
     Route::get('/cart', 'BasketController@basket')->name('cart.index');
     Route::post('/cart/create/', 'BasketController@create')->name('cart.create');
     Route::post('/cart/remove/{id}', 'BasketController@remove')->name('cart.remove');

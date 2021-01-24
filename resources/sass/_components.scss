@@ -90,7 +90,11 @@
     }
 }
 
-
+.stars{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 // BUTTONS
@@ -110,7 +114,17 @@
     text-align: center;
     border-radius: 25px;
     padding: 8px 20px;
-    border: none;
+    border: 1px solid $pink-color;
+    outline: none!important;
+}
+
+.btn-pink-rounded-outline{
+    background-color: #fff;
+    color: $pink-color;
+    text-align: center;
+    border-radius: 25px;
+    padding: 8px 20px;
+    border: 1px solid $pink-color;
     outline: none!important;
 }
 
@@ -128,7 +142,56 @@
         font-family: 'Helvetica Neue Bold';
     }
 
+    .xs-title{
+        color: #31373B;
+        font-size: 14px;
+        font-family: 'Helvetica Neue Bold';
+    }
+
+    .sm-title{
+        font-size: 16px;
+        font-family: 'Helvetica Neue Bold';
+        margin: 0;
+        color: #31373B;
+    }
+    .md-title{
+        font-size: 18px;
+        font-family: 'Helvetica Neue Bold';
+        color: #5D656B;
+    }
+    .text{
+        font-size: 16px;
+        font-family: 'Helvetica';
+        margin: 0;
+        color: #31373B;
+    }
+    .sm-text{
+        font-size: 14px;
+        font-family: 'Helvetica';
+        margin: 0;
+        color: #31373B;
+    }
+
 // APPEARANCE
     .d-none{
         display: none;
+    }
+
+// TEXT COLOR
+    .text-skyblue{
+        color: $skyblue-color;
+    }
+    .text-pink{
+        color: $pink-color;
+    }
+
+
+// SIZES
+    .w-100{
+        width: 100%;
+    }
+
+// alignment
+    .text-center{
+        text-align: center;
     }

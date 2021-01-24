@@ -16,9 +16,9 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        $wishlists = Wishlist::where('user_id', Auth::id())->get();
+        // $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company')->get();
         $categories = Category::all();
-        return view('wishlist', compact('wishlists', 'categories'));
+        return view('wishlist', compact('categories'));
     }
 
     /**
@@ -62,8 +62,13 @@ class WishlistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Wishlist $wishlist)
     {
-        //
+        $wishlist->delete();
+    }
+
+    public function getData(){
+        $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company')->get();
+        return $wishlists;
     }
 }

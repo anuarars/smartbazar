@@ -10969,6 +10969,13 @@ a.text-dark:focus {
   outline: none;
 }
 
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 body {
   font-family: "Helvetica Neue";
   font-size: 16px;
@@ -11326,6 +11333,12 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   display: none;
 }
 
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-pink {
   background-color: #ea4967;
   color: #fff;
@@ -11342,7 +11355,17 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   text-align: center;
   border-radius: 25px;
   padding: 8px 20px;
-  border: none;
+  border: 1px solid #ea4967;
+  outline: none !important;
+}
+
+.btn-pink-rounded-outline {
+  background-color: #fff;
+  color: #ea4967;
+  text-align: center;
+  border-radius: 25px;
+  padding: 8px 20px;
+  border: 1px solid #ea4967;
   outline: none !important;
 }
 
@@ -11358,8 +11381,57 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   font-family: "Helvetica Neue Bold";
 }
 
+.xs-title {
+  color: #31373B;
+  font-size: 14px;
+  font-family: "Helvetica Neue Bold";
+}
+
+.sm-title {
+  font-size: 16px;
+  font-family: "Helvetica Neue Bold";
+  margin: 0;
+  color: #31373B;
+}
+
+.md-title {
+  font-size: 18px;
+  font-family: "Helvetica Neue Bold";
+  color: #5D656B;
+}
+
+.text {
+  font-size: 16px;
+  font-family: "Helvetica";
+  margin: 0;
+  color: #31373B;
+}
+
+.sm-text {
+  font-size: 14px;
+  font-family: "Helvetica";
+  margin: 0;
+  color: #31373B;
+}
+
 .d-none {
   display: none;
+}
+
+.text-skyblue {
+  color: #007DD1;
+}
+
+.text-pink {
+  color: #ea4967;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .slider {
@@ -11522,6 +11594,7 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   width: 100%;
   background-color: #fff;
   padding: 20px;
+  margin: 20px 0;
 }
 
 .inner_container .wishlist_sort {
@@ -11702,6 +11775,328 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
 
 .inner_container .wishlist_items ul li.wishlist_item_single ul li:last-child img {
   width: 15px;
+}
+
+.inner_container .single_product_wrapper {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  padding: 30px 0;
+}
+
+.inner_container .single_product_wrapper .single_product_main_info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 2px solid #efefef;
+}
+
+.inner_container .single_product_wrapper .single_product_main_info .single_product_main_image img {
+  width: 100%;
+}
+
+.inner_container .single_product_wrapper .single_product_main_info .single_product_main_desc h3 {
+  color: #31373B;
+  font-family: "Helvetica Neue Medium";
+  font-size: 1.5rem;
+}
+
+.inner_container .single_product_wrapper .single_product_main_info .single_product_main_desc h1 {
+  color: #31373B;
+  font-family: "Helvetica Neue Bold";
+}
+
+.inner_container .single_product_wrapper .single_product_main_info .single_product_main_desc a {
+  font-size: 1.125rem;
+}
+
+.inner_container .single_product_wrapper .single_product_main_info .single_product_main_desc a:hover {
+  text-decoration: none;
+}
+
+.inner_container .single_product_wrapper .single_product_company_info {
+  grid-row: 1/3;
+  grid-column: 2;
+  border-left: 2px solid #efefef;
+  padding: 0 30px;
+}
+
+.inner_container .single_product_wrapper .single_product_company_info fieldset {
+  font-family: "Helvetica Neue Bold";
+  font-size: 1.125rem;
+}
+
+.inner_container .single_product_wrapper .single_product_company_info .single_product_company_img {
+  text-align: center;
+}
+
+.inner_container .single_product_wrapper .single_product_company_info ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.inner_container .single_product_wrapper .single_product_company_info ul li span {
+  margin-left: 10px;
+}
+
+.inner_container .single_product_wrapper .single_product_terms {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 15px 15px 0 0;
+}
+
+.inner_container .single_product_wrapper .single_product_terms ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.inner_container .single_product_wrapper .single_product_terms ul li {
+  font-family: "Helvetica Neue Medium";
+  color: #31373B;
+  font-size: 15px;
+}
+
+.inner_container .review .review_header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 2px solid #efefef;
+}
+
+.inner_container .review .review_header h3 {
+  font-family: "Helvetica Neue Medium";
+  color: #31373B;
+}
+
+.inner_container .review .review_desc {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.inner_container .review .review_desc ul.review_desc_desc {
+  padding: 0;
+  list-style: none;
+}
+
+.inner_container .review .review_desc ul.review_desc_desc h3 {
+  font-family: "Helvetica Neue Medium";
+  color: #31373B;
+  padding-top: 15px;
+}
+
+.inner_container .review .review_desc ul.review_desc_desc li.small_title {
+  padding-top: 15px;
+}
+
+.inner_container .review .review_desc ul.review_desc_desc li.text {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #31373B;
+}
+
+.inner_container .review .review_desc ul.review_desc_desc li.text:last-child {
+  border-bottom: none;
+}
+
+.inner_container .review .review_desc .review_desc_comments {
+  padding: 20px;
+}
+
+.inner_container .review .review_desc .review_desc_comments .review_desc_comments_card {
+  border: 1px solid #efefef;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.inner_container .review .review_desc .review_desc_comments .review_desc_comments_card .review_desc_comments_card_header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+}
+
+.inner_container .review .review_desc .review_desc_comments .review_desc_comments_card .review_desc_comments_card_body {
+  padding-top: 10px;
+}
+
+.inner_container .review .review_desc .review_desc_comments a.text-skyblue {
+  margin-top: 10px;
+}
+
+.inner_container .product_sellers {
+  width: 100%;
+}
+
+.inner_container .product_sellers ul {
+  padding: 10px 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-content: center;
+  margin: 0;
+  border-bottom: 2px solid #efefef;
+}
+
+.inner_container .product_sellers ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.inner_container .product_sellers ul:first-child {
+  border-bottom: 3px solid #efefef;
+}
+
+.inner_container .cart_wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 20px;
+}
+
+.inner_container .cart_wrapper .cart_payment {
+  padding: 0 25px 0 0;
+}
+
+.inner_container .cart_wrapper .cart_payment select {
+  border: 1px solid #C1C8CE;
+  padding: 10px 40px 10px 10px;
+  color: #31373B;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: transparent;
+  background-image: url("/public/icons/select_arrow.svg");
+  background-repeat: no-repeat;
+  background-position-x: 95%;
+  background-position-y: 50%;
+  width: 100%;
+}
+
+.inner_container .cart_wrapper .cart_payment input,
+.inner_container .cart_wrapper .cart_payment textarea {
+  border: 1px solid #C1C8CE;
+  padding: 10px;
+  color: #31373B;
+  width: 100%;
+}
+
+.inner_container .cart_wrapper .cart_payment .cart_payment_address,
+.inner_container .cart_wrapper .cart_payment .cart_payment_user {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card {
+  border: 1px solid #C1C8CE;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul li {
+  border-bottom: 1px solid #C1C8CE;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_card_title {
+  font-size: 20px;
+  font-family: "Helvetica Neue Medium";
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_company {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_company .cart_company_img img {
+  width: 100%;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_company .cart_company_desc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_company .cart_company_desc h3 {
+  font-size: 18px;
+  font-family: "Helvetica Neue Bold";
+  color: #31373B;
+  margin: 0;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product .cart_product_img {
+  padding: 5px;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product .cart_product_img img {
+  width: 100%;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product .cart_product_desc {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product .cart_product_desc h3 {
+  font-size: 18px;
+  font-family: "Helvetica Neue Bold";
+  color: #31373B;
+  margin: 0;
+}
+
+.inner_container .cart_wrapper .cart_products .cart_products_card ul .cart_product .cart_product_desc span {
+  color: #637079;
+  font-size: 14px;
+}
+
+.inner_container .cart_wrapper .cart_price .cart_price_discount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner_container .cart_wrapper .cart_price .cart_price_price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inner_container .cart_wrapper .cart_price .cart_price_price h2 {
+  font-family: "Helvetica Neue Bold";
+  font-size: 40px;
+  color: #31373B;
 }
 
 footer .subscribe {
@@ -11950,12 +12345,6 @@ footer .copyright {
 
 .title_default .title_default_link img {
   width: 12px;
-}
-
-.stars {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .smb_modal {
@@ -12347,6 +12736,93 @@ footer .copyright {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  li.wishlist_item_single ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  li.wishlist_item_single ul li .wishlist_company {
+    padding: 0 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  li.wishlist_item_single ul li .wishlist_company h6.wishlist_company_name {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+    color: #31373B;
+  }
+
+  li.wishlist_item_single ul li .wishlist_company h6.wishlist_company_comments {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+    color: #007DD1;
+  }
+
+  li.wishlist_item_single ul li:first-child {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_image {
+    padding: 0 10px;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_image img {
+    width: 100%;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_description {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_description h5 {
+    font-size: 18px;
+    font-family: "Helvetica Neue Bold";
+    padding: 5px 0;
+    margin: 0;
+    color: #31373B;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_status {
+    color: #007DD1;
+    font-size: 16px;
+    font-family: "Helvetica Neue Medium";
+    margin: 0;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_price {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    padding: 0;
+    margin: 0;
+    color: #31373B;
+  }
+
+  li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_price span {
+    font-family: "Helvetica Neue Medium";
+  }
+
+  li.wishlist_item_single ul li:last-child {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
+
+  li.wishlist_item_single ul li:last-child img {
+    width: 15px;
   }
 }
 

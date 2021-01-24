@@ -1,140 +1,133 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
-@section('body')
-    <div class="site__body">
-        <div class="page-header">
-            <div class="page-header__container container">
-                <div class="page-header__breadcrumb">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">
-                                <a href="index.html">Home</a>
-                                <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                </svg>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="">Breadcrumb</a>
-                                <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="images/sprite.svg#arrow-rounded-right-6x9"></use>
-                                </svg>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
-                        </ol>
-                    </nav>
+@section('content')
+    <div class="smb_breadcrumb">
+        <ul>
+            <li>Главная / </li>
+            <li>Оформление Заказа</li>
+        </ul>
+    </div>
+    <h2 class="page_title">Оформление Заказа</h2>
+    <div class="inner_container">
+        <div class="cart_wrapper">
+            <div class="cart_payment">
+                <div class="cart_payment_address">
+                    <fieldset class="xs-title">Способ оплаты:</fieldset>
+                    <fieldset class="xs-title">Наличие товара (услуги) было указанно правильно?</fieldset>
+                    <select name="">
+                        <option value="" selected disabled>Выберите способ оплаты</option>
+                        <option value="">Card</option>
+                        <option value="">Kaspi</option>
+                        <option value="">Наличка</option>
+                    </select>
+                    <select name="">
+                        <option value="" selected disabled>Выберите регион</option>
+                    </select>
+                    <input type="text" placeholder="Адрес">
                 </div>
-                <div class="page-header__title">
-                    <h1>Shopping Cart</h1>
+                <div class="cart_payment_user">
+                    <fieldset class="xs-title">Информация о получателе:</fieldset>
+                    <input type="text" placeholder="Имя">
+                    <input type="text" placeholder="Фамилия">
+                    <input type="text" placeholder="Телефон">
+                    <input type="email" placeholder="Email">
+                    <textarea name="" rows="4" placeholder="Уточнение к заказу"></textarea>
+                </div>
+                <div class="cart_price">
+                    <div class="cart_price_discount">
+                        <span class="text text-skyblue">Экономия</span>
+                        <span class="text text-skyblue">2 395 Тг</span>
+                    </div>
+                    <div class="cart_price_price">
+                        <span class="text">К оплате </span>
+                        <h2>5 205 Тг.</h2>
+                    </div>
+                </div>
+                <button class="btn-pink-rounded w-100">Подтвердить заказ</button>
+                <div class="sm-text text-center">Подтверждая заказ вы соглашаетесь с <a href="#" class="text-skyblue">политикой конфедициальности</a></div>
+            </div>
+            <div class="cart_products">
+                <div class="cart_products_card">
+                    <ul>
+                        <li class="cart_card_title">Ваш заказ</li>
+                        <li class="cart_company">
+                            <div class="cart_company_img">
+                                <img src="{{asset('icons/test/company_small.svg')}}" alt="">
+                            </div>
+                            <div class="cart_company_desc">
+                                <h3>Модная лавка</h3>
+                                <span class="text text-skyblue">
+                                    <img src="{{asset('icons/product/small_phone.svg')}}" alt="">+77771235678
+                                </span>
+                            </div>
+                        </li>
+                        <li class="cart_product">
+                            <div class="cart_product_img">
+                                <img src="{{asset('icons/test/product_small.svg')}}" alt="">
+                            </div>
+                            <div class="cart_product_desc">
+                                <h3>Красный марципан</h3>
+                                <span>Цена: 5 205 Тг.</span>
+                                <span>Количество 1 шт.</span>
+                                <span>Наличие: В наличии</span>
+                            </div>
+                        </li>
+                        <li class="cart_price">
+                            <div class="cart_price_discount">
+                                <span class="text text-skyblue">Экономия</span>
+                                <span class="text text-skyblue">2 395 Тг</span>
+                            </div>
+                            <div class="cart_price_price">
+                                <span class="text">К оплате </span>
+                                <h2>5 205 Тг.</h2>
+                            </div>
+                        </li>
+                        <li class="cart_mention">
+                            Защищаем покупки на 50 000 тг при оформлении заказа
+                        </li>
+                    </ul>
+                </div>
+                <div class="cart_products_card">
+                    <ul>
+                        <li class="cart_card_title">Ваш заказ</li>
+                        <li class="cart_company">
+                            <div class="cart_company_img">
+                                <img src="{{asset('icons/test/company_small.svg')}}" alt="">
+                            </div>
+                            <div class="cart_company_desc">
+                                <h3>Модная лавка</h3>
+                                <span class="text text-skyblue">
+                                    <img src="{{asset('icons/product/small_phone.svg')}}" alt="">+77771235678
+                                </span>
+                            </div>
+                        </li>
+                        <li class="cart_product">
+                            <div class="cart_product_img">
+                                <img src="{{asset('icons/test/product_small.svg')}}" alt="">
+                            </div>
+                            <div class="cart_product_desc">
+                                <h3>Красный марципан</h3>
+                                <span>Цена: 5 205 Тг.</span>
+                                <span>Количество 1 шт.</span>
+                                <span>Наличие: В наличии</span>
+                            </div>
+                        </li>
+                        <li class="cart_price">
+                            <div class="cart_price_discount">
+                                <span class="text text-skyblue">Экономия</span>
+                                <span class="text text-skyblue">2 395 Тг</span>
+                            </div>
+                            <div class="cart_price_price">
+                                <span class="text">К оплате </span>
+                                <h2>5 205 Тг.</h2>
+                            </div>
+                        </li>
+                        <li class="xs-title">
+                            Защищаем покупки на 50 000 тг при оформлении заказа
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        @if ($order)
-            <div class="cart block">
-                <div class="container">
-                    <table class="cart__table cart-table">
-                        <thead class="cart-table__head">
-                            <tr class="cart-table__row">
-                                <th class="cart-table__column cart-table__column--image">Image</th>
-                                <th class="cart-table__column cart-table__column--product">Product</th>
-                                <th class="cart-table__column cart-table__column--price">Price</th>
-                                <th class="cart-table__column cart-table__column--quantity">Quantity</th>
-                                <th class="cart-table__column cart-table__column--total">Total</th>
-                                <th class="cart-table__column cart-table__column--remove"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="cart-table__body">
-                            @foreach ($order->products as $product)
-                                <tr class="cart-table__row">
-                                    <td class="cart-table__column cart-table__column--image">
-                                        <div class="product-image">
-                                            <a href="" class="product-image__body">
-                                                <img class="product-image__img" src="{{ asset($product->image) }}" alt="">
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--product">
-                                        <a href="" class="cart-table__product-name">{{$product->title}}</a>
-                                        <ul class="cart-table__options">
-                                            <li>Color: Yellow</li>
-                                            <li>Material: Aluminium</li>
-                                        </ul>
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--price" data-title="Price">{{$product->price}}</td>
-                                    <td class="cart-table__column cart-table__column--quantity" data-title="Quantity">
-                                        <div class="input-number">
-                                        <input class="form-control input-number__input" type="number" min="1" value="{{$product->pivot->count}}">
-                                            <div class="input-number__add" product_id="{{$product->id}}"></div>
-                                            <div class="input-number__sub" product_id="{{$product->id}}"></div>
-                                        </div>
-                                    </td>
-                                    <td class="cart-table__column cart-table__column--total" data-title="Total">{{$product->get_price_for_count()}}</td>
-                                    <td class="cart-table__column cart-table__column--remove">
-                                        <button type="button" class="btn btn-light btn-sm btn-svg-icon">
-                                            <svg width="12px" height="12px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#cross-12')}}"></use>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="cart__actions">
-                        <form class="cart__coupon-form">
-                            <label for="input-coupon-code" class="sr-only">Password</label>
-                            <input type="text" class="form-control" id="input-coupon-code" placeholder="Coupon Code">
-                            <button type="submit" class="btn btn-primary">Apply Coupon</button>
-                        </form>
-                        <div class="cart__buttons">
-                            <a href="index.html" class="btn btn-light">Continue Shopping</a>
-                            <a href="" class="btn btn-primary cart__update-button">Update Cart</a>
-                        </div>
-                    </div>
-                    <div class="row justify-content-end pt-5">
-                        <div class="col-12 col-md-7 col-lg-6 col-xl-5">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="card-title">Cart Totals</h3>
-                                    <table class="cart__totals">
-                                        <thead class="cart__totals-header">
-                                            <tr>
-                                            <th>Сумма товаров</th>
-                                                <td>{{$order->get_full_price()}}</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="cart__totals-body">
-                                            <tr>
-                                                <th>Shipping</th>
-                                                <td>
-                                                    $25.00
-                                                    <div class="cart__calc-shipping"><a href="#">Calculate Shipping</a></div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th>Tax</th>
-                                                <td>
-                                                    $0.00
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot class="cart__totals-footer">
-                                            <tr>
-                                                <th>Total</th>
-                                                <td>$5,902.00</td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                    <form action="{{route('notification.packer')}}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="order_id" value="{{$order->id}}">
-                                        <button type="submit" class="btn btn-primary btn-xl btn-block cart__checkout-button">Proceed to checkout</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
     </div>
 @endsection

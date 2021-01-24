@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('wishlist-component', require('./components/WishlistComponent.vue').default);
 Vue.component('slider-component', require('./components/SliderComponent.vue').default);
 Vue.component('star-component', require('./components/StarComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
@@ -57,13 +58,17 @@ const app = new Vue({
             axios.post('wishlist', {
                 product_id: product_id,
             }).then(response => {
+                console.log(response.data);
                 this.countWishlist();
             });
         },
         countWishlist(){
-            axios.get('wishlist/count').then((response) => {
+            axios.get('http://bazar/public/wishlist/count').then((response) => {
                 this.wishlist = response.data;
             })
+        },
+        addToCart: function(product_id){
+            console.log(product_id);
         }
     },
     created(){

@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="product_item_place">Lorem.</div>
                             </div>
-                            <button>Купить</button>
+                            <button v-on:click="addToCart({{$product->id}})">В корзину</button>
                         </div>
                     @endforeach
                 </div>

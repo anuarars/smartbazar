@@ -119,52 +119,6 @@ class Product extends Model
         }else{
             return $average_rating;
         }
-        // if($average_rating == 1){
-        //     echo 
-        //     '<div class="product_rating">
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //     </div>';
-        // }else if($average_rating == 2){
-        //     echo 
-        //     '<div class="product_rating">
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //     </div>';
-        // }else if($average_rating == 3){
-        //     echo 
-        //     '<div class="product_rating">
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //     </div>';
-        // }else if($average_rating == 4){
-        //     echo 
-        //     '<div class="product_rating">
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="far fa-star" style="color:#000"></i>
-        //     </div>';
-        // }else{
-        //     echo 
-        //     '<div class="product_rating">
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //         <i class="fa fa-star" style="color:green"></i>
-        //     </div>';
-        // };
     }
 
     public function get_price_for_count(){

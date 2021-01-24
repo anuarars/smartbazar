@@ -11,7 +11,7 @@ class CartController extends Controller
         return view('cart');
     }
 
-    public function add($product_id)
+    public function addToCart($product_id)
     {
         $order_id = session('order_id');
         if(is_null($order_id)){
