@@ -38,10 +38,11 @@ Route::group(['middleware'=>['auth']], function(){
     Route::delete('/wishlist/{wishlist}', 'WishlistController@destroy')->name('wishlist.destroy');
     // --------------
 
-    Route::get('/cart', 'BasketController@basket')->name('cart.index');
-    Route::post('/cart/create/', 'BasketController@create')->name('cart.create');
-    Route::post('/cart/remove/{id}', 'BasketController@remove')->name('cart.remove');
-    Route::post('/cart/update/', 'BasketController@update')->name('cart.increase');
+    Route::get('/cart', 'CartController@basket')->name('cart.index');
+    Route::post('/cart/create/', 'CartController@create')->name('cart.create');
+    Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
+    Route::post('/cart/update/', 'CartController@update')->name('cart.increase');
+    Route::get('/cart/count', 'CartController@count')->name('cart.count');
     Route::post('/notification/packer/', 'NotificationController@packer')->name('notification.packer');
     Route::post('/notification/delivery/', 'NotificationController@delivery')->name('notification.delivery');
     Route::post('/rate/add', 'IndexController@add_rate')->name('rate.add');

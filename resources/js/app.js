@@ -44,6 +44,9 @@ const app = new Vue({
         isLogin: true,
         searchFocused: false,
         wishlist: '',
+        productNominal: '',
+        productSum: '',
+        productCount: ''
     },
     methods: {
         registerUser(evt){
@@ -68,10 +71,23 @@ const app = new Vue({
             })
         },
         addToCart: function(product_id){
-            console.log(product_id);
-        }
+            axios.post('cart/create', {
+                product_id: product_id,
+            }).then(response => {
+                console.log(response.data);
+                this.countCart();
+            });
+        },
+        countCart(){
+            axios.get('cart/count').then((response) => {
+                this.productSum = Number(response.data.sum).toLocaleString();
+                this.productNominal = response.data.products;
+                this.productCount = response.data.productsCount;
+            })
+        },
     },
     created(){
         this.countWishlist();
+        this.countCart();
     }
 });

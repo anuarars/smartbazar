@@ -40828,7 +40828,10 @@ var app = new Vue({
     hiddenAuth: true,
     isLogin: true,
     searchFocused: false,
-    wishlist: ''
+    wishlist: '',
+    productNominal: '',
+    productSum: '',
+    productCount: ''
   },
   methods: {
     registerUser: function registerUser(evt) {
@@ -40858,11 +40861,29 @@ var app = new Vue({
       });
     },
     addToCart: function addToCart(product_id) {
-      console.log(product_id);
+      var _this3 = this;
+
+      axios.post('cart/create', {
+        product_id: product_id
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this3.countCart();
+      });
+    },
+    countCart: function countCart() {
+      var _this4 = this;
+
+      axios.get('cart/count').then(function (response) {
+        _this4.productSum = Number(response.data.sum).toLocaleString();
+        _this4.productNominal = response.data.products;
+        _this4.productCount = response.data.productsCount;
+      });
     }
   },
   created: function created() {
     this.countWishlist();
+    this.countCart();
   }
 });
 

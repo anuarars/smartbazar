@@ -88,12 +88,12 @@
                                     <img src="{{asset('icons/heart.svg')}}" alt="heart">
                                 </a>
                                 <div class="basket">
-                                    <div class="circle-badge">6</div>
+                                    <div class="circle-badge" v-text="productNominal"></div>
                                     <img src="{{asset('icons/basket.svg')}}" alt="basket">
                                 </div>
                                 <div class="basket_description">
-                                    <span class="basket_count">Всего товаров: 3 шт</span>
-                                    <span class="basket_price">На сумму: 5600 тг</span>
+                                    <span class="basket_count">Всего товаров: <span v-text="productCount"></span> шт</span>
+                                    <span class="basket_price">На сумму: <span v-text="productSum"></span> тг</span>
                                 </div>
                                 <div class="hamburger">
                                     <img src="{{asset('icons/hamburger.svg')}}" alt="hamburger">
