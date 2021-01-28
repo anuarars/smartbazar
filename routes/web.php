@@ -62,7 +62,7 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'admin', 'prefix'=>'
 
 /*-------------SELLER GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ 
 Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=>'seller'], function(){
-    Route::get('all', 'SellerController@index')->name('seller.index');
+    Route::get('/', 'SellerController@index')->name('seller.index');
     Route::get('products', 'SellerController@products')->name('seller.products');
     Route::resource('product', 'ProductController')->names('seller.product');
 });

@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $products = Product::where('user_id', $user_id)->get();
+        $products = Product::where('user_id', $user_id)->paginate(15);
         return view('seller.product.index', compact('products'));
     }
 
@@ -38,7 +38,8 @@ class ProductController extends Controller
         $countries = Country::all();
         $brands = Brand::all();
         $categories = Category::all();
-        return view('seller.product.create', compact('countries', 'brands', 'categories', 'measures'));
+        $delimiter = "";
+        return view('seller.product.create', compact('countries', 'brands', 'categories', 'measures','delimiter'));
     }
 
     /**

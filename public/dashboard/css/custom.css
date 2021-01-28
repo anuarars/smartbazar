@@ -1,0 +1,26 @@
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
+
+/*# sourceMappingURL=custom.css.map */
+.file-upload {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.file-upload input {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    cursor: pointer;
+}
+
+.file-upload_button {
+    display: block;
+    padding: 8px 14px;
+    border-radius: 3px;
+    background: #6777ef;
+    color: #fff;
+}
