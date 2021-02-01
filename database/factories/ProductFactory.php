@@ -6,8 +6,8 @@ use App\Models\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
-    $discountPrice = rand(0, 4000);
-    if($discountPrice < 2000){
+    $discountPrice = rand(0, 100);
+    if($discountPrice > 20){
         $discountPrice = null;
     }
     $color = substr($faker->hexcolor, 1);

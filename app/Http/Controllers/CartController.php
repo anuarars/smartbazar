@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    public function basket()
+    public function index()
     {
         $user_id = Auth::id();
         $order = Order::where('user_id', $user_id)->where('status', 0)->get()->first();

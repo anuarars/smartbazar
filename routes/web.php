@@ -23,6 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('/products/{id}', 'IndexController@product')->name('product');
 
+Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
+
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -38,7 +40,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::delete('/wishlist/{wishlist}', 'WishlistController@destroy')->name('wishlist.destroy');
     // --------------
 
-    Route::get('/cart', 'CartController@basket')->name('cart.index');
+    Route::get('/cart', 'CartController@index')->name('cart.index');
     Route::post('/cart/create/', 'CartController@create')->name('cart.create');
     Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::post('/cart/update/', 'CartController@update')->name('cart.increase');
@@ -61,10 +63,13 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'admin', 'prefix'=>'
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ 
 
 /*-------------SELLER GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ 
-Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=>'seller'], function(){
-    Route::get('/', 'SellerController@index')->name('seller.index');
-    Route::get('products', 'SellerController@products')->name('seller.products');
+Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=>'company'], function(){
     Route::resource('product', 'ProductController')->names('seller.product');
+    Route::get('profile', 'CompanyController@index')->name('seller.company.profile');
+    Route::get('user/profile', 'UserController@profile')->name('seller.user.profile');
+    Route::get('user/profile/edit', 'UserController@edit')->name('seller.user.edit');
+    // Route::get('/', 'SellerController@index')->name('seller.index');
+    // Route::get('products', 'SellerController@products')->name('seller.products');
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/ 
 

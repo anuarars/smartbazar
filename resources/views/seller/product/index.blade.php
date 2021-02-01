@@ -19,7 +19,7 @@
                                     <th>Категория</th>
                                     <th>Количество</th>
                                     <th>Цена</th>
-                                    <th>Скидка</th>
+                                    <th>Скидка в %</th>
                                     <th>Посмотреть</th>
                                 </tr>
                                 @foreach ($products as $product)

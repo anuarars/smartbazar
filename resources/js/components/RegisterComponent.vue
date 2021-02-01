@@ -1,10 +1,9 @@
 <template>
     <div class="register_inputs_wrap">
         <input type="text" 
-            placeholder="Имя" 
-            name="name" 
+            placeholder="Логин" 
+            name="login" 
             required
-            autocomplete="name" 
             autofocus
         >
         <input type="text" 

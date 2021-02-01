@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -26,7 +26,7 @@
                                     <a href="#">О компании</a>
                                 </li>
                                 <li>
-                                    <a href="#">Доставка</a>
+                                    <a href="{{route('info.delivery')}}">Доставка</a>
                                 </li>
                                 <li>
                                     <a href="#">Гарантии, обмен и возврат</a>
@@ -41,9 +41,9 @@
                                     <a href="#">Нур-Султан (Астана)</a>
                                 </li>
                                 @guest
-                                    <li>
+                                    {{-- <li>
                                         <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти/Регистрация</a>
-                                    </li>
+                                    </li> --}}
                                 @else
                                     <li>
                                         <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
@@ -82,23 +82,29 @@
                                     v-on:blur="searchFocused = !searchFocused">
                                 <img src="{{asset('icons/search.svg')}}" alt="search">
                             </div>
-                            <div v-if="!searchFocused" class="items">
-                                <a href="{{route('wishlist.index')}}" class="wishlist">
-                                    <div class="circle-badge" v-text="wishlist"></div>
-                                    <img src="{{asset('icons/heart.svg')}}" alt="heart">
-                                </a>
-                                <div class="basket">
-                                    <div class="circle-badge" v-text="productNominal"></div>
-                                    <img src="{{asset('icons/basket.svg')}}" alt="basket">
+                            @guest
+                                <div class="signin" v-if="!searchFocused">
+                                    <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти / Регистрация</a>
                                 </div>
-                                <div class="basket_description">
-                                    <span class="basket_count">Всего товаров: <span v-text="productCount"></span> шт</span>
-                                    <span class="basket_price">На сумму: <span v-text="productSum"></span> тг</span>
+                            @else
+                                <div v-if="!searchFocused" class="items">
+                                    <a href="{{route('wishlist.index')}}" class="wishlist">
+                                        <div class="circle-badge" v-text="wishlist"></div>
+                                        <img src="{{asset('icons/heart.svg')}}" alt="heart">
+                                    </a>
+                                    <a href="{{route('cart.index')}}" class="basket">
+                                        <div class="circle-badge" v-text="productNominal"></div>
+                                        <img src="{{asset('icons/basket.svg')}}" alt="basket">
+                                    </a>
+                                    <div class="basket_description">
+                                        <span class="basket_count">Всего товаров: <span v-text="productCount"></span> шт</span>
+                                        <span class="basket_price">На сумму: <span v-text="productSum"></span> тг</span>
+                                    </div>
+                                    <div class="hamburger">
+                                        <img src="{{asset('icons/hamburger.svg')}}" alt="hamburger">
+                                    </div>
                                 </div>
-                                <div class="hamburger">
-                                    <img src="{{asset('icons/hamburger.svg')}}" alt="hamburger">
-                                </div>
-                            </div>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -306,57 +312,45 @@
                 </div>
             </footer>
         </section>
-        <transition name="bounce">
-            <div class="smb_modal" v-if="!hiddenAuth">
-                <div class="modal_container">
-                    <div class="auth" v-if="isLogin">
-                        <a href="#" @click.prevent="hiddenAuth = true" class="close_modal">
-                            <img src="{{asset('icons/close.svg')}}" alt="close">
-                        </a>
-                        <h4>Войти в аккаунт</h4>
-                        <small>Войдите, чтобы мы могли сохранить для вас товар</small>
-                        <form class="login_inputs_wrapper" action="{{ route('login') }}" id="loginUser" method="POST">
-                            @csrf
-                            <input 
-                                type="text"
-                                v-mask="'+7 (###) ### ####'" 
-                                placeholder="Телефон"
-                                required
-                                name="phone"
-                             />
-                            <input type="password" 
-                                placeholder="Пароль"
-                                name="password">
-                        </form>
-                        <div class="auth_buttons">
-                            <button v-on:click="loginUser($event)">Войти</button>
-                            <button v-on:click="isLogin = false">Регистрация</button>
-                        </div>
-                        <span>Нет профиля?
-                            <a href="#">Зарегистрируйтесь</a>
-                        </span>
-                    </div>
-                    <div class="register" v-if="!isLogin">
-                        <a href="#" @click.prevent="hiddenAuth = true" class="close_modal">
-                            <img src="{{asset('icons/close.svg')}}" alt="close">
-                        </a>
-                        <h4>Зарегистрируйтесь</h4>
-                        <div class="register_top_buttons">
-                            <button>Компания</button>
-                            <button>Клиент</button>
-                        </div>
-                        <form method="POST" action="{{ route('register') }}" id="registerUser">
-                            @csrf
-                            <register-component></register-component>
-                        </form>
-                        <div class="register_bottom_buttons">
-                            <button v-on:click.prevent="isLogin = true">Войти</button>
-                            <button v-on:click="registerUser($event)">Регистрация</button>
-                        </div>
-                    </div>
+        <div class="smb_modal">
+            <div class="modal_container" :class="{'sign-up-active' : signUp}">
+              <div class="overlay-container">
+                <div class="overlay">
+                  <div class="overlay-left">
+                    <h2>Welcome Back!</h2>
+                    <p>Please login with your personal info</p>
+                    <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
+                  </div>
+                  <div class="overlay-right">
+                    <h2>Hello, Friend!</h2>
+                    <p>Please enter your personal details</p>
+                    <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
+                  </div>
                 </div>
+              </div>
+              <form class="sign-up" action="#">
+                <h2>Create login</h2>
+                <div>Use your email for registration</div>
+                <input type="text" placeholder="Name" />
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <button>Sign Up</button>
+              </form>
+              <form class="sign-in" action="#">
+                <h2>Sign In</h2>
+                <div>Use your account</div>
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <a href="#">Forgot your password?</a>
+                <button>Sign In</button>
+              </form>
             </div>
-        </transition>
+        </div>
     </div>
+    @if (Auth::check())
+        <script>window.authUser={!! json_encode(Auth::user()); !!};</script>
+    @else
+        <script>window.authUser=null;</script>
+    @endif
 </body>
 </html>

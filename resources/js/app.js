@@ -25,6 +25,8 @@ Vue.component('slider-component', require('./components/SliderComponent.vue').de
 Vue.component('star-component', require('./components/StarComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
+Vue.component('product-component', require('./components/ProductComponent.vue').default);
+Vue.component('modal-component', require('./components/ModalComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -34,7 +36,6 @@ Vue.component('register-component', require('./components/RegisterComponent.vue'
 
 import VueTheMask from 'vue-the-mask'
 Vue.use(VueTheMask)
-
 
 const app = new Vue({
     el: '#app',
@@ -46,7 +47,9 @@ const app = new Vue({
         wishlist: '',
         productNominal: '',
         productSum: '',
-        productCount: ''
+        productCount: '',
+        authUser: window.authUser,
+        signUp: false
     },
     methods: {
         registerUser(evt){
@@ -66,9 +69,11 @@ const app = new Vue({
             });
         },
         countWishlist(){
-            axios.get('http://bazar/public/wishlist/count').then((response) => {
-                this.wishlist = response.data;
-            })
+            if(this.authUser != null){
+                axios.get('http://bazar/public/wishlist/count').then((response) => {
+                    this.wishlist = response.data;
+                })
+            }
         },
         addToCart: function(product_id){
             axios.post('cart/create', {
@@ -79,12 +84,14 @@ const app = new Vue({
             });
         },
         countCart(){
-            axios.get('cart/count').then((response) => {
-                this.productSum = Number(response.data.sum).toLocaleString();
-                this.productNominal = response.data.products;
-                this.productCount = response.data.productsCount;
-            })
-        },
+            if(this.authUser != null){
+                axios.get('cart/count').then((response) => {
+                    this.productSum = Number(response.data.sum).toLocaleString();
+                    this.productNominal = response.data.products;
+                    this.productCount = response.data.productsCount;
+                })
+            }
+        }
     },
     created(){
         this.countWishlist();

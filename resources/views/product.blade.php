@@ -14,10 +14,10 @@
                     <img src="{{asset('icons/test/product.svg')}}" alt="">
                 </div>
                 <div class="single_product_main_desc">
-                    <h3>Конфеты из марципана, картошка, Grondard, 160г</h3>
+                    <h3>{{$product->title}}</h3>
                     <a href="#" class="text-skyblue">Все предложения продавца</a>
                     <h5 class="text-pink">Нет в наличии</h5>
-                    <h1>1 210 тг.</h1>
+                    <h1>{{$product->price}} тг.</h1>
                     <div class="single_product_main_desc_buttons">
                         <button class="btn-pink-rounded">Купить</button>
                         <button class="btn-pink-rounded-outline">Написать</button>
@@ -29,7 +29,7 @@
                 <div class="single_product_company_img">
                     <img src="{{asset('icons/test/logo.svg')}}" alt="">
                 </div>
-                <fieldset>ТОО «Berry Company»</fieldset>
+                <fieldset>{{$product->company->name}}</fieldset>
                 <ul>
                     <li><img src="{{asset('icons/product/small_location.svg')}}" alt=""><span>Продавец из: <span class="text-skyblue">г. Алматы</span></span></li>
                     <li><img src="{{asset('icons/product/small_branch.svg')}}" alt=""><span class="text-skyblue">Филиалы</span></li>

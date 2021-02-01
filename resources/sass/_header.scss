@@ -92,6 +92,20 @@ header{
                     right: 5%;
                 }
             }
+            .signin{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                a{
+                    font-family: "Helvetica Neue Medium";
+                    color: #fff;
+                    font-size: 18px;
+                    font-weight: normal;
+                    text-decoration: none;
+                }
+            }
             .items{
                 color: #fff;
                 display: grid;

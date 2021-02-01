@@ -25,32 +25,33 @@ class UserSeeder extends Seeder
         $adminRole = Role::where('name', 'admin')->first();
 
         $user = User::create([
-            'name' => 'user',
-            'phone' => '1111111111',
+            'login' => 'user',
+            'phone' => '',
             'company_id' => '1',
             'password' => Hash::make('12345678')
         ]);
 
         $seller = User::create([
-            'name' => 'seller',
-            'phone' => '2222222222',
+            'login' => 'seller',
+            'phone' => '+7 (778) 871 1989',
+            'company_id' => '1',
             'password' => Hash::make('12345678')
         ]);
 
         $packer = User::create([
-            'name' => 'packer',
+            'login' => 'packer',
             'phone' => '3333333333',
             'password' => Hash::make('12345678')
         ]);
 
         $delivery = User::create([
-            'name' => 'delivery',
+            'login' => 'delivery',
             'phone' => '4444444444',
             'password' => Hash::make('12345678')
         ]);
 
         $admin = User::create([
-            'name' => 'admin',
+            'login' => 'admin',
             'phone' => '5555555555',
             'password' => Hash::make('12345678')
         ]);

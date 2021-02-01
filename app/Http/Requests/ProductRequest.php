@@ -32,7 +32,7 @@ class ProductRequest extends FormRequest
             'description' => 'required|min:10|max:500',
             'price' => 'required|integer',
             'count' => 'required|integer',
-            'discount' => 'required|integer',
+            'discount' => 'integer',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:3000',
             'gallery' => 'required'
         ];
@@ -41,7 +41,17 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            
+            'country_id.required' => 'Не указана Страна производитель',
+            'brand_id.required' => 'Не указан производитель',
+            'measure_id.required' => 'Не указана единица измерения товара',
+            'category_id.required' => 'Не указана категория',
+            'title.required' => 'Наименование товара не указана',
+            'description.required' => 'Описание товара не должно быть пустым',
+            'price.required' => 'Цена товара не указана',
+            'count.required' => 'Количество товара не должно быть пустым',
+            'discount.integer' => 'Скидка должна быть указана в цифрах',
+            'image.required' => 'Добавьте изображение для товара',
+            'gallery.required' => 'Добавьте изображения для товара',
         ];
     }
 }

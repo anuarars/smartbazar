@@ -160,11 +160,14 @@
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
               <div class="dropdown-title">Hello Sarah Smith</div>
-              <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-										fa-user"></i> Profile
-              </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
-                Activities
-              </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+              <a href="{{route('seller.company.profile')}}" class="dropdown-item has-icon"> <i class="far
+										fa-user"></i> Профиль компании
+              </a>
+              <a href="{{route('seller.user.profile')}}" class="dropdown-item has-icon"> <i class="far
+                fa-user"></i>
+                Профиль сотрудника
+              </a>
+              <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
                 Settings
               </a>
               <div class="dropdown-divider"></div>
@@ -193,15 +196,12 @@
                     <span>Товары</span>
                 </a>
             </li>
-            <li class="dropdown">
-              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Apps</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="chat.html">Chat</a></li>
-                <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                <li><a class="nav-link" href="blog.html">Blog</a></li>
-                <li><a class="nav-link" href="calendar.html">Calendar</a></li>
-              </ul>
-            </li>
+            <li>
+              <a class="nav-link" href="{{route('seller.product.index')}}">
+                  <i data-feather="file"></i>
+                  <span>Продажи</span>
+              </a>
+          </li>
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Email</span></a>
               <ul class="dropdown-menu">
@@ -388,7 +388,6 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          <a href="templateshub.net">Templateshub</a></a>
         </div>
         <div class="footer-right">
         </div>

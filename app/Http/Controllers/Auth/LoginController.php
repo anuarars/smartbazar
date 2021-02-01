@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+// use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -50,7 +51,7 @@ class LoginController extends Controller
             $this->redirectTo = route('delivery.index');
             return $this->redirectTo;
         }elseif(Auth::user()->hasRole('seller')){
-            $this->redirectTo = route('seller.products');
+            $this->redirectTo = route('seller.product.index');
             return $this->redirectTo;
         }else{
             $this->redirectTo = route('home');

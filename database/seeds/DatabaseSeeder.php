@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(MeasureSeeder::class);
         $this->call(CompanySeeder::class);
+        $this->call(WeekdaySeeder::class);
         factory(App\Models\Product::class, 100)->create();
         factory(App\Models\Gallery::class, 100)->create();
 

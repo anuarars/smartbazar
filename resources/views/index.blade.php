@@ -132,12 +132,17 @@
                 </div>
                 <div class="products_body">
                     @foreach ($products as $product)
+                        {{-- <product-component
+                            :product = "{{$product}}"
+                            :rating = "{{$product->avgRating()}}"
+                            v-on:update-item=”onUpdateItem”
+                        ></product-component> --}}
                         <div class="product_item">
                             <a href="{{route('product', $product)}}" class="product_item_image">
                                 <img src="{{$product->image}}" alt="{{$product->image}}">
                             </a>
                             <a href="#" class="add_to_favorite" @click.prevent="addWishlist({{$product->id}})">
-                                <img src="{{asset('icons/heart.svg')}}" alt="heart" class="favorite">
+                                <img src="{{asset('icons/heart.svg')}}" alt="heart" class="favorite_like" @click.prevent="addWishlist({{$product->id}})">
                             </a>
                             <star-component
                                 :rating = "{{$product->avgRating()}}"

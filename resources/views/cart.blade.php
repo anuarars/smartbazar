@@ -47,86 +47,48 @@
                 <div class="sm-text text-center">Подтверждая заказ вы соглашаетесь с <a href="#" class="text-skyblue">политикой конфедициальности</a></div>
             </div>
             <div class="cart_products">
-                <div class="cart_products_card">
-                    <ul>
-                        <li class="cart_card_title">Ваш заказ</li>
-                        <li class="cart_company">
-                            <div class="cart_company_img">
-                                <img src="{{asset('icons/test/company_small.svg')}}" alt="">
-                            </div>
-                            <div class="cart_company_desc">
-                                <h3>Модная лавка</h3>
-                                <span class="text text-skyblue">
-                                    <img src="{{asset('icons/product/small_phone.svg')}}" alt="">+77771235678
-                                </span>
-                            </div>
-                        </li>
-                        <li class="cart_product">
-                            <div class="cart_product_img">
-                                <img src="{{asset('icons/test/product_small.svg')}}" alt="">
-                            </div>
-                            <div class="cart_product_desc">
-                                <h3>Красный марципан</h3>
-                                <span>Цена: 5 205 Тг.</span>
-                                <span>Количество 1 шт.</span>
-                                <span>Наличие: В наличии</span>
-                            </div>
-                        </li>
-                        <li class="cart_price">
-                            <div class="cart_price_discount">
-                                <span class="text text-skyblue">Экономия</span>
-                                <span class="text text-skyblue">2 395 Тг</span>
-                            </div>
-                            <div class="cart_price_price">
-                                <span class="text">К оплате </span>
-                                <h2>5 205 Тг.</h2>
-                            </div>
-                        </li>
-                        <li class="cart_mention">
-                            Защищаем покупки на 50 000 тг при оформлении заказа
-                        </li>
-                    </ul>
-                </div>
-                <div class="cart_products_card">
-                    <ul>
-                        <li class="cart_card_title">Ваш заказ</li>
-                        <li class="cart_company">
-                            <div class="cart_company_img">
-                                <img src="{{asset('icons/test/company_small.svg')}}" alt="">
-                            </div>
-                            <div class="cart_company_desc">
-                                <h3>Модная лавка</h3>
-                                <span class="text text-skyblue">
-                                    <img src="{{asset('icons/product/small_phone.svg')}}" alt="">+77771235678
-                                </span>
-                            </div>
-                        </li>
-                        <li class="cart_product">
-                            <div class="cart_product_img">
-                                <img src="{{asset('icons/test/product_small.svg')}}" alt="">
-                            </div>
-                            <div class="cart_product_desc">
-                                <h3>Красный марципан</h3>
-                                <span>Цена: 5 205 Тг.</span>
-                                <span>Количество 1 шт.</span>
-                                <span>Наличие: В наличии</span>
-                            </div>
-                        </li>
-                        <li class="cart_price">
-                            <div class="cart_price_discount">
-                                <span class="text text-skyblue">Экономия</span>
-                                <span class="text text-skyblue">2 395 Тг</span>
-                            </div>
-                            <div class="cart_price_price">
-                                <span class="text">К оплате </span>
-                                <h2>5 205 Тг.</h2>
-                            </div>
-                        </li>
-                        <li class="xs-title">
-                            Защищаем покупки на 50 000 тг при оформлении заказа
-                        </li>
-                    </ul>
-                </div>
+                @foreach ($order->products as $product)
+                    <div class="cart_products_card">
+                        <ul>
+                            <li class="cart_card_title">Ваш заказ</li>
+                            <li class="cart_company">
+                                <div class="cart_company_img">
+                                    <img src="{{asset('icons/test/company_small.svg')}}" alt="">
+                                </div>
+                                <div class="cart_company_desc">
+                                    <h3>Модная лавка</h3>
+                                    <span class="text text-skyblue">
+                                        <img src="{{asset('icons/product/small_phone.svg')}}" alt="">+77771235678
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="cart_product">
+                                <div class="cart_product_img">
+                                    <img src="{{asset('icons/test/product_small.svg')}}" alt="">
+                                </div>
+                                <div class="cart_product_desc">
+                                    <h3>Красный марципан</h3>
+                                    <span>Цена: 5 205 Тг.</span>
+                                    <span>Количество 1 шт.</span>
+                                    <span>Наличие: В наличии</span>
+                                </div>
+                            </li>
+                            <li class="cart_price">
+                                <div class="cart_price_discount">
+                                    <span class="text text-skyblue">Экономия</span>
+                                    <span class="text text-skyblue">2 395 Тг</span>
+                                </div>
+                                <div class="cart_price_price">
+                                    <span class="text">К оплате </span>
+                                    <h2>5 205 Тг.</h2>
+                                </div>
+                            </li>
+                            <li class="cart_mention">
+                                Защищаем покупки на 50 000 тг при оформлении заказа
+                            </li>
+                        </ul>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
