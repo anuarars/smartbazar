@@ -23,8 +23,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "v-click-outside": "^3.1.2",
+        "v-mask": "^2.2.4",
         "vue-star-rating": "^1.7.0",
-        "vue-the-mask": "^0.11.1",
         "vueperslides": "^2.12.1"
     }
 }

@@ -12446,7 +12446,7 @@ footer .copyright {
   left: -100%;
   height: 100%;
   width: 200%;
-  background: linear-gradient(to bottom right, #7FD625, #009345);
+  background: linear-gradient(360deg, #d21b5a 0%, #dc2255 51%, #ec2d4d 100%);
   color: #fff;
   transform: translateX(0);
   transition: transform 0.5s ease-in-out;
@@ -12500,8 +12500,6 @@ footer .copyright {
 
 .smb_modal button {
   border-radius: 20px;
-  border: 1px solid #009345;
-  background-color: #009345;
   color: #fff;
   font-size: 1rem;
   font-weight: bold;
@@ -12522,7 +12520,7 @@ footer .copyright {
 
 .smb_modal button.invert {
   background-color: transparent;
-  border-color: #fff;
+  border: 1px solid #fff;
 }
 
 .smb_modal form {
@@ -12545,20 +12543,15 @@ footer .copyright {
 }
 
 .smb_modal form input {
-  background-color: #eee;
-  border: none;
-  padding: 8px 15px;
-  margin: 6px 0;
+  border: 1px solid #C1C8CE;
+  padding: 10px;
+  color: #31373B;
+  background-color: transparent;
   width: calc(100% - 30px);
-  border-radius: 15px;
-  border-bottom: 1px solid #ddd;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4), 0 -1px 1px #fff, 0 1px 0 #fff;
-  overflow: hidden;
 }
 
 .smb_modal form input:focus {
   outline: none;
-  background-color: #fff;
 }
 
 .smb_modal .sign-in {
@@ -12642,43 +12635,6 @@ footer .copyright {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-}
-
-.bounce-enter-active {
-  -webkit-animation: bounce-in 0.5s;
-          animation: bounce-in 0.5s;
-}
-
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
-
-@-webkit-keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-
-  50% {
-    transform: scale(1.5);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-
-  50% {
-    transform: scale(1.5);
-  }
-
-  100% {
-    transform: scale(1);
-  }
 }
 
 .mode-fade-enter-active,

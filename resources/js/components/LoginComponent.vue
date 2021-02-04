@@ -1,7 +1,6 @@
 <template>
     <div class="login_inputs_wrapper">
         <the-mask 
-            :mask="['+7(###)###-####', '+7(###)###-####']"
             plceholder="+7(777)777-77-77"
             type="tel"
         />
@@ -11,9 +10,5 @@
 </template>
 
 <script>
-    import {TheMask} from 'vue-the-mask'
 
-    export default {
-        components: {TheMask}
-    }
 </script>

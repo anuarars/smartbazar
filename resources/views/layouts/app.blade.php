@@ -312,40 +312,45 @@
                 </div>
             </footer>
         </section>
-        <div class="smb_modal">
-            <div class="modal_container" :class="{'sign-up-active' : signUp}">
-              <div class="overlay-container">
-                <div class="overlay">
-                  <div class="overlay-left">
-                    <h2>Welcome Back!</h2>
-                    <p>Please login with your personal info</p>
-                    <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
+        <transition name="fade">
+            <div class="smb_modal" v-if="!hiddenAuth">
+                <div class="modal_container" v-click-outside="hideAuth" :class="{'sign-up-active' : signUp}">
+                  <div class="overlay-container">
+                    <div class="overlay">
+                      <div class="overlay-left">
+                        <h2>Welcome Back!</h2>
+                        <p>Please login with your personal info</p>
+                        <button class="invert" id="signIn" v-on:click="signUp = !signUp">Войти</button>
+                      </div>
+                      <div class="overlay-right">
+                        <h2>Еще не зарегистрированы?</h2>
+                        <button class="invert" id="signUp" v-on:click="signUp = !signUp">Регистрация</button>
+                      </div>
+                    </div>
                   </div>
-                  <div class="overlay-right">
-                    <h2>Hello, Friend!</h2>
-                    <p>Please enter your personal details</p>
-                    <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
-                  </div>
+                  <form class="sign-up" action="#">
+                    <h2>Create login</h2>
+                    <div>Use your email for registration</div>
+                    <input type="text" placeholder="Name" />
+                    <input type="email" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button class="btn-pink-rounded">Регистрация</button>
+                  </form>
+                  <form class="sign-in" action="#">
+                    <h2>Войти</h2>
+                    <input 
+                        type="text" 
+                        placeholder="Телефон"
+                        v-mask="'+7 (###) ### ####'" 
+                        v-model="phoneNumber"
+                    >
+                    <input type="password" placeholder="Пароль" />
+                    <a href="#">Забыли пароль?</a>
+                    <button class="btn-pink-rounded">Войти</button>
+                  </form>
                 </div>
-              </div>
-              <form class="sign-up" action="#">
-                <h2>Create login</h2>
-                <div>Use your email for registration</div>
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <button>Sign Up</button>
-              </form>
-              <form class="sign-in" action="#">
-                <h2>Sign In</h2>
-                <div>Use your account</div>
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
-                <a href="#">Forgot your password?</a>
-                <button>Sign In</button>
-              </form>
             </div>
-        </div>
+        </transition>
     </div>
     @if (Auth::check())
         <script>window.authUser={!! json_encode(Auth::user()); !!};</script>

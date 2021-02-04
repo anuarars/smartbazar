@@ -33,12 +33,16 @@ Vue.component('modal-component', require('./components/ModalComponent.vue').defa
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+import VueMask from 'v-mask'
+Vue.use(VueMask);
 
-import VueTheMask from 'vue-the-mask'
-Vue.use(VueTheMask)
+import vClickOutside from 'v-click-outside'
 
 const app = new Vue({
     el: '#app',
+    directives: {
+        clickOutside: vClickOutside.directive
+    },
     data: {
         hiddenMenu: true,
         hiddenAuth: true,
@@ -49,7 +53,8 @@ const app = new Vue({
         productSum: '',
         productCount: '',
         authUser: window.authUser,
-        signUp: false
+        signUp: false,
+        phoneNumber: ''
     },
     methods: {
         registerUser(evt){
@@ -91,6 +96,9 @@ const app = new Vue({
                     this.productCount = response.data.productsCount;
                 })
             }
+        },
+        hideAuth(){
+            this.hiddenAuth=true
         }
     },
     created(){
