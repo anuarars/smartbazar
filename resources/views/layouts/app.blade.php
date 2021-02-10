@@ -41,9 +41,9 @@
                                     <a href="#">Нур-Султан (Астана)</a>
                                 </li>
                                 @guest
-                                    {{-- <li>
+                                    <li>
                                         <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти/Регистрация</a>
-                                    </li> --}}
+                                    </li>
                                 @else
                                     <li>
                                         <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
@@ -83,9 +83,6 @@
                                 <img src="{{asset('icons/search.svg')}}" alt="search">
                             </div>
                             @guest
-                                <div class="signin" v-if="!searchFocused">
-                                    <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти / Регистрация</a>
-                                </div>
                             @else
                                 <div v-if="!searchFocused" class="items">
                                     <a href="{{route('wishlist.index')}}" class="wishlist">
@@ -314,40 +311,71 @@
         </section>
         <transition name="fade">
             <div class="smb_modal" v-if="!hiddenAuth">
-                <div class="modal_container" v-click-outside="hideAuth" :class="{'sign-up-active' : signUp}">
-                  <div class="overlay-container">
-                    <div class="overlay">
-                      <div class="overlay-left">
-                        <h2>Welcome Back!</h2>
-                        <p>Please login with your personal info</p>
-                        <button class="invert" id="signIn" v-on:click="signUp = !signUp">Войти</button>
-                      </div>
-                      <div class="overlay-right">
-                        <h2>Еще не зарегистрированы?</h2>
-                        <button class="invert" id="signUp" v-on:click="signUp = !signUp">Регистрация</button>
-                      </div>
+                <div class="modal_container" v-click-outside="hideAuth">
+                    <div class="login-btn splits">
+                        <p>Зарегистрированы?</p>
+                        <button v-on:click="slideLogin" :class="{'active' : isActive}">Войти</button>
                     </div>
-                  </div>
-                  <form class="sign-up" action="#">
-                    <h2>Create login</h2>
-                    <div>Use your email for registration</div>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button class="btn-pink-rounded">Регистрация</button>
-                  </form>
-                  <form class="sign-in" action="#">
-                    <h2>Войти</h2>
-                    <input 
-                        type="text" 
-                        placeholder="Телефон"
-                        v-mask="'+7 (###) ### ####'" 
-                        v-model="phoneNumber"
-                    >
-                    <input type="password" placeholder="Пароль" />
-                    <a href="#">Забыли пароль?</a>
-                    <button class="btn-pink-rounded">Войти</button>
-                  </form>
+                    <div class="rgstr-btn splits">
+                        <p>Не зарегистрированы?</p>
+                        <button v-on:click="slideRegister" :class="{'active' : !isActive}">Регистрация</button>
+                    </div>
+                    <div class="wrapper" :class="{'move' : isMove}">
+                        <form id="loginUser" method="POST" action="{{ route('login') }}" tabindex="500">
+                            <h3>Войти</h3>
+                            <div class="phone">
+                                <input 
+                                    type="text" 
+                                    name="phone"
+                                    v-mask="'+7 (###) ### ####'" 
+                                    v-model="loginNumber"
+                                >
+                                <label>Телефон</label>
+                                <small v-if="errors.login.phoneRequired" class="text-danger">Введите ваш телефон</small>
+                            </div>
+                            <div class="passwd">
+                                <input 
+                                    type="password" 
+                                    name="password"
+                                    v-model="loginPassword">
+                                <label>Пароль</label>
+                                <small v-if="errors.login.passwordRequired" class="text-danger">Введите пароль</small>
+                            </div>
+                            <div v-if="errors.login.loginMatch" class="text-danger">
+                                Введеные вами данные не совпадают
+                            </div>
+                            <div class="submit">
+                                <button type="button" class="dark" v-on:click="validateLogin">Войти</button>
+                            </div>
+                        </form>
+                        <form method="POST" action="{{ route('register') }}" id="register" tabindex="502">
+                            @csrf
+                            <h3>Регистрация</h3>
+                            <div class="login">
+                                <input type="text" name="login">
+                                <label>Логин</label>
+                            </div>
+                            <div class="phone">
+                                <input type="text" name="phone">
+                                <label>Телефон</label>
+                            </div>
+                            <div class="passwd">
+                                <input type="password" name="password">
+                                <label>Пароль</label>
+                            </div>
+                            <div class="passwd">
+                                <input type="password" name="password_confirmation">
+                                <label>Повторите Пароль</label>
+                            </div>
+                            <div class="submit">
+                                <button class="dark" type="submit">Регистрация</button>
+                            </div>
+                            @foreach ($errors as $item)
+                                {{$item}}
+                            @endforeach
+                        </form>
+                        
+                    </div>
                 </div>
             </div>
         </transition>

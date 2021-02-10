@@ -53,17 +53,34 @@ const app = new Vue({
         productSum: '',
         productCount: '',
         authUser: window.authUser,
-        signUp: false,
-        phoneNumber: ''
+        loginNumber: '',
+        loginPassword: '',
+        isMove: false,
+        isActive: true,
+        errors:{
+            login:{
+                phoneRequired: '',
+                passwordRequired: '',
+                loginMatch: ''
+            },
+        }
     },
     methods: {
-        registerUser(evt){
-            evt.preventDefault();
-            document.getElementById("registerUser").submit();
-        },
-        loginUser(evt){
-            evt.preventDefault();
-            document.getElementById("loginUser").submit();
+        validateLogin(){
+            this.errors.phoneRequired = '';
+            this.errors.passwordRequired = '';
+            this.errors.loginMatch = '';
+            axios.post('login', {
+                phone: this.loginNumber,
+                password: this.loginPassword
+            }).then(response => {
+                this.errors.login.phoneRequired = response.data.phone;
+                this.errors.login.passwordRequired = response.data.password;
+                this.errors.login.loginMatch = response.data.errors;
+                if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
+                    document.getElementById("loginUser").submit();
+                }
+            });
         },
         addWishlist: function(product_id){
             axios.post('wishlist', {
@@ -99,6 +116,14 @@ const app = new Vue({
         },
         hideAuth(){
             this.hiddenAuth=true
+        },
+        slideRegister(){
+            this.isMove = true;
+            this.isActive = false;
+        },
+        slideLogin(){
+            this.isMove = false;
+            this.isActive = true;
         }
     },
     created(){
