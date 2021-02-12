@@ -53,8 +53,6 @@ const app = new Vue({
         productSum: '',
         productCount: '',
         authUser: window.authUser,
-        loginNumber: '',
-        loginPassword: '',
         isMove: false,
         isActive: true,
         errors:{
@@ -73,7 +71,9 @@ const app = new Vue({
             registerLogin: '',
             registerNumber: '',
             registerPassword: '',
-            registerConfirm: ''
+            registerConfirm: '',
+            loginNumber: '',
+            loginPassword: ''
         }
     },
     methods: {
@@ -82,8 +82,8 @@ const app = new Vue({
             this.errors.login.passwordRequired = '';
             this.errors.login.loginMatch = '';
             axios.post('login', {
-                phone: this.loginNumber,
-                password: this.loginPassword
+                phone: this.auth.loginNumber,
+                password: this.auth.loginPassword
             }).then(response => {
                 this.errors.login.phoneRequired = response.data.phone;
                 this.errors.login.passwordRequired = response.data.password;
@@ -94,22 +94,22 @@ const app = new Vue({
             });
         },
         validateRegister(){
-            this.errors.register.phoneRequired = '';
-            this.errors.register.passwordRequired = '';
-            this.errors.register.loginRequired = '';
+            this.errors.register.phoneRequired == '';
+            this.errors.register.passwordRequired == '';
+            this.errors.register.loginRequired == '';
             axios.post('register', {
                 phone: this.auth.registerNumber,
                 login: this.auth.registerLogin,
                 password: this.auth.registerPassword,
                 password_confirmation: this.auth.registerConfirm
             }).then(response => {
-                console.log(response.data);
-                // this.errors.login.phoneRequired = response.data.phone;
-                // this.errors.login.passwordRequired = response.data.password;
-                // this.errors.login.loginMatch = response.data.errors;
-                // if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
-                //     document.getElementById("loginUser").submit();
-                // }
+                this.errors.register.phoneRequired = response.data.phone;
+                this.errors.register.passwordRequired = response.data.password;
+                this.errors.register.loginRequired = response.data.login;
+                
+                if(!this.errors.register.phoneRequired && !this.errors.register.passwordRequired && !this.errors.register.loginRequired){
+                    document.getElementById("register").submit();
+                }
             });
         },
         addWishlist: function(product_id){

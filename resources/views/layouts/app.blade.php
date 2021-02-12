@@ -340,7 +340,7 @@
                                     type="text" 
                                     name="phone"
                                     v-mask="'+7 (###) ### ####'" 
-                                    v-model="loginNumber"
+                                    v-model="auth.loginNumber"
                                 >
                                 <label>Телефон</label>
                                 <small v-if="errors.login.phoneRequired" class="text-danger">Введите ваш телефон</small>
@@ -349,7 +349,7 @@
                                 <input 
                                     type="password" 
                                     name="password"
-                                    v-model="loginPassword">
+                                    v-model="auth.loginPassword">
                                 <label>Пароль</label>
                                 <small v-if="errors.login.passwordRequired" class="text-danger">Введите пароль</small>
                             </div>
@@ -369,6 +369,7 @@
                                     name="login"
                                     v-model="auth.registerLogin">
                                 <label>Логин</label>
+                                <small v-if="errors.register.loginRequired" class="text-danger" v-text="errors.register.loginRequired.toString()"></small>
                             </div>
                             <div class="phone">
                                 <input 
@@ -378,6 +379,7 @@
                                     v-model="auth.registerNumber"
                                 >
                                 <label>Телефон</label>
+                                <small v-if="errors.register.phoneRequired" class="text-danger" v-text="errors.register.phoneRequired.toString()"></small>
                             </div>
                             <div class="passwd">
                                 <input 
@@ -387,13 +389,14 @@
                                 >
                                 <label>Пароль</label>
                             </div>
-                            <div class="passwd">
+                            <div class="passwd_confirm">
                                 <input 
                                     type="password" 
                                     name="password_confirmation"
                                     v-model="auth.registerConfirm"
                                 >
                                 <label>Повторите Пароль</label>
+                                <small v-if="errors.register.passwordRequired" class="text-danger" v-text="errors.register.passwordRequired.toString()"></small>
                             </div>
                             <div class="submit">
                                 <button class="dark" type="button" v-on:click="validateRegister">Регистрация</button>

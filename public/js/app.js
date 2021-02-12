@@ -41396,8 +41396,6 @@ var app = new Vue({
     productSum: '',
     productCount: '',
     authUser: window.authUser,
-    loginNumber: '',
-    loginPassword: '',
     isMove: false,
     isActive: true,
     errors: {
@@ -41416,7 +41414,9 @@ var app = new Vue({
       registerLogin: '',
       registerNumber: '',
       registerPassword: '',
-      registerConfirm: ''
+      registerConfirm: '',
+      loginNumber: '',
+      loginPassword: ''
     }
   },
   methods: {
@@ -41427,8 +41427,8 @@ var app = new Vue({
       this.errors.login.passwordRequired = '';
       this.errors.login.loginMatch = '';
       axios.post('login', {
-        phone: this.loginNumber,
-        password: this.loginPassword
+        phone: this.auth.loginNumber,
+        password: this.auth.loginPassword
       }).then(function (response) {
         _this.errors.login.phoneRequired = response.data.phone;
         _this.errors.login.passwordRequired = response.data.password;
@@ -41440,62 +41440,65 @@ var app = new Vue({
       });
     },
     validateRegister: function validateRegister() {
-      this.errors.register.phoneRequired = '';
-      this.errors.register.passwordRequired = '';
-      this.errors.register.loginRequired = '';
+      var _this2 = this;
+
+      this.errors.register.phoneRequired == '';
+      this.errors.register.passwordRequired == '';
+      this.errors.register.loginRequired == '';
       axios.post('register', {
         phone: this.auth.registerNumber,
         login: this.auth.registerLogin,
         password: this.auth.registerPassword,
         password_confirmation: this.auth.registerConfirm
       }).then(function (response) {
-        console.log(response.data); // this.errors.login.phoneRequired = response.data.phone;
-        // this.errors.login.passwordRequired = response.data.password;
-        // this.errors.login.loginMatch = response.data.errors;
-        // if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
-        //     document.getElementById("loginUser").submit();
-        // }
+        _this2.errors.register.phoneRequired = response.data.phone;
+        _this2.errors.register.passwordRequired = response.data.password;
+        _this2.errors.register.loginRequired = response.data.login;
+
+        if (!_this2.errors.register.phoneRequired && !_this2.errors.register.passwordRequired && !_this2.errors.register.loginRequired) {
+          document.getElementById("register").submit();
+        }
       });
     },
     addWishlist: function addWishlist(product_id) {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.post('wishlist', {
         product_id: product_id
       }).then(function (response) {
         console.log(response.data);
 
-        _this2.countWishlist();
+        _this3.countWishlist();
       });
     },
     countWishlist: function countWishlist() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.authUser != null) {
         axios.get('http://bazar/public/wishlist/count').then(function (response) {
-          _this3.wishlist = response.data;
+          _this4.wishlist = response.data;
         });
       }
     },
     addToCart: function addToCart(product_id) {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.post('cart/create', {
         product_id: product_id
       }).then(function (response) {
         console.log(response.data);
 
-        _this4.countCart();
+        _this5.countCart();
       });
     },
     countCart: function countCart() {
-      var _this5 = this;
+      var _this6 = this;
 
       if (this.authUser != null) {
         axios.get('cart/count').then(function (response) {
-          _this5.productSum = Number(response.data.sum).toLocaleString();
-          _this5.productNominal = response.data.products;
-          _this5.productCount = response.data.productsCount;
+          _this6.productSum = Number(response.data.sum).toLocaleString();
+          _this6.productNominal = response.data.products;
+          _this6.productCount = response.data.productsCount;
         });
       }
     },
