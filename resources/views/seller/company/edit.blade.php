@@ -1,6 +1,9 @@
 @extends('layouts.seller')
 
 @section('content')
+    <form action="{{ route('seller.company.profile.update') }}" method="post">
+    @method('PUT')
+    @csrf
     <section class="section">
         <div class="section-body">
             <div class="row">
@@ -36,9 +39,8 @@
                                         </ul>
                                     </div>
                                 </div>
-
                                 <div class="col-md-2">
-                                    <a href="{{ route('seller.company.edit') }}" class="btn btn-primary">Изменить</a>
+                                    <button class="btn btn-primary" type="submit">Изменить</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -58,79 +60,88 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="tab-content profile-tab" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Company name</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->name }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Company code</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->code }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Email</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->email }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Phone</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->phone }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>City</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->city }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Home</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->home }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Street</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->street }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Unit</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->unit }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label>Description</label>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p>{{ $company->description }}</p>
-                                                </div>
-                                            </div>
+                                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Company name</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="name" class="form-control" value="{{ $company->name }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Company code</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="code" class="form-control" value="{{ $company->code }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Email</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="email" class="form-control" value="{{ $company->email }}" >
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Phone</label>
+                                                        </div>
+                                                        <div class="input-group col-md-3">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text">
+                                                                    <i class="fas fa-phone"></i>
+                                                                </div>
+                                                            </div>
+                                                            <input type="text" class="form-control phone-number" name="phone" value="{{ $company->phone }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>City</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="city" class="form-control" value="{{ $company->city }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Street</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="street" class="form-control" value="{{ $company->street }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Home</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="home" class="form-control" value="{{ $company->home }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Unit</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <input type="text" name="unit" class="form-control" value="{{ $company->unit }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <label>Description</label>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <textarea name="description" class="form-control">
+                                                            {{ $company->description }}
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+
                                         </div>
                                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                                     <div class="row">
@@ -189,4 +200,5 @@
             </div>
         </div>
     </section>
+    </form>
 @endsection
