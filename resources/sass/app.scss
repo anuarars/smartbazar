@@ -1,10 +1,10 @@
 // Variables
 @import 'variables';
-@import 'reset';
-@import 'container';
-@import 'grid';
+// @import 'reset';
+// @import 'container';
+// @import 'grid';
 // Bootstrap
-// @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 // @import 'container';
 
 // Fonts
@@ -78,12 +78,6 @@ body{
     button{
         margin: 30px 0;
     }
-}
-
-.products_body{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
 }
 
 .smb_breadcrumb{

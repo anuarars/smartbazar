@@ -117,66 +117,78 @@
                             <img src="{{asset('icons/arrow_right.svg')}}" alt="arrow_right">
                         </a>
                         <div class="megamenu" v-if="!hiddenMenu">
-                            <ul class="megamenu_categories">
-                                <li class="megamenu_category">Аксессуары и украшения 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                    <div class="megamenu_submenu">
-                                        <ul>
-                                            <li>Бакалея
-                                                <ul>
-                                                    <li><a href="#">Пищевые добавки</a></li>
-                                                    <li><a href="#">Консервы</a></li>
-                                                    <li><a href="#">Пряности, специи, приправы</a></li>
-                                                    <li><a href="#">Мука и отруби</a></li>
-                                                    <li><a href="#">Смотреть больше</a></li>
-                                                </ul>
-                                            </li>
-                                            <li>Сладости</li>
-                                            <li>Детское питание</li>
-                                            <li>Напитки</li>
-                                            <li>Мясо и мясная продукция</li>
-                                            <li>Замороженные полуфабрикаты</li>
-                                            <li>Молочные продукты</li>
-                                            <li>Рыба и морепродукты</li>
-                                            <li>Готовые блюда</li>
-                                        </ul>
-                                    </div>
+                            <ul class="megamenu_categories w-100">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Материалы для ремонта 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Одежда и обувь 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
-                                </li>
-                                <li class="megamenu_category">Категория 
-                                    <img src="{{asset('icons/arrow_small.svg')}}" alt="">
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -352,27 +364,40 @@
                             @csrf
                             <h3>Регистрация</h3>
                             <div class="login">
-                                <input type="text" name="login">
+                                <input 
+                                    type="text" 
+                                    name="login"
+                                    v-model="auth.registerLogin">
                                 <label>Логин</label>
                             </div>
                             <div class="phone">
-                                <input type="text" name="phone">
+                                <input 
+                                    type="text" 
+                                    name="phone"
+                                    v-mask="'+7 (###) ### ####'" 
+                                    v-model="auth.registerNumber"
+                                >
                                 <label>Телефон</label>
                             </div>
                             <div class="passwd">
-                                <input type="password" name="password">
+                                <input 
+                                    type="password" 
+                                    name="password"
+                                    v-model="auth.registerPassword"
+                                >
                                 <label>Пароль</label>
                             </div>
                             <div class="passwd">
-                                <input type="password" name="password_confirmation">
+                                <input 
+                                    type="password" 
+                                    name="password_confirmation"
+                                    v-model="auth.registerConfirm"
+                                >
                                 <label>Повторите Пароль</label>
                             </div>
                             <div class="submit">
-                                <button class="dark" type="submit">Регистрация</button>
+                                <button class="dark" type="button" v-on:click="validateRegister">Регистрация</button>
                             </div>
-                            @foreach ($errors as $item)
-                                {{$item}}
-                            @endforeach
                         </form>
                         
                     </div>

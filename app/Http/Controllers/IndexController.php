@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -17,8 +18,9 @@ class IndexController extends Controller
         $products = Product::where('discount', '!=', 'null')
             ->get()
             ->sortByDesc('discountPercent')
-            ->take(10);
-        return view('index', compact('products'));
+            ->take(12);
+        $categories = Category::with('children')->where('parent_id', '0')->get()->take(1);
+        return view('index', compact('products', 'categories'));
     }
 
     public function product($id = null){

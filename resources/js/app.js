@@ -63,13 +63,24 @@ const app = new Vue({
                 passwordRequired: '',
                 loginMatch: ''
             },
+            register:{
+                loginRequired: '',
+                passwordRequired: '',
+                phoneRequired: ''
+            }
+        },
+        auth:{
+            registerLogin: '',
+            registerNumber: '',
+            registerPassword: '',
+            registerConfirm: ''
         }
     },
     methods: {
         validateLogin(){
-            this.errors.phoneRequired = '';
-            this.errors.passwordRequired = '';
-            this.errors.loginMatch = '';
+            this.errors.login.phoneRequired = '';
+            this.errors.login.passwordRequired = '';
+            this.errors.login.loginMatch = '';
             axios.post('login', {
                 phone: this.loginNumber,
                 password: this.loginPassword
@@ -80,6 +91,25 @@ const app = new Vue({
                 if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
                     document.getElementById("loginUser").submit();
                 }
+            });
+        },
+        validateRegister(){
+            this.errors.register.phoneRequired = '';
+            this.errors.register.passwordRequired = '';
+            this.errors.register.loginRequired = '';
+            axios.post('register', {
+                phone: this.auth.registerNumber,
+                login: this.auth.registerLogin,
+                password: this.auth.registerPassword,
+                password_confirmation: this.auth.registerConfirm
+            }).then(response => {
+                console.log(response.data);
+                // this.errors.login.phoneRequired = response.data.phone;
+                // this.errors.login.passwordRequired = response.data.password;
+                // this.errors.login.loginMatch = response.data.errors;
+                // if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
+                //     document.getElementById("loginUser").submit();
+                // }
             });
         },
         addWishlist: function(product_id){

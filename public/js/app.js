@@ -41396,62 +41396,119 @@ var app = new Vue({
     productSum: '',
     productCount: '',
     authUser: window.authUser,
-    signUp: false,
-    phoneNumber: ''
+    loginNumber: '',
+    loginPassword: '',
+    isMove: false,
+    isActive: true,
+    errors: {
+      login: {
+        phoneRequired: '',
+        passwordRequired: '',
+        loginMatch: ''
+      },
+      register: {
+        loginRequired: '',
+        passwordRequired: '',
+        phoneRequired: ''
+      }
+    },
+    auth: {
+      registerLogin: '',
+      registerNumber: '',
+      registerPassword: '',
+      registerConfirm: ''
+    }
   },
   methods: {
-    registerUser: function registerUser(evt) {
-      evt.preventDefault();
-      document.getElementById("registerUser").submit();
+    validateLogin: function validateLogin() {
+      var _this = this;
+
+      this.errors.login.phoneRequired = '';
+      this.errors.login.passwordRequired = '';
+      this.errors.login.loginMatch = '';
+      axios.post('login', {
+        phone: this.loginNumber,
+        password: this.loginPassword
+      }).then(function (response) {
+        _this.errors.login.phoneRequired = response.data.phone;
+        _this.errors.login.passwordRequired = response.data.password;
+        _this.errors.login.loginMatch = response.data.errors;
+
+        if (!_this.errors.login.phoneRequired && !_this.errors.login.passwordRequired && !_this.errors.login.loginMatch) {
+          document.getElementById("loginUser").submit();
+        }
+      });
     },
-    loginUser: function loginUser(evt) {
-      evt.preventDefault();
-      document.getElementById("loginUser").submit();
+    validateRegister: function validateRegister() {
+      this.errors.register.phoneRequired = '';
+      this.errors.register.passwordRequired = '';
+      this.errors.register.loginRequired = '';
+      axios.post('register', {
+        phone: this.auth.registerNumber,
+        login: this.auth.registerLogin,
+        password: this.auth.registerPassword,
+        password_confirmation: this.auth.registerConfirm
+      }).then(function (response) {
+        console.log(response.data); // this.errors.login.phoneRequired = response.data.phone;
+        // this.errors.login.passwordRequired = response.data.password;
+        // this.errors.login.loginMatch = response.data.errors;
+        // if(!this.errors.login.phoneRequired && !this.errors.login.passwordRequired && !this.errors.login.loginMatch){
+        //     document.getElementById("loginUser").submit();
+        // }
+      });
     },
     addWishlist: function addWishlist(product_id) {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('wishlist', {
         product_id: product_id
       }).then(function (response) {
         console.log(response.data);
 
-        _this.countWishlist();
+        _this2.countWishlist();
       });
     },
     countWishlist: function countWishlist() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.authUser != null) {
         axios.get('http://bazar/public/wishlist/count').then(function (response) {
-          _this2.wishlist = response.data;
+          _this3.wishlist = response.data;
         });
       }
     },
     addToCart: function addToCart(product_id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('cart/create', {
         product_id: product_id
       }).then(function (response) {
         console.log(response.data);
 
-        _this3.countCart();
+        _this4.countCart();
       });
     },
     countCart: function countCart() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.authUser != null) {
         axios.get('cart/count').then(function (response) {
-          _this4.productSum = Number(response.data.sum).toLocaleString();
-          _this4.productNominal = response.data.products;
-          _this4.productCount = response.data.productsCount;
+          _this5.productSum = Number(response.data.sum).toLocaleString();
+          _this5.productNominal = response.data.products;
+          _this5.productCount = response.data.productsCount;
         });
       }
     },
     hideAuth: function hideAuth() {
       this.hiddenAuth = true;
+    },
+    slideRegister: function slideRegister() {
+      this.isMove = true;
+      this.isActive = false;
+    },
+    slideLogin: function slideLogin() {
+      this.isMove = false;
+      this.isActive = true;
     }
   },
   created: function created() {

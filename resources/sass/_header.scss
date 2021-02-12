@@ -180,55 +180,21 @@ header{
             .megamenu_categories{
                 padding-left: 0;
                 list-style-type: none;
-                width: 30%;
                 background-color: $main-bg;
                 color: #31373B;
-                .megamenu_category{
-                    padding: 10px 20px;
-                    display: flex;
-                    justify-content: space-between;
-                    font-family: 'Helvetica Neue Bold';
-                    font-size: 16px;
-                    font-weight: bold;
-                    .megamenu_submenu{
-                        ul{
-                            position: absolute;
-                            display: grid;
-                            grid-template-columns: repeat(3, 1fr);
-                            list-style-type: none;
-                            width: 70%;
-                            right: 0;
-                            grid-template-rows: repeat(3, 1fr);
-                            height: 100%;
-                            li{
-                                font-family: 'Helvetica Neue Bold';
-                                font-size: 16px;
-                                font-weight: bold;
-                                color: $pink-color;
-                                position: relative;
-                                ul{
-                                    position: absolute;
-                                    list-style-type: none;
-                                    padding-left: 0;
-                                    left: 0;
-                                    display: flex;
-                                    flex-direction: column;
-                                    li{
-                                        a{
-                                            color: #31373B;
-                                            text-decoration: none;
-                                            font-size: 14px;
-                                            font-weight: lighter;
-                                            font-family: 'Helvetica Neue Medium';
-                                        }
-
-                                        &:last-child{
-                                            a{
-                                                color: #007DD1;
-                                            }
-                                        }
-                                    }
-                                }
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                row-gap: 15px;
+                li{
+                    font-size: 18px;
+                    ul{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        li{
+                            a{
+                                color:#31373B;
+                                font-size: 14px;
                             }
                         }
                     }
