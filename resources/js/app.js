@@ -27,6 +27,7 @@ Vue.component('login-component', require('./components/LoginComponent.vue').defa
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 Vue.component('product-component', require('./components/ProductComponent.vue').default);
 Vue.component('modal-component', require('./components/ModalComponent.vue').default);
+Vue.component('search-component', require('./components/SearchComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -74,6 +75,10 @@ const app = new Vue({
             registerConfirm: '',
             loginNumber: '',
             loginPassword: ''
+        },
+        search:{
+            searchInput: '',
+            searchResult: '',
         }
     },
     methods: {
@@ -97,7 +102,8 @@ const app = new Vue({
             this.errors.register.phoneRequired == '';
             this.errors.register.passwordRequired == '';
             this.errors.register.loginRequired == '';
-            axios.post('register', {
+            axios.post('/register', {
+            // axios.post('https://smartbazar.kz/register', {
                 phone: this.auth.registerNumber,
                 login: this.auth.registerLogin,
                 password: this.auth.registerPassword,
@@ -112,11 +118,17 @@ const app = new Vue({
                 }
             });
         },
+        searchProduct(){
+            axios.post('search/product', {
+                searchInput: this.search.searchInput,
+            }).then(response => {
+                console.log(response.data);
+            });
+        },
         addWishlist: function(product_id){
             axios.post('wishlist', {
                 product_id: product_id,
             }).then(response => {
-                console.log(response.data);
                 this.countWishlist();
             });
         },
@@ -131,7 +143,6 @@ const app = new Vue({
             axios.post('cart/create', {
                 product_id: product_id,
             }).then(response => {
-                console.log(response.data);
                 this.countCart();
             });
         },

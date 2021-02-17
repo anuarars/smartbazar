@@ -79,8 +79,11 @@
                                     id="search" 
                                     placeholder="Поиск товаров" 
                                     v-on:focus="searchFocused = true" 
-                                    v-on:blur="searchFocused = !searchFocused">
-                                <img src="{{asset('icons/search.svg')}}" alt="search">
+                                    v-on:blur="searchFocused = !searchFocused"
+                                    v-model="search.searchInput"
+                                    v-on:keyup="searchProduct">
+                                <img src="{{asset('icons/search.svg')}}" alt="search" class="searchBtn">
+                                <search-component></search-component>
                             </div>
                             @guest
                             @else

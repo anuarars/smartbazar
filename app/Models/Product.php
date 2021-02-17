@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+// use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
+    // use Searchable;
+
     protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
 
     public function category(){

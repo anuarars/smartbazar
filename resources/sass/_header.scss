@@ -87,9 +87,38 @@ header{
                     border: none;
                     padding: 10px;
                 }
-                img{
+                img.searchBtn{
                     position: absolute;
                     right: 5%;
+                }
+                ul{
+                    background-color: #efefef;
+                    width: 100%;
+                    position: absolute;
+                    top: 100%;
+                    padding: 15px;
+                    z-index: 10;
+                    box-shadow: 3px 3px 11px 0px rgba(0,0,0,0.6);
+                    border-radius: 3px;
+                    li{
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        border-bottom: 1px solid #c1c8ce;
+                        padding: 10px;
+                        color: #31373B;
+                        font-family: 'Helvetica Neue Medium';
+                        .searchPrice{
+                            display: flex;
+                            flex-direction: row;
+                            align-items: center;
+                            justify-content: flex-end;
+                            flex-wrap: wrap;
+                            width: 30%;
+                        }
+                    }
                 }
             }
             .signin{
