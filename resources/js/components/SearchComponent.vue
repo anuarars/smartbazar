@@ -1,16 +1,9 @@
 <template>
     <ul>
-        <li>
-            <div class="searchResult">Соль «8 овощей»</div>
+        <li v-for="result in search">
+            <div class="searchResult">{{result.title}}</div>
             <div class="searchPrice">
-                <span class="mr-2 font-weight-bold">1211 тг.</span>
-                <img src="icons/red_basket.svg" alt="red_basket" class="searchImg">
-            </div>
-        </li>
-        <li>
-            <div class="searchResult">Соль «8 овощей»</div>
-            <div class="searchPrice">
-                <span class="mr-2 font-weight-bold">1211 тг.</span>
+                <span class="mr-2 font-weight-bold">{{result.price}}</span>
                 <img src="icons/red_basket.svg" alt="red_basket" class="searchImg">
             </div>
         </li>
@@ -20,10 +13,13 @@
 <script>
     export default {
         props:[
-            // 'searchFocused'
+            'search'
         ],
         data: () => ({
 
-        })
+        }),
+        mounted(){
+            console.log(this.search);
+        }
     }
 </script>

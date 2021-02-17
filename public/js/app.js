@@ -2076,18 +2076,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: [// 'searchFocused'
-  ],
+  props: ['search'],
   data: function data() {
     return {};
+  },
+  mounted: function mounted() {
+    console.log(this.search);
   }
 });
 
@@ -21330,35 +21325,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("ul", [
-      _c("li", [
-        _c("div", { staticClass: "searchResult" }, [_vm._v("Соль «8 овощей»")]),
+  return _c(
+    "ul",
+    _vm._l(_vm.search, function(result) {
+      return _c("li", [
+        _c("div", { staticClass: "searchResult" }, [
+          _vm._v(_vm._s(result.title))
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "searchPrice" }, [
           _c("span", { staticClass: "mr-2 font-weight-bold" }, [
-            _vm._v("1211 тг.")
-          ]),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "searchImg",
-            attrs: { src: "icons/red_basket.svg", alt: "red_basket" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("div", { staticClass: "searchResult" }, [_vm._v("Соль «8 овощей»")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "searchPrice" }, [
-          _c("span", { staticClass: "mr-2 font-weight-bold" }, [
-            _vm._v("1211 тг.")
+            _vm._v(_vm._s(result.price))
           ]),
           _vm._v(" "),
           _c("img", {
@@ -21367,9 +21344,11 @@ var staticRenderFns = [
           })
         ])
       ])
-    ])
-  }
-]
+    }),
+    0
+  )
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -41566,47 +41545,50 @@ var app = new Vue({
       });
     },
     searchProduct: function searchProduct() {
+      var _this3 = this;
+
+      this.search.searchResult = '';
       axios.post('search/product', {
         searchInput: this.search.searchInput
       }).then(function (response) {
-        console.log(response.data);
+        _this3.search.searchResult = response.data; // console.log(this.search.searchResult);
       });
     },
     addWishlist: function addWishlist(product_id) {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.post('wishlist', {
         product_id: product_id
       }).then(function (response) {
-        _this3.countWishlist();
+        _this4.countWishlist();
       });
     },
     countWishlist: function countWishlist() {
-      var _this4 = this;
+      var _this5 = this;
 
       if (this.authUser != null) {
         axios.get('http://bazar/public/wishlist/count').then(function (response) {
-          _this4.wishlist = response.data;
+          _this5.wishlist = response.data;
         });
       }
     },
     addToCart: function addToCart(product_id) {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.post('cart/create', {
         product_id: product_id
       }).then(function (response) {
-        _this5.countCart();
+        _this6.countCart();
       });
     },
     countCart: function countCart() {
-      var _this6 = this;
+      var _this7 = this;
 
       if (this.authUser != null) {
         axios.get('cart/count').then(function (response) {
-          _this6.productSum = Number(response.data.sum).toLocaleString();
-          _this6.productNominal = response.data.products;
-          _this6.productCount = response.data.productsCount;
+          _this7.productSum = Number(response.data.sum).toLocaleString();
+          _this7.productNominal = response.data.products;
+          _this7.productCount = response.data.productsCount;
         });
       }
     },

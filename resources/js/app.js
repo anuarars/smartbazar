@@ -119,10 +119,12 @@ const app = new Vue({
             });
         },
         searchProduct(){
+            this.search.searchResult = '';
             axios.post('search/product', {
                 searchInput: this.search.searchInput,
             }).then(response => {
-                console.log(response.data);
+                this.search.searchResult = response.data;
+                // console.log(this.search.searchResult);
             });
         },
         addWishlist: function(product_id){
