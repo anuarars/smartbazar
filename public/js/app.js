@@ -21335,7 +21335,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "searchPrice" }, [
           _c("span", { staticClass: "mr-2 font-weight-bold" }, [
-            _vm._v(_vm._s(result.price))
+            _vm._v(_vm._s(result.price) + " тг.")
           ]),
           _vm._v(" "),
           _c("img", {
@@ -41499,7 +41499,8 @@ var app = new Vue({
     },
     search: {
       searchInput: '',
-      searchResult: ''
+      searchResult: '',
+      searchShow: false
     }
   },
   methods: {
@@ -41548,10 +41549,15 @@ var app = new Vue({
       var _this3 = this;
 
       this.search.searchResult = '';
+      this.search.searchShow = true;
       axios.post('search/product', {
         searchInput: this.search.searchInput
       }).then(function (response) {
-        _this3.search.searchResult = response.data; // console.log(this.search.searchResult);
+        _this3.search.searchResult = response.data;
+        setTimeout(function () {
+          _this3.search.searchResult = '';
+          _this3.search.searchShow = false;
+        }, 7000);
       });
     },
     addWishlist: function addWishlist(product_id) {

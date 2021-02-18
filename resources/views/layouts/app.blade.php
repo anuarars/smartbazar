@@ -83,7 +83,10 @@
                                     v-model="search.searchInput"
                                     v-on:keyup="searchProduct">
                                 <img src="{{asset('icons/search.svg')}}" alt="search" class="searchBtn">
-                                <search-component :search = "search.searchResult"></search-component>
+                                <search-component 
+                                    v-if="search.searchShow" 
+                                    :search = "search.searchResult">
+                                </search-component>
                             </div>
                             @guest
                             @else

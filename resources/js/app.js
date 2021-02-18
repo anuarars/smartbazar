@@ -79,6 +79,7 @@ const app = new Vue({
         search:{
             searchInput: '',
             searchResult: '',
+            searchShow: false
         }
     },
     methods: {
@@ -120,11 +121,15 @@ const app = new Vue({
         },
         searchProduct(){
             this.search.searchResult = '';
+            this.search.searchShow = true;
             axios.post('search/product', {
                 searchInput: this.search.searchInput,
             }).then(response => {
                 this.search.searchResult = response.data;
-                // console.log(this.search.searchResult);
+                setTimeout(() => {
+                    this.search.searchResult = '';
+                    this.search.searchShow = false;
+                }, 7000)
             });
         },
         addWishlist: function(product_id){
