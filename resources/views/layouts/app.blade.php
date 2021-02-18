@@ -13,6 +13,11 @@
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">  
+
+    {{-- <script src="{{ asset('js/app.js', true) }}" defer></script>
+
+    <link href="{{ asset('css/app.css', true) }}" rel="stylesheet">
+    <link rel="icon" href="{{asset('icons/favicon.ico', true)}}" type="image/x-icon">   --}}
 </head>
 <body>
     <div id="app">

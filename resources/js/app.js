@@ -103,8 +103,8 @@ const app = new Vue({
             this.errors.register.phoneRequired == '';
             this.errors.register.passwordRequired == '';
             this.errors.register.loginRequired == '';
-            axios.post('/register', {
-            // axios.post('https://smartbazar.kz/register', {
+            axios.post('register', {
+             // axios.post('https://smartbazar.kz/register', {
                 phone: this.auth.registerNumber,
                 login: this.auth.registerLogin,
                 password: this.auth.registerPassword,

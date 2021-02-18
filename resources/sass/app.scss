@@ -679,6 +679,16 @@ body{
     }
 }
 
+.company_banner{
+    img{
+        height: 300px;
+    }
+    .company_info{
+        height: 50%;
+        background-color: #fff;
+    }
+}
+
 @import 'footer';
 
 // COMPONENTS
