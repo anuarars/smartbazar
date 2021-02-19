@@ -23,7 +23,7 @@
             {
             title: 'El Teide Volcano, Spain',
             content: 'Photo by Max Rive',
-            image: 'https://cdn.pixabay.com/photo/2014/09/11/18/23/london-441853_960_720.jpg'
+            image: 'https://via.placeholder.com/1000x500'
             },
             {
             title: 'Slide #2',

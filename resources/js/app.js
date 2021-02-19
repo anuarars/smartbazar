@@ -141,7 +141,7 @@ const app = new Vue({
         },
         countWishlist(){
             if(this.authUser != null){
-                axios.get('http://bazar/public/wishlist/count').then((response) => {
+                axios.get('wishlist/count').then((response) => {
                     this.wishlist = response.data;
                 })
             }

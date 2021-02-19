@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -52,7 +53,7 @@
                                 @else
                                     <li>
                                         <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-                                        <a href="#">Кабинет</a>
+                                        <a href="{{route('profile.index')}}">Кабинет</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

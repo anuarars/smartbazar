@@ -14,35 +14,35 @@
     font-family: 'Helvetica Neue';
     font-style: normal;
     font-weight: 900;
-    src: url('/public/fonts/HelveticaNeue.ttc');
+    src: url('/fonts/HelveticaNeue.ttc');
 }
 
 @font-face {
     font-family: 'Neue Medium';
     font-style:normal;
     font-weight: normal;
-    src: url('/public/fonts/Helvetica.ttc');
+    src: url('/fonts/Helvetica.ttc');
 }
 
 @font-face {
     font-family: 'Helvetica Neue Bold';
     font-style:normal;
     font-weight: normal;
-    src: url('/public/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.ttf');
+    src: url('/fonts/HelveticaNeue/HelveticaNeueCyr-Bold.ttf');
 }
 
 @font-face {
     font-family: 'Helvetica Neue Medium';
     font-style:normal;
     font-weight: normal;
-    src: url('/public/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.ttf');
+    src: url('/fonts/HelveticaNeue/HelveticaNeueCyr-Medium.ttf');
 }
 
 @font-face {
     font-family: 'Helvetica';
     font-style:normal;
     font-weight: normal;
-    src: url('/public/fonts/Helvetica/Helvetica.ttf');
+    src: url('/fonts/Helvetica/Helvetica.ttf');
 }
 
 *:focus, *:active{
@@ -933,3 +933,47 @@ outline: none;
 
 @import 'animation';
 @import 'media';
+
+
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
