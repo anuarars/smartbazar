@@ -53,6 +53,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/notification/packer/', 'NotificationController@packer')->name('notification.packer');
     Route::post('/notification/delivery/', 'NotificationController@delivery')->name('notification.delivery');
     Route::post('/rate/add', 'IndexController@add_rate')->name('rate.add');
+    Route::get('/review/{companyId}', 'ReviewController@show')->name('review.show');
 });
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------*/

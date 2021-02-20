@@ -51,7 +51,7 @@
                                 @else
                                     <li>
                                         <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-                                        <a href="#">Кабинет</a>
+                                        <a href="{{route('profile.index')}}">Кабинет</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"

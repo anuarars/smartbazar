@@ -29,7 +29,7 @@
                 <div class="single_product_company_img">
                     <img src="{{asset('icons/test/logo.svg')}}" alt="">
                 </div>
-                <fieldset>{{$product->company->name}}</fieldset>
+                <fieldset><a href="{{route('review.show', $product->company->id)}}">{{$product->company->name}}</a></fieldset>
                 <ul>
                     <li><img src="{{asset('icons/product/small_location.svg')}}" alt=""><span>Продавец из: <span class="text-skyblue">г. Алматы</span></span></li>
                     <li><img src="{{asset('icons/product/small_branch.svg')}}" alt=""><span class="text-skyblue">Филиалы</span></li>
