@@ -2,26 +2,28 @@
     <li>
         <div
             :class="{bold: isFolder}"
-            @click="toggle">
-            {{ item.name }}
+            @click="toggle"
+        >
+            {{ item.id }}
             <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
-            <categories-component
+            <tree-item
                 class="item"
                 v-for="(child, index) in item.children"
                 :key="index"
                 :item="child"
-            ></categories-component>
+            ></tree-item>
         </ul>
     </li>
+
 </template>
 
 <script>
     export default {
-        props: [
-            'item'
-        ],
+        props: {
+            item: Object
+        },
         data: function () {
             return {
                 isOpen: false,
@@ -29,7 +31,7 @@
         },
         computed: {
             isFolder: function () {
-                return this.item.children && this.item.children.length;
+                return this.categories.children && this.categories.children.length;
             }
         },
         methods: {
@@ -40,7 +42,7 @@
             },
         },
         created() {
-            console.log(this.item);
+            console.log("salam aleikumk");
         }
     }
 </script>

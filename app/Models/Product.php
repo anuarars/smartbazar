@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Kyslik\ColumnSortable\Sortable;
+
 // use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
     // use Searchable;
-    // use Sortable;
+     use Sortable;
+
+    public $sortable = ['price', 'discount', 'category_id', 'created_at'];
 
     protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
 

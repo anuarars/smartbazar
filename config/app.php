@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
         // Nexmo\Laravel\NexmoServiceProvider::class,
+        \Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

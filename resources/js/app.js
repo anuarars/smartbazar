@@ -81,7 +81,7 @@ const app = new Vue({
             searchInput: '',
             searchResult: '',
             searchShow: false
-        }
+        },
     },
     methods: {
         validateLogin(){

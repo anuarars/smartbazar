@@ -15,7 +15,7 @@ class CategoriesResource extends JsonResource
     public function toArray($request)
     {
         return [
-             'title' => $this->title,
+             'id' => $this->id,
              'children' => $this->when($this->children->count() > 0, new CategoriesCollection($this->children)),
         ];
     }

@@ -6,7 +6,6 @@
     @if (count($category->children)>0){
         @include('includes.categories',[
             'categories'=>$category->children,
-            'delimiter'=> ' - '.$delimiter
         ])
     }
     @endif
