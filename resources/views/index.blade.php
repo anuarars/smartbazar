@@ -172,7 +172,7 @@
                                 <div class="product_item_seller">{{$product->company->name}}</div>
                                 <div class="product_item_info">
                                     <div class="product_item_price">
-                                        <div class="new_price">{{$product->discount}} тг.</div>
+                                        <div class="new_price">{{$product->discountPercent}} тг.</div>
                                         <div class="old_price">{{$product->price}} тг.</div>
                                     </div>
                                     <div class="product_item_place">Lorem.</div>

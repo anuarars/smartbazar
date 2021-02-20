@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Product extends Model
 {
     // use Searchable;
-    use Sortable;
+    // use Sortable;
 
     protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
 
@@ -135,7 +135,6 @@ class Product extends Model
 
     // ACCESSOR
     public function getdiscountPercentAttribute(){
-        return ceil(($this->price - $this->discount)/$this->price *100);
+        return ceil($this->price - (($this->price * $this->discount)/100));
     }
-
 }
