@@ -1,4 +1,4 @@
-<template>
+    <template>
     <div class="wishlist_items">
         <ul>
             <li class="wishlist_items_head">

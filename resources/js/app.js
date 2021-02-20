@@ -28,6 +28,7 @@ Vue.component('register-component', require('./components/RegisterComponent.vue'
 Vue.component('product-component', require('./components/ProductComponent.vue').default);
 Vue.component('modal-component', require('./components/ModalComponent.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
+Vue.component('categories-component', require('./components/CategoryComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -113,7 +114,7 @@ const app = new Vue({
                 this.errors.register.phoneRequired = response.data.phone;
                 this.errors.register.passwordRequired = response.data.password;
                 this.errors.register.loginRequired = response.data.login;
-                
+
                 if(!this.errors.register.phoneRequired && !this.errors.register.passwordRequired && !this.errors.register.loginRequired){
                     document.getElementById("register").submit();
                 }

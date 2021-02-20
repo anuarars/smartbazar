@@ -14,16 +14,7 @@
             <button class="btn-pink">Сладости</button>
             <div class="catalog_categories">
                 <ul>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
-                    <li><a href="#">Категрия товара</a></li>
+                    <categories-component :item = "{{ $categories }}"></categories-component>
                 </ul>
             </div>
             <div class="catalog_list">
@@ -92,134 +83,24 @@
                 <li><a href="#">Обновлению</a></li>
             </ul>
             <div class="catalog_content">
-                <div class="product_item">
+                @foreach($products as $product)
+                    <div class="product_item">
                     <div class="product_item_image">
                         <img src="https://via.placeholder.com/500/500" alt="">
                     </div>
                     <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
+                    <div class="product_item_title">{{ $product->title }}</div>
+                    <div class="product_item_country">{{ $product->country->name }}</div>
+                    <div class="product_item_seller">{{ $product->user->name }}</div>
                     <div class="product_item_info">
                         <div class="product_item_price">
                             <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
+                            <div class="old_price">{{ $product->price }}</div>
                         </div>
                         <div class="product_item_place">Lorem.</div>
                     </div>
                 </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
-                <div class="product_item">
-                    <div class="product_item_image">
-                        <img src="https://via.placeholder.com/500/500" alt="">
-                    </div>
-                    <star-component></star-component>
-                    <div class="product_item_title">Lorem ipsum dolor sit amet consectetur.</div>
-                    <div class="product_item_country">Lorem.</div>
-                    <div class="product_item_seller">Lorem.</div>
-                    <div class="product_item_info">
-                        <div class="product_item_price">
-                            <div class="new_price">200 tg</div>
-                            <div class="old_price">500 tg</div>
-                        </div>
-                        <div class="product_item_place">Lorem.</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

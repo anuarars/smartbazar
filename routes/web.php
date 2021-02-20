@@ -24,8 +24,6 @@ Route::get('/', 'IndexController@index')->name('index');
 Route::get('/products/{id}', 'IndexController@product')->name('product');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
-Route::get('/catalog', 'CatalogController@index')->name('catalog');
-Route::post('/search/product', 'SearchController@product')->name('search.product');
 
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -101,3 +99,5 @@ Route::group(['middleware'=>['auth', 'delivery'], 'namespace'=>'Delivery', 'pref
 Route::get('/user', 'User\UserController@index')->name('User')->middleware(['auth', 'user']);
 
 Route::get('/test', 'TestController@index')->name('test');
+
+
