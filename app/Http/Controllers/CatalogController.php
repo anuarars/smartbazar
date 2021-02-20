@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoriesCollection;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class CatalogController extends Controller
             $products->whereBetween($price[0], $price[1]);
         }
 
-        $categories = Category::where('parent_id', 0)->get();
+        $categories = new CategoriesCollection(Category::where('parent_id', 0)->get());
 
         return view('catalog', compact('products', 'categories'));
     }

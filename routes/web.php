@@ -98,6 +98,8 @@ Route::group(['middleware'=>['auth', 'delivery'], 'namespace'=>'Delivery', 'pref
 
 Route::get('/user', 'User\UserController@index')->name('User')->middleware(['auth', 'user']);
 
-Route::get('/test', 'TestController@index')->name('test');
+Route::get('/catalog', 'CatalogController@index')->name('test');
 
-
+Route::get('/test2', function () {
+    return null;
+});

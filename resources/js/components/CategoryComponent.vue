@@ -7,12 +7,12 @@
             <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
         </div>
         <ul v-show="isOpen" v-if="isFolder">
-<!--            <categories-component-->
-<!--                class="item"-->
-<!--                v-for="(child, index) in item.children"-->
-<!--                :key="index"-->
-<!--                :item="child"-->
-<!--            ></categories-component>-->
+            <categories-component
+                class="item"
+                v-for="(child, index) in item.children"
+                :key="index"
+                :item="child"
+            ></categories-component>
         </ul>
     </li>
 </template>

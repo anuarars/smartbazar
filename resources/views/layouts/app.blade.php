@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">  
+    <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">
 
     {{-- <script src="{{ asset('js/app.js', true) }}" defer></script>
 
@@ -43,7 +43,7 @@
                             </ul>
                             <ul class="account">
                                 <li>
-                                    <img src="{{asset('icons/location.svg')}}" alt="location">                               
+                                    <img src="{{asset('icons/location.svg')}}" alt="location">
                                     <a href="#">Нур-Султан (Астана)</a>
                                 </li>
                                 @guest
@@ -53,7 +53,7 @@
                                 @else
                                     <li>
                                         <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-                                        <a href="{{route('profile.index')}}">Кабинет</a>
+{{--                                        <a href="{{route('profile.index')}}">Кабинет</a>--}}
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -75,22 +75,22 @@
                         <div class="bottom_header_nav" :class="{removeBasket: searchFocused}">
                             <a href="{{ url('/') }}" class="logo">
                                 <div class="logo_img">
-                                  <img src="{{asset('icons/logo.svg')}}" alt="logo">                     
-                                </div>                      
+                                  <img src="{{asset('icons/logo.svg')}}" alt="logo">
+                                </div>
                                 <div class="logo_title">smart bazar</div>
                             </a>
                             <div class="search">
-                                <input 
-                                    type="text" 
-                                    id="search" 
-                                    placeholder="Поиск товаров" 
-                                    v-on:focus="searchFocused = true" 
+                                <input
+                                    type="text"
+                                    id="search"
+                                    placeholder="Поиск товаров"
+                                    v-on:focus="searchFocused = true"
                                     v-on:blur="searchFocused = !searchFocused"
                                     v-model="search.searchInput"
                                     v-on:keyup="searchProduct">
                                 <img src="{{asset('icons/search.svg')}}" alt="search" class="searchBtn">
-                                <search-component 
-                                    v-if="search.searchShow" 
+                                <search-component
+                                    v-if="search.searchShow"
                                     :search = "search.searchResult">
                                 </search-component>
                             </div>
@@ -219,7 +219,7 @@
                     <div class="container">
                         <div class="subscribe_inner">
                             <div class="subscribe_banner">
-                                <img src="{{asset('icons/banner_phone.svg')}}" alt="banner_phone">                                               
+                                <img src="{{asset('icons/banner_phone.svg')}}" alt="banner_phone">
                             </div>
                             <div class="subscribe_info">
                                 <div class="subscribe_info_text">
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="subscribe_banner">
-                               <img src="{{asset('icons/banner_basket.svg')}}" alt="banner_basket">          
+                               <img src="{{asset('icons/banner_basket.svg')}}" alt="banner_basket">
                             </div>
                         </div>
                     </div>
@@ -281,7 +281,7 @@
                         <div class="helpdesk_inner">
                             <div class="helpdesk_contact">
                                 <div class="helpdesk_contact_img_wrap">
-                                    <img src="{{asset('icons/footer_logo.svg')}}" alt="footer_logo">             
+                                    <img src="{{asset('icons/footer_logo.svg')}}" alt="footer_logo">
                                 </div>
                                 <span>SMART BAZAR</span>
                                 <ul>
@@ -348,18 +348,18 @@
                         <form id="loginUser" method="POST" action="{{ route('login') }}" tabindex="500">
                             <h3>Войти</h3>
                             <div class="phone">
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     name="phone"
-                                    v-mask="'+7 (###) ### ####'" 
+                                    v-mask="'+7 (###) ### ####'"
                                     v-model="auth.loginNumber"
                                 >
                                 <label>Телефон</label>
                                 <small v-if="errors.login.phoneRequired" class="text-danger">Введите ваш телефон</small>
                             </div>
                             <div class="passwd">
-                                <input 
-                                    type="password" 
+                                <input
+                                    type="password"
                                     name="password"
                                     v-model="auth.loginPassword">
                                 <label>Пароль</label>
@@ -376,34 +376,34 @@
                             @csrf
                             <h3>Регистрация</h3>
                             <div class="login">
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     name="login"
                                     v-model="auth.registerLogin">
                                 <label>Логин</label>
                                 <small v-if="errors.register.loginRequired" class="text-danger" v-text="errors.register.loginRequired.toString()"></small>
                             </div>
                             <div class="phone">
-                                <input 
-                                    type="text" 
+                                <input
+                                    type="text"
                                     name="phone"
-                                    v-mask="'+7 (###) ### ####'" 
+                                    v-mask="'+7 (###) ### ####'"
                                     v-model="auth.registerNumber"
                                 >
                                 <label>Телефон</label>
                                 <small v-if="errors.register.phoneRequired" class="text-danger" v-text="errors.register.phoneRequired.toString()"></small>
                             </div>
                             <div class="passwd">
-                                <input 
-                                    type="password" 
+                                <input
+                                    type="password"
                                     name="password"
                                     v-model="auth.registerPassword"
                                 >
                                 <label>Пароль</label>
                             </div>
                             <div class="passwd_confirm">
-                                <input 
-                                    type="password" 
+                                <input
+                                    type="password"
                                     name="password_confirmation"
                                     v-model="auth.registerConfirm"
                                 >
@@ -414,7 +414,7 @@
                                 <button class="dark" type="button" v-on:click="validateRegister">Регистрация</button>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
             <button class="btn-pink">Сладости</button>
             <div class="catalog_categories">
                 <ul>
-                    <categories-component :item = "{{ $categories }}"></categories-component>
+                    <categories-component :item="@json($categories)"></categories-component>
                 </ul>
             </div>
             <div class="catalog_list">
