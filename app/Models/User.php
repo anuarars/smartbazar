@@ -71,5 +71,9 @@ class User extends Authenticatable
         return $this->hasMany(Wishlist::class);
     }
 
+    public function address()
+    {
+        return $this->morphOne('App\Models\Address', 'addressable');
+    }
 
 }

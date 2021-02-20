@@ -45,6 +45,11 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/cart/remove/{id}', 'CartController@remove')->name('cart.remove');
     Route::post('/cart/update/', 'CartController@update')->name('cart.increase');
     Route::get('/cart/count', 'CartController@count')->name('cart.count');
+
+    Route::get('/profile', 'ProfileController@index')->name('profile.index');
+    Route::get('/profile/address', 'ProfileController@address')->name('profile.address');
+    Route::post('/profile/address', 'ProfileController@addressUpdate')->name('profile.address.update');
+
     Route::post('/notification/packer/', 'NotificationController@packer')->name('notification.packer');
     Route::post('/notification/delivery/', 'NotificationController@delivery')->name('notification.delivery');
     Route::post('/rate/add', 'IndexController@add_rate')->name('rate.add');

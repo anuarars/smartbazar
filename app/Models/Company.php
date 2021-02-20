@@ -23,4 +23,9 @@ class Company extends Model
     public function workTimes(){
         return $this->hasMany(WorkTime::class);
     }
+
+    public function address()
+    {
+        return $this->morphOne('App\Models\Address', 'addressable');
+    }
 }
