@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Product extends Model
 {
     // use Searchable;
+    use Sortable;
 
     protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
 
@@ -53,7 +54,7 @@ class Product extends Model
         $userRating = $this->ratings->where('user_id', $user_id)->first();
         if($userRating){
             if($userRating->rate==1){
-                echo 
+                echo
                 '<div class="submitted_stars">
                     <i class="fa fa-star" style="color:green"></i>
                     <i class="far fa-star" style="color:#000"></i>
@@ -62,7 +63,7 @@ class Product extends Model
                     <i class="far fa-star" style="color:#000"></i>
                 </div>';
             }else if($userRating->rate==2){
-                echo 
+                echo
                 '<h6>Ваша оценка</h6>
                 <div class="submitted_stars">
                     <i class="fa fa-star" style="color:green"></i>
@@ -72,7 +73,7 @@ class Product extends Model
                     <i class="far fa-star" style="color:#000"></i>
                 </div>';
             }else if($userRating->rate==3){
-                echo 
+                echo
                 '<h6>Ваша оценка</h6>
                 <div class="submitted_stars">
                     <i class="fa fa-star" style="color:green"></i>
@@ -82,7 +83,7 @@ class Product extends Model
                     <i class="far fa-star" style="color:#000"></i>
                 </div>';
             }else if($userRating->rate==4){
-                echo 
+                echo
                 '<h6>Ваша оценка</h6>
                 <div class="submitted_stars">
                     <i class="fa fa-star" style="color:green"></i>
@@ -92,7 +93,7 @@ class Product extends Model
                     <i class="far fa-star" style="color:#000"></i>
                 </div>';
             }else{
-                echo 
+                echo
                 '<h6>Ваша оценка</h6>
                 <div class="submitted_stars">
                     <i class="fa fa-star" style="color:green"></i>

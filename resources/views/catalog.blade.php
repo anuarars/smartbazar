@@ -77,7 +77,7 @@
                 <li>
                     <a href="">Популярности</a>
                 </li>
-                <li><a href="#">Рейтингу</a></li>
+                <li><a href="{{ route('catalog.index') }}">Рейтингу</a></li>
                 <li><a href="#">Цене</a></li>
                 <li><a href="#">Скидке</a></li>
                 <li><a href="#">Обновлению</a></li>
