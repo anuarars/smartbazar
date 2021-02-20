@@ -22,179 +22,67 @@
 </head>
 <body>
     <div id="app">
-        <section id="header">
-            <header>
-                <div class="top-header grey-bg">
-                    <div class="container">
-                        <div class="top_header_nav">
-                            <ul class="about">
-                                <li>
-                                    <a href="#">О компании</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('info.delivery')}}">Доставка</a>
-                                </li>
-                                <li>
-                                    <a href="#">Гарантии, обмен и возврат</a>
-                                </li>
-                                <li>
-                                    <a href="#">Оплата</a>
-                                </li>
-                            </ul>
-                            <ul class="account">
-                                <li>
-                                    <img src="{{asset('icons/location.svg')}}" alt="location">
-                                    <a href="#">Нур-Султан (Астана)</a>
-                                </li>
-                                @guest
-                                    <li>
-                                        <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти/Регистрация</a>
-                                    </li>
-                                @else
-                                    <li>
-                                        <img src="{{asset('icons/cabinet.svg')}}" alt="cabinet">
-{{--                                        <a href="{{route('profile.index')}}">Кабинет</a>--}}
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                      document.getElementById('logout-form').submit();">
-                                         Выйти
-                                     </a>
-                                    </li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                @endguest
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="bottom-header">
-                    <div class="container">
-                        <div class="bottom_header_nav" :class="{removeBasket: searchFocused}">
-                            <a href="{{ url('/') }}" class="logo">
-                                <div class="logo_img">
-                                  <img src="{{asset('icons/logo.svg')}}" alt="logo">
-                                </div>
-                                <div class="logo_title">smart bazar</div>
-                            </a>
-                            <div class="search">
-                                <input
-                                    type="text"
-                                    id="search"
-                                    placeholder="Поиск товаров"
-                                    v-on:focus="searchFocused = true"
-                                    v-on:blur="searchFocused = !searchFocused"
-                                    v-model="search.searchInput"
-                                    v-on:keyup="searchProduct">
-                                <img src="{{asset('icons/search.svg')}}" alt="search" class="searchBtn">
-                                <search-component
-                                    v-if="search.searchShow"
-                                    :search = "search.searchResult">
-                                </search-component>
-                            </div>
-                            @guest
-                            @else
-                                <div v-if="!searchFocused" class="items">
-                                    <a href="{{route('wishlist.index')}}" class="wishlist">
-                                        <div class="circle-badge" v-text="wishlist"></div>
-                                        <img src="{{asset('icons/heart.svg')}}" alt="heart">
-                                    </a>
-                                    <a href="{{route('cart.index')}}" class="basket">
-                                        <div class="circle-badge" v-text="productNominal"></div>
-                                        <img src="{{asset('icons/basket.svg')}}" alt="basket">
-                                    </a>
-                                    <div class="basket_description">
-                                        <span class="basket_count">Всего товаров: <span v-text="productCount"></span> шт</span>
-                                        <span class="basket_price">На сумму: <span v-text="productSum"></span> тг</span>
-                                    </div>
-                                    <div class="hamburger">
-                                        <img src="{{asset('icons/hamburger.svg')}}" alt="hamburger">
-                                    </div>
-                                </div>
-                            @endguest
-                        </div>
-                    </div>
-                </div>
-            </header>
+        <header>
+            <div class="container_nav">
+                <nav class="menu_nav">
+   <ul class="nav-list nav-list-mobile">
+       <li class="nav-item">
+          <div class="mobile-menu">
+            <span class="line line-top"></span>
+            <span class="line line-bottom"></span>       
+       </div> 
+       </li>
+       <li class="nav-item">
+           <a href="#" class="nav-link nav-link-smartb"></a>
+       </li>
+       <li class="nav-item nav-item-hidden">
+           <a href="#" class="nav-link nav-link-cart"></a>
+       </li>
+   </ul>
+   <!--work under-->
+   <ul class="nav-list nav-list-larger">
+       <li class="nav-item nav-item-hidden">
+           <a href="#" class="nav-link nav-link-smartb"></a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link"></a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">Кабинет</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">О компании</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">Доставка</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">Гарантии, обмен и возврат</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">Оплата</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link">Нур-султан</a>
+       </li>
+       <li class="nav-item">
+           <a href="" class="nav-link nav-link-search"></a>
+       </li><li class="nav-item">
+           <a href="" class="nav-link nav-link-cart"></a>
+       </li>
+   </ul>
+   <!--larger-->
+                </nav>
+            </div>
+            <script>
+               const selectElement=(element) => document.querySelector(element);
+               selectElement('.mobile-menu').addEventListener('click',()=>{
+                   selectElement('header').classList.toggle('active');
+               })
+               </script>
+        </header>
+           
         </section>
-
-        <div class="container demo-1">	
-		
-			<div class="main clearfix">
-				
-				<div class="column">
-					<div id="dl-menu" class="dl-menuwrapper">
-						<button class="dl-trigger">Open Menu</button>
-						<ul class="dl-menu">
-							<li>
-								<a href="#">Fashion</a>
-								<ul class="dl-submenu">
-									<li>
-										<a href="#">Men</a>
-									</li>
-									<li>
-										<a href="#">Women</a>
-									</li>
-									<li>
-										<a href="#">Children</a>
-									</li>
-									<li>
-										<a href="#">Women</a>
-									</li>
-									<li>
-										<a href="#">Children</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Electronics</a>
-								<ul class="dl-submenu">
-									<li><a href="#">Camera &amp; Photo</a></li>
-									<li><a href="#">TV &amp; Home Cinema</a></li>
-									<li><a href="#">Phones</a></li>
-									<li><a href="#">PC &amp; Video Games</a></li>
-									<li><a href="#">PC &amp; Video Games</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Furniture</a>
-								<ul class="dl-submenu">
-									<li>
-										<a href="#">Living Room</a>
-									</li>
-									<li>
-										<a href="#">Bedroom</a>
-									</li>
-									<li><a href="#">Home Office</a></li>
-									<li><a href="#">Dining &amp; Bar</a></li>
-									<li><a href="#">Patio</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#">Jewelry &amp; Watches</a>
-								<ul class="dl-submenu">
-									<li><a href="#">Fine Jewelry</a></li>
-									<li><a href="#">Fashion Jewelry</a></li>
-									<li><a href="#">Watches</a></li>
-									<li><a href="#">Wedding Jewelry</a></li>
-									<li><a href="#">Wedding Jewelry</a></li> 
-								</ul>
-							</li>
-						</ul>
-					</div><!-- /dl-menuwrapper -->
-				</div>
-			</div>
-		</div><!-- /container -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script src="js/jquery.dlmenu.js"></script>
-		<script>
-			$(function() {
-				$( '#dl-menu' ).dlmenu();
-			});
-		</script>
-        
         <section id="menu">
             <div class="menu grey-bg">
                 <div class="container">
@@ -206,17 +94,7 @@
                         </a>
                         <div class="megamenu" v-if="!hiddenMenu">
                             <ul class="megamenu_categories w-100">
-                                <li>
-                                    <a href="">Мебели</a>
-                                    <ul>
-                                        <li><a href="">Мебели</a></li>
-                                        <li><a href="">Ковры</a></li>
-                                        <li><a href="">Одежда</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="">Ковры</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -225,7 +103,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Одежда</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -234,7 +112,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Рыбалка</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -243,7 +121,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Диваны</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -252,7 +130,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Ремонт</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -261,7 +139,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Спорт</a>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -270,7 +148,16 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Аксессуары</a>
+                                <li><a href="">Категория</a>
+                                    <ul>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Категория</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
