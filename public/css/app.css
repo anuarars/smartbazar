@@ -12980,6 +12980,10 @@ footer .copyright {
 
   header .bottom-header .bottom_header_nav {
     grid-template-columns: 40% 45% 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 15px 0;
     gap: 10px;
     padding: 10px 0;
@@ -12988,10 +12992,6 @@ footer .copyright {
   header .bottom-header .bottom_header_nav .logo {
     color: #fff;
     text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
     text-decoration: none;
     font-family: "Poppins";
   }
@@ -13008,6 +13008,10 @@ footer .copyright {
     font-size: 0.7rem;
     font-weight: bold;
     margin-left: 5px;
+  }
+
+  header .bottom-header .bottom_header_nav .search {
+    width: 95%;
   }
 
   header .bottom-header .bottom_header_nav .search input {
@@ -13048,6 +13052,24 @@ footer .copyright {
 
   header .bottom-header .bottom_header_nav .items .hamburger img {
     width: 100%;
+  }
+
+  .megamenu {
+    display: flex;
+  }
+
+  .megamenu .megamenu_categories {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .megamenu .megamenu_categories li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .megamenu .megamenu_categories li ul li {
+    display: none;
   }
 
   .slider {

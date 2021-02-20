@@ -119,6 +119,82 @@
                 </div>
             </header>
         </section>
+
+        <div class="container demo-1">	
+		
+			<div class="main clearfix">
+				
+				<div class="column">
+					<div id="dl-menu" class="dl-menuwrapper">
+						<button class="dl-trigger">Open Menu</button>
+						<ul class="dl-menu">
+							<li>
+								<a href="#">Fashion</a>
+								<ul class="dl-submenu">
+									<li>
+										<a href="#">Men</a>
+									</li>
+									<li>
+										<a href="#">Women</a>
+									</li>
+									<li>
+										<a href="#">Children</a>
+									</li>
+									<li>
+										<a href="#">Women</a>
+									</li>
+									<li>
+										<a href="#">Children</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Electronics</a>
+								<ul class="dl-submenu">
+									<li><a href="#">Camera &amp; Photo</a></li>
+									<li><a href="#">TV &amp; Home Cinema</a></li>
+									<li><a href="#">Phones</a></li>
+									<li><a href="#">PC &amp; Video Games</a></li>
+									<li><a href="#">PC &amp; Video Games</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Furniture</a>
+								<ul class="dl-submenu">
+									<li>
+										<a href="#">Living Room</a>
+									</li>
+									<li>
+										<a href="#">Bedroom</a>
+									</li>
+									<li><a href="#">Home Office</a></li>
+									<li><a href="#">Dining &amp; Bar</a></li>
+									<li><a href="#">Patio</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">Jewelry &amp; Watches</a>
+								<ul class="dl-submenu">
+									<li><a href="#">Fine Jewelry</a></li>
+									<li><a href="#">Fashion Jewelry</a></li>
+									<li><a href="#">Watches</a></li>
+									<li><a href="#">Wedding Jewelry</a></li>
+									<li><a href="#">Wedding Jewelry</a></li> 
+								</ul>
+							</li>
+						</ul>
+					</div><!-- /dl-menuwrapper -->
+				</div>
+			</div>
+		</div><!-- /container -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/jquery.dlmenu.js"></script>
+		<script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu();
+			});
+		</script>
+        
         <section id="menu">
             <div class="menu grey-bg">
                 <div class="container">
@@ -130,7 +206,17 @@
                         </a>
                         <div class="megamenu" v-if="!hiddenMenu">
                             <ul class="megamenu_categories w-100">
-                                <li><a href="">Категория</a>
+                                <li>
+                                    <a href="">Мебели</a>
+                                    <ul>
+                                        <li><a href="">Мебели</a></li>
+                                        <li><a href="">Ковры</a></li>
+                                        <li><a href="">Одежда</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                        <li><a href="">Категория2</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="">Ковры</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -139,7 +225,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Одежда</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -148,7 +234,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Рыбалка</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -157,7 +243,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Диваны</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -166,7 +252,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Ремонт</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -175,7 +261,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Спорт</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
@@ -184,16 +270,7 @@
                                         <li><a href="">Категория2</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="">Категория</a>
-                                    <ul>
-                                        <li><a href="">Категория2</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                        <li><a href="">Категория2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="">Категория</a>
+                                <li><a href="">Аксессуары</a>
                                     <ul>
                                         <li><a href="">Категория2</a></li>
                                         <li><a href="">Категория2</a></li>
