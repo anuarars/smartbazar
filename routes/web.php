@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Resources\CategoriesCollection;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,5 +109,5 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 
 Route::get('/test2', function () {
-    return null;
+    return new CategoriesCollection(Category::where('parent_id', 0)->get());
 });

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Category;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CategoriesResource extends JsonResource
@@ -16,7 +17,7 @@ class CategoriesResource extends JsonResource
     {
         return [
              'id' => $this->id,
-             'children' => $this->when($this->children->count() > 0, new CategoriesCollection($this->children)),
+             'children' => Category::collection($this->with('children')),
         ];
     }
 }

@@ -30,23 +30,27 @@
                     <img src="{{asset('icons/test/logo.svg')}}" alt="">
                 </div>
                 <fieldset><a href="{{route('review.show', $product->company->id)}}">{{$product->company->name}}</a></fieldset>
-                <ul>
-                    <li><img src="{{asset('icons/product/small_location.svg')}}" alt=""><span>Продавец из: <span class="text-skyblue">г. Алматы</span></span></li>
-                    <li><img src="{{asset('icons/product/small_branch.svg')}}" alt=""><span class="text-skyblue">Филиалы</span></li>
-                    <li><img src="{{asset('icons/product/small_checkmark.svg')}}" alt=""><span class="text-skyblue">График работы</span></li>
-                    <li><img src="{{asset('icons/product/small_phone.svg')}}" alt=""><span class="text-skyblue">+7 показать номер</span></li>
-                    <li><img src="{{asset('icons/product/small_email.svg')}}" alt=""><span class="text-skyblue">zakazberry@yandex.kz</span></li>
-                </ul>
-                <fieldset>Рейтинг продавца</fieldset>
-                <star-component></star-component>
-                <ul>
-                    <li><img src="{{asset('icons/product/small_ok.svg')}}" alt=""><span class="text-skyblue">77% положительных из 14 отзывов за год</span></li>
-                    <li><img src="{{asset('icons/product/small_comment.svg')}}" alt=""><span class="text-skyblue">Всего 14 отзывов</span></li>
-                </ul>
-                <fieldset>Достижение продавца</fieldset>
-                <div class="certificates">
-                    <img src="{{asset('icons/test/certificate.svg')}}" alt="">
-                    <span>Быстрое обслуживание</span>
+                <div class="column_single_product">
+                    <ul>
+                        <li><img src="{{asset('icons/product/small_location.svg')}}" alt=""><span>Продавец из: <span class="text-skyblue">г. Алматы</span></span></li>
+                        <li><img src="{{asset('icons/product/small_branch.svg')}}" alt=""><span class="text-skyblue">Филиалы</span></li>
+                        <li><img src="{{asset('icons/product/small_checkmark.svg')}}" alt=""><span class="text-skyblue">График работы</span></li>
+                        <li><img src="{{asset('icons/product/small_phone.svg')}}" alt=""><span class="text-skyblue">+7 показать номер</span></li>
+                        <li><img src="{{asset('icons/product/small_email.svg')}}" alt=""><span class="text-skyblue">zakazberry@yandex.kz</span></li>
+                    </ul>    
+                </div>   
+                <div class="single_column_product" id="sc1">
+                    <fieldset>Рейтинг продавца</fieldset>
+                    <star-component></star-component>
+                    <ul>
+                        <li><img src="{{asset('icons/product/small_ok.svg')}}" alt=""><span class="text-skyblue">77% положительных из 14 отзывов за год</span></li>
+                        <li><img src="{{asset('icons/product/small_comment.svg')}}" alt=""><span class="text-skyblue">Всего 14 отзывов</span></li>
+                    </ul>
+                    <fieldset>Достижение продавца</fieldset>
+                    <div class="certificates">
+                        <img src="{{asset('icons/test/certificate.svg')}}" alt="">
+                        <span>Быстрое обслуживание</span>
+                    </div>
                 </div>
             </div>
             <div class="single_product_terms">

@@ -37,7 +37,7 @@ footer{
                         border-radius: 25px;
                         background-color: $grey-bg;
                         &::placeholder{
-                            font-family: 'Helvatica Neue Medium';
+                            font-family: 'Helvatica';
                         }
                     }
                     button{
@@ -64,7 +64,7 @@ footer{
         background-color: #f7f7f7;
         padding: 50px 0;
         .popular_title{
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: bold;
             font-family: 'Neue Medium';
         }
@@ -93,6 +93,7 @@ footer{
         background-color: $grey-bg;
         .helpdesk_inner{
             display: grid;
+            gap:20px;
             grid-template-columns: repeat(4, 1fr);
             .helpdesk_contact{
                 display: flex;
@@ -128,10 +129,10 @@ footer{
                 justify-content: flex-start;
                 h2{
                     font-weight: normal;
-                    font-family: 'Helvetica Neue';
+                    font-family: 'Helvetica';
                     text-align: center;
-                    text-decoration: underline;
                     color: #31373B;
+                    font-weight: bold;
                 }
                 ul{
                     display: flex;

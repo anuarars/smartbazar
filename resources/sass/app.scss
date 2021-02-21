@@ -61,7 +61,7 @@ ul,li{
 // }
 
 body{
-    font-family: 'Helvetica Neue';
+    font-family: 'Helvetica';
     font-size: 16px;
     font-weight: normal;
 }
@@ -308,7 +308,7 @@ body{
                         }
                         &:first-child{
                             display: grid;
-                            grid-template-columns: 1fr 3fr;
+                            grid-template-columns: 1fr 2fr;
                             .wishlist_product_image{
                                 padding: 0 10px;
                                 img{
@@ -396,19 +396,23 @@ body{
             grid-column: 2;
             border-left: 2px solid#efefef;
             padding: 0 30px;
-            fieldset{
-                font-family: 'Helvetica Neue Bold';
-                font-size: 1.125rem;
-            }
-            .single_product_company_img{
-                text-align: center;
-            }
-            ul{
-                padding: 0;
-                list-style-type: none;
-                li{
-                    span{
-                        margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            .single_column_product{
+                fieldset{
+                    font-family: 'Helvetica Neue Bold';
+                    font-size: 1.125rem;
+                }
+                .single_product_company_img{
+                    text-align: center;
+                }
+                ul{
+                    padding: 0;
+                    list-style-type: none;
+                    li{
+                        span{
+                            margin-left: 10px;
+                        }
                     }
                 }
             }
@@ -977,3 +981,8 @@ outline: none;
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+<<<<<<< Updated upstream
+=======
+@import 'review';
+>>>>>>> Stashed changes

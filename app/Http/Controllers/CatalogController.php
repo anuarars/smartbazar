@@ -12,7 +12,7 @@ class CatalogController extends Controller
     public function index(){
         $products = Product::sortable();
         $brands = Brand::all();
-
+        $brandList = collect();
         if ($category = request('category')) {
             $products->where('category_id', '=', 1);
         }
@@ -23,17 +23,20 @@ class CatalogController extends Controller
 //                return $item->discountPercent >= $price[0] && $item->discountPercent <= $price[1];
 //            });
         }
-        if ($brand_filter = \request('brand_filter')) {
-            $brandList = $brands->filter(function ($item) use($brand_filter) {
-                return false !== stripos($item->title, $brand_filter);
-            })->pluck('id');
+        if (\request('brandsList')) {
+            $brandList = request('brandsList');
         }
-        if ($brandList = \request('brandsList')) {
+        if ($brand_filter = \request('brand_filter')) {
+            $brandList = ($brands->filter(function ($item) use($brand_filter) {
+                return false !== stripos($item->title, $brand_filter);
+            })->pluck('id')->toArray());
+        }
+
+        if (count($brandList) > 0) {
             $products->whereIn('brand_id', $brandList);
         }
 
-        $categories = new CategoriesCollection(Category::where('parent_id', 0)->get());
-
+        $categories = Category::with('grandchildren')->where('parent_id',0)->get();
         return view('catalog', compact('categories', 'brandList', 'brands', 'price', 'brand_filter'))
             ->with('products', $products->paginate(12));
     }

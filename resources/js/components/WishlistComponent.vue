@@ -19,11 +19,12 @@
                                 <h6 class="wishlist_product_status">В наличии</h6>
                                 <h6 class="wishlist_product_price">Код/Артикул: <span>000148</span></h6>
                                 <h6 class="wishlist_product_price">{{wishlist.product.price}} Тг.</h6>
+                                <h6 class="wishlist_company_name">{{wishlist.product.company.name}}</h6>
+
                             </div>
                         </li>
                         <li>
                             <div class="wishlist_company">
-                                <h6 class="wishlist_company_name">{{wishlist.product.company.name}}</h6>
                                 <star-component></star-component>
                                 <h6 class="wishlist_company_comments">2 отзыва о продавце</h6>
                             </div>
