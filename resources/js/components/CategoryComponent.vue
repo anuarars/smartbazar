@@ -1,19 +1,21 @@
 <template>
+
     <li>
         <div
-            :class="{bold: isFolder}"
-            @click="toggle"
+            class="bold"
+            :class="{headline: isFolder}"
+
         >
-            {{ item.id }}
-            <span v-if="isFolder">[{{ isOpen ? '-' : '+' }}]</span>
+            {{ item.title }}
+            <span v-if="isFolder" class="item" @click="toggle">[{{ isOpen ? '-' : '+' }}]</span>
         </div>
-        <ul v-show="isOpen" v-if="isFolder">
-            <tree-item
-                class="item"
-                v-for="(child, index) in item.children"
+        <ul class="categories-tree-list" v-show="isOpen" v-if="isFolder">
+            <categories-component
+
+                v-for="(child, index) in item.grandchildren"
                 :key="index"
                 :item="child"
-            ></tree-item>
+            ></categories-component>
         </ul>
     </li>
 
@@ -31,7 +33,7 @@
         },
         computed: {
             isFolder: function () {
-                return this.categories.children && this.categories.children.length;
+                return this.item.grandchildren && this.item.grandchildren.length;
             }
         },
         methods: {
@@ -42,7 +44,21 @@
             },
         },
         created() {
-            console.log("salam aleikumk");
+            console.log(this.item);
         }
     }
 </script>
+
+<style scoped>
+
+    .item {
+        cursor: pointer;
+    }
+
+    .categories-tree-list{
+        padding-left: 1em;
+        line-height: 1.5em;
+        list-style-type: dot;
+    }
+
+</style>

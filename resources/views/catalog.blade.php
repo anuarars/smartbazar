@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="smb_breadcrumb">
         <ul>
             <li>Главная/</li>
@@ -10,21 +11,26 @@
         </ul>
     </div>
     <div class="catalog">
-        <form action="{{ route('catalog.index') }}" method="get">
+        <form action="{{ route('catalog.index') }}" method="get" id="index-filters-form">
         <aside>
             <button class="btn-pink">Сладости</button>
             <div class="catalog_categories">
-                <categories-component :item = "1"></categories-component>
+                @include('includes.categories_tree', ['categories' => $categories])
 
             </div>
             <div class="catalog_list">
                 <h5 class="headline">Брэнд</h5>
                 <input type="text" class="form-control" id="filter" name="brand_filter" onchange="this.form.submit()" placeholder="Я ищу..." value="{{ $brand_filter ?? '' }}">
                 <ul id="brand-list">
+
+
                     @foreach($brands as $brand)
                         <li>
                             <div class="catalog_checkbox">
-                                <input type="checkbox" name="brandsList[]" value="{{ $brand->id }}" onchange="this.form.submit()"
+                                <input type="checkbox" name="brandsList[]" value="{{ $brand->id }}" onchange="(function() {
+                                    document.getElementById('filter').value = '';
+                                    document.getElementById('index-filters-form').submit();
+                                })();"
                                 @if(in_array($brand->id, (array)$brandList ?? -1)) checked @endif>
                             </div>
                             <label for="{{ $brand->title }}">{{ $brand->title }}</label>
@@ -88,6 +94,7 @@
             <div class="catalog_content">
                 @foreach($products as $product)
                     <div class="product_item">
+                        {{ $product->brand->title }}
                         <a href="{{route('product', $product)}}" class="product_item_image">
                             <img src="{{$product->image}}" alt="{{$product->image}}">
                         </a>

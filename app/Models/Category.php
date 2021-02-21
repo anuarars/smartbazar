@@ -13,6 +13,11 @@ class Category extends Model
         return $this->hasMany(static::class, 'parent_id');
     }
 
+    public function grandchildren()
+    {
+        return $this->children()->with('grandchildren');
+    }
+
     // public function parent(){
     //     return $this->belongsTo(static::class, 'parent_id');
     // }
