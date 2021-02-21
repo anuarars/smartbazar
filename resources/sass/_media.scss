@@ -150,7 +150,11 @@
 }
 
 @media screen and (min-width : 480px) and (max-width : 768px){
-   
+    .inner_container .cart_wrapper {
+        display: grid;
+        grid-template-columns: 100%;
+        padding: 20px;
+    }
 .container{
     .inner-container{
         .wishlist_items{
