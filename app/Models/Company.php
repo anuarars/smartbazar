@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\WorkTime;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
@@ -20,12 +19,17 @@ class Company extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function workTimes(){
+    public function worktimes(){
         return $this->hasMany(WorkTime::class);
     }
 
     public function address()
     {
         return $this->morphOne('App\Models\Address', 'addressable');
+    }
+
+    public function email()
+    {
+        return $this->morphOne('App\Models\Email', 'emailable');
     }
 }

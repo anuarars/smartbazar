@@ -76,4 +76,9 @@ class User extends Authenticatable
         return $this->morphOne('App\Models\Address', 'addressable');
     }
 
+    public function email()
+    {
+        return $this->morphOne('App\Models\Email', 'emailable');
+    }
+
 }

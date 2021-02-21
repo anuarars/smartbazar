@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkTimesTable extends Migration
+class CreateEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateWorkTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_times', function (Blueprint $table) {
+        Schema::create('emails', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('company_id');
-            $table->bigInteger('weekday_id');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->string('name');
+            $table->tinyInteger('isSubscribed')->default(1);
+            $table->morphs('emailable');
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +29,6 @@ class CreateWorkTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_time');
+        Schema::dropIfExists('emails');
     }
 }

@@ -1,20 +1,19 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Company;
-use App\Models\Weekday;
 use Illuminate\Database\Eloquent\Model;
 
-class WorkTime extends Model
+class Worktime extends Model
 {
+    protected $fillable = ['company_id', 'weekday_id', 'start_time', 'end_time'];
+    
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
 
-    public function weekDay()
-    {
+    public function weekday(){
         return $this->belongsTo(Weekday::class);
     }
 }

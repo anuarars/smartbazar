@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Address;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,24 @@ class ProfileController extends Controller
         return view('user.address');
     }
 
+    public function info(){
+        return view('user.info');
+    }
+
+    public function infoUpdate(Request $request){
+        $user = User::find(Auth::id());
+        $user->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'login' => $request->login,
+            'phone' => $request->phone
+        ]);
+        
+        return redirect()->route('profile.index');
+    }
+
     public function addressUpdate(Request $request){
-        $user = Auth::user();
+        $user = User::find(Auth::id());
         $data = [
             'city' => $request->city,
             'home' => $request->home,
@@ -31,6 +48,6 @@ class ProfileController extends Controller
             $user->address()->create($data);
         }
         
-        return back();
+        return redirect()->route('profile.index');
     }
 }
