@@ -4,9 +4,10 @@
         <div
             class="bold"
             :class="{headline: isFolder}"
-
+            id="category"
         >
-            {{ item.title }}
+            <a @click="submit(item.id)">{{ item.title }}</a>
+
             <span v-if="isFolder" class="item" @click="toggle">[{{ isOpen ? '-' : '+' }}]</span>
         </div>
         <ul class="categories-tree-list" v-show="isOpen" v-if="isFolder">
@@ -29,23 +30,33 @@
         data: function () {
             return {
                 isOpen: false,
+                selected: 0,
             };
         },
         computed: {
             isFolder: function () {
                 return this.item.grandchildren && this.item.grandchildren.length;
-            }
+            },
+
         },
+
         methods: {
             toggle: function () {
                 if (this.isFolder) {
                     this.isOpen = !this.isOpen;
                 }
             },
+            submit: function (id) {
+                this.selected = id;
+                var field = document.createElement("input");
+                field.setAttribute("name", 'category');
+                field.setAttribute("value", this.selected);
+                var form = document.getElementById('index-filters-form');
+                form.appendChild(field);
+                form.submit();
+            }
         },
-        created() {
-            console.log(this.item);
-        }
+
     }
 </script>
 

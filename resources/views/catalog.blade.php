@@ -16,7 +16,6 @@
             <button class="btn-pink">Сладости</button>
             <div class="catalog_categories">
                 @include('includes.categories_tree', ['categories' => $categories])
-
             </div>
             <div class="catalog_list">
                 <h5 class="headline">Брэнд</h5>
@@ -76,7 +75,7 @@
 
             </div>
             <div class="catalog_stars">
-                <star-component></star-component>
+                <star-component :is-card="false"></star-component>daasd
             </div>
         </aside>
         </form>
@@ -94,7 +93,7 @@
             <div class="catalog_content">
                 @foreach($products as $product)
                     <div class="product_item">
-                        {{ $product->brand->title }}
+                        {{ $product->category->title }}
                         <a href="{{route('product', $product)}}" class="product_item_image">
                             <img src="{{$product->image}}" alt="{{$product->image}}">
                         </a>

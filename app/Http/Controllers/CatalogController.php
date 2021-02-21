@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\CategoriesCollection;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 
 class CatalogController extends Controller
 {
+
     public function index(){
         $products = Product::sortable();
         $brands = Brand::all();
         $brandList = collect();
         if ($category = request('category')) {
-            $products->where('category_id', '=', 1);
+            $categoriesOfCategory = Category::find($category)->getAllChildren()->pluck('id');
+//            dd($categoriesOfCategory);
+            $products->whereIn('category_id', $categoriesOfCategory->toArray());
         }
         if ($price = request('priceList')) {
             $products = $products->whereBetween('price', [$price[0], $price[1]]);

@@ -25,4 +25,16 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Product::class);
     }
+
+    public function getAllChildren ()
+    {
+        $sections = collect();
+
+        foreach ($this->children as $section) {
+            $sections->push($section);
+            $sections = $sections->merge($section->getAllChildren());
+        }
+
+        return $sections;
+    }
 }
