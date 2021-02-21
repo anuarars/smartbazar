@@ -1,5 +1,5 @@
 <template>
-<div class="stars">
+<div class="stars_review">
     <star-rating
         :star-size="20"
         :rating="rating"
@@ -21,4 +21,6 @@
         },
     }
 </script>
+
+
 

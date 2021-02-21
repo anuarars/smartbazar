@@ -2115,6 +2115,38 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-star-rating */ "./node_modules/vue-star-rating/dist/VueStarRating.common.js");
+/* harmony import */ var vue_star_rating__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_star_rating__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['rating'],
+  components: {
+    StarRating: vue_star_rating__WEBPACK_IMPORTED_MODULE_0___default.a
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SearchComponent.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SearchComponent.vue?vue&type=script&lang=js& ***!
@@ -21469,6 +21501,44 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "stars_review" },
+    [
+      _c("star-rating", {
+        attrs: {
+          "star-size": 20,
+          rating: _vm.rating,
+          "read-only": true,
+          "show-rating": false
+        }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41619,6 +41689,7 @@ Vue.component('product-component', __webpack_require__(/*! ./components/ProductC
 Vue.component('modal-component', __webpack_require__(/*! ./components/ModalComponent.vue */ "./resources/js/components/ModalComponent.vue")["default"]);
 Vue.component('search-component', __webpack_require__(/*! ./components/SearchComponent.vue */ "./resources/js/components/SearchComponent.vue")["default"]);
 Vue.component('categories-component', __webpack_require__(/*! ./components/CategoryComponent.vue */ "./resources/js/components/CategoryComponent.vue")["default"]);
+Vue.component('review-star-component', __webpack_require__(/*! ./components/ReviewStartComponent.vue */ "./resources/js/components/ReviewStartComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -42231,6 +42302,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ReviewStartComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/ReviewStartComponent.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReviewStartComponent.vue?vue&type=template&id=5b2120c4& */ "./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4&");
+/* harmony import */ var _ReviewStartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReviewStartComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ReviewStartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ReviewStartComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReviewStartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ReviewStartComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReviewStartComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ReviewStartComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ReviewStartComponent.vue?vue&type=template&id=5b2120c4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ReviewStartComponent.vue?vue&type=template&id=5b2120c4&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ReviewStartComponent_vue_vue_type_template_id_5b2120c4___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/SearchComponent.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/components/SearchComponent.vue ***!
@@ -42532,7 +42672,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n    ╷\n987 │ @import 'review';\r\n    │                 ^\n    ╵\n  C:\\OpenServer\\domains\\smartbazar\\resources\\sass\\app.scss 987:17  root stylesheet\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass-loader\\dist\\index.js:73:7\n    at Function.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:88459:16)\n    at _render_closure1.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:77851:12)\n    at _RootZone.runBinary$3$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26320:18)\n    at _RootZone.runBinary$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26324:19)\n    at _FutureListener.handleError$1 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24768:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:25065:40)\n    at Object._Future__propagateToListeners (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4311:88)\n    at _Future._completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24893:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24285:12)\n    at Object._asyncRethrow (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4065:17)\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:14183:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4090:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24306:12)\n    at _awaitOnObject_closure0.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24298:25)\n    at _RootZone.runBinary$3$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26320:18)\n    at _RootZone.runBinary$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26324:19)\n    at _FutureListener.handleError$1 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24768:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:25065:40)\n    at Object._Future__propagateToListeners (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4311:88)\n    at _Future._completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24893:9)\n    at _Future__asyncCompleteError_closure.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24988:18)\n    at Object._microtaskLoop (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4361:21)\n    at StaticClosure._startMicrotaskLoop (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4367:11)\n    at _AsyncRun__scheduleImmediateJsOverride_internalCallback.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24200:21)\n    at invokeClosure (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:1363:26)\n    at Immediate.<anonymous> (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:1384:18)\n    at processImmediate (internal/timers.js:461:21)");
 
 /***/ }),
 
@@ -42543,8 +42683,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\openserver\domains\smartbazar\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\openserver\domains\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OpenServer\domains\smartbazar\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
