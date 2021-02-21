@@ -396,19 +396,23 @@ body{
             grid-column: 2;
             border-left: 2px solid#efefef;
             padding: 0 30px;
-            fieldset{
-                font-family: 'Helvetica Neue Bold';
-                font-size: 1.125rem;
-            }
-            .single_product_company_img{
-                text-align: center;
-            }
-            ul{
-                padding: 0;
-                list-style-type: none;
-                li{
-                    span{
-                        margin-left: 10px;
+            display: flex;
+            flex-direction: column;
+            .single_column_product{
+                fieldset{
+                    font-family: 'Helvetica Neue Bold';
+                    font-size: 1.125rem;
+                }
+                .single_product_company_img{
+                    text-align: center;
+                }
+                ul{
+                    padding: 0;
+                    list-style-type: none;
+                    li{
+                        span{
+                            margin-left: 10px;
+                        }
                     }
                 }
             }
