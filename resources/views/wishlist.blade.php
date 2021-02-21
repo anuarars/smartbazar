@@ -7,7 +7,7 @@
             <li>Избранное</li>
         </ul>
     </div>
-    <h2 class="page_title">Избранное</h2>
+    <h2 class="page_title">Избранноe</h2>
     <div class="inner_container">
         <div class="wishlist_sort">
             <div class="wishlist_sort_inputs">
