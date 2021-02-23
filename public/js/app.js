@@ -2176,13 +2176,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['search'],
+  props: ['search', 'home_url'],
   data: function data() {
-    return {};
+    return {// url: '',  
+    };
   },
-  mounted: function mounted() {
-    console.log(this.search);
+  // methods:{
+  //     getUrl(){
+  //         this.url = this.home_url;
+  //         return this.url
+  //     }
+  // },
+  mounted: function mounted() {// this.getUrl();
+    // console.log(this.url);
   }
 });
 
@@ -21590,26 +21615,76 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "ul",
-    _vm._l(_vm.search, function(result) {
-      return _c("li", [
-        _c("div", { staticClass: "searchResult" }, [
-          _vm._v(_vm._s(result.title))
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "searchPrice" }, [
-          _c("span", { staticClass: "mr-2 font-weight-bold" }, [
-            _vm._v(_vm._s(result.price) + " тг.")
-          ]),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "searchImg",
-            attrs: { src: "icons/red_basket.svg", alt: "red_basket" }
-          })
-        ])
-      ])
-    }),
-    0
+    "div",
+    {
+      staticClass:
+        "search__suggestions suggestions suggestions--location--header"
+    },
+    [
+      _c(
+        "ul",
+        { staticClass: "suggestions__list" },
+        _vm._l(_vm.search, function(result) {
+          return _c("li", { staticClass: "suggestions__item" }, [
+            _c(
+              "div",
+              { staticClass: "suggestions__item-image product-image" },
+              [
+                _c("div", { staticClass: "product-image__body" }, [
+                  _c("img", {
+                    staticClass: "product-image__img",
+                    attrs: { src: result.image, alt: "" }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestions__item-info" }, [
+              _c("a", { staticClass: "suggestions__item-name" }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(result.title) +
+                    "\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "suggestions__item-meta" }, [
+                _vm._v("Произвадитель: " + _vm._s(result.brand_id))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestions__item-price" }, [
+              _vm._v(
+                "\n                " +
+                  _vm._s(result.price) +
+                  " тг.\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "suggestions__item-actions" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-sm btn-svg-icon",
+                  attrs: { type: "button", title: "В корзину" }
+                },
+                [
+                  _c("svg", { attrs: { width: "16px", height: "16px" } }, [
+                    _c("use", {
+                      attrs: {
+                        "xlink:href":
+                          "http://smartbazar/public/template/images/sprite.svg#cart-16"
+                      }
+                    })
+                  ])
+                ]
+              )
+            ])
+          ])
+        }),
+        0
+      )
+    ]
   )
 }
 var staticRenderFns = []
@@ -42402,14 +42477,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/SearchComponent.vue ***!
   \*****************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SearchComponent_vue_vue_type_template_id_89b0c3cc___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SearchComponent.vue?vue&type=template&id=89b0c3cc& */ "./resources/js/components/SearchComponent.vue?vue&type=template&id=89b0c3cc&");
 /* harmony import */ var _SearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SearchComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/SearchComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SearchComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -42439,7 +42515,7 @@ component.options.__file = "resources/js/components/SearchComponent.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/SearchComponent.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42710,8 +42786,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\smartbazar\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\OpenServer\domains\bazar\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\bazar\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

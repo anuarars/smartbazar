@@ -6,7 +6,7 @@ header{
             flex-direction: row;
             flex-wrap: wrap;
             .about{
-                width: 55%;
+                width: 40%;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
@@ -24,7 +24,7 @@ header{
                 }
             }
             .account{
-                width: 45%;
+                width: 60%;
                 display: flex;
                 flex-direction: row;
                 list-style: none;
