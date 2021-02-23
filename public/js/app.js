@@ -1931,13 +1931,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     item: Object
   },
   data: function data() {
     return {
-      isOpen: false
+      isOpen: false,
+      selected: 0
     };
   },
   computed: {
@@ -1950,10 +1952,16 @@ __webpack_require__.r(__webpack_exports__);
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
       }
+    },
+    submit: function submit(id) {
+      this.selected = id;
+      var field = document.createElement("input");
+      field.setAttribute("name", 'category');
+      field.setAttribute("value", this.selected);
+      var form = document.getElementById('index-filters-form');
+      form.appendChild(field);
+      form.submit();
     }
-  },
-  created: function created() {
-    console.log(this.item);
   }
 });
 
@@ -21194,14 +21202,33 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("li", [
-    _c("div", { staticClass: "bold", class: { headline: _vm.isFolder } }, [
-      _vm._v("\n        " + _vm._s(_vm.item.title) + "\n        "),
-      _vm.isFolder
-        ? _c("span", { staticClass: "item", on: { click: _vm.toggle } }, [
-            _vm._v("[" + _vm._s(_vm.isOpen ? "-" : "+") + "]")
-          ])
-        : _vm._e()
-    ]),
+    _c(
+      "div",
+      {
+        staticClass: "bold",
+        class: { headline: _vm.isFolder },
+        attrs: { id: "category" }
+      },
+      [
+        _c(
+          "a",
+          {
+            on: {
+              click: function($event) {
+                return _vm.submit(_vm.item.id)
+              }
+            }
+          },
+          [_vm._v(_vm._s(_vm.item.title))]
+        ),
+        _vm._v(" "),
+        _vm.isFolder
+          ? _c("span", { staticClass: "item", on: { click: _vm.toggle } }, [
+              _vm._v("[" + _vm._s(_vm.isOpen ? "-" : "+") + "]")
+            ])
+          : _vm._e()
+      ]
+    ),
     _vm._v(" "),
     _vm.isFolder
       ? _c(
@@ -42672,7 +42699,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/dist/cjs.js):\nSassError: expected \"{\".\n    ╷\n987 │ @import 'review';\r\n    │                 ^\n    ╵\n  C:\\OpenServer\\domains\\smartbazar\\resources\\sass\\app.scss 987:17  root stylesheet\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\OpenServer\\domains\\smartbazar\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass-loader\\dist\\index.js:73:7\n    at Function.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:88459:16)\n    at _render_closure1.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:77851:12)\n    at _RootZone.runBinary$3$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26320:18)\n    at _RootZone.runBinary$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26324:19)\n    at _FutureListener.handleError$1 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24768:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:25065:40)\n    at Object._Future__propagateToListeners (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4311:88)\n    at _Future._completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24893:9)\n    at _AsyncAwaitCompleter.completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24285:12)\n    at Object._asyncRethrow (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4065:17)\n    at C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:14183:20\n    at _wrapJsFunctionForAsync_closure.$protected (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4090:15)\n    at _wrapJsFunctionForAsync_closure.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24306:12)\n    at _awaitOnObject_closure0.call$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24298:25)\n    at _RootZone.runBinary$3$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26320:18)\n    at _RootZone.runBinary$3 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:26324:19)\n    at _FutureListener.handleError$1 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24768:19)\n    at _Future__propagateToListeners_handleError.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:25065:40)\n    at Object._Future__propagateToListeners (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4311:88)\n    at _Future._completeError$2 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24893:9)\n    at _Future__asyncCompleteError_closure.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24988:18)\n    at Object._microtaskLoop (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4361:21)\n    at StaticClosure._startMicrotaskLoop (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:4367:11)\n    at _AsyncRun__scheduleImmediateJsOverride_internalCallback.call$0 (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:24200:21)\n    at invokeClosure (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:1363:26)\n    at Immediate.<anonymous> (C:\\OpenServer\\domains\\smartbazar\\node_modules\\sass\\sass.dart.js:1384:18)\n    at processImmediate (internal/timers.js:461:21)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 

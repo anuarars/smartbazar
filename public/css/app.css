@@ -10977,7 +10977,7 @@ li {
 }
 
 body {
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica";
   font-size: 16px;
   font-weight: normal;
 }
@@ -11462,6 +11462,12 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   text-align: center;
 }
 
+select {
+  width: 60%;
+  padding: 8px;
+  border: 1px solid #C1C8CE;
+}
+
 .slider {
   padding: 30px 0;
 }
@@ -11742,7 +11748,7 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
 
 .inner_container .wishlist_items ul li.wishlist_item_single ul li:first-child {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 .inner_container .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_image {
@@ -11839,23 +11845,25 @@ header .bottom-header .bottom_header_nav .items .hamburger img {
   grid-column: 2;
   border-left: 2px solid #efefef;
   padding: 0 30px;
+  display: flex;
+  flex-direction: column;
 }
 
-.inner_container .single_product_wrapper .single_product_company_info fieldset {
+.inner_container .single_product_wrapper .single_product_company_info .single_column_product fieldset {
   font-family: "Helvetica Neue Bold";
   font-size: 1.125rem;
 }
 
-.inner_container .single_product_wrapper .single_product_company_info .single_product_company_img {
+.inner_container .single_product_wrapper .single_product_company_info .single_column_product .single_product_company_img {
   text-align: center;
 }
 
-.inner_container .single_product_wrapper .single_product_company_info ul {
+.inner_container .single_product_wrapper .single_product_company_info .single_column_product ul {
   padding: 0;
   list-style-type: none;
 }
 
-.inner_container .single_product_wrapper .single_product_company_info ul li span {
+.inner_container .single_product_wrapper .single_product_company_info .single_column_product ul li span {
   margin-left: 10px;
 }
 
@@ -12218,19 +12226,19 @@ footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form input {
 }
 
 footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form input::-moz-placeholder {
-  font-family: "Helvatica Neue Medium";
+  font-family: "Helvatica";
 }
 
 footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form input:-ms-input-placeholder {
-  font-family: "Helvatica Neue Medium";
+  font-family: "Helvatica";
 }
 
 footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form input::-ms-input-placeholder {
-  font-family: "Helvatica Neue Medium";
+  font-family: "Helvatica";
 }
 
 footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form input::placeholder {
-  font-family: "Helvatica Neue Medium";
+  font-family: "Helvatica";
 }
 
 footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form button {
@@ -12257,7 +12265,7 @@ footer .popular {
 }
 
 footer .popular .popular_title {
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: bold;
   font-family: "Neue Medium";
 }
@@ -12293,6 +12301,7 @@ footer .helpdesk {
 
 footer .helpdesk .helpdesk_inner {
   display: grid;
+  gap: 20px;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -12335,10 +12344,10 @@ footer .helpdesk .helpdesk_inner .helpdesk_col_wrap {
 
 footer .helpdesk .helpdesk_inner .helpdesk_col_wrap h2 {
   font-weight: normal;
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica";
   text-align: center;
-  text-decoration: underline;
   color: #31373B;
+  font-weight: bold;
 }
 
 footer .helpdesk .helpdesk_inner .helpdesk_col_wrap ul {
@@ -12814,35 +12823,19 @@ footer .copyright {
 }
 
 @media screen and (min-width: 480px) and (max-width: 768px) {
-  header .top-header .top_header_nav .about {
-    width: 100%;
+  .inner_container .cart_wrapper {
+    display: grid;
+    grid-template-columns: 100%;
+    padding: 20px;
   }
 
-  header .top-header .top_header_nav .account {
-    width: 100%;
-    justify-content: center;
+  .container .inner-container .wishlist_items ul li.wishlist_item_single .ul li {
+    align-self: start;
   }
 
-  header .bottom-header .bottom_header_nav {
-    grid-template-columns: 30% 40% 20%;
-    padding: 15px 0;
-  }
-
-  header .bottom-header .bottom_header_nav .logo .logo_title {
-    font-size: 1.25rem;
-  }
-
-  header .bottom-header .bottom_header_nav .items {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  header .bottom-header .bottom_header_nav .items .basket_description {
-    display: none;
-  }
-
-  header .bottom-header .bottom_header_nav .items .wishlist,
-  header .bottom-header .bottom_header_nav .items .basket {
-    justify-self: center;
+  .inner_container .wishlist_items ul li.wishlist_item_single ul li:first-child {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
   }
 
   .slider {
@@ -12882,9 +12875,9 @@ footer .copyright {
   }
 
   footer .popular .popular_title {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: bold;
-    font-family: "Neue Medium";
+    font-family: "Helvetica";
   }
 
   footer .popular .popular_inner {
@@ -12922,7 +12915,7 @@ footer .copyright {
 
   footer .helpdesk .helpdesk_inner {
     display: grid;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -12949,10 +12942,9 @@ footer .copyright {
   }
 
   footer .helpdesk .helpdesk_inner .helpdesk_col_wrap h2 {
-    font-weight: normal;
-    font-family: "Helvetica Neue";
+    font-weight: bold;
+    font-family: "Helvetica";
     text-align: center;
-    text-decoration: underline;
     color: #31373B;
   }
 
@@ -12968,7 +12960,144 @@ footer .copyright {
 
   footer .helpdesk .helpdesk_inner .helpdesk_col_wrap ul li a {
     color: #31373B;
-    font-family: "Helvetica Neue";
+    font-family: "Helvetica";
+  }
+
+  .wishlist_sort {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap label {
+    color: #31373B;
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #C1C8CE;
+  }
+
+  .wishlist_sort .wishlist_sort_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: flex-end;
+    gap: 15px;
+  }
+
+  .wishlist_sort .wishlist_sort_buttons button {
+    height: 40px;
+    border-radius: 25px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #282A2C;
+  }
+
+  .single_product_wrapper {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .single_product_wrapper .single_product_main_info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 2px solid #efefef;
+  }
+
+  .single_product_wrapper .single_product_main_info .single_product_main_image img {
+    width: 100%;
+  }
+
+  .single_product_wrapper .single_product_main_info .single_product_main_desc h3 {
+    color: #31373B;
+    font-family: "Helvetica Neue Medium";
+    font-size: 1.5rem;
+  }
+
+  .single_product_wrapper .single_product_main_info .single_product_main_desc h1 {
+    color: #31373B;
+    font-family: "Helvetica Neue Bold";
+  }
+
+  .single_product_wrapper .single_product_main_info .single_product_main_desc a {
+    font-size: 1.125rem;
+  }
+
+  .single_product_wrapper .single_product_main_info .single_product_main_desc a:hover {
+    text-decoration: none;
+  }
+
+  .single_product_wrapper .single_product_company_info {
+    grid-row: 2 !important;
+    grid-column: 1 !important;
+    border-left: 2px solid #efefef;
+    padding: 0 30px;
+    flex-direction: column !important;
+  }
+
+  .single_product_wrapper .single_product_company_info fieldset {
+    font-family: "Helvetica Neue Bold";
+    font-size: 1.125rem;
+    text-align: center !important;
+  }
+
+  .single_product_wrapper .single_product_company_info .single_product_company_img {
+    text-align: center !important;
+  }
+
+  .single_product_wrapper .single_product_company_info ul {
+    padding: 0;
+    text-align: center !important;
+    list-style-type: none;
+  }
+
+  .single_product_wrapper .single_product_company_info ul li {
+    text-align: left !important;
+    display: inline block !important;
+  }
+
+  .single_product_wrapper .single_product_company_info ul li span {
+    text-align: center !important;
+    margin-left: 10px;
+  }
+
+  .single_product_wrapper .single_product_terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3fr;
+    padding: 15px 15px 0 0;
+    grid-gap: 15px !important;
+  }
+
+  .single_product_wrapper .single_product_terms ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .single_product_wrapper .single_product_terms ul li {
+    font-family: "Helvetica Neue Medium";
+    color: #31373B;
+    font-size: 15px;
   }
 }
 
@@ -13045,7 +13174,7 @@ footer .copyright {
 
   header .bottom-header .bottom_header_nav .items {
     color: #fff;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   header .bottom-header .bottom_header_nav .items .wishlist,
@@ -13155,7 +13284,6 @@ footer .copyright {
 
   footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form button {
     background-color: #ea4967;
-    border-radius: 25px;
     outline: none;
     border: none;
     padding: 5px;
@@ -13231,10 +13359,9 @@ footer .copyright {
   }
 
   footer .helpdesk .helpdesk_inner .helpdesk_col_wrap h2 {
-    font-weight: normal;
-    font-family: "Helvetica Neue";
+    font-weight: bold;
+    font-family: "Helvetica";
     text-align: center;
-    text-decoration: underline;
     color: #31373B;
   }
 
@@ -13271,6 +13398,174 @@ footer .copyright {
 
   .title_default .title_default_link img {
     width: 12px;
+  }
+
+  .wishlist_items {
+    margin-top: 20px;
+  }
+
+  .wishlist_items ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .wishlist_items ul li.wishlist_items_head ul {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .wishlist_items ul li.wishlist_items_head ul li {
+    font-family: "Helvetica Neue Bold";
+    font-size: 16px;
+  }
+
+  .wishlist_items ul li.wishlist_item_single {
+    border-top: 1px solid #C1C8CE;
+    padding: 15px 0;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li .wishlist_company {
+    padding: 0 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100% !important;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li .wishlist_company h6.wishlist_company_name {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+    color: #31373B;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li .wishlist_company h6.wishlist_company_comments {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+    color: #007DD1;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_image {
+    padding: 0 10px;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_image img {
+    width: 100%;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_description {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_description h5 {
+    font-size: 18px;
+    font-family: "Helvetica Neue Bold";
+    padding: 5px 0;
+    margin: 0;
+    color: #31373B;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_status {
+    color: #007DD1;
+    font-size: 16px;
+    font-family: "Helvetica Neue Medium";
+    margin: 0;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_price {
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    padding: 0;
+    margin: 0;
+    color: #31373B;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:first-child .wishlist_product_description h6.wishlist_product_price span {
+    font-family: "Helvetica Neue Medium";
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:last-child {
+    display: flex;
+    flex-direction: row-reverse !important;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .wishlist_items ul li.wishlist_item_single ul li:last-child img {
+    width: 15px;
+  }
+
+  .wishlist_sort {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap label {
+    color: #31373B;
+    font-size: 16px;
+    font-family: "Helvetica Neue Bold";
+    margin: 0;
+  }
+
+  .wishlist_sort .wishlist_sort_inputs .wishlist_sort_inputs_wrap select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #C1C8CE;
+  }
+
+  .wishlist_sort .wishlist_sort_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: flex-end;
+    gap: 15px;
+  }
+
+  .wishlist_sort .wishlist_sort_buttons button {
+    height: 40px;
+    background: transparent;
+    outline: none;
+    border: 1px solid #282A2C;
   }
 }
 
@@ -13313,5 +13608,146 @@ footer .copyright {
   color: #fff;
   cursor: pointer;
   border: solid 1px #BA68C8;
+}
+
+.review {
+  box-sizing: border-box;
+}
+
+.review .container .review_simple .review_top .review_section {
+  display: block;
+  border: solid 1px yellow;
+  background-color: yellow;
+  padding: 10px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.review .container .review_simple .review_top .review_section h5 {
+  font-size: 14px;
+}
+
+.review .container .review_simple .review_center {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.review .container .review_simple .review_center .review_center_one {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  margin: 20px 0px;
+}
+
+.review .container .review_simple .review_center .review_center_one h4 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.review .container .review_simple .review_center .review_center_one .star-component {
+  justify-self: start;
+}
+
+.review .container .review_simple .review_center .review_center_dropdown {
+  display: grid;
+  grid-template-columns: 65% 35%;
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.review .container .review_simple .review_center .review_center_dropdown h4 {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.review .container .review_simple .review_center .review_center_dropdown select {
+  width: 75%;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info {
+  display: block;
+  border: 1px solid #000;
+  padding: 15px;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .center_info_text .center_info_text_title {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .center_info_text .center_info_text_title h1 {
+  font-size: 40px;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .center_info_text .center_info_text_title h3 {
+  margin-left: 20px;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .center_info_text .grade_user {
+  margin-top: 20px;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .center_info_text .grade_user .twelve {
+  color: grey;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .criterion {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  -moz-column-gap: 10px;
+       column-gap: 10px;
+  margin: 30px 0px;
+}
+
+.review .container .review_simple .review_center .center_banner .center_info .criterion .criterion_block {
+  display: grid;
+  row-gap: 10px;
+}
+
+.review .container .review_simple .review_bottom .review_bottom_text h4 {
+  font-weight: bold;
+}
+
+.review .container .review_simple .review_bottom .comment {
+  display: block;
+  margin: 5px 0px;
+}
+
+.review .container .review_simple .review_bottom .comment textarea {
+  width: 100%;
+}
+
+.review .container .review_simple .review_bottom .comment h5 {
+  font-size: 16px;
+}
+
+.review .container .review_simple .review_bottom .comment h5 span {
+  color: gray;
+}
+
+.review .container .review_simple .review_bottom .review_bottom_text {
+  display: block;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.review .container .review_simple .review_bottom .review_bottom_text .author {
+  font-size: 16px;
+}
+
+.review .container .review_simple .review_bottom .btn_click {
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  margin-bottom: 20px;
+}
+
+.review .container .review_simple .review_bottom .btn_click .btn-pink-rounded {
+  width: 60%;
+}
+
+.review .container .review_simple .review_bottom .btn_click h5 {
+  font-size: 16px;
+  align-content: center;
 }
 
