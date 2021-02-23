@@ -131,7 +131,7 @@ const app = new Vue({
                 setTimeout(() => {
                     this.search.searchResult = '';
                     this.search.searchShow = false;
-                }, 7000)
+                }, 80000)
             });
         },
         addWishlist: function(product_id){

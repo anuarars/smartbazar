@@ -9,6 +9,7 @@
                 </div>
                 <div class="suggestions__item-info">
                     <a class="suggestions__item-name">
+                        <a href="animevost.org"></a>
                         {{result.title}}
                     </a>
                     <div class="suggestions__item-meta">Произвадитель: {{result.brand_id}}</div>
