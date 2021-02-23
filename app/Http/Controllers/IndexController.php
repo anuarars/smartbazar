@@ -19,7 +19,7 @@ class IndexController extends Controller
             ->get()
             ->sortByDesc('discountPercent')
             ->take(12);
-        $categories = Category::with('children')->where('parent_id', '0')->get()->take(1);
+        $categories = Category::with('children')->where('parent_id', '0')->get();
         return view('index', compact('products', 'categories'));
     }
 
@@ -44,7 +44,7 @@ class IndexController extends Controller
         }
 
         if($rating->rate == 1){
-            echo 
+            echo
             '<h6>Ваша оценка</h6>
             <div class="stars">
                 <i class="fa fa-star" style="color:green"></i>
@@ -54,7 +54,7 @@ class IndexController extends Controller
                 <i class="far fa-star" style="color:#000"></i>
             </div>';
         }else if($rating->rate == 2){
-            echo 
+            echo
             '<h6>Ваша оценка</h6>
             <div class="stars">
                 <i class="fa fa-star" style="color:green"></i>
@@ -64,7 +64,7 @@ class IndexController extends Controller
                 <i class="far fa-star" style="color:#000"></i>
             </div>';
         }else if($rating->rate == 3){
-            echo 
+            echo
             '<h6>Ваша оценка</h6>
             <div class="stars">
                 <i class="fa fa-star" style="color:green"></i>
@@ -74,7 +74,7 @@ class IndexController extends Controller
                 <i class="far fa-star" style="color:#000"></i>
             </div>';
         }else if($rating->rate == 4){
-            echo 
+            echo
             '<h6>Ваша оценка</h6>
             <div class="stars">
                 <i class="fa fa-star" style="color:green"></i>
@@ -84,7 +84,7 @@ class IndexController extends Controller
                 <i class="far fa-star" style="color:#000"></i>
             </div>';
         }else if($rating->rate == 5){
-            echo 
+            echo
             '<h6>Ваша оценка</h6>
             <div class="stars">
                 <i class="fa fa-star" style="color:green"></i>

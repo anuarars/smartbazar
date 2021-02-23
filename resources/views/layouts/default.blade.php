@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
-    <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">  
+    <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
@@ -189,14 +189,14 @@
                             <div class="search search--location--header ">
                                 <div class="search__body">
                                     <form class="search__form" action="">
-                                        <input 
-                                            class="search__input" 
-                                            name="search" 
-                                            placeholder="Найти" 
-                                            aria-label="Site search" 
-                                            type="text" 
+                                        <input
+                                            class="search__input"
+                                            name="search"
+                                            placeholder="Найти"
+                                            aria-label="Site search"
+                                            type="text"
                                             autocomplete="off"
-                                            v-on:focus="searchFocused = true" 
+                                            v-on:focus="searchFocused = true"
                                             v-on:blur="searchFocused = !searchFocused"
                                             v-model="search.searchInput"
                                             v-on:keyup="searchProduct"
@@ -208,8 +208,8 @@
                                         </button>
                                         <div class="search__border"></div>
                                     </form>
-                                    <search-component 
-                                        v-if="search.searchShow" 
+                                    <search-component
+                                        v-if="search.searchShow"
                                         :search = "search.searchResult">
                                     </search-component>
                                 </div>
@@ -234,7 +234,7 @@
                                                     <ul class="departments__links">
                                                         @foreach ($categories as $category)
                                                         <li class="departments__item">
-                                                            <a class="departments__item-link" href="">
+                                                            <a class="departments__item-link" href="{{ route('catalog.index', ['category' => $category->id]) }}">
                                                                 {{$category->title}}
                                                                 <svg class="departments__item-arrow" width="6px" height="9px">
                                                                     <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
@@ -249,10 +249,10 @@
                                                                             <div class="col-3">
                                                                                 <ul class="megamenu__links megamenu__links--level--0">
                                                                                     <li class="megamenu__item  megamenu__item--with-submenu ">
-                                                                                        <a href="">{{$child->title}}</a>
+                                                                                        <a href="{{ route('catalog.index', ['category' => $child->id]) }}">{{$child->title}}</a>
                                                                                         <ul class="megamenu__links megamenu__links--level--1">
                                                                                             @foreach ($child->children->take(3) as $grandchild)
-                                                                                                <li class="megamenu__item"><a href="">{{$grandchild->title}}</a></li>
+                                                                                                <li class="megamenu__item"><a href="{{ route('catalog.index', ['category' => $grandchild->id]) }}">{{$grandchild->title}}</a></li>
                                                                                             @endforeach
                                                                                         </ul>
                                                                                     </li>
@@ -360,8 +360,8 @@
                                                             <div class="account-menu__form-title">Войти в аккаунт</div>
                                                             <div class="form-group">
                                                                 <label for="header-signin-email" class="sr-only">{{ __('E-Mail Address') }}</label>
-                                                                <input id="header-signin-email" type="text" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email" autofocus placeholder="Телефон" 
-                                                                v-mask="'+7 (###) ### ####'" 
+                                                                <input id="header-signin-email" type="text" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email" autofocus placeholder="Телефон"
+                                                                v-mask="'+7 (###) ### ####'"
                                                                 v-model="auth.loginNumber">
                                                                 @error('phone')
                                                                     <span class="invalid-feedback" role="alert">
@@ -372,8 +372,8 @@
                                                             <div class="form-group">
                                                                 <label for="header-signin-password" class="sr-only">Пароль</label>
                                                                 <div class="account-menu__form-forgot">
-                                                                    <input              
-                                                                        id="header-signin-password" type="password" 
+                                                                    <input
+                                                                        id="header-signin-password" type="password"
                                                                         v-model="auth.loginPassword"
                                                                         class="form-control form-control-sm @error('password') is-invalid @enderror" placeholder="Пароль" name="password" required autocomplete="current-password">
                                                                     @error('password')

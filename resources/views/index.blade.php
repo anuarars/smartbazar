@@ -233,7 +233,7 @@
                                             В корзину
                                         </button>
                                         <button
-                                            class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" 
+                                            class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
                                             type="button"
                                             @click.prevent="addWishlist({{$product->id}})"
                                         >
@@ -264,15 +264,15 @@
                     <div class="block-categories__item category-card category-card--layout--classic">
                         <div class="category-card__body">
                             <div class="category-card__image">
-                                <a href=""><img src="{{asset('template/images/categories/category-1.jpg')}}" alt=""></a>
+                                <a href="{{ route('catalog.index', ['category' => $category->id]) }}"><img src="{{asset('template/images/categories/category-1.jpg')}}" alt=""></a>
                             </div>
                             <div class="category-card__content">
                                 <div class="category-card__name">
-                                    <a href="#">{{$category->title}}</a>
+                                    <a href="{{ route('catalog.index', ['category' => $category->id]) }}">{{$category->title}}</a>
                                 </div>
                                 <ul class="category-card__links">
                                     @foreach ($category->children->take(4) as $child)
-                                        <li><a href="">{{$child->title}}</a></li>
+                                        <li><a href="{{ route('catalog.index', ['category' => $child->id]) }}">{{$child->title}}</a></li>
                                     @endforeach
                                 </ul>
                                 <div class="category-card__all">
@@ -321,7 +321,7 @@
                                             <!--
                                             The data-width and data-height attributes must contain the size of a larger version
                                             of the product image.
-            
+
                                             If you do not know the image size, you can remove the data-width and data-height
                                             attribute, in which case the width and height will be obtained from the naturalWidth
                                             and naturalHeight property of img.product-image__img.
@@ -334,7 +334,7 @@
                                             <!--
                                             The data-width and data-height attributes must contain the size of a larger version
                                             of the product image.
-            
+
                                             If you do not know the image size, you can remove the data-width and data-height
                                             attribute, in which case the width and height will be obtained from the naturalWidth
                                             and naturalHeight property of img.product-image__img.
@@ -347,7 +347,7 @@
                                             <!--
                                             The data-width and data-height attributes must contain the size of a larger version
                                             of the product image.
-            
+
                                             If you do not know the image size, you can remove the data-width and data-height
                                             attribute, in which case the width and height will be obtained from the naturalWidth
                                             and naturalHeight property of img.product-image__img.
@@ -360,7 +360,7 @@
                                             <!--
                                             The data-width and data-height attributes must contain the size of a larger version
                                             of the product image.
-            
+
                                             If you do not know the image size, you can remove the data-width and data-height
                                             attribute, in which case the width and height will be obtained from the naturalWidth
                                             and naturalHeight property of img.product-image__img.
@@ -373,7 +373,7 @@
                                             <!--
                                             The data-width and data-height attributes must contain the size of a larger version
                                             of the product image.
-            
+
                                             If you do not know the image size, you can remove the data-width and data-height
                                             attribute, in which case the width and height will be obtained from the naturalWidth
                                             and naturalHeight property of img.product-image__img.

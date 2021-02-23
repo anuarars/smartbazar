@@ -37,4 +37,9 @@ class Category extends Model
 
         return $sections;
     }
+
+    public function scopeChildless($q)
+    {
+        $q->has('grandchildren', '!=', 0);
+    }
 }

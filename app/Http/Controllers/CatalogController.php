@@ -43,9 +43,6 @@ class CatalogController extends Controller
             ->with('products', $products->paginate(12));
     }
 
-    public function indexFilters() {
 
-        return \request()->all();
-    }
 
 }

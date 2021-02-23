@@ -13,7 +13,7 @@ class Product extends Model
     // use Searchable;
      use Sortable;
 
-    public $sortable = ['price', 'discount', 'category_id', 'created_at'];
+    public $sortable = ['price', 'discount', 'category_id', 'created_at', 'title'];
 
     protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
 
