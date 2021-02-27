@@ -225,19 +225,16 @@
                                         {{$product->price}} тг.
                                     </div>
                                     <div class="product-card__buttons">
-                                        <button class="btn btn-primary product-card__addtocart" type="button"
-                                        v-on:click="addToCart({{$product->id}})"
-                                        >
-                                            В корзину
-                                        </button>
-                                        <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
-                                            В корзину
+                                        <button class="cart-button">
+                                            <span class="add-to-cart">В корзину</span>
+                                            <span class="added">Добавлено</span>
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <i class="fas fa-box"></i>
                                         </button>
                                         <a href="" class="like">
                                             <i class="fa fa-heart" aria-hidden="true" @click.prevent="addWishlist({{$product->id}})" style=" " >
                                             </i>
                                         </a>
-        
                                     </div>
                                 </div>
                             </div>
@@ -247,14 +244,8 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $(".like").click(function(){
-                $(this).toggleClass("heart");
-            });
-        });
-    </script>
+    
+   
     <!-- .block-products / end -->
     <!-- .block-categories -->
     <div class="block block--highlighted block-categories block-categories--layout--classic">
