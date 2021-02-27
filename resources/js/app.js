@@ -30,6 +30,7 @@ Vue.component('modal-component', require('./components/ModalComponent.vue').defa
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
 Vue.component('categories-component', require('./components/CategoryComponent.vue').default);
 Vue.component('review-star-component', require('./components/ReviewStartComponent.vue').default);
+Vue.component('like-component', require('./components/LikeComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

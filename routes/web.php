@@ -40,6 +40,13 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/wishlist/count', 'WishlistController@count')->name('wishlist.count');
     Route::get('/wishlist/get', 'WishlistController@getData')->name('wishlist.get');
     Route::delete('/wishlist/{wishlist}', 'WishlistController@destroy')->name('wishlist.destroy');
+
+    // Нужно будет этот метод добавить всем wishlist
+    // использую внутри index.blade.php
+    // app.js method wishList
+    Route::post('/wishlist/test/{product}', 'WishlistController@store2')->name('wishlist.store2');
+    Route::delete('/wishlist/test/{product}', 'WishlistController@destroy2')->name('wishlist.destroy2');
+
     // --------------
 
     Route::get('/cart', 'CartController@index')->name('cart.index');
@@ -109,5 +116,6 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 
 Route::get('/test2', function () {
-    return new CategoriesCollection(Category::where('parent_id', 0)->get());
+    var_dump(\App\Models\Product::find(2)->isFavoritedBy());
+    return true;
 });

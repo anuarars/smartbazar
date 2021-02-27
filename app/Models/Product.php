@@ -136,7 +136,12 @@ class Product extends Model
         return $this->price;
     }
 
+    public function isFavoritedBy(){
+        if ($user = Auth::user()) {
+            return (bool) $user->wishlist()->where('product_id', $this->id)->first();
+        }
 
+    }
     // ACCESSOR
     public function getdiscountPercentAttribute(){
         return ceil($this->price - (($this->price * $this->discount)/100));

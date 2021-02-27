@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,41 @@ class WishlistController extends Controller
         }
     }
 
+    /**
+     * Добавление или обновление с помощью product id чтобы не делать лишний запрос
+     *
+     * @param Product $product
+     * @return \Illuminate\Http\Response
+     */
+    public function store2(Product $product)
+    {
+        if($product){
+            Wishlist::updateOrCreate([
+                'user_id' => Auth::id(),
+                'product_id' => $product->id
+            ],
+            [
+                'user_id' => Auth::id(),
+                'product_id' => $product->id
+            ]);
+        }
+        return response('Successfully stored', 204);
+    }
+
+    /**
+     * Удаление по product id чтобы не делать лишний запрос
+     *
+     * @param Product $product
+     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     */
+    public function destroy2(Product $product)
+    {
+        $product->wishlist()->first()->delete();
+        return response('Successfully deleted', 204);
+    }
+
+
     public function count(){
         $wishlist = Wishlist::where('user_id', Auth::id())->get();
         return $wishlist->count();
@@ -59,8 +95,9 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Wishlist $wishlist
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Wishlist $wishlist)
     {

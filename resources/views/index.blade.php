@@ -231,10 +231,13 @@
                                             <i class="fas fa-shopping-cart"></i>
                                             <i class="fas fa-box"></i>
                                         </button>
-                                        <a href="" class="like">
-                                            <i class="fa fa-heart" aria-hidden="true" @click.prevent="addWishlist({{$product->id}})" style=" " >
-                                            </i>
-                                        </a>
+{{--                                        <a href="" class="like">--}}
+{{--                                            <i class="fa fa-heart" aria-hidden="true" @click.prevent="addOrRemoveWishlist({{$product->id}})" style="" >--}}
+{{--                                            </i>--}}
+{{--                                        </a>--}}
+                                            <like-component :product={{ $product->id }}
+                                                :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}">
+                                            </like-component>
                                     </div>
                                 </div>
                             </div>
@@ -244,8 +247,6 @@
             </div>
         </div>
     </div>
-    
-   
     <!-- .block-products / end -->
     <!-- .block-categories -->
     <div class="block block--highlighted block-categories block-categories--layout--classic">
