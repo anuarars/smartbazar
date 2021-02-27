@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @extends('layouts.default')
 
 @section('content')
@@ -232,16 +233,11 @@
                                         <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
                                             В корзину
                                         </button>
-                                        <button
-                                            class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                                            type="button"
-                                            @click.prevent="addWishlist({{$product->id}})"
-                                        >
-                                            <svg width="16px" height="16px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#wishlist-16')}}"></use>
-                                            </svg>
-                                            <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
-                                        </button>
+                                        <a href="" class="like">
+                                            <i class="fa fa-heart" aria-hidden="true" @click.prevent="addWishlist({{$product->id}})" style=" " >
+                                            </i>
+                                        </a>
+        
                                     </div>
                                 </div>
                             </div>
@@ -251,6 +247,14 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".like").click(function(){
+                $(this).toggleClass("heart");
+            });
+        });
+    </script>
     <!-- .block-products / end -->
     <!-- .block-categories -->
     <div class="block block--highlighted block-categories block-categories--layout--classic">
