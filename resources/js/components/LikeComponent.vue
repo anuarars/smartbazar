@@ -37,7 +37,7 @@ export default {
     },
 
     mounted() {
-        this.isFavorited = this.isFavorite ? true : false;
+        this.isFavorited = !!this.isFavorite;
     },
     computed: {
         iconClasses() {
@@ -50,7 +50,6 @@ export default {
             return this.favorited;
         },
     },
-
     methods: {
         toggle() {
             // Only animate on favoriting.
@@ -61,6 +60,7 @@ export default {
                 this.unFavorite(this.product);
             }
 
+
         },
 
         onIconAnimationEnds() {
@@ -70,6 +70,8 @@ export default {
             axios.post('/wishlist/test/'+product)
                 .then(response => {
                     this.isFavorited = true;
+                    this.$parent.countWishlist;
+                    console.log(this.$parent.countWishlist);
 
                 })
                 .catch(response => console.log(response.data));

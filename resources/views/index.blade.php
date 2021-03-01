@@ -225,18 +225,15 @@
                                         {{$product->price}} тг.
                                     </div>
                                     <div class="product-card__buttons">
-                                        <button class="cart-button">
-                                            <span class="add-to-cart">В корзину</span>
-                                            <span class="added">Добавлено</span>
-                                            <i class="fas fa-shopping-cart"></i>
-                                            <i class="fas fa-box"></i>
-                                        </button>
+                                        <add-to-cart-component :product="{{ $product->id }}"
+                                                               :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                                @click.native="countCart"></add-to-cart-component>
 {{--                                        <a href="" class="like">--}}
 {{--                                            <i class="fa fa-heart" aria-hidden="true" @click.prevent="addOrRemoveWishlist({{$product->id}})" style="" >--}}
 {{--                                            </i>--}}
 {{--                                        </a>--}}
                                             <like-component :product={{ $product->id }}
-                                                :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}">
+                                                :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                             </like-component>
                                     </div>
                                 </div>

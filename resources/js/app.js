@@ -31,6 +31,7 @@ Vue.component('search-component', require('./components/SearchComponent.vue').de
 Vue.component('categories-component', require('./components/CategoryComponent.vue').default);
 Vue.component('review-star-component', require('./components/ReviewStartComponent.vue').default);
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -85,6 +86,7 @@ const app = new Vue({
             searchShow: false
         },
     },
+
     methods: {
         validateLogin(){
             this.errors.login.phoneRequired = '';

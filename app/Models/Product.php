@@ -140,7 +140,22 @@ class Product extends Model
         if ($user = Auth::user()) {
             return (bool) $user->wishlist()->where('product_id', $this->id)->first();
         }
+    }
 
+    public function isAddedToCartBy(): bool
+    {
+        if ($user = Auth::user()) {
+            $order = $user->order()->where('status', 0)->get()->first();
+        } else {
+            return false;
+        }
+        if ($order == null) {
+            return false;
+        } else if ($order->products->contains($this->id)) {
+            return true;
+        } else {
+            return false;
+        }
     }
     // ACCESSOR
     public function getdiscountPercentAttribute(){

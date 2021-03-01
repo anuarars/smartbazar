@@ -25,7 +25,7 @@ class CartController extends Controller
                 'user_id' => Auth::id(),
             ]);
         }
-        if($order->products->contains($product_id)){
+        else if($order->products->contains($product_id)){
             $pivot_row = $order->products()->where('product_id', $product_id)->first()->pivot;
             $pivot_row->count++;
             $pivot_row->update();
@@ -50,7 +50,7 @@ class CartController extends Controller
             }else{
                 $pivot_row->count--;
                 $pivot_row->update();
-            }       
+            }
         }
         return redirect()->route('cart.index');
     }
@@ -78,7 +78,7 @@ class CartController extends Controller
                 }else{
                     $pivot_row->count--;
                     $pivot_row->update();
-                }       
+                }
             }
             return $product_id_minus;
         }
@@ -98,8 +98,8 @@ class CartController extends Controller
         }
 
         $response = [
-            'sum' => $sum, 
-            'products' => $productNominal, 
+            'sum' => $sum,
+            'products' => $productNominal,
             'productsCount' => $productCount
         ];
 

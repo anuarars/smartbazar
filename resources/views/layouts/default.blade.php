@@ -735,14 +735,11 @@
         svg4everybody();
     </script>
     <script>
-        $(document).ready(function(){
-            $(".like").click(function(){
-                $(this).toggleClass("heart");
-            });
-            $('.cart-button').click(function(){
-                $(this).toggleClass('clicked');
-            });
-        });
+        // $(document).ready(function(){
+        //     $('.cart-button').click(function(){
+        //         $(this).toggleClass('clicked');
+        //     });
+        // });
     </script>
     <script>
         // function loadcart(){

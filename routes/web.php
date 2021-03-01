@@ -116,6 +116,7 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 
 Route::get('/test2', function () {
-    var_dump(\App\Models\Product::find(2)->isFavoritedBy());
-    return true;
+
+    $order = Auth::user()->order()->where('status', 0)->get()->first();
+    return $order->products;
 });
