@@ -12,8 +12,20 @@
                     <div class="block-slideshow__body">
                         <div class="owl-carousel">
                             <a class="block-slideshow__slide" href="">
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image: url('{{asset('img/stroyka/table.jpg')}}')"></div>
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('{{asset('img/stroyka/basket.jpg')}}')"></div>
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style = "
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;
+                                "></div>
+                            <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;"
+                                ></div>
+                                <div class="overlay"></div>
                                 <div class="block-slideshow__slide-content">
                                     <div class="block-slideshow__slide-title text-white">Нужно накрыть стол?</div>
                                     <div class="block-slideshow__slide-text text-white">Бысто и недорого?<br></div>
@@ -23,8 +35,17 @@
                                 </div>
                             </a>
                             <a class="block-slideshow__slide" href="">
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image: url('{{asset('img/stroyka/basket.jpg')}}')"></div>
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('{{asset('img/stroyka/basket.jpg')}}')"></div>
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;">
+                                </div>
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;"></div>
                                 <div class="block-slideshow__slide-content">
                                     <div class="block-slideshow__slide-title text-white">Надоело долго ждать в очередях на кассе?</div>
                                     <div class="block-slideshow__slide-text text-white">В SmartBazar нет никаких очередей</div>
@@ -34,8 +55,20 @@
                                 </div>
                             </a>
                             <a class="block-slideshow__slide" href="">
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background-image: url('{{asset('img/stroyka/package.jpg')}}')"></div>
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background-image: url('{{asset('img/stroyka/package.jpg')}}')"></div>
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;
+                                "></div>
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                -webkit-background-size: cover;
+                                -moz-background-size:  cover;
+                                -o-background-size: cover;
+                                background-size: cover;
+                                "></div>
                                 <div class="block-slideshow__slide-content">
                                     <div class="block-slideshow__slide-title text-white">Не хотите таскать сумки с базара?</div>
                                     <div class="block-slideshow__slide-text text-white">Не таскайте!!</div>
