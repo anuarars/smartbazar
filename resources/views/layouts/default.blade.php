@@ -226,7 +226,7 @@
                             <div class="nav-panel__container container">
                                 <div class="nav-panel__row">
                                     <div class="nav-panel__departments">
-                                        <!-- .departments -->
+                                       
                                         <div class="departments  departments--open departments--fixed " data-departments-fixed-by=".block-slideshow">
                                             <div class="departments__body">
                                                 <div class="departments__links-wrapper">
@@ -241,9 +241,9 @@
                                                                 </svg>
                                                             </a>
                                                             <div class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--xl">
-                                                                <!-- .megamenu -->
+                                                             
                                                                 <div class="megamenu  megamenu--departments ">
-                                                                    <div class="megamenu__body" style="background-image: url('{{asset('template/images/megamenu/megamenu-1.jpg')}}');">
+                                                                    <div class="megamenu__body" >
                                                                         <div class="row">
                                                                             @foreach ($category->children as $child)
                                                                             <div class="col-3">
@@ -262,7 +262,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <!-- .megamenu / end -->
+                                                           
                                                             </div>
                                                         </li>
                                                         @endforeach
@@ -279,7 +279,7 @@
                                                 </svg>
                                             </button>
                                         </div>
-                                        <!-- .departments / end -->
+                                        
                                     </div>
                                     <!-- .nav-links -->
                                     <div class="nav-panel__nav-links nav-links">
@@ -476,15 +476,20 @@
                                 </div>
                                 <div class="col-12 col-md-12 col-lg-4">
                                     <div class="site-footer__widget footer-newsletter">
-                                        <h5 class="footer-newsletter__title">Рассылка</h5>
-                                        <div class="footer-newsletter__text">
-                                            Подпишитесь на наши рассылки. Будьте в курсе всего
-                                        </div>
-                                        <form action="" class="footer-newsletter__form">
-                                            <label class="sr-only" for="footer-newsletter-address">Email</label>
-                                            <input type="text" class="footer-newsletter__form-input form-control" id="footer-newsletter-address" placeholder="Email адрес...">
-                                            <button class="footer-newsletter__form-button btn btn-primary">Подписаться</button>
-                                        </form>
+                                        <div class="helpdesk">
+                                            <div class="container">
+                                                <div class="helpdesk_inner">
+                                                    <div class="helpdesk_contact">
+                                                       
+                                                        <span style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
+                                                        
+                                                        <div class="helpdesk_contact_img_wrap">
+                                                            <img src="{{asset('icons/apple.svg')}}" alt="apple">
+                                                        </div>
+                                                        <div class="helpdesk_contact_img_wrap">
+                                                            <img src="{{asset('icons/playmarket.svg')}}" alt="playmarket">
+                                                        </div>
+                                                    </div>
                                         <div class="footer-newsletter__text footer-newsletter__text--social">
                                             Мы в социальных сетях
                                         </div>
@@ -524,11 +529,7 @@
                             </div>
                         </div>
                         <div class="site-footer__bottom">
-                            <div class="site-footer__copyright">
-                                <!-- copyright -->
-                                Powered by HTML — Design by <a href="https://themeforest.net/user/kos9" target="_blank">Kos</a>
-                                <!-- copyright / end -->
-                            </div>
+                          
                             <div class="site-footer__payments">
                                 <img src="{{asset('template/images/payments.png')}}" alt="">
                             </div>

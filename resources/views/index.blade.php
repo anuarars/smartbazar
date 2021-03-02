@@ -7,8 +7,8 @@
     <div class="block-slideshow block-slideshow--layout--with-departments block">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 d-none d-lg-block"></div>
-                <div class="col-12 col-lg-9">
+              
+                <div class="col-12 col-lg-12">
                     <div class="block-slideshow__body">
                         <div class="owl-carousel">
                             <a class="block-slideshow__slide" href="">

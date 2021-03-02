@@ -1,3 +1,4 @@
+
 <template>
     <button class="cart-button" v-bind:class="this.isAdded ? 'clicked' : ' '" @click="toggle">
         <span class="add-to-cart">В корзину</span>
