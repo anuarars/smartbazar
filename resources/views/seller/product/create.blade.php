@@ -93,7 +93,7 @@
                                         <select class="form-control @error('measure_id') is-invalid @enderror" name="measure_id">
                                                 <option disabled selected>Единица измерения</option>
                                             @foreach ($measures as $measure)
-                                                <option value="{{$measure->id}}">{{$measure->title}}</option>
+                                                <option value="{{$measure->id}}" >{{$measure->title}}</option>
                                             @endforeach
                                         </select>
                                         @error('measure_id')
@@ -148,7 +148,7 @@
                                       <span class="file-upload_button">Изображения для галереи</span>
                                     </label>
                                 </div>
-                                        
+
                                 <div class="col-md-12 mt-3 text-center">
                                     <button type="submit" class="btn btn-primary">Добавить товар</button>
                                 </div>

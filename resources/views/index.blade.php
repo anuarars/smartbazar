@@ -185,13 +185,13 @@
                                     {{$products->first()->price}} тг.
                                 </div>
                                 <div class="product-card__buttons">
-                                    <add-to-cart-component 
+                                    <add-to-cart-component
                                             :product="{{ $products->first()->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
                                             @click.native="countCart">
                                     </add-to-cart-component>
-                                    <like-component 
+                                    <like-component>
                                         :product={{ $products->first()->id }}
                                         :home_url = "homeUrl"
                                         :favorited="{{ $products->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
@@ -245,13 +245,13 @@
                                         @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component 
+                                        <add-to-cart-component
                                             :product="{{ $product->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
                                             @click.native="countCart">
                                         </add-to-cart-component>
-                                        <like-component 
+                                        <like-component
                                             :product={{ $product->id }}
                                             :home_url = "homeUrl"
                                             :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">

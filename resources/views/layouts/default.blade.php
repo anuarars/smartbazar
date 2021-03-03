@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
-    <link rel="icon" href="{{asset('img/logo/logo.svg')}}" type="image/x-icon">  
+    <link rel="icon" href="{{asset('img/logo/logo.svg')}}" type="image/x-icon">
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
@@ -51,12 +51,12 @@
                                 <div class="search search--location--mobile-header mobile-header__search">
                                     <div class="search__body">
                                         <form class="search__form" action="">
-                                            <input 
-                                                class="search__input" 
-                                                name="search" 
-                                                placeholder="Найти..." 
-                                                aria-label="Site search" 
-                                                type="text" 
+                                            <input
+                                                class="search__input"
+                                                name="search"
+                                                placeholder="Найти..."
+                                                aria-label="Site search"
+                                                type="text"
                                                 autocomplete="off"
                                                 v-model="search.searchInput"
                                                 v-on:keyup="searchProduct"
@@ -207,14 +207,14 @@
                             <div class="search search--location--header ">
                                 <div class="search__body">
                                     <form class="search__form" action="">
-                                        <input 
-                                            class="search__input" 
-                                            name="search" 
-                                            placeholder="Найти" 
-                                            aria-label="Site search" 
-                                            type="text" 
+                                        <input
+                                            class="search__input"
+                                            name="search"
+                                            placeholder="Найти"
+                                            aria-label="Site search"
+                                            type="text"
                                             autocomplete="off"
-                                            v-on:focus="searchFocused = true" 
+                                            v-on:focus="searchFocused = true"
                                             v-on:blur="searchFocused = !searchFocused"
                                             v-model="search.searchInput"
                                             v-on:keyup="searchProduct"
@@ -226,8 +226,8 @@
                                         </button>
                                         <div class="search__border"></div>
                                     </form>
-                                    <search-component 
-                                        v-if="search.searchShow" 
+                                    <search-component
+                                        v-if="search.searchShow"
                                         {{-- v-click-outside="hideSearch" --}}
                                         :search = "search.searchResult"
                                         :home_url = "homeUrl"
@@ -387,11 +387,11 @@
                                                             @csrf
                                                             <div class="account-menu__form-title">Войти в аккаунт</div>
                                                             <div class="form-group">
-                                                                <input 
-                                                                    id="header-signin-email" type="text" 
-                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон" 
+                                                                <input
+                                                                    id="header-signin-email" type="text"
+                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон"
                                                                     name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
-                                                                    v-mask="'+7 (###) ### ####'" 
+                                                                    v-mask="'+7 (###) ### ####'"
                                                                     v-model="auth.loginNumber"
                                                                 >
                                                                 @error('phone')
@@ -403,8 +403,8 @@
                                                             <div class="form-group">
                                                                 <label for="header-signin-password" class="sr-only">Пароль</label>
                                                                 <div class="account-menu__form-forgot">
-                                                                    <input              
-                                                                        id="header-signin-password" type="password" 
+                                                                    <input
+                                                                        id="header-signin-password" type="password"
                                                                         v-model="auth.loginPassword"
                                                                         class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required placeholder="Пароль" autocomplete="current-password"
                                                                     >
@@ -502,9 +502,9 @@
                                             <div class="container">
                                                 <div class="helpdesk_inner">
                                                     <div class="helpdesk_contact">
-                                                       
+
                                                         <span style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
-                                                        
+
                                                         <div class="helpdesk_contact_img_wrap">
                                                             <img src="{{asset('icons/apple.svg')}}" alt="apple">
                                                         </div>
@@ -741,7 +741,7 @@
     @endif
     <!-- photoswipe / end -->
     <!-- js -->
-    <script>window.homeUrl='http://smartbazar/public/';</script>
+    <script>window.homeUrl='http://smartbazar.test/';</script>
     <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>

@@ -3,22 +3,26 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use App\Models\Country;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Measure;
 use App\Models\Product;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Gallery;
 use App\Http\Requests\ProductRequest;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -30,7 +34,7 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,8 +49,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -57,7 +61,7 @@ class ProductController extends Controller
             $filepath = "/storage/products/$filename";
             $request->image->storeAs('products', $filename);
         }
-        
+
         $product = new Product([
             'user_id' => Auth::id(),
             'company_id' => Auth::user()->company_id,
@@ -100,42 +104,59 @@ class ProductController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function show(Product $product)
     {
         //Product::where('id', $product->id)->increment('views');
-        return view('seller.product.show', compact('product'));
+        $measures = Measure::all();
+        $countries = Country::all();
+        $brands = Brand::all();
+        $categories = Category::all();
+        $delimiter = '';
+        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'delimiter', 'measures'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product = $product->update([
+            'category_id' => $request->input('category_id'),
+            'brand_id' => $request->brand_id,
+            'country_id' => $request->country_id,
+            'measure_id' => $request->input('measure_id'),
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'count' => $request->input('count'),
+            'discount' => $request->input('discount'),
+        ]);
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {

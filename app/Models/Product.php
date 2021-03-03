@@ -15,7 +15,11 @@ class Product extends Model
 
     public $sortable = ['price', 'discount', 'category_id', 'created_at'];
 
-    protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image', 'sku'];
+    protected $fillable = [
+        'user_id', 'country_id', 'brand_id',
+        'measure_id', 'company_id', 'category_id',
+        'title', 'description', 'price',
+        'count', 'discount', 'image', 'sku'];
 
     public function category(){
         return $this->belongsTo(Category::class);
