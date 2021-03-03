@@ -48,7 +48,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
 
         if ($request->hasFile('image')) {
@@ -62,14 +62,15 @@ class ProductController extends Controller
             'user_id' => Auth::id(),
             'company_id' => Auth::user()->company_id,
             'category_id' => $request->input('category_id'),
-            'brand_id' => $request->input('brand_id'),
-            'country_id' => $request->input('country_id'),
+            'brand_id' => $request->brand_id,
+            'country_id' => $request->country_id,
             'measure_id' => $request->input('measure_id'),
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
             'count' => $request->input('count'),
             'discount' => $request->input('discount'),
+            'sku' => rand(100000,999999),
             'image' => $filepath
         ]);
 

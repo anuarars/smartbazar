@@ -1,7 +1,43 @@
 @extends('layouts.seller')
 
-@section('body')
-    <div class="col-md-12">
+@section('content')
+<section class="section">
+    <div class="section-body">
+      <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Изображения</h4>
+            </div>
+            <div class="card-body">
+              <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
+                @foreach ($product->galleries as $gallery)
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <a href="{{asset($gallery->image)}}" data-sub-html="Demo Description">
+                            <img class="img-responsive thumbnail" src="{{asset($gallery->image)}}" alt="{{asset($gallery->image)}}">
+                        </a>
+                  </div>
+                @endforeach
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- <div class="col-md-12">
         <div class="card">
             <img src="{{ asset($product->image) }}" class="card-img-top" alt="...">
             <div class="card-body">
@@ -10,7 +46,7 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{$product->country->name}}</li>
-                <li class="list-group-item">{{$product->brand->title}}</li>
+                <li class="list-group-item">{{$product->brand_id ?? ""}}</li>
                 <li class="list-group-item">{{$product->category->title}}</li>
             </ul>
             <div class="card-body">
@@ -24,5 +60,5 @@
                 @endforeach
             @endisset
         </div>
-    </div>
+    </div> --}}
 @endsection

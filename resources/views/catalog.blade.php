@@ -108,7 +108,7 @@
                                                     <div class="widget-products__image">
                                                         <div class="product-image">
                                                             <a href="{{route('product', $product->id)}}" class="product-image__body">
-                                                                <img class="product-image__img" src="{{$product->image}}" alt="">
+                                                                <img class="product-image__img" src="{{asset($product->image)}}" alt="">
                                                             </a>
                                                         </div>
                                                     </div>
@@ -169,11 +169,6 @@
                                         <div>
                                             @sortablelink('created_by', 'По Дате')
                                             @sortablelink('title', 'Названию (A-Z)')
-                                            <select class="form-control form-control-sm" name="sortBy" id="sortBy">
-                                                <option value="byDate">По Дате</option>
-                                                <option value="byName">Названию (A-Z)</option>
-                                            </select>
-
                                         </div>
                                     </div>
                                 </div>
@@ -183,8 +178,6 @@
                                     @foreach ($products as $product)
                                         <div class="products-list__item">
                                             <div class="product-card product-card--hidden-actions ">
-                                                {{ $product->category->title }}
-
                                                 <button class="product-card__quickview" type="button">
                                                     <svg width="16px" height="16px">
                                                         <use xlink:href="{{asset('template/images/sprite.svg#quickview-16')}}"></use>
@@ -193,7 +186,7 @@
                                                 </button>
                                                 <div class="product-card__image product-image">
                                                     <a href="{{route('product', $product->id)}}" class="product-image__body">
-                                                        <img class="product-image__img" src="{{$product->image}}" alt="">
+                                                        <img class="product-image__img" src="{{asset($product->image)}}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product-card__info">

@@ -25,35 +25,40 @@ class UserSeeder extends Seeder
         $adminRole = Role::where('name', 'admin')->first();
 
         $user = User::create([
-            'login' => 'user',
-            'phone' => '',
+            'firstname' => 'user',
+            'lastname' => 'user',
+            'phone' => '+7 (222) 222 2222',
             'company_id' => '1',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('11111111')
         ]);
 
         $seller = User::create([
-            'login' => 'seller',
-            'phone' => '+7 (778) 871 1989',
+            'firstname' => 'seller',
+            'lastname' => 'seller',
+            'phone' => '+7 (111) 111 1111',
             'company_id' => '1',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('11111111')
         ]);
 
         $packer = User::create([
-            'login' => 'packer',
-            'phone' => '3333333333',
-            'password' => Hash::make('12345678')
+            'firstname' => 'packer',
+            'lastname' => 'seller',
+            'phone' => '+7 (333) 333 3333',
+            'password' => Hash::make('11111111')
         ]);
 
         $delivery = User::create([
-            'login' => 'delivery',
-            'phone' => '4444444444',
-            'password' => Hash::make('12345678')
+            'firstname' => 'delivery',
+            'lastname' => 'seller',
+            'phone' => '+7 (444) 444 4444',
+            'password' => Hash::make('11111111')
         ]);
 
         $admin = User::create([
-            'login' => 'admin',
-            'phone' => '5555555555',
-            'password' => Hash::make('12345678')
+            'firstname' => 'admin',
+            'lastname' => 'seller',
+            'phone' => '+7 (555) 555 5555',
+            'password' => Hash::make('11111111')
         ]);
 
         $user->roles()->attach($userRole);

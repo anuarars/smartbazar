@@ -15,6 +15,7 @@ class CompanySeeder extends Seeder
             $data = [
                 [
                     'name' => 'Бутик 26',
+                    'bin' => '11111111',
                     'phone' => '3453453',
                     'code' => 'Бутик 26',
                     'description' => 'this bouttique has no mall...'

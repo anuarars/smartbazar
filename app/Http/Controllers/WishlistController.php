@@ -38,27 +38,7 @@ class WishlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if($request->product_id){
-            Wishlist::updateOrCreate([
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id
-            ],
-            [
-                'user_id' => Auth::id(),
-                'product_id' => $request->product_id
-            ]);
-        }
-    }
-
-    /**
-     * Добавление или обновление с помощью product id чтобы не делать лишний запрос
-     *
-     * @param Product $product
-     * @return \Illuminate\Http\Response
-     */
-    public function store2(Product $product)
+    public function store(Product $product)
     {
         if($product){
             Wishlist::updateOrCreate([
@@ -73,20 +53,6 @@ class WishlistController extends Controller
         return response('Successfully stored', 204);
     }
 
-    /**
-     * Удаление по product id чтобы не делать лишний запрос
-     *
-     * @param Product $product
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     */
-    public function destroy2(Product $product)
-    {
-        $product->wishlist()->first()->delete();
-        return response('Successfully deleted', 204);
-    }
-
-
     public function count(){
         $wishlist = Wishlist::where('user_id', Auth::id())->get();
         return $wishlist->count();
@@ -95,10 +61,15 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Wishlist $wishlist
+     * @param  int  $id
      * @return \Illuminate\Http\Response
-     * @throws \Exception
      */
+    public function unlike(Product $product)
+    {
+        Wishlist::where('product_id', $product->id)->where('user_id', Auth::id())->delete();
+        return response('Successfully deleted', 204);
+    }
+
     public function destroy(Wishlist $wishlist)
     {
         $wishlist->delete();

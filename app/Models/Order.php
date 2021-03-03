@@ -31,4 +31,13 @@ class Order extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function status(){
+        return $this->belongsTo(Status::class);
+    }
+
+    public function phone()
+    {
+        return $this->morphOne('App\Models\Phone', 'phoneable');
+    }
 }

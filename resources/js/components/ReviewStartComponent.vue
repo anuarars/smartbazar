@@ -1,7 +1,7 @@
 <template>
 <div class="stars_review">
     <star-rating
-        :star-size="20"
+        :star-size="30"
         :rating="rating"
         :read-only="true"
         :show-rating="false"

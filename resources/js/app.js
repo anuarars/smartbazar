@@ -19,20 +19,26 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('packer-component', require('./components/PackerComponent.vue').default);
 Vue.component('wishlist-component', require('./components/WishlistComponent.vue').default);
-Vue.component('slider-component', require('./components/SliderComponent.vue').default);
+Vue.component('slider-component', require('./components/Sale/SliderComponent.vue').default);
 Vue.component('star-component', require('./components/StarComponent.vue').default);
+Vue.component('rate-component', require('./components/RateComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 Vue.component('product-component', require('./components/ProductComponent.vue').default);
 Vue.component('modal-component', require('./components/ModalComponent.vue').default);
 Vue.component('search-component', require('./components/SearchComponent.vue').default);
+Vue.component('mobile-search-component', require('./components/MobileSearchComponent.vue').default);
 Vue.component('categories-component', require('./components/CategoryComponent.vue').default);
 Vue.component('review-star-component', require('./components/ReviewStartComponent.vue').default);
-Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('dropdown-cart-component', require('./components/DropdownCartComponent.vue').default);
+Vue.component('cart-component', require('./components/CartComponent.vue').default);
+Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
+Vue.component('delivery-component', require('./components/DeliveryComponent.vue').default);
+Vue.component('sale-component', require('./components/SaleComponent.vue').default);
 Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
-
+Vue.component('like-component', require('./components/LikeComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -49,15 +55,14 @@ const app = new Vue({
         clickOutside: vClickOutside.directive
     },
     data: {
-        hiddenMenu: true,
+        homeUrl: window.homeUrl,
+        authUser: window.authUser,
+        hiddenCategory: true,
         hiddenAuth: true,
         isLogin: true,
         searchFocused: false,
         wishlist: '',
-        productNominal: '',
-        productSum: '',
         productCount: '',
-        authUser: window.authUser,
         isMove: false,
         isActive: true,
         errors:{
@@ -85,14 +90,16 @@ const app = new Vue({
             searchResult: '',
             searchShow: false
         },
+        cart:{
+            products: '',
+        }
     },
-
     methods: {
         validateLogin(){
             this.errors.login.phoneRequired = '';
             this.errors.login.passwordRequired = '';
             this.errors.login.loginMatch = '';
-            axios.post('login', {
+            axios.post(this.homeUrl + 'login', {
                 phone: this.auth.loginNumber,
                 password: this.auth.loginPassword
             }).then(response => {
@@ -109,7 +116,6 @@ const app = new Vue({
             this.errors.register.passwordRequired == '';
             this.errors.register.loginRequired == '';
             axios.post('register', {
-             // axios.post('https://smartbazar.kz/register', {
                 phone: this.auth.registerNumber,
                 login: this.auth.registerLogin,
                 password: this.auth.registerPassword,
@@ -127,14 +133,14 @@ const app = new Vue({
         searchProduct(){
             this.search.searchResult = '';
             this.search.searchShow = true;
-            axios.post('search/product', {
+            axios.post(this.homeUrl + 'search/product', {
                 searchInput: this.search.searchInput,
             }).then(response => {
                 this.search.searchResult = response.data;
                 setTimeout(() => {
                     this.search.searchResult = '';
                     this.search.searchShow = false;
-                }, 80000)
+                }, 10000)
             });
         },
         addWishlist: function(product_id){
@@ -146,13 +152,13 @@ const app = new Vue({
         },
         countWishlist(){
             if(this.authUser != null){
-                axios.get('wishlist/count').then((response) => {
+                axios.get(this.homeUrl + 'wishlist/count').then((response) => {
                     this.wishlist = response.data;
                 })
             }
         },
         addToCart: function(product_id){
-            axios.post('cart/create', {
+            axios.post(this.homeUrl + 'cart/create', {
                 product_id: product_id,
             }).then(response => {
                 this.countCart();
@@ -160,15 +166,22 @@ const app = new Vue({
         },
         countCart(){
             if(this.authUser != null){
-                axios.get('cart/count').then((response) => {
-                    this.productSum = Number(response.data.sum).toLocaleString();
-                    this.productNominal = response.data.products;
-                    this.productCount = response.data.productsCount;
-                })
+                axios.get(this.homeUrl + 'cart/count').then((response) => {
+                    if(response.data == 0){
+                        this.productCount = 0;
+                        this.cart.products = 0;
+                    }else{
+                        this.productCount = response.data.length,
+                        this.cart.products = response.data
+                    }
+                });
             }
         },
         hideAuth(){
             this.hiddenAuth=true
+        },
+        hideSearch(){
+            this.searchFocused=false
         },
         slideRegister(){
             this.isMove = true;

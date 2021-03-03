@@ -1,4 +1,3 @@
-
 <template>
     <button class="cart-button" v-bind:class="this.isAdded ? 'clicked' : ' '" @click="toggle">
         <span class="add-to-cart">В корзину</span>
@@ -14,6 +13,7 @@ export default {
     props: [
         'cart',
         'product',
+        'home_url'
     ],
     data: function () {
         return {
@@ -29,34 +29,27 @@ export default {
         }
     },
     methods: {
-      toggle() {
-          if (!this.isAdded) {
-                this.addToCart(this.product);
-
-          } else {
-                this.removeFromCart(this.product);
-          }
-      },
-      addToCart(product) {
-          axios.post('/cart/create/', {
-              'product_id' : product
-          })
-              .then(response => {
-                  this.isAdded = true;
-              })
-              .catch(response => console.log(response.data));
-      },
-      removeFromCart(product) {
-          axios.post('/cart/remove/' + product)
-              .then(response => {
-                  this.isAdded = false;
-              })
-              .catch(response => console.log(response.data));
+        toggle(){
+            if (!this.isAdded) {
+                    this.addToCart(this.product);
+                } else {
+                    this.removeFromCart(this.product);
+            }
+        },
+        addToCart(product){
+            axios.post(this.home_url + 'cart/create', {
+                product_id: product,
+            }).then(response => {
+                this.$parent.countCart();
+            });
+        },
+        removeFromCart(product) {
+            axios.post(this.home_url + 'cart/unlike/' + product)
+                .then(response => {
+                    this.isAdded = false;
+                    this.$parent.countCart();
+                });
       }
     }
 }
 </script>
-
-<style scoped>
-
-</style>

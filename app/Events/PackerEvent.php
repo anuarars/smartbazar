@@ -14,15 +14,15 @@ class PackerEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $order_id;
+    public $order;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($order_id)
+    public function __construct($order)
     {
-        $this->order_id = $order_id;
+        $this->order = $order;
     }
 
     /**
@@ -32,6 +32,11 @@ class PackerEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('my-channel');
+        return new Channel('packer-channel');
+    }
+
+    public function broadcastAs()
+    {
+        return 'packer-event';
     }
 }

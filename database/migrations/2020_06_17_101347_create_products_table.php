@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->bigInteger('brand_id')->unsigned();
+            $table->bigInteger('brand_id')->unsigned()->nullable();
             $table->bigInteger('country_id')->unsigned();
             $table->bigInteger('measure_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->integer('discount')->nullable();
             $table->string('image');
             $table->integer('views')->default(0);
+            $table->string('sku');
             $table->timestamps();
             $table->softDeletes();
 

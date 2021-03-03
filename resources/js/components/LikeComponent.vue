@@ -1,13 +1,4 @@
 <template>
-
-<!--    <transition name="heart">-->
-<!--        <a href="#" class="like" v-if="isFavorited" @click.prevent="unFavorite(product)">-->
-<!--            <i  class="fa fa-heart"></i>-->
-<!--        </a>-->
-<!--        <a href="#" class="like" v-else @click.prevent="favorite(product)">-->
-<!--            <i  class="fa fa-heart" ></i>-->
-<!--        </a>-->
-<!--    </transition>-->
     <button class="toggle-favorite" @click="toggle">
         <FavoriteIcon
             class="toggle-favorite__icon"
@@ -25,7 +16,7 @@
 import FavoriteIcon from "./FavoriteIcon";
 
 export default {
-    props: ['product', 'favorited'],
+    props: ['product', 'favorited', 'home_url'],
     components: {
         FavoriteIcon
     },
@@ -35,7 +26,6 @@ export default {
             animating: false,
         }
     },
-
     mounted() {
         this.isFavorited = !!this.isFavorite;
     },
@@ -59,36 +49,32 @@ export default {
             } else {
                 this.unFavorite(this.product);
             }
-
-
         },
-
         onIconAnimationEnds() {
             this.animating = false;
         },
         favorite(product) {
-            axios.post('/wishlist/test/'+product)
+            axios.post(this.home_url + 'wishlist/' + product)
                 .then(response => {
                     this.isFavorited = true;
-                    this.$parent.countWishlist;
-                    console.log(this.$parent.countWishlist);
-
-                })
-                .catch(response => console.log(response.data));
+                    this.$parent.countWishlist();
+                });
         },
 
         unFavorite(product) {
-            axios.delete('/wishlist/test/'+product)
+            axios.delete(this.home_url + 'wishlist/unlike/' + product)
                 .then(response => {
                     this.isFavorited = false;
-
-
-                })
-                .catch(response => console.log(response.data));
+                    this.$parent.countWishlist();
+                });
         }
     }
 }
 </script>
+
+
+
+
 <style lang="scss" scoped>
 
 $particles-animation-duration: 0.8s;
@@ -135,7 +121,7 @@ button {
 }
 
 .favorite-particles-transition-enter-active {
-    background-image: url("/img/animation/particle-sprite.png");
+    background-image: url("/public/img/animation/particle-sprite.png");
     background-size: 2500% auto;
     background-position: left center;
     background-repeat: no-repeat;

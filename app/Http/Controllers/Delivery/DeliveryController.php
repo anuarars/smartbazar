@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DeliveryController extends Controller
 {
@@ -19,19 +20,22 @@ class DeliveryController extends Controller
     }
 
     public function order($id){
-        if($order = Order::where('id', $id)->where('status', 0)->first()){
+        if($order = Order::where('id', $id)->where('isFinished', 0)->first()){
+            DB::table('orders')
+            ->where('id', $id)
+            ->update(['status_id' => 5]);
             return view('delivery.order', compact('order'));
         }
-        return redirect()->route('delivery.index')->with(['error'=>'Данного заказа не существует']);
     }
 
-    public function end(){
-        $order_id = request()->input('order_id');
-        $order = Order::find($order_id);
-        $order->status = 1;
-        $order->delivery_status = 1;
-        $order->delivery_id = Auth::id();
-        $order->save();
+    public function end(Order $order){
+        DB::table('orders')
+        ->where('id', $order->id)
+        ->update([
+            'isFinished' => 1,
+            'delivery_id' => Auth::id(),
+            'status_id' => 6
+        ]);
 
         return redirect()->route('delivery.index')->with(['success'=>'Доставка завершена']);
     }

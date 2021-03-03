@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
-    <link rel="icon" href="{{asset('icons/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{asset('img/logo/logo.svg')}}" type="image/x-icon">  
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
@@ -22,6 +23,7 @@
     <link rel="stylesheet" href="{{asset('template/vendor/fontawesome/css/all.min.css')}}">
     <!-- font - stroyka -->
     <link rel="stylesheet" href="{{asset('template/fonts/stroyka/stroyka.css')}}">
+    <script src="https://proxyd.tarlanpayments.kz/tarlan/widget-new.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
@@ -49,7 +51,16 @@
                                 <div class="search search--location--mobile-header mobile-header__search">
                                     <div class="search__body">
                                         <form class="search__form" action="">
-                                            <input class="search__input" name="search" placeholder="Search over 10,000 products" aria-label="Site search" type="text" autocomplete="off">
+                                            <input 
+                                                class="search__input" 
+                                                name="search" 
+                                                placeholder="Найти..." 
+                                                aria-label="Site search" 
+                                                type="text" 
+                                                autocomplete="off"
+                                                v-model="search.searchInput"
+                                                v-on:keyup="searchProduct"
+                                            >
                                             <button class="search__button search__button--type--submit" type="submit">
                                                 <svg width="20px" height="20px">
                                                     <use xlink:href="{{asset('template/images/sprite.svg#search-20')}}"></use>
@@ -62,7 +73,13 @@
                                             </button>
                                             <div class="search__border"></div>
                                         </form>
-                                        <div class="search__suggestions suggestions suggestions--location--mobile-header"></div>
+                                        <mobile-search-component
+                                            v-if="search.searchShow"
+                                            v-click-outside="hideSearch"
+                                            :search = "search.searchResult"
+                                            :home_url = "homeUrl"
+                                        >
+                                        </mobile-search-component>
                                     </div>
                                 </div>
                                 <div class="mobile-header__indicators">
@@ -106,7 +123,7 @@
             <header class="site__header d-lg-block d-none">
                 <div class="site-header">
                     <!-- .topbar -->
-                    <div class="site-header__topbar topbar">
+                    {{-- <div class="site-header__topbar topbar">
                         <div class="topbar__container container">
                             <div class="topbar__row">
                                 <div class="topbar__item topbar__item--link">
@@ -175,12 +192,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- .topbar / end -->
                     <div class="site-header__middle container">
                         <div class="site-header__logo">
                             <a href="{{route('index')}}">
                                 <!-- logo -->
+                                {{-- <img src="{{asset('img/logo/logo.svg')}}" alt="logo.svg"> --}}
                                 <h1>Smart Bazar</h1>
                                 <!-- logo / end -->
                             </a>
@@ -189,14 +207,14 @@
                             <div class="search search--location--header ">
                                 <div class="search__body">
                                     <form class="search__form" action="">
-                                        <input
-                                            class="search__input"
-                                            name="search"
-                                            placeholder="Найти"
-                                            aria-label="Site search"
-                                            type="text"
+                                        <input 
+                                            class="search__input" 
+                                            name="search" 
+                                            placeholder="Найти" 
+                                            aria-label="Site search" 
+                                            type="text" 
                                             autocomplete="off"
-                                            v-on:focus="searchFocused = true"
+                                            v-on:focus="searchFocused = true" 
                                             v-on:blur="searchFocused = !searchFocused"
                                             v-model="search.searchInput"
                                             v-on:keyup="searchProduct"
@@ -208,9 +226,12 @@
                                         </button>
                                         <div class="search__border"></div>
                                     </form>
-                                    <search-component
-                                        v-if="search.searchShow"
-                                        :search = "search.searchResult">
+                                    <search-component 
+                                        v-if="search.searchShow" 
+                                        {{-- v-click-outside="hideSearch" --}}
+                                        :search = "search.searchResult"
+                                        :home_url = "homeUrl"
+                                        >
                                     </search-component>
                                 </div>
                             </div>
@@ -226,8 +247,8 @@
                             <div class="nav-panel__container container">
                                 <div class="nav-panel__row">
                                     <div class="nav-panel__departments">
-                                       
-                                        <div class="departments  departments--open departments--fixed " data-departments-fixed-by=".block-slideshow">
+                                        <!-- .departments -->
+                                        <div class="departments " data-departments-fixed-by="">
                                             <div class="departments__body">
                                                 <div class="departments__links-wrapper">
                                                     <div class="departments__submenus-container"></div>
@@ -241,9 +262,9 @@
                                                                 </svg>
                                                             </a>
                                                             <div class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--xl">
-                                                             
+                                                                <!-- .megamenu -->
                                                                 <div class="megamenu  megamenu--departments ">
-                                                                    <div class="megamenu__body" >
+                                                                    <div class="megamenu__body">
                                                                         <div class="row">
                                                                             @foreach ($category->children as $child)
                                                                             <div class="col-3">
@@ -262,14 +283,14 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                           
+                                                                <!-- .megamenu / end -->
                                                             </div>
                                                         </li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <button class="departments__button">
+                                            <button class="departments__button" v-on:click.prevent="hiddenCategory = !hiddenCategory">
                                                 <svg class="departments__button-icon" width="18px" height="14px">
                                                     <use xlink:href="{{asset('template/images/sprite.svg#menu-18x14')}}"></use>
                                                 </svg>
@@ -279,7 +300,7 @@
                                                 </svg>
                                             </button>
                                         </div>
-                                        
+                                        <!-- .departments / end -->
                                     </div>
                                     <!-- .nav-links -->
                                     <div class="nav-panel__nav-links nav-links">
@@ -291,7 +312,7 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            {{-- <li class="nav-links__item  nav-links__item--has-submenu ">
                                                 <a class="nav-links__item-link" href="#">
                                                     <div class="nav-links__item-body">
                                                         Аккаунт
@@ -304,11 +325,18 @@
                                                         Блог
                                                     </div>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                             <li class="nav-links__item  nav-links__item--has-submenu ">
                                                 <a class="nav-links__item-link" href="{{route('catalog.index')}}">
                                                     <div class="nav-links__item-body">
                                                         Каталог
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="nav-links__item  nav-links__item--has-submenu ">
+                                                <a class="nav-links__item-link" href="{{route('info.faq')}}">
+                                                    <div class="nav-links__item-body">
+                                                        FAQ
                                                     </div>
                                                 </a>
                                             </li>
@@ -355,14 +383,17 @@
                                             <div class="indicator__dropdown">
                                                 <div class="account-menu">
                                                      @guest
-                                                        <form method="POST" action="{{ route('login') }}" class="account-menu__form" id="loginUser">
+                                                        <form method="POST" action="{{ route('login') }}" class="account-menu__form">
                                                             @csrf
                                                             <div class="account-menu__form-title">Войти в аккаунт</div>
                                                             <div class="form-group">
-                                                                <label for="header-signin-email" class="sr-only">{{ __('E-Mail Address') }}</label>
-                                                                <input id="header-signin-email" type="text" class="form-control form-control-sm @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email" autofocus placeholder="Телефон"
-                                                                v-mask="'+7 (###) ### ####'"
-                                                                v-model="auth.loginNumber">
+                                                                <input 
+                                                                    id="header-signin-email" type="text" 
+                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон" 
+                                                                    name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
+                                                                    v-mask="'+7 (###) ### ####'" 
+                                                                    v-model="auth.loginNumber"
+                                                                >
                                                                 @error('phone')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -372,10 +403,11 @@
                                                             <div class="form-group">
                                                                 <label for="header-signin-password" class="sr-only">Пароль</label>
                                                                 <div class="account-menu__form-forgot">
-                                                                    <input
-                                                                        id="header-signin-password" type="password"
+                                                                    <input              
+                                                                        id="header-signin-password" type="password" 
                                                                         v-model="auth.loginPassword"
-                                                                        class="form-control form-control-sm @error('password') is-invalid @enderror" placeholder="Пароль" name="password" required autocomplete="current-password">
+                                                                        class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required placeholder="Пароль" autocomplete="current-password"
+                                                                    >
                                                                     @error('password')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -385,28 +417,18 @@
                                                                 </div>
                                                             </div>
                                                             <div class="form-group account-menu__form-button">
-                                                                <button type="button" class="btn btn-primary btn-sm" v-on:click="validateLogin">Войти</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm">Войти</button>
                                                             </div>
-                                                            <div class="account-menu__form-link"><a href="account-login.html">Регистрация</a></div>
+                                                            <div class="account-menu__form-link"><a href="{{route('register')}}">Регистрация</a></div>
                                                         </form>
                                                      @endguest
                                                      @auth
                                                         <div class="account-menu__divider"></div>
-                                                        <a href="account-dashboard.html" class="account-menu__user">
-                                                            <div class="account-menu__user-avatar">
-                                                                <img src="{{asset('template/images/avatars/avatar-3.jpg')}}" alt="">
-                                                            </div>
-                                                            <div class="account-menu__user-info">
-                                                            <div class="account-menu__user-name">{{Auth::user()->name}}</div>
-                                                                <div class="account-menu__user-email">{{Auth::user()->email}}</div>
-                                                            </div>
-                                                        </a>
-                                                        <div class="account-menu__divider"></div>
                                                         <ul class="account-menu__links">
                                                             <li><a href="{{route('profile.index')}}">Профиль</a></li>
-                                                            <li><a href="account-orders.html">Покупки</a></li>
-                                                            <li><a href="account-addresses.html">Адресс</a></li>
-                                                            <li><a href="account-password.html">Пароль</a></li>
+                                                            <li><a href="{{route('profile.history')}}">Покупки</a></li>
+                                                            <li><a href="{{route('profile.address')}}">Адресс</a></li>
+                                                            <li><a href="{{route('profile.password')}}">Пароль</a></li>
                                                         </ul>
                                                         <div class="account-menu__divider"></div>
                                                         <ul class="account-menu__links">
@@ -528,12 +550,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="site-footer__bottom">
-                          
-                            <div class="site-footer__payments">
-                                <img src="{{asset('template/images/payments.png')}}" alt="">
-                            </div>
-                        </div>
                     </div>
                     <div class="totop">
                         <div class="totop__body">
@@ -565,7 +581,7 @@
             <div class="mobilemenu__backdrop"></div>
             <div class="mobilemenu__body">
                 <div class="mobilemenu__header">
-                    <div class="mobilemenu__title">Menu</div>
+                    <div class="mobilemenu__title">Меню</div>
                     <button type="button" class="mobilemenu__close">
                         <svg width="20px" height="20px">
                             <use xlink:href="{{asset('template/images/sprite.svg#cross-20')}}"></use>
@@ -583,6 +599,16 @@
                             <li class="mobile-links__item" data-collapse-item>
                                 <div class="mobile-links__item-title">
                                     <a href="{{route('login')}}" class="mobile-links__item-link">Войти</a>
+                                </div>
+                            </li>
+                            <li class="mobile-links__item" data-collapse-item>
+                                <div class="mobile-links__item-title">
+                                    <a href="{{route('register')}}" class="mobile-links__item-link">Регистрация</a>
+                                </div>
+                            </li>
+                            <li class="mobile-links__item" data-collapse-item>
+                                <div class="mobile-links__item-title">
+                                    <a href="blog-classic.html" class="mobile-links__item-link">Блог</a>
                                 </div>
                             </li>
                         @else
@@ -658,11 +684,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="mobile-links__item" data-collapse-item>
-                            <div class="mobile-links__item-title">
-                                <a href="blog-classic.html" class="mobile-links__item-link">Блог</a>
-                            </div>
-                        </li>
                         @guest
                         @else
                             <li class="mobile-links__item" data-collapse-item>
@@ -720,7 +741,7 @@
     @endif
     <!-- photoswipe / end -->
     <!-- js -->
-    <script>window.homeUrl='http://bazar/public/';</script>
+    <script>window.homeUrl='http://smartbazar/public/';</script>
     <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>
@@ -734,13 +755,6 @@
     <script src="{{asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
     <script>
         svg4everybody();
-    </script>
-    <script>
-        // $(document).ready(function(){
-        //     $('.cart-button').click(function(){
-        //         $(this).toggleClass('clicked');
-        //     });
-        // });
     </script>
     <script>
         // function loadcart(){
@@ -869,24 +883,24 @@
             $('.stars .fa-star').removeClass('fa');
         }
 
-        function saveRating(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            var product_id = $('.update-cart').attr("product-id");
-            $.ajax({
-                type: "POST",
-                url: "{{ route('rate.add') }}",
-                data: {ratedIndex: ratedIndex, product_id:product_id},
-                datatype: "html",
-                cache: false,
-                success: function(data){
-                    $('.rank').html(data);
-                }
-            });
-        }
+        // function saveRating(){
+        //     $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
+        //     var product_id = $('.update-cart').attr("product-id");
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "{{ route('rate.add',) }}",
+        //         data: {ratedIndex: ratedIndex, product_id:product_id},
+        //         datatype: "html",
+        //         cache: false,
+        //         success: function(data){
+        //             $('.rank').html(data);
+        //         }
+        //     });
+        // }
 
         $(".remove-cart").click(function(){
             console.log('remove');

@@ -1,48 +1,73 @@
 <template>
-    <div class="wishlist_items">
-        <ul>
-            <li class="wishlist_items_head">
-                <ul>
-                    <li>Название</li>
-                    <li>Продавец</li>
-                    <li></li>
-                </ul>
-            </li>
-                <li class="wishlist_item_single" :key="index" v-for="(wishlist, index) in wishlists">
-                    <ul>
-                        <li>
-                            <div class="wishlist_product_image">
-                                <img :src="wishlist.product.image" alt="product_image">
+    <div v-if="wishlists.length === 0" class="container">
+        <div class="block-empty__body">
+            <div class="block-empty__message">У вас пока нет избранных товаров</div>
+            <div class="block-empty__actions">
+                <a class="btn btn-primary btn-sm" :href="home_url">Продолжить</a>
+            </div>
+        </div>
+    </div>
+    <div v-else class="container">
+        <table class="wishlist">
+            <thead class="wishlist__head">
+                <tr class="wishlist__row">
+                    <th class="wishlist__column wishlist__column--image"></th>
+                    <th class="wishlist__column wishlist__column--product">Продукт</th>
+                    <th class="wishlist__column wishlist__column--stock">В наличии</th>
+                    <th class="wishlist__column wishlist__column--price">Цена</th>
+                    <th class="wishlist__column wishlist__column--tocart"></th>
+                    <th class="wishlist__column wishlist__column--remove"></th>
+                </tr>
+            </thead>
+            <tbody class="wishlist__body">
+                <tr class="wishlist__row" :key="index" v-for="(wishlist, index) in wishlists">
+                    <td class="wishlist__column wishlist__column--image">
+                        <div class="product-image">
+                            <a href="" class="product-image__body">
+                                <img class="product-image__img" :src="home_url + wishlist.product.image" alt="">
+                            </a>
+                        </div>
+                    </td>
+                    <td class="wishlist__column wishlist__column--product">
+                        <a href="" class="wishlist__product-name">{{wishlist.product.title}}</a>
+                        <div class="wishlist__product-rating">
+                            <div class="rating">
+                                <div class="rating__body">
+                                    <star-component></star-component>
+                                </div>
                             </div>
-                            <div class="wishlist_product_description">
-                                <h5>{{wishlist.product.title}}</h5>
-                                <h6 class="wishlist_product_status">В наличии</h6>
-                                <h6 class="wishlist_product_price">Код/Артикул: <span>000148</span></h6>
-                                <h6 class="wishlist_product_price">{{wishlist.product.price}} Тг.</h6>
-                                <h6 class="wishlist_company_name">{{wishlist.product.company.name}}</h6>
-
+                            <div class="wishlist__product-rating-legend">
+                                Просмотров: {{wishlist.product.views}}
                             </div>
-                        </li>
-                        <li>
-                            <div class="wishlist_company">
-                                <star-component></star-component>
-                                <h6 class="wishlist_company_comments">2 отзыва о продавце</h6>
-                            </div>
-                        </li>
-                        <li>
-                            <button class="btn-pink-rounded">Купить</button>
-                            <a href="#" v-on:click.prevent="removeItem(index)"><img src="icons/trash.svg" alt="trash.svg"></a>
-                        </li>
-                    </ul>
-                </li>
-        </ul>
+                        </div>
+                    </td>
+                    <td class="wishlist__column wishlist__column--stock">
+                        <div class="badge badge-success">Да</div>
+                    </td>
+                    <td class="wishlist__column wishlist__column--price">{{wishlist.product.price}} Тг.</td>
+                    <td class="wishlist__column wishlist__column--tocart">
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="addToCart(wishlist.product.id)">Добавить в корзину</button>
+                    </td>
+                    <td class="wishlist__column wishlist__column--remove">
+                        <button type="button" class="btn btn-light btn-sm btn-svg-icon" v-on:click.prevent="removeItem(index)">
+                            <svg width="12px" height="12px">
+                                <use xlink:href="http://smartbazar/public/template/images/sprite.svg#cross-12"></use>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
     export default {
+        props:['home_url'],
         data(){
             return{
+                // homeUrl: window.homeUrl,
+                authUser: window.authUser,
                 wishlists: [],
             }
         },
@@ -57,9 +82,16 @@
                 this.wishlists.splice(index, 1);
 
                 axios.delete('wishlist/'+id).then(response => {
-                    console.log(response.data);
+                    this.$parent.countWishlist();
                 });
             },
+            addToCart: function(product_id){
+                axios.post(this.home_url + 'cart/create', {
+                    product_id: product_id,
+                }).then(response => {
+                    this.$parent.countCart();
+                });
+            }
         },
         created(){
             this.getData();

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable = ['city', 'home', 'street', 'unit', 'postcode'];
+    protected $fillable = ['name', 'city', 'home', 'street', 'unit'];
 
     public function addressable()
     {

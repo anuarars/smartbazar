@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
+use App\Models\Category;
 use View;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,9 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('layouts.default', function ($view) {
-            $user_id = Auth::id();
-            $view->with('order', Order::where('user_id', $user_id)->where('status', 0)->get()->first());
+        view()->composer('layouts.default', function ($view) {
+            // $user_id = Auth::id();
+            $view->with('categories', Category::where('parent_id', 0)->with('children')->get());
+            // $view->with('order', Order::where('user_id', $user_id)->where('status', 0)->get()->first());
         });
     }
 }

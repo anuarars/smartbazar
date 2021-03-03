@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @extends('layouts.default')
 
 @section('content')
@@ -7,7 +6,6 @@
     <div class="block-slideshow block-slideshow--layout--with-departments block">
         <div class="container">
             <div class="row">
-              
                 <div class="col-12 col-lg-12">
                     <div class="block-slideshow__body">
                         <div class="owl-carousel">
@@ -157,57 +155,47 @@
                                 <span class="fake-svg-icon"></span>
                             </button>
                             <div class="product-card__badges-list">
-                                <div class="product-card__badge product-card__badge--new">New</div>
+                                <div class="product-card__badge product-card__badge--new">Новое</div>
                             </div>
                             <div class="product-card__image product-image">
-                                <a href="product.html" class="product-image__body">
-                                    <img class="product-image__img" src="{{$products->first()->image}}" alt="">
+                                <a href="{{route('product', $products->first())}}" class="product-image__body">
+                                    <img class="product-image__img" src="{{asset($products->first()->image)}}" alt="{{asset($products->first()->image)}}">
                                 </a>
                             </div>
                             <div class="product-card__info">
                                 <div class="product-card__name">
-                                    <a href="product.html">{{$products->first()->title}}</a>
+                                    <a href="{{route('product', $products->first())}}">{{$products->first()->title}}</a>
                                 </div>
                                 <div class="product-card__rating">
                                     <div class="product-card__rating-stars">
                                         <div class="rating">
                                             <div class="rating__body">
-                                                <star-component :rating="5"></star-component>
+                                                <star-component :rating="{{$products->first()->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="product-card__rating-legend">9 Reviews</div>
+                                    <div class="product-card__rating-legend">Отзывов: {{$products->first()->reviews->count()}}</div>
                                 </div>
-                                <ul class="product-card__features-list">
-                                    <li>Speed: 750 RPM</li>
-                                    <li>Power Source: Cordless-Electric</li>
-                                    <li>Battery Cell Type: Lithium</li>
-                                    <li>Voltage: 20 Volts</li>
-                                    <li>Battery Capacity: 2 Ah</li>
+                                <ul class="product-card__features-list d-block">
+                                    {!!$products->first()->description!!}
                                 </ul>
                             </div>
                             <div class="product-card__actions">
-                                <div class="product-card__availability">
-                                    Availability: <span class="text-success">In Stock</span>
-                                </div>
                                 <div class="product-card__prices">
-                                    $749.00
+                                    {{$products->first()->price}} тг.
                                 </div>
                                 <div class="product-card__buttons">
-                                    <button class="btn btn-primary product-card__addtocart" type="button">Добавить в корзину</button>
-                                    <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">Добавить в корзину</button>
-                                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist" type="button">
-                                        <svg width="16px" height="16px">
-                                            <use xlink:href="{{asset('template/images/sprite.svg#wishlist-16')}}"></use>
-                                        </svg>
-                                        <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
-                                    </button>
-                                    <button class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__compare" type="button">
-                                        <svg width="16px" height="16px">
-                                            <use xlink:href="{{asset('template/images/sprite.svg#compare-16')}}"></use>
-                                        </svg>
-                                        <span class="fake-svg-icon fake-svg-icon--compare-16"></span>
-                                    </button>
+                                    <add-to-cart-component 
+                                            :product="{{ $products->first()->id }}"
+                                            :home_url = "homeUrl"
+                                            :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
+                                            @click.native="countCart">
+                                    </add-to-cart-component>
+                                    <like-component 
+                                        :product={{ $products->first()->id }}
+                                        :home_url = "homeUrl"
+                                        :favorited="{{ $products->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
+                                    </like-component>
                                 </div>
                             </div>
                         </div>
@@ -225,49 +213,49 @@
                                 </button>
                                 <div class="product-card__image product-image">
                                     <a href="{{route('product', $product)}}" class="product-image__body">
-                                        <img class="product-image__img" src="{{$product->image}}" alt="{{$product->image}}">
+                                        <img class="product-image__img" src="{{asset($product->image)}}" alt="{{$product->image}}">
                                     </a>
                                 </div>
                                 <div class="product-card__info">
                                     <div class="product-card__name">
-                                        <a href="product.html">{{$product->title}}</a>
+                                        <a href="{{route('product', $product)}}">{{$product->title}}</a>
                                     </div>
                                     <div class="product-card__rating">
                                         <div class="product-card__rating-stars">
                                             <div class="rating">
                                                 <div class="rating__body">
-                                                    <star-component></star-component>
+                                                    <star-component :rating="{{$product->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-card__rating-legend">Просмотров: {{$product->views}}</div>
                                     </div>
-                                    <ul class="product-card__features-list">
-                                        <li>Speed: 750 RPM</li>
-                                        <li>Power Source: Cordless-Electric</li>
-                                        <li>Battery Cell Type: Lithium</li>
-                                        <li>Voltage: 20 Volts</li>
-                                        <li>Battery Capacity: 2 Ah</li>
-                                    </ul>
                                 </div>
                                 <div class="product-card__actions">
-                                    <div class="product-card__availability">
-                                        Availability: <span class="text-success">In Stock</span>
-                                    </div>
                                     <div class="product-card__prices">
-                                        {{$product->price}} тг.
+                                        @if ($product->discount == null)
+                                            {{$product->price}} тг.
+                                        @else
+                                            <span class="product-card__new-price">
+                                                {{$product->afterDiscount}} тг.
+                                            </span>
+                                            <span class="product-card__old-price">
+                                                {{$product->price}} тг.
+                                            </span>
+                                        @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component :product="{{ $product->id }}"
-                                                               :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
-                                                                @click.native="countCart"></add-to-cart-component>
-{{--                                        <a href="" class="like">--}}
-{{--                                            <i class="fa fa-heart" aria-hidden="true" @click.prevent="addOrRemoveWishlist({{$product->id}})" style="" >--}}
-{{--                                            </i>--}}
-{{--                                        </a>--}}
-                                            <like-component :product={{ $product->id }}
-                                                :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
-                                            </like-component>
+                                        <add-to-cart-component 
+                                            :product="{{ $product->id }}"
+                                            :home_url = "homeUrl"
+                                            :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
+                                            @click.native="countCart">
+                                        </add-to-cart-component>
+                                        <like-component 
+                                            :product={{ $product->id }}
+                                            :home_url = "homeUrl"
+                                            :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
+                                        </like-component>
                                     </div>
                                 </div>
                             </div>
@@ -290,15 +278,15 @@
                     <div class="block-categories__item category-card category-card--layout--classic">
                         <div class="category-card__body">
                             <div class="category-card__image">
-                                <a href="{{ route('catalog.index', ['category' => $category->id]) }}"><img src="{{asset('template/images/categories/category-1.jpg')}}" alt=""></a>
+                                <a href=""><img src="{{asset('template/images/categories/category-1.jpg')}}" alt=""></a>
                             </div>
                             <div class="category-card__content">
                                 <div class="category-card__name">
-                                    <a href="{{ route('catalog.index', ['category' => $category->id]) }}">{{$category->title}}</a>
+                                    <a href="#">{{$category->title}}</a>
                                 </div>
                                 <ul class="category-card__links">
                                     @foreach ($category->children->take(4) as $child)
-                                        <li><a href="{{ route('catalog.index', ['category' => $child->id]) }}">{{$child->title}}</a></li>
+                                        <li><a href="">{{$child->title}}</a></li>
                                     @endforeach
                                 </ul>
                                 <div class="category-card__all">
@@ -322,8 +310,8 @@
 
 
 @foreach ($products as $product)
-<div class="modal fade" id="productView{{$product->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="productView{{$product->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="padding-right: 0px!important;">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="quickview">
                 <button class="quickview__close" type="button" data-dismiss="modal" aria-label="Close">
@@ -343,100 +331,24 @@
                                         </svg>
                                     </button>
                                     <div class="owl-carousel" id="product-image">
-                                        <div class="product-image product-image--location--gallery">
-                                            <!--
-                                            The data-width and data-height attributes must contain the size of a larger version
-                                            of the product image.
-
-                                            If you do not know the image size, you can remove the data-width and data-height
-                                            attribute, in which case the width and height will be obtained from the naturalWidth
-                                            and naturalHeight property of img.product-image__img.
-                                            -->
-                                            <a href="{{asset('template/images/products/product-16.jpg')}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                <img class="product-image__img" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-image product-image--location--gallery">
-                                            <!--
-                                            The data-width and data-height attributes must contain the size of a larger version
-                                            of the product image.
-
-                                            If you do not know the image size, you can remove the data-width and data-height
-                                            attribute, in which case the width and height will be obtained from the naturalWidth
-                                            and naturalHeight property of img.product-image__img.
-                                            -->
-                                            <a href="{{asset('template/images/products/product-16-1.jpg')}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                <img class="product-image__img" src="{{asset('template/images/products/product-16-1.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-image product-image--location--gallery">
-                                            <!--
-                                            The data-width and data-height attributes must contain the size of a larger version
-                                            of the product image.
-
-                                            If you do not know the image size, you can remove the data-width and data-height
-                                            attribute, in which case the width and height will be obtained from the naturalWidth
-                                            and naturalHeight property of img.product-image__img.
-                                            -->
-                                            <a href="{{asset('template/images/products/product-16-2.jpg')}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                <img class="product-image__img" src="{{asset('template/images/products/product-16-2.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-image product-image--location--gallery">
-                                            <!--
-                                            The data-width and data-height attributes must contain the size of a larger version
-                                            of the product image.
-
-                                            If you do not know the image size, you can remove the data-width and data-height
-                                            attribute, in which case the width and height will be obtained from the naturalWidth
-                                            and naturalHeight property of img.product-image__img.
-                                            -->
-                                            <a href="{{asset('template/images/products/product-16-3.jpg')}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                <img class="product-image__img" src="{{asset('template/images/products/product-16-3.jpg')}}" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="product-image product-image--location--gallery">
-                                            <!--
-                                            The data-width and data-height attributes must contain the size of a larger version
-                                            of the product image.
-
-                                            If you do not know the image size, you can remove the data-width and data-height
-                                            attribute, in which case the width and height will be obtained from the naturalWidth
-                                            and naturalHeight property of img.product-image__img.
-                                            -->
-                                            <a href="{{asset('template/images/products/product-16-4.jpg')}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                <img class="product-image__img" src="{{asset('template/images/products/product-16-4.jpg')}}" alt="">
-                                            </a>
-                                        </div>
+                                        @foreach ($product->galleries as $gallery)
+                                            <div class="product-image product-image--location--gallery">
+                                                <a href="{{asset($gallery->image)}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
+                                                    <img class="product-image__img" src="{{asset($gallery->image)}}" alt="">
+                                                </a>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="product-gallery__carousel">
                                     <div class="owl-carousel" id="product-carousel">
-                                        <a href="{{asset('template/images/products/product-16.jpg')}}" class="product-image product-gallery__carousel-item">
-                                            <div class="product-image__body">
-                                                <img class="product-image__img product-gallery__carousel-image" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </div>
-                                        </a>
-                                        <a href="{{asset('template/images/products/product-16.jpg')}}" class="product-image product-gallery__carousel-item">
-                                            <div class="product-image__body">
-                                                <img class="product-image__img product-gallery__carousel-image" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </div>
-                                        </a>
-                                        <a href="{{asset('template/images/products/product-16.jpg')}}" class="product-image product-gallery__carousel-item">
-                                            <div class="product-image__body">
-                                                <img class="product-image__img product-gallery__carousel-image" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </div>
-                                        </a>
-                                        <a href="{{asset('template/images/products/product-16.jpg')}}" class="product-image product-gallery__carousel-item">
-                                            <div class="product-image__body">
-                                                <img class="product-image__img product-gallery__carousel-image" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </div>
-                                        </a>
-                                        <a href="{{asset('template/images/products/product-16.jpg')}}" class="product-image product-gallery__carousel-item">
-                                            <div class="product-image__body">
-                                                <img class="product-image__img product-gallery__carousel-image" src="{{asset('template/images/products/product-16.jpg')}}" alt="">
-                                            </div>
-                                        </a>
+                                        @foreach ($product->galleries as $gallery)
+                                            <a href="{{asset($gallery->image)}}" class="product-image product-gallery__carousel-item">
+                                                <div class="product-image__body">
+                                                    <img class="product-image__img product-gallery__carousel-image" src="{{asset($gallery->image)}}" alt="">
+                                                </div>
+                                            </a>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -460,16 +372,9 @@
                             <div class="product__description">
                                 {{$product->description}}
                             </div>
-                            <ul class="product__features">
-                                <li>Speed: 750 RPM</li>
-                                <li>Power Source: Cordless-Electric</li>
-                                <li>Battery Cell Type: Lithium</li>
-                                <li>Voltage: 20 Volts</li>
-                                <li>Battery Capacity: 2 Ah</li>
-                            </ul>
                             <ul class="product__meta">
                                 <li class="product__meta-availability">В наличии: <span class="text-success">Да</span></li>
-                                <li>Производитель: <a href="">Wakita</a></li>
+                                <li>Производитель: <a href="">{{$product->brand->title ?? ""}}</a></li>
                             </ul>
                         </div>
                         <!-- .product__info / end -->
@@ -491,7 +396,7 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-                                            <button class="btn btn-primary btn-lg">В корзину</button>
+                                            <button class="btn btn-primary btn-lg" v-on:click="addToCart({{$product->id}})" type="button">В корзину</button>
                                         </div>
                                         <div class="product__actions-item product__actions-item--wishlist">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist">

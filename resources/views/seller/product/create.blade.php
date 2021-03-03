@@ -27,8 +27,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <select class="form-control 
-                                            @error('country_id') is-invalid @enderror">
+                                        <select class="form-control
+                                            @error('country_id') is-invalid @enderror" name="country_id">
                                                 <option disabled selected>Страна производитель</option>
                                             @foreach ($countries as $country)
                                                 <option value="{{$country->id}}">{{$country->name}}</option>
@@ -46,7 +46,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id">
-                                                <option disabled selected>Брэнд</option>
+                                                <option disabled selected>Производитель</option>
+                                                <option value="">Другое</option>
                                             @foreach ($brands as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
                                             @endforeach
@@ -62,7 +63,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <select class="form-control @error('category_id') is-invalid @enderror" name="category_id">
+                                        <select class="form-control" name="category_id">
                                             <option disabled selected>Категория товара</option>
                                             @include('includes.categories', $categories)
                                         </select>
@@ -136,15 +137,18 @@
                                 </div>
                                 <div class="col-md-12">
                                     <label class="file-upload">
-                                        <input type="file" id="image" name="image" multiple accept="image/*, video/*" />
+                                        <input type="file" id="image" name="image"/>
                                       <span class="file-upload_button">Изображение</span>
                                     </label>
                                 </div>
-                                <div class="dropzone col-md-12" id="mydropzone">
-                                    <div class="fallback">
-                                        <input name="file" type="gallery[]" multiple="true" />
-                                    </div>
+
+                                <div class="col-md-12">
+                                    <label class="file-upload">
+                                        <input name="gallery[]" type="file" multiple="true" />
+                                      <span class="file-upload_button">Изображения для галереи</span>
+                                    </label>
                                 </div>
+                                        
                                 <div class="col-md-12 mt-3 text-center">
                                     <button type="submit" class="btn btn-primary">Добавить товар</button>
                                 </div>

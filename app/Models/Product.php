@@ -13,9 +13,9 @@ class Product extends Model
     // use Searchable;
      use Sortable;
 
-    public $sortable = ['price', 'discount', 'category_id', 'created_at', 'title'];
+    public $sortable = ['price', 'discount', 'category_id', 'created_at'];
 
-    protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image'];
+    protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image', 'sku'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -51,6 +51,10 @@ class Product extends Model
 
     public function wishlist(){
         return $this->hasMany(Wishlist::class);
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
     }
 
     public function userRating(){
@@ -136,16 +140,22 @@ class Product extends Model
         return $this->price;
     }
 
+
+    // ACCESSOR
+    public function getafterDiscountAttribute(){
+        return ceil($this->price - (($this->price * $this->discount)/100));
+    }
+
     public function isFavoritedBy(){
-        if ($user = Auth::user()) {
+        if ($user = User::find(Auth::id())) {
             return (bool) $user->wishlist()->where('product_id', $this->id)->first();
         }
     }
 
     public function isAddedToCartBy(): bool
     {
-        if ($user = Auth::user()) {
-            $order = $user->order()->where('status', 0)->get()->first();
+        if ($user = User::find(Auth::id())) {
+            $order = $user->order()->where('isFinished', 0)->get()->first();
         } else {
             return false;
         }
@@ -156,9 +166,5 @@ class Product extends Model
         } else {
             return false;
         }
-    }
-    // ACCESSOR
-    public function getdiscountPercentAttribute(){
-        return ceil($this->price - (($this->price * $this->discount)/100));
     }
 }

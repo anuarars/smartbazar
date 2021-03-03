@@ -22,9 +22,10 @@ class CompanyController extends Controller
 
         $company->update([
             'name' => $request->name,
-            'code' => $request->code,
+            // 'code' => $request->code,
             'phone' => $request->phone,
             'description' => $request->description,
+            'bin' => $request->bin
         ]);
 
         if($company->email){
@@ -37,7 +38,7 @@ class CompanyController extends Controller
             ]);
         }
 
-        return redirect()->route('seller.company.profile');
+        return redirect()->route('seller.company.dashboard');
     }
 
     public function addressUpdate(Request $request){

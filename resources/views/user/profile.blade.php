@@ -1,84 +1,91 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
-<div class="rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                <span class="font-weight-bold">company->name</span><span class="text-black-50">company->email</span><span> </span>
-            </div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Профиль</h4>
+    <div class="site__body">
+        <div class="page-header">
+            <div class="page-header__container container">
+                <div class="page-header__breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">Главная</a>
+                                <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                </svg>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Аккаунт</li>
+                        </ol>
+                    </nav>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <label class="labels">Название</label>
-                        <h5>company->name</h5>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <label class="labels">О Компании</label>
-                        <h5>company->description</h5>
-                    </div>
+                <div class="page-header__title">
+                    <h1>Аккаунт</h1>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Контактные Данные</h4>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    @include('includes.profile.menu')
+                    <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+                        <div class="dashboard">
+                            <div class="dashboard__orders card">
+                                <div class="card-header">
+                                    <h5>Последние покупки</h5>
+                                </div>
+                                <div class="card-divider"></div>
+                                <div class="card-table">
+                                    <div class="table-responsive-sm">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>№</th>
+                                                    <th>Дата</th>
+                                                    <th>Статус</th>
+                                                    <th>Сумма</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (!empty(Auth::user()->order))
+                                                    @foreach ($orders as $order)
+                                                        <tr>
+                                                            <td><a href="">{{$order->id}}</a></td>
+                                                            <td>{{$order->created_at}}</td>
+                                                            <td>
+                                                                @switch($order->status->name)
+                                                                    @case('LOOKING FOR PACKING')
+                                                                        Фасовзщик принимает заказ
+                                                                        @break
+                                                                    @case('AT PACKING')
+                                                                        Фасуется
+                                                                        @break
+                                                                    @case('DRIVING')
+                                                                        В пути с курьером
+                                                                        @break
+                                                                    @case('LOOKING FOR DRIVER')
+                                                                        Ждет водителя
+                                                                        @break
+                                                                    @case('DELIVERED')
+                                                                        Доставлен
+                                                                        @break
+                                                                    @case('ACCEPTED')
+                                                                        Принят
+                                                                        @break
+                                                                    @default
+                                                                @endswitch
+                                                            </td>
+                                                            <td>{{$order->count()}}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <label class="labels">Email</label>
-                        <h5>Email</h5>
-                    </div>
-                    <div class="col-md-12">
-                        <label class="labels">Телефон</label>
-                        <h5>Email</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Адресс</h4>
-                </div>
-               <div class="row">
-                <div class="col-md-6">
-                    <label class="labels">Район</label>
-                    <h5>Район</h5>
-                </div>
-                <div class="col-md-6">
-                    <label class="labels">Город/Село</label>
-                    <h5>Район</h5>
-                </div>
-               </div>
-               <div class="row">
-                    <div class="col-md-3">
-                        <label class="labels">№</label>
-                        <h5>Район</h5>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="labels">Улица</label>
-                        <h5>Район</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="labels">Офис</label>
-                        <h5>Район</h5>
-                    </div>
-               </div>
-               <div class="row">
-                    <div class="col-md-12">
-                        <label class="labels">Индекс</label>
-                        <h5>Район</h5>
-                    </div>
-               </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

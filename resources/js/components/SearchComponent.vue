@@ -4,12 +4,11 @@
             <li class="suggestions__item" v-for="result in search">
                 <div class="suggestions__item-image product-image">
                     <div class="product-image__body">
-                        <img class="product-image__img" :src="result.image" alt="">
+                        <img class="product-image__img" :src="home_url + result.image" alt="">
                     </div>
                 </div>
                 <div class="suggestions__item-info">
                     <a class="suggestions__item-name">
-                        <a href="animevost.org"></a>
                         {{result.title}}
                     </a>
                     <div class="suggestions__item-meta">Произвадитель: {{result.brand_id}}</div>

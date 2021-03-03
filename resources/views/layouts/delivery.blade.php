@@ -1,105 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
+<!-- index.html  21 Nov 2019 03:44:50 GMT -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Доставка</title>
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('dashboard/css/style.css')}}">
-    <style>
-        .notification_form{
-            display: none;
-        }
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-        
-    </style>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Доставка | Smartbazar.kz</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{{asset('dashboard/css/app.min.css')}}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{asset('dashboard/css/style.css')}}">
+  <link rel="stylesheet" href="{{asset('dashboard/css/components.css')}}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{{asset('dashboard/bundles/bootstrap-social/bootstrap-social.css')}}">
+  <link rel="stylesheet" href="{{asset('dashboard/css/custom.css')}}">
+  <link rel='shortcut icon' type='image/x-icon' href='{{asset('/img/logo/logo.svg')}}' />
+  <script src="https://cdn.tiny.cloud/1/vuko5n8zosfrtuvle80aeae8o7nyj7sm85hwt10pa3bie19s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script src="{{asset('serviceWorker.min.js')}}"></script>
+  <script src="{{asset('push.min.js')}}"></script>
+  <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
-    
+
 <body>
-    <nav class="navbar sticky-top bg-primary flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3 text-dark" href="#">Доставка Smartbazar</a>
-        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link text-dark" href="{{ route('logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Выйти</a>
-            </li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </ul>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="sidebar-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
-                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                                </svg>
-                                Главная
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
-                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                                    <polyline points="13 2 13 9 20 9"></polyline>
-                                </svg>
-                                История
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart">
-                                    <circle cx="9" cy="21" r="1"></circle>
-                                    <circle cx="20" cy="21" r="1"></circle>
-                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                                </svg>
-                                Мои данные
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
-                    <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                        <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                        <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Доставка Smartbazar</h1>
-                </div>
-                @yield('body')
-            </main>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <nav class="navbar navbar-expand-lg main-navbar sticky">
+        <div class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg
+									collapse-btn"> <i data-feather="align-justify"></i></a></li>
+            <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
+                <i data-feather="maximize"></i>
+              </a></li>
+          </ul>
         </div>
+        <ul class="navbar-nav navbar-right">
+          <li><a class="text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"><span>Выйти</span></a></li>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        </ul>
+      </nav>
+      <div class="main-sidebar sidebar-style-2">
+        <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="#"> <img alt="image" src="{{asset('img/logo/logo.svg')}}" class="header-logo" /> <span
+                class="logo-name">Доставка</span>
+            </a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="dropdown">
+              <a href="{{route('packer.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
+            </li>
+            <li>
+              <a href="#" class="nav-link"><i
+                  data-feather="briefcase"></i><span>История</span></a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <!-- Main Content -->
+      <div class="main-content">
+        @yield('content')
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
     </div>
-    <script src="{{asset('dashboard/js/jquery.min.js')}}"></script>
-    <script src="{{asset('dashboard/js/pusher.min.js')}}"></script>
-    <script src="{{asset('dashboard/delivery/delivery.js')}}"></script>
-    <script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
+  </div>
+  <script>window.homeUrl='http://127.0.0.1:8000/';</script>
+  <!-- General JS Scripts -->
+  <script src="{{asset("dashboard/js/app.min.js")}}"></script>
+  <!-- JS Libraies -->
+  <script src="{{asset("dashboard/bundles/apexcharts/apexcharts.min.js")}}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{{asset("dashboard/js/page/index.js")}}"></script>
+  <!-- Template JS File -->
+  <script src="{{asset("dashboard/js/scripts.js")}}"></script>
+  <!-- Custom JS File -->
+  <script src="{{asset("dashboard/js/custom.js")}}"></script>
 </body>
+
+
+<!-- index.html  21 Nov 2019 03:47:04 GMT -->
 </html>

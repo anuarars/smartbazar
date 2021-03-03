@@ -16,23 +16,30 @@ class IndexController extends Controller
 {
     public function index(){
         $products = Product::where('discount', '!=', 'null')
+            ->orderBy('discount', 'asc')
             ->get()
-            ->sortByDesc('discountPercent')
-            ->take(12);
+            // ->sortByDesc('discountPercent')
+            ->take(6);
         $categories = Category::with('children')->where('parent_id', '0')->get();
         return view('index', compact('products', 'categories'));
     }
 
     public function product($id = null){
+        // $rating = Rating::where('user_id', Auth::id())->where('product_id', $id)->get();
+        // return $rating;
         $product = product::where('id', $id)->first();
-        return view('product', compact('product'));
+        $reviews = $product->reviews()->where('user_id', Auth::id())->paginate(3);
+        $product->views += 1;
+        $product->update([
+            'views' => $product->views
+        ]);
+        return view('product', compact('product', 'reviews'));
     }
 
-    public function add_rate(){
-        $product_id = request()->input('product_id');
-        $rate = request()->input('ratedIndex');
+    public function add_rate(Request $request){
+        $product_id = $request->product_id;
+        $rate = $request->rate;
         $user_id = Auth::id();
-        $rate++;
 
         $rating = Rating::where('product_id', $product_id)->where('user_id', $user_id)->get()->first();
         if(empty($rating)){
@@ -42,57 +49,5 @@ class IndexController extends Controller
                 'rate' => $rate
             ]);
         }
-
-        if($rating->rate == 1){
-            echo
-            '<h6>Ваша оценка</h6>
-            <div class="stars">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($rating->rate == 2){
-            echo
-            '<h6>Ваша оценка</h6>
-            <div class="stars">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($rating->rate == 3){
-            echo
-            '<h6>Ваша оценка</h6>
-            <div class="stars">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($rating->rate == 4){
-            echo
-            '<h6>Ваша оценка</h6>
-            <div class="stars">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="far fa-star" style="color:#000"></i>
-            </div>';
-        }else if($rating->rate == 5){
-            echo
-            '<h6>Ваша оценка</h6>
-            <div class="stars">
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-                <i class="fa fa-star" style="color:green"></i>
-            </div>';
-        };
     }
 }

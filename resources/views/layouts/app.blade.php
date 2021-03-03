@@ -32,18 +32,18 @@
                                 <li>
                                     <a href="{{route('info.delivery')}}">Доставка</a>
                                 </li>
-                                {{-- <li>
+                                <li>
                                     <a href="#">Гарантии, обмен и возврат</a>
-                                </li> --}}
+                                </li>
                                 <li>
                                     <a href="#">Оплата</a>
                                 </li>
                             </ul>
                             <ul class="account">
-                                {{-- <li>
+                                <li>
                                     <img src="{{asset('icons/location.svg')}}" alt="location">                               
                                     <a href="#">Нур-Султан (Астана)</a>
-                                </li> --}}
+                                </li>
                                 @guest
                                     <li>
                                         <a href="#" @click.prevent="hiddenAuth = !hiddenAuth">Войти/Регистрация</a>
