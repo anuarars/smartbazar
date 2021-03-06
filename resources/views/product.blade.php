@@ -144,6 +144,7 @@
                             <a href="#tab-description" class="product-tabs__item product-tabs__item--active">Описание</a>
                             <a href="#tab-specification" class="product-tabs__item">Характеристики</a>
                             <a href="#tab-reviews" class="product-tabs__item">Отзывы</a>
+                            <a href="#tab-reviews" class="product-tabs__item">Продавец</a>
                         </div>
                     </div>
                 </div>
@@ -195,14 +196,30 @@
                     <div class="product-tabs__pane" id="tab-reviews">
                         <div class="reviews-view">
                             <div class="reviews-view__list">
-                                <h3 class="reviews-view__header">Отзывы</h3>
+                                <h3 class="reviews-view__header">Информация о продавце</h3>
                                 <div class="reviews-list">
-                                    <ol class="reviews-list__content">
+                                    <ol class="reviews-list__content" style="display: flex; flex-direction: row; ">
+                                        <div class="reviews-list__content_info">
+                                            <p>Имя: </p>
+                                            <p>Бутик: </p>
+                                            <p>Категория: </p>
+                                            <p>На рынке: </p>
+                                            <p>Продаваемые товары: </p>
+                                            <p>Номер телефона: </p>
+                                        </div>  
+                                        <div class="reviews-list__content_info" style="margin-left: 10%;">
+                                            <p>Сакен Габит</p>
+                                            <p>27</p>
+                                            <p>AAA</p>
+                                            <p>5 лет</p>
+                                            <p>хозяйственные товары</p>
+                                            <p>8 (701) 962-36-74</p>
+                                        </div>                                   
                                         @foreach ($reviews as $review)
                                             <li class="reviews-list__item">
                                                 <div class="review">
                                                     <div class="review__content">
-                                                        <div class="review__author">{{$review->user->firstname}} {{$review->user->lastname}}</div>
+                                                        <div class="review__author">{{$review->user->firstname}}Saken {{$review->user->lastname}}Gabit</div>
                                                         <div class="review__rating">
                                                             <div class="rating">
                                                                 <div class="rating__body">
@@ -212,14 +229,16 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="review__text">{{$review->description}}</div>
-                                                        <div class="review__date">{{$review->created_at}}</div>
+                                                        <div class="review__text">{{$review->description}}Это самый лучший продукт в истории базара</div>
+                                                        <div class="review__date">{{$review->created_at}}Создано Казахстанскими производителями</div>
                                                     </div>
                                                 </div>
                                             </li>
                                         @endforeach
                                     </ol>
                                     <div class="reviews-list__pagination">
+            
+                                        <button class="btn btn-primary btn-lg">Написать продавцу</button>
                                         <ul class="pagination justify-content-center">
                                             {{$reviews->links()}}
                                         </ul>

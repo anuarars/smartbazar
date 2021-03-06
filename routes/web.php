@@ -126,3 +126,4 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
+Route::get('/test2', 'TestController@index2')->name('index2');
