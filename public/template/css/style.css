@@ -15048,7 +15048,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   }
 }
 
-@media (max-width: 575px) and (hover: hover) {
+/* @media (max-width: 575px) and (hover: hover) {
   .block-products__featured-item .product-card--hidden-actions .product-card__buttons {
     display: none;
   }
@@ -15062,7 +15062,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     display: -ms-flexbox;
     display: flex;
   }
-}
+} */
 
 @media screen and (max-width: 575px) and (-ms-high-contrast: active), (max-width: 575px) and (-ms-high-contrast: none) {
   .block-products__featured-item .product-card--hidden-actions .product-card__buttons {
@@ -15210,8 +15210,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-  }*/
-}
+  }
+  */
+
 
 @media screen and (min-width: 375px) and (-ms-high-contrast: active), (min-width: 375px) and (-ms-high-contrast: none) {
   .block-products[data-mobile-grid-columns="2"] .block-products__list-item .product-card--hidden-actions .product-card__buttons {
@@ -15283,7 +15284,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   }
 }
 
-@media (max-width: 374px) and (hover: hover) {
+/* @media (max-width: 374px) and (hover: hover) {
   .block-products[data-mobile-grid-columns="2"] .block-products__list-item .product-card--hidden-actions .product-card__buttons {
     display: none;
   }
@@ -15297,7 +15298,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     display: -ms-flexbox;
     display: flex;
   }
-}
+} */
 
 @media screen and (max-width: 374px) and (-ms-high-contrast: active), (max-width: 374px) and (-ms-high-contrast: none) {
   .block-products[data-mobile-grid-columns="2"] .block-products__list-item .product-card--hidden-actions .product-card__buttons {
@@ -17360,7 +17361,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 /*# sourceMappingURL=style.css.map */
 
 
-
+/* 
 .heart i.fa-heart{
   color:red;
 }
@@ -17372,6 +17373,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 transform: rotate(0deg) scale(1.7);
   }
 }
+
+
+ */
+
+
 .product-card__buttons .cart-button {
 	position: relative;
 	padding: 15px;
@@ -17805,8 +17811,3 @@ transform: rotate(0deg) scale(1.7);
     }
     }
     
-.sdf{
-  width: 200px;
-}
-    
-  

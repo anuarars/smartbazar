@@ -121,7 +121,7 @@ button {
 }
 
 .favorite-particles-transition-enter-active {
-    background-image: url("/public/img/animation/particle-sprite.png");
+    background-image: url("/img/animation/particle-sprite.png");
     background-size: 2500% auto;
     background-position: left center;
     background-repeat: no-repeat;

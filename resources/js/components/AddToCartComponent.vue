@@ -10,11 +10,8 @@
 <script>
 export default {
     name: "AddToCartComponent",
-    props: [
-        'cart',
-        'product',
-        'home_url'
-    ],
+    props: ['cart','product','home_url'],
+  
     data: function () {
         return {
             isAdded: '',

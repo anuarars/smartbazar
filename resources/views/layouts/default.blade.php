@@ -228,7 +228,6 @@
                                     </form>
                                     <search-component
                                         v-if="search.searchShow"
-                                        {{-- v-click-outside="hideSearch" --}}
                                         :search = "search.searchResult"
                                         :home_url = "homeUrl"
                                         >
@@ -355,7 +354,7 @@
                                                 </span>
                                             </a>
                                         </div>
-                                        <div class="indicator">
+                                        <div class="indicator indicator--trigger--click indicator--display indicator--open">
                                             <a href="{{route('cart.index')}}" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
@@ -364,12 +363,12 @@
                                                     <span class="indicator__value" v-text="productCount"></span>
                                                 </span>
                                             </a>
-                                            {{-- <div class="indicator__dropdown">
+                                            <div class="indicator__dropdown">
                                                 <div class="dropcart dropcart--style--dropdown">
                                                     <dropdown-cart-component>
                                                     </dropdown-cart-component>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                         </div>
                                         @endauth
                                         <div class="indicator indicator--trigger--click">
@@ -741,7 +740,7 @@
     @endif
     <!-- photoswipe / end -->
     <!-- js -->
-    <script>window.homeUrl='http://smartbazar.test/';</script>
+    <script>window.homeUrl='http://localhost:8000/';</script>
     <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>

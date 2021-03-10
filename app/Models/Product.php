@@ -171,4 +171,8 @@ class Product extends Model
             return false;
         }
     }
+    public function getdiscountPercentAttribute(){
+        return ceil($this->price - (($this->price * $this->discount)/100));
+    }
 }
+

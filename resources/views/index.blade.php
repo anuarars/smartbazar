@@ -159,7 +159,7 @@
                             </div>
                             <div class="product-card__image product-image">
                                 <a href="{{route('product', $products->first())}}" class="product-image__body">
-                                    <img class="product-image__img" src="{{asset($products->first()->image)}}" alt="{{asset($products->first()->image)}}">
+                                    <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="https://via.placeholder.com/400x400">
                                 </a>
                             </div>
                             <div class="product-card__info">
@@ -188,11 +188,10 @@
                                     <add-to-cart-component
                                             :product="{{ $products->first()->id }}"
                                             :home_url = "homeUrl"
-                                            :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
-                                            @click.native="countCart">
+                                            :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}" @click.native="countCart">
                                     </add-to-cart-component>
-                                    <like-component>
-                                        :product={{ $products->first()->id }}
+                                    <like-component
+                                        :product="{{ $products->first()->id }}"
                                         :home_url = "homeUrl"
                                         :favorited="{{ $products->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                     </like-component>
@@ -213,7 +212,7 @@
                                 </button>
                                 <div class="product-card__image product-image">
                                     <a href="{{route('product', $product)}}" class="product-image__body">
-                                        <img class="product-image__img" src="{{asset($product->image)}}" alt="{{$product->image}}">
+                                        <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="https://via.placeholder.com/400x400">
                                     </a>
                                 </div>
                                 <div class="product-card__info">
@@ -333,8 +332,8 @@
                                     <div class="owl-carousel" id="product-image">
                                         @foreach ($product->galleries as $gallery)
                                             <div class="product-image product-image--location--gallery">
-                                                <a href="{{asset($gallery->image)}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                    <img class="product-image__img" src="{{asset($gallery->image)}}" alt="">
+                                                <a href="https://via.placeholder.com/400x400" data-width="700" data-height="700" class="product-image__body" target="_blank">
+                                                    <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="">
                                                 </a>
                                             </div>
                                         @endforeach
@@ -343,9 +342,9 @@
                                 <div class="product-gallery__carousel">
                                     <div class="owl-carousel" id="product-carousel">
                                         @foreach ($product->galleries as $gallery)
-                                            <a href="{{asset($gallery->image)}}" class="product-image product-gallery__carousel-item">
+                                            <a href="https://via.placeholder.com/400x400" class="product-image product-gallery__carousel-item">
                                                 <div class="product-image__body">
-                                                    <img class="product-image__img product-gallery__carousel-image" src="{{asset($gallery->image)}}" alt="">
+                                                    <img class="product-image__img product-gallery__carousel-image" src="https://via.placeholder.com/400x400" alt="">
                                                 </div>
                                             </a>
                                         @endforeach
