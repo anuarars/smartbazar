@@ -45,7 +45,7 @@ class ProfileController extends Controller
         ];
 
         $address->update($data);
-        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
+        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');
     }
 
     public function addressRemove(Request $request, Address $address){
@@ -93,7 +93,7 @@ class ProfileController extends Controller
             'login' => $request->login,
             'phone' => $request->phone
         ]);
-        
+
         return redirect()->route('profile.index');
     }
 }

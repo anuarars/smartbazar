@@ -20,6 +20,7 @@ class CheckoutController extends Controller
     }
 
     public function success($orderId){
+
         $order = Order::where('id', $orderId)->with('status')->first();
         DB::table('orders')
             ->where('id', $orderId)

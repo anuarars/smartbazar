@@ -34,11 +34,11 @@ Vue.component('categories-component', require('./components/CategoryComponent.vu
 Vue.component('review-star-component', require('./components/ReviewStartComponent.vue').default);
 Vue.component('dropdown-cart-component', require('./components/DropdownCartComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
-Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
 Vue.component('delivery-component', require('./components/DeliveryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
 Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
+Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
