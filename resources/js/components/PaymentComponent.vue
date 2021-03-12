@@ -26,15 +26,15 @@
                             <div class="form-row">
                                 <div class="form-group col-md-3">
                                     <label for="checkout-address">Дом</label>
-                                    <input type="text" class="form-control" :value="selected.home">
+                                    <input type="text" class="form-control" v-model="selected.home">
                                 </div>
                                 <div class="form-group col-md-7">
                                     <label for="checkout-street-address">Улица</label>
-                                    <input type="text" class="form-control" placeholder="Улица" :value="selected.street">
+                                    <input type="text" class="form-control" placeholder="Улица" v-model="selected.street">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="checkout-address">Кв</label>
-                                    <input type="text" class="form-control" :value="selected.unit">
+                                    <input type="text" class="form-control" v-model="selected.unit">
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            <button  v-on:click="addOrUpdateAddress" class="btn btn-primary btn-xl btn-block">Оплатить</button>
+                            <a :href="home_url + 'checkout/'+ order.id +'/success'" v-on:click="addOrUpdateAddress" class="btn btn-primary btn-xl btn-block">Оплатить</a>
                             <button class="btn btn-danger" v-on:click="generateForm">pay</button>
                         </div>
                     </div>
@@ -112,19 +112,33 @@ export default {
     ],
     data() {
         return {
-            selected: '',
+            selected: {},
+
+        }
+    },
+    computed: {
+        isSelected: function () {
+            return this.selected.id != null;
         }
     },
     methods:{
         addOrUpdateAddress() {
-            if (this.selected) {
+
+            if (this.isSelected) {
                 axios.post("/profile/address/update/" + this.selected.id, this.selected)
                 .then(function (response) {
-                    console.log(response);
-                    console.log(response.success);
+                    console.log("success");
+                }).catch(function (error) {
+                    console.log(error);
+                })
+            } else {
+                this.selected.name = "Новый";
+                axios.post("/profile/address", this.selected)
+                .then(function (response) {
+                    console.log("success")
                 })
             }
-            console.log(this.selected);
+
         },
         generateForm() {
             var widget = new tp.TarlanPayments();
