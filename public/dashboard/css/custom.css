@@ -113,3 +113,76 @@ a.profile-edit-btn{
     font-weight: 600;
     color: #0062cc;
 }
+/* //table
+ */body {
+    line-height: 1.6;
+  }
+  
+  table {
+    width: 100%;
+    table-layout: auto;
+  }
+  
+  table caption {
+    font-size: 17px;
+    margin: .5em 0 .75em;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 865px) {
+    table {
+      border: 0;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 2em solid white;
+      display: block;
+      
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: 14px;
+      text-align: right;
+      padding: 10px!important;
+     
+    }
+    
+    table td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }

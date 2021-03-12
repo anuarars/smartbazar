@@ -1,6 +1,9 @@
 @extends('layouts.seller')
 
 @section('content')
+<style>
+
+</style>
 <section class="section">
     <div class="section-body">
         <div class="row">
@@ -11,26 +14,28 @@
                         <a href="{{route('seller.product.create')}}" class="btn btn-warning">Добавить Товар</a>
                     </div>
                     <div class="card-body p-0">
-                        <div class="table-responsive">
+                        <div class="table">
                             <table class="table table-striped table-md">
+                               <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Название</th>
-                                    <th>Категория</th>
-                                    <th>Количество</th>
-                                    <th>Цена</th>
-                                    <th>Скидка в %</th>
-                                    <th>Посмотреть</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Название</th>
+                                    <th scope="col">Категория</th>
+                                    <th scope="col">Количество</th>
+                                    <th scope="col">Цена</th>
+                                    <th scope="col">Скидка в %</th>
+                                    <th scope="col">Посмотреть</th>
                                 </tr>
+                            </thead>
                                 @foreach ($products as $product)
                                 <tr>
-                                    <td>{{$product->id}}</td>
-                                    <td>{{$product->title}}</td>
-                                    <td>{{$product->category->title}}</td>
-                                    <td>{{$product->count}} ({{$product->measure->title}})</td>
-                                    <td>{{$product->price}} тг.</td>
-                                    <td>{{$product->discount}}</td>
-                                    <td><a href="{{route('seller.product.show', $product)}}" class="btn btn-primary">Посмотреть</a></td>
+                                    <td data-label="ID">{{$product->id}}</td>
+                                    <td data-label="Название">{{$product->title}}</td>
+                                    <td data-label="Категория">{{$product->category->title}}</td>
+                                    <td data-label="Количество"> {{$product->count}} ({{$product->measure->title}})</td>
+                                    <td data-label="Цена">{{$product->price}} тг.</td>
+                                    <td data-label="Скидка в %">{{$product->discount}}</td>
+                                    <td data-label="Посмотреть"><a href="{{route('seller.product.show', $product)}}" class="btn btn-primary">Посмотреть</a></td>
                                 </tr>
                                 @endforeach
                             </table>

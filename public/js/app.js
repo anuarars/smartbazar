@@ -2636,33 +2636,166 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user', 'order', 'sum', 'home_url'],
+  data: function data() {
+    return {
+      selected: {}
+    };
+  },
+  computed: {
+    isSelected: function isSelected() {
+      return this.selected.id != null;
+    }
+  },
   methods: {
+    addOrUpdateAddress: function addOrUpdateAddress() {
+      if (this.isSelected) {
+        axios.post("/profile/address/update/" + this.selected.id, this.selected).then(function (response) {
+          console.log("success");
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        this.selected.name = "Новый";
+        axios.post("/profile/address", this.selected).then(function (response) {
+          console.log("success");
+        });
+      }
+    },
     generateForm: function generateForm() {
       var widget = new tp.TarlanPayments();
       widget.checkout({
-        reference_id: 543819,
-        // номер заказа 
-        request_url: 'https://site.kz/request',
-        // адрес для перенаправления после платежа 
+        reference_id: 543820,
+        // номер заказа
+        request_url: 'https://example.com',
+        // адрес для перенаправления после платежа
         back_url: 'https://site.kz/back_url',
-        // адрес для отправки коллбека 
+        // адрес для отправки коллбека
         description: 'оплата заказа',
-        // описание платежа 
-        amount: 100,
-        // сумма заказа 
+        // описание платежа
+        amount: 1000,
+        // сумма заказа
         merchant_id: 59,
-        // номер мерчанта 
+        // номер мерчанта
         is_test: 1,
-        // опция для тестовой оплаты 
-        secret_key: 'dzy95RSTjVZLf9U8TFgJ' // ключ выдданный для мерчанта 
-
+        // опция для тестовой оплаты
+        secret_key: 'dzy95RSTjVZLf9U8TFgJ',
+        // ключ выдданный для мерчанта
+        user_id: 1
       }, function (data) {
         console.log(data);
       }, function (err) {
         console.log(err);
       });
     }
+  },
+  created: function created() {
+    console.log(this.order.products);
+    console.log(this.user);
   }
 });
 
@@ -30429,20 +30562,348 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "button",
-    {
-      staticClass: "btn btn-danger",
-      on: {
-        click: function($event) {
-          return _vm.generateForm()
-        }
-      }
-    },
-    [_vm._v("add")]
-  )
+  return _c("div", { staticClass: "checkout block" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-12 col-lg-6 col-xl-7" }, [
+          _c("div", { staticClass: "card mb-lg-0" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3", { staticClass: "card-title" }, [
+                _vm._v("Адрес доставки")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !!_vm.user.address.length > 0,
+                        expression: "!!user.address.length > 0"
+                      },
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected,
+                        expression: "selected"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.selected = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", [_vm._v("Адрес доставки")]),
+                    _vm._v(" "),
+                    _vm._l(_vm.user.address, function(address) {
+                      return _c("option", { domProps: { value: address } }, [
+                        _vm._v(_vm._s(address.name))
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-md-6" }, [
+                  _c("label", { attrs: { for: "checkout-first-name" } }, [
+                    _vm._v("Имя")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Имя", disabled: "" },
+                    domProps: { value: _vm.user.firstname }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-6" }, [
+                  _c("label", { attrs: { for: "checkout-last-name" } }, [
+                    _vm._v("Фамилия")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      placeholder: "Фамилия",
+                      disabled: ""
+                    },
+                    domProps: { value: _vm.user.lastname }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-md-3" }, [
+                  _c("label", { attrs: { for: "checkout-address" } }, [
+                    _vm._v("Дом")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.home,
+                        expression: "selected.home"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.selected.home },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selected, "home", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-7" }, [
+                  _c("label", { attrs: { for: "checkout-street-address" } }, [
+                    _vm._v("Улица")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.street,
+                        expression: "selected.street"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text", placeholder: "Улица" },
+                    domProps: { value: _vm.selected.street },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selected, "street", $event.target.value)
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group col-md-2" }, [
+                  _c("label", { attrs: { for: "checkout-address" } }, [
+                    _vm._v("Кв")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selected.unit,
+                        expression: "selected.unit"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.selected.unit },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selected, "unit", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-md-6" }, [
+                  _c("label", { attrs: { for: "checkout-phone" } }, [
+                    _vm._v("Телефон")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "checkout-phone",
+                      placeholder: "Телефон",
+                      disabled: ""
+                    },
+                    domProps: { value: _vm.user.phone }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-divider" }),
+            _vm._v(" "),
+            _vm._m(1)
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 col-lg-6 col-xl-5 mt-4 mt-lg-0" }, [
+          _c("div", { staticClass: "card mb-0" }, [
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3", { staticClass: "card-title" }, [_vm._v("Ваш заказ")]),
+              _vm._v(" "),
+              _c("table", { staticClass: "checkout__totals" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  { staticClass: "checkout__totals-products" },
+                  _vm._l(_vm.order.products, function(product) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(product.title))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            (
+                              product.price * product.pivot.count
+                            ).toLocaleString()
+                          ) + " тг."
+                        )
+                      ])
+                    ])
+                  }),
+                  0
+                ),
+                _vm._v(" "),
+                _c("tbody", { staticClass: "checkout__totals-subtotals" }, [
+                  _c("tr", [
+                    _c("th", [_vm._v("Сумма")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(_vm.sum.toLocaleString()) + " тг.")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3)
+                ]),
+                _vm._v(" "),
+                _c("tfoot", { staticClass: "checkout__totals-footer" }, [
+                  _c("tr", [
+                    _c("th", [_vm._v("Всего")]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s((_vm.sum + 1000).toLocaleString()) + " тг.")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary btn-xl btn-block",
+                  attrs: {
+                    href: _vm.home_url + "checkout/" + _vm.order.id + "/success"
+                  },
+                  on: { click: _vm.addOrUpdateAddress }
+                },
+                [_vm._v("Оплатить")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  on: { click: _vm.generateForm }
+                },
+                [_vm._v("pay")]
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group col-md-6" }, [
+      _c("label", { attrs: { for: "checkout-phone" } }, [
+        _vm._v("Дополнительный")
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { type: "text", id: "checkout-phone2", placeholder: "Телефон" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-body" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v("Дополнительная информация для доставки")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { attrs: { for: "checkout-comment" } }, [
+          _vm._v("Необязательно")
+        ]),
+        _vm._v(" "),
+        _c("textarea", {
+          staticClass: "form-control",
+          attrs: { id: "checkout-comment", rows: "4" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "checkout__totals-header" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Продукт")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Сумма")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Доставка")]),
+      _vm._v(" "),
+      _c("td", [_vm._v("1 000 тг.")])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -44761,11 +45222,11 @@ Vue.component('categories-component', __webpack_require__(/*! ./components/Categ
 Vue.component('review-star-component', __webpack_require__(/*! ./components/ReviewStartComponent.vue */ "./resources/js/components/ReviewStartComponent.vue")["default"]);
 Vue.component('dropdown-cart-component', __webpack_require__(/*! ./components/DropdownCartComponent.vue */ "./resources/js/components/DropdownCartComponent.vue")["default"]);
 Vue.component('cart-component', __webpack_require__(/*! ./components/CartComponent.vue */ "./resources/js/components/CartComponent.vue")["default"]);
-Vue.component('payment-component', __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue")["default"]);
 Vue.component('delivery-component', __webpack_require__(/*! ./components/DeliveryComponent.vue */ "./resources/js/components/DeliveryComponent.vue")["default"]);
 Vue.component('sale-component', __webpack_require__(/*! ./components/SaleComponent.vue */ "./resources/js/components/SaleComponent.vue")["default"]);
 Vue.component('add-to-cart-component', __webpack_require__(/*! ./components/AddToCartComponent.vue */ "./resources/js/components/AddToCartComponent.vue")["default"]);
 Vue.component('like-component', __webpack_require__(/*! ./components/LikeComponent.vue */ "./resources/js/components/LikeComponent.vue")["default"]);
+Vue.component('payment-component', __webpack_require__(/*! ./components/PaymentComponent.vue */ "./resources/js/components/PaymentComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
