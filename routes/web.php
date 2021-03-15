@@ -85,6 +85,7 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'admin', 'prefix'=>'
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
 });
+Route::get('test/category/{id}', 'Admin\CategoryController@show');
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*-------------SELLER GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -98,6 +99,9 @@ Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=
     Route::get('user/profile/edit', 'UserController@edit')->name('seller.user.edit');
     Route::get('/sales/live', 'SellerController@live')->name('seller.live');
     // Route::get('products', 'SellerController@products')->name('seller.products');
+
+    /** Беру категории для селекта */
+    Route::get('/category/{id}', 'CategoryController@showChildren')->name('category.show');
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 

@@ -139,10 +139,7 @@
                                   <div class="row">
                                       <div class="form-group col-md-6 col-12">
                                           <label for="category">Категория</label>
-                                          <select class="form-control" name="category_id">
-                                              <option disabled selected>Категория товара</option>
-                                              @include('includes.categories', $categories)
-                                          </select>
+                                          <select-component :parent_id="2" :items="{{ $categories->toJson() }}" :home_url="homeUrl" :value="{{ $product->category_id }}"></select-component>
                                           @error('category_id')
                                           <span class="invalid-feedback" role="alert">
                                                 <strong>

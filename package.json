@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@riophae/vue-treeselect": "^0.4.0",
         "hooper": "^0.3.4",
         "laravel-echo": "^1.10.0",
         "pusher-js": "^7.0.3",

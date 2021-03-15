@@ -39,6 +39,8 @@ Vue.component('sale-component', require('./components/SaleComponent.vue').defaul
 Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
+
+Vue.component('select-component', require('./components/Category/SelectComponent').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

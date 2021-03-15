@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -112,7 +113,7 @@ class ProductController extends Controller
         $measures = Measure::all();
         $countries = Country::all();
         $brands = Brand::all();
-        $categories = Category::all();
+        $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
         $delimiter = '';
         return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'delimiter', 'measures'));
     }
@@ -137,19 +138,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $product = $product->update([
-            'category_id' => $request->input('category_id'),
-            'brand_id' => $request->brand_id,
-            'country_id' => $request->country_id,
-            'measure_id' => $request->input('measure_id'),
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'count' => $request->input('count'),
-            'discount' => $request->input('discount'),
+        $request = $request->validate([
+            'category_id'  => 'required',
+            'brand_id'  => 'required',
+            'country_id'  => 'required',
+            'measure_id'  => 'required',
+            'title'  => 'required',
+            'description'  => 'required',
+            'price'  => 'required',
+            'count'  => 'required',
+            'discount'  => 'required',
         ]);
+        $product = $product->update($request);
 
-        return redirect()->back();
+
+        return redirect()->back()->with('product', $product);
     }
 
     /**
