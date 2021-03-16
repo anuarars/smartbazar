@@ -63,10 +63,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <select class="form-control" name="category_id">
-                                            <option disabled selected>Категория товара</option>
-                                            @include('includes.categories', $categories)
-                                        </select>
+                                        <select-component :parent_id="2" :items="{{ $categories->toJson() }}" :home_url="homeUrl"></select-component>
+
                                         @error('category_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>
