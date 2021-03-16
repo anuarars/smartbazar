@@ -42,7 +42,7 @@ class ProductController extends Controller
         $measures = Measure::all();
         $countries = Country::all();
         $brands = Brand::all();
-        $categories = Category::all();
+        $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
         $delimiter = "";
         return view('seller.product.create', compact('countries', 'brands', 'categories', 'measures','delimiter'));
     }
