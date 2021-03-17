@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea name="description" placeholder="Описание" class="form-control @error('description') is-invalid @enderror" id="productDescription"></textarea>
+                                        <editor :inputName="'description'"></editor>
                                         @error('description')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>

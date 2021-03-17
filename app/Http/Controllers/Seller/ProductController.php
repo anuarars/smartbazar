@@ -43,8 +43,7 @@ class ProductController extends Controller
         $countries = Country::all();
         $brands = Brand::all();
         $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
-        $delimiter = "";
-        return view('seller.product.create', compact('countries', 'brands', 'categories', 'measures','delimiter'));
+        return view('seller.product.create', compact('countries', 'brands', 'categories', 'measures'));
     }
 
     /**
@@ -55,7 +54,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+        return $request->all();
         if ($request->hasFile('image')) {
             $originalName = $request->image->getClientOriginalName();
             $filename = uniqid().'_'.$originalName;

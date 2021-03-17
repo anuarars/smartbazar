@@ -90,7 +90,7 @@
       </footer>
     </div>
   </div>
-  <script>window.homeUrl='http://smartbazar/public/';</script>
+  <script>window.homeUrl='http://smartbazar.test/';</script>
   <!-- General JS Scripts -->
   <script src="{{asset("dashboard/js/app.min.js")}}"></script>
   <!-- JS Libraies -->

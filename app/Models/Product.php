@@ -174,5 +174,7 @@ class Product extends Model
     public function getdiscountPercentAttribute(){
         return ceil($this->price - (($this->price * $this->discount)/100));
     }
+
+
 }
 

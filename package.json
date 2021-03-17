@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@riophae/vue-treeselect": "^0.4.0",
+        "@tinymce/tinymce-vue": "^3.2.8",
         "hooper": "^0.3.4",
         "laravel-echo": "^1.10.0",
         "pusher-js": "^7.0.3",
