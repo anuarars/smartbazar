@@ -40,7 +40,6 @@ Vue.component('add-to-cart-component', require('./components/AddToCartComponent.
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
 Vue.component('select-component', require('./components/Category/SelectComponent').default);
-Vue.component('editor', require('./components/Sale/EditorComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -198,5 +197,24 @@ const app = new Vue({
     created(){
         this.countWishlist();
         this.countCart();
+    },
+    filters:{
+        NumFormat:function(value){
+    if(!value) return '0.00';
+    var intPart = Number(value).toFixed(0);
+    var intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,'); 
+    var floatPart = ".00"; 
+    var value2Array = value.split(".");
+    if(value2Array.length == 2) {
+      floatPart = value2Array[1].toString();
+      if(floatPart.length == 1) {
+        return intPartFormat + "." + floatPart + '0';
+      } else {
+        return intPartFormat + "." + floatPart;
+      }
+    } else {
+      return intPartFormat + floatPart;
     }
+   }
+}
 });
