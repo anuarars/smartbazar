@@ -9,7 +9,7 @@ class Order extends Model
     protected $fillable = ['user_id'];
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('count', 'id')->withTimestamps();;
+        return $this->belongsToMany(Product::class)->withPivot('count', 'id')->withTimestamps();
     }
 
     public function get_full_price(){
@@ -26,6 +26,13 @@ class Order extends Model
             $total += $product->pivot->count;
         }
         return $total;
+    }
+
+    public function decrementProductsCount() {
+        $this->products()->each(function ($p) {
+            $p->decrement('count');
+        });
+
     }
 
     public function user(){

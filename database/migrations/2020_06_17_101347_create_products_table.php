@@ -26,7 +26,6 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('count');
             $table->integer('discount')->nullable();
-            $table->string('image');
             $table->integer('views')->default(0);
             $table->string('sku');
             $table->timestamps();

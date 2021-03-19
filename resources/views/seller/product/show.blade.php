@@ -96,6 +96,7 @@
                                   <h4>Изменить</h4>
                               </div>
                               <div class="card-body">
+
                                   <div class="row">
                                       <div class="form-group col-md-6 col-12">
                                           <label>Наименование</label>
@@ -207,6 +208,7 @@
                                       </div>
                                   </div>
                               </div>
+                              <upload-image-component :images="{{ json_encode($galleries) }}"></upload-image-component>
                               <div class="card-footer text-right">
                                   <button class="btn btn-primary">Сохранить</button>
                               </div>

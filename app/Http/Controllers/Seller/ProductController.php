@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Traits\StoreImageTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -16,10 +17,14 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Gallery;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    use StoreImageTrait;
+
+    static $GALLERIES_DIR = "galleries/product";
     /**
      * Display a listing of the resource.
      *
@@ -50,18 +55,10 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return array
      */
     public function store(Request $request)
     {
-        return $request->all();
-        if ($request->hasFile('image')) {
-            $originalName = $request->image->getClientOriginalName();
-            $filename = uniqid().'_'.$originalName;
-            $filepath = "/storage/products/$filename";
-            $request->image->storeAs('products', $filename);
-        }
-
         $product = new Product([
             'user_id' => Auth::id(),
             'company_id' => Auth::user()->company_id,
@@ -75,27 +72,16 @@ class ProductController extends Controller
             'count' => $request->input('count'),
             'discount' => $request->input('discount'),
             'sku' => rand(100000,999999),
-            'image' => $filepath
         ]);
-
         $product->save();
 
-        if($request->hasFile('gallery')) {
-            foreach ($request->gallery as $gallery_image) {
-                $gallery_originalName = $gallery_image->getClientOriginalName();
-                $gallery_filename = uniqid().'_'.$gallery_originalName;
-                $gallery_filepath = "/storage/galleries/$gallery_filename";
-                $gallery_image->storeAs('galleries', $gallery_filename);
+        Gallery::insert($this->imageArray(
+            static::$GALLERIES_DIR,
+            json_decode($request->galleries, true),
+            $product)
+        );
 
-                $gallery = new Gallery([
-                    'image' => $gallery_filepath,
-                    'product_id' => $product->id,
-                    'user_id' => Auth::id()
-                ]);
 
-                $gallery->save();
-            }
-        }
 
         return redirect()->back();
     }
@@ -113,8 +99,8 @@ class ProductController extends Controller
         $countries = Country::all();
         $brands = Brand::all();
         $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
-        $delimiter = '';
-        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'delimiter', 'measures'));
+        $galleries = $product->galleries()->pluck('image');
+        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'galleries', 'measures'));
     }
 
     /**
@@ -162,6 +148,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Storage::deleteDirectory(ProductController::$DIR . $id);
     }
 }

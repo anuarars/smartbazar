@@ -134,18 +134,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <label class="file-upload">
-                                        <input type="file" id="image" name="image"/>
-                                      <span class="file-upload_button">Изображение</span>
-                                    </label>
+                                    <upload-image-component></upload-image-component>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <label class="file-upload">
-                                        <input name="gallery[]" type="file" multiple="true" />
-                                      <span class="file-upload_button">Изображения для галереи</span>
-                                    </label>
-                                </div>
+
 
                                 <div class="col-md-12 mt-3 text-center">
                                     <button type="submit" class="btn btn-primary">Добавить товар</button>

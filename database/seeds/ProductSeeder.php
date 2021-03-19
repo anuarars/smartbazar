@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
     {
         DB::table('products')->truncate();
         $data = [
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -26,9 +26,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/1.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -40,9 +39,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/2.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -54,9 +52,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/2.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -68,9 +65,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/4.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -82,9 +78,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/5.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -97,9 +92,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/6.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -111,9 +105,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/8.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -125,9 +118,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/7.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -141,9 +133,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/9.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -153,17 +144,16 @@ class ProductSeeder extends Seeder
                 'description' => 'Тепличный комплекс NAC Agro находится в Алматы и ежегодно собирает качественный урожай свежих овощей и фруктов. В теплице царит благоприятный микроклимат для выращивания благодаря затуманиванию — системы создания тумана за счет распыления воды насосами высокого давления, чтобы поддерживать необходимую влажность.
 
                 Для энергосбережения и защиты от излишнего солнечного тепла в конструкции теплицы предусмотрена система горизонтального и вертикального зашторивания.
-                
+
                 Для обеспечения управляемого микроклимата предусмотрена механизированная мойка крыши теплицы, уборка снега, система оттаивания снега, система мелования крыши теплицы. Мелование нужно для уменьшения влияния солнечного тепла и прямого попадания УФ.
-                
+
                 Покупайте свежайшие продукты казахстанского производства с теплиц NAC Agro — поддерживайте отечественный продукт и наслаждайтесь полезными овощами прямо с грядки!',
                 'price' => 1790,
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/10.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -175,9 +165,8 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/11.jpg"
             ],
-            [    
+            [
                 'category_id' => 1,
                 'user_id' => 2,
                 'country_id' => 1,
@@ -189,7 +178,6 @@ class ProductSeeder extends Seeder
                 'count' => 700,
                 'discount' => 2,
                 'sku' => rand(100000, 999999),
-                'image' => "/storage/products/12.jpg"
             ],
         ];
         DB::table('products')->insert($data);

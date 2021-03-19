@@ -41,6 +41,7 @@ Vue.component('like-component', require('./components/LikeComponent.vue').defaul
 Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
 Vue.component('select-component', require('./components/Category/SelectComponent').default);
 Vue.component('editor', require('./components/Sale/EditorComponent.vue').default);
+Vue.component('upload-image-component', require('./components/Sale/UploadImageComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50,6 +51,9 @@ Vue.component('editor', require('./components/Sale/EditorComponent.vue').default
 import VueMask from 'v-mask'
 Vue.use(VueMask);
 
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload)
 import vClickOutside from 'v-click-outside'
 
 const app = new Vue({
