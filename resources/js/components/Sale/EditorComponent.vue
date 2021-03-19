@@ -4,7 +4,11 @@
             api-key="vuko5n8zosfrtuvle80aeae8o7nyj7sm85hwt10pa3bie19s"
             :init="{
          height: 500,
-         menubar: false,
+         menubar: 'view',
+         // autosave_interval: '30s',
+         // autosave_prefix: '{path}{query}-{id}-',
+         // autosave_restore_when_empty: false,
+         // autosave_retention: '2m',
          plugins: [
            'advlist autolink lists link image charmap print preview anchor',
            'searchreplace visualblocks code fullscreen',
@@ -13,9 +17,11 @@
          toolbar:
            'undo redo | formatselect | bold italic backcolor | \
            alignleft aligncenter alignright alignjustify | \
-           bullist numlist outdent indent | removeformat | help'
+           bullist numlist outdent indent | removeformat | help | fullscreen',
+         fullscreen_native: true
        }" v-model="content"
         />
+
         <input id="content" type="hidden" :name="inputname" v-model="content"/>
 
     </div>

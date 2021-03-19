@@ -740,7 +740,7 @@
     @endif
     <!-- photoswipe / end -->
     <!-- js -->
-    <script>window.homeUrl='http://localhost:8000/';</script>
+    <script>window.homeUrl='http://smartbazar.test/';</script>
     <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>

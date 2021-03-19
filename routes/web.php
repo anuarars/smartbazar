@@ -84,6 +84,9 @@ Route::group(['middleware'=>['auth']], function(){
 Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'admin', 'prefix'=>'admin'], function(){
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
+    Route::resource('page', 'PageController')->names('admin.page')->parameters([
+        'page' => 'page:slug',
+    ]);
 });
 Route::get('test/category/{id}', 'Admin\CategoryController@show');
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

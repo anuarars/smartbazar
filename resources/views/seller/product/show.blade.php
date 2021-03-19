@@ -196,7 +196,7 @@
                                   <div class="row">
                                       <div class="col-md-12">
                                           <div class="form-group">
-                                              <editor :inputName="'description'" :inputValue="'{{ $product->description }}'"/>
+                                              <editor :inputname="'description'" :inputvalue="{{ json_encode($product->description) }}"/>
                                               @error('description')
                                               <span class="invalid-feedback" role="alert">
                                                 <strong>
