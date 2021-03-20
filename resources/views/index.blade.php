@@ -395,7 +395,7 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-                                            <button class="btn btn-primary btn-lg" v-on:click="addToCart({{$product->id}})" type="button">В корзину</button>
+                                            <button class="btn btn-success btn-lg" :class="{active:isActive}" v-on:click="isActive = !isActive"  type="button">В корзину</button>
                                         </div>
                                         <div class="product__actions-item product__actions-item--wishlist">
                                             <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist">
@@ -418,6 +418,7 @@
             </div>
         </div>
     </div>
+  
 </div>
 @endforeach
 @endsection

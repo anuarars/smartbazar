@@ -51,9 +51,6 @@ Vue.component('upload-image-component', require('./components/Sale/UploadImageCo
 import VueMask from 'v-mask'
 Vue.use(VueMask);
 
-import VueLazyload from 'vue-lazyload'
-
-Vue.use(VueLazyload)
 import vClickOutside from 'v-click-outside'
 
 const app = new Vue({
@@ -207,8 +204,8 @@ const app = new Vue({
         NumFormat:function(value){
     if(!value) return '0.00';
     var intPart = Number(value).toFixed(0);
-    var intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
-    var floatPart = ".00";
+    var intPartFormat = intPart.toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,'); 
+    var floatPart = ".00"; 
     var value2Array = value.split(".");
     if(value2Array.length == 2) {
       floatPart = value2Array[1].toString();
