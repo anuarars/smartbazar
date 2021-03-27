@@ -21,16 +21,13 @@
 import Treeselect from '@riophae/vue-treeselect'
 // import the styles
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
-
 export default {
     props: ['items', 'parent_id', 'home_url', 'value'],
     components: { Treeselect },
-
 }
 </script>
 
 <style scoped>
-
 </style>
 
 <!--<template>-->
@@ -92,4 +89,3 @@ export default {
 <!--<style scoped>-->
 
 <!--</style>-->
-

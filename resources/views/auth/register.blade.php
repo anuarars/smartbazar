@@ -8,7 +8,7 @@
                 <div class="card-header">Регистрация</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register', true) }}">
                         @csrf
 
                         <div class="form-group row{{ $errors->has('firstname') ? ' has-error' : '' }}">
@@ -100,7 +100,7 @@
                                             <input class="input-check__input" type="checkbox" id="checkout-terms">
                                             <span class="input-check__box"></span>
                                             <svg class="input-check__icon" width="9px" height="7px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#check-9x7')}}"></use>
+                                                <use xlink:href="{{secure_asset('template/images/sprite.svg#check-9x7')}}"></use>
                                             </svg>
                                         </span>
                                     </span>

@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'login', 'phone', 'password', 'firstname', 'lastname'
+        'login', 'phone', 'password', 'firstname', 'lastname', 'phone_verify_code'
     ];
 
     /**
@@ -36,24 +37,6 @@ class User extends Authenticatable
     protected $casts = [
         'phone_verified_at' => 'datetime',
     ];
-
-    public function roles(){
-        return $this->belongsToMany('App\Models\Role');
-    }
-
-    public function hasAnyRoles($roles){
-        if($this->roles()->whereIn('name', $roles)->first()){
-            return true;
-        }
-        return false;
-    }
-
-    public function hasRole($role){
-        if($this->roles()->where('name', $role)->first()){
-            return true;
-        }
-        return false;
-    }
 
     public function products(){
         return $this->hasMany(Product::class);
@@ -83,6 +66,34 @@ class User extends Authenticatable
     public function email()
     {
         return $this->morphOne('App\Models\Email', 'emailable');
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function hasAnyRoles($roles){
+        if($this->roles()->whereIn('name', $roles)->first()){
+            return true;
+        }
+        return false;
+    }
+
+    public function hasRole($role){
+        if($this->roles()->where('name', $role)->first()){
+            return true;
+        }
+        return false;
     }
 
 }

@@ -423,5 +423,6 @@
     @else
         <script>window.authUser=null;</script>
     @endif
+    <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
 </body>
 </html>

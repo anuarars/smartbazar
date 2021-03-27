@@ -10,5 +10,5 @@ class Page extends Model
         'title', 'body', 'active',
         'position', 'slug'
     ];
-
+    
 }

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Address;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\{User, Address};
+use Illuminate\Support\Facades\{Auth, Hash};
 
 class ProfileController extends Controller
 {
@@ -21,17 +19,21 @@ class ProfileController extends Controller
     }
 
     public function addressCreate(Request $request){
-        $user = User::find(Auth::id());
-        $data = [
-            'name' => $request->name,
-            'city' => 'Астана',
-            'home' => $request->home,
-            'unit' => $request->unit,
-            'street' => $request->street
-        ];
+        // $user = User::find(Auth::id());
+        // $data = [
+        //     'name' => $request->name,
+        //     'city' => 'Астана',
+        //     'home' => $request->home,
+        //     'unit' => $request->unit,
+        //     'street' => $request->street
+        // ];
 
-        $user->address()->create($data);
-        return redirect()->route('profile.address');
+        if($request->throughPayment){
+            return "test2";
+        }else{
+            // $user->address()->create($data);
+            return redirect()->route('profile.address');
+        }
     }
 
     public function addressUpdate(Request $request, Address $address){
@@ -45,7 +47,7 @@ class ProfileController extends Controller
         ];
 
         $address->update($data);
-        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');
+        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
     }
 
     public function addressRemove(Request $request, Address $address){
@@ -93,7 +95,7 @@ class ProfileController extends Controller
             'login' => $request->login,
             'phone' => $request->phone
         ]);
-
+        
         return redirect()->route('profile.index');
     }
 }

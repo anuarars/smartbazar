@@ -11,13 +11,13 @@
                         <div class="owl-carousel">
                             <a class="block-slideshow__slide" href="">
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style = "
-                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/table.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
                                 background-size: cover;
                                 "></div>
-                            <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                            <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/basket.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
@@ -33,13 +33,13 @@
                                 </div>
                             </a>
                             <a class="block-slideshow__slide" href="">
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/basket.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
                                 background-size: cover;">
                                 </div>
-                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/basket.jpg')}}');
+                                <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/basket.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
@@ -54,14 +54,14 @@
                             </a>
                             <a class="block-slideshow__slide" href="">
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--desktop" style="
-                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/table.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
                                 background-size: cover;
                                 "></div>
                                 <div class="block-slideshow__slide-image block-slideshow__slide-image--mobile" style="
-                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{asset('img/stroyka/table.jpg')}}');
+                                background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('{{secure_asset('img/stroyka/table.jpg')}}');
                                 -webkit-background-size: cover;
                                 -moz-background-size:  cover;
                                 -o-background-size: cover;
@@ -83,13 +83,13 @@
     </div>
     <!-- .block-slideshow / end -->
     <!-- .block-features -->
-    <div class="block block-features block-features--layout--classic">
+    {{-- <div class="block block-features block-features--layout--classic">
         <div class="container">
             <div class="block-features__list">
                 <div class="block-features__item">
                     <div class="block-features__icon">
                         <svg width="48px" height="48px">
-                            <use xlink:href="{{asset('template/images/sprite.svg#fi-free-delivery-48')}}"></use>
+                            <use xlink:href="{{secure_asset('template/images/sprite.svg#fi-free-delivery-48')}}"></use>
                         </svg>
                     </div>
                     <div class="block-features__content">
@@ -101,7 +101,7 @@
                 <div class="block-features__item">
                     <div class="block-features__icon">
                         <svg width="48px" height="48px">
-                            <use xlink:href="{{asset('template/images/sprite.svg#fi-24-hours-48')}}"></use>
+                            <use xlink:href="{{secure_asset('template/images/sprite.svg#fi-24-hours-48')}}"></use>
                         </svg>
                     </div>
                     <div class="block-features__content">
@@ -113,7 +113,7 @@
                 <div class="block-features__item">
                     <div class="block-features__icon">
                         <svg width="48px" height="48px">
-                            <use xlink:href="{{asset('template/images/sprite.svg#fi-payment-security-48')}}"></use>
+                            <use xlink:href="{{secure_asset('template/images/sprite.svg#fi-payment-security-48')}}"></use>
                         </svg>
                     </div>
                     <div class="block-features__content">
@@ -125,7 +125,7 @@
                 <div class="block-features__item">
                     <div class="block-features__icon">
                         <svg width="48px" height="48px">
-                            <use xlink:href="{{asset('template/images/sprite.svg#fi-tag-48')}}"></use>
+                            <use xlink:href="{{secure_asset('template/images/sprite.svg#fi-tag-48')}}"></use>
                         </svg>
                     </div>
                     <div class="block-features__content">
@@ -135,7 +135,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- .block-banner / end -->
     <!-- .block-products -->
     <div class="block block-products block-products--layout--large-first" data-mobile-grid-columns="2">
@@ -150,7 +150,7 @@
                         <div class="product-card product-card--hidden-actions ">
                             <button class="product-card__quickview" type="button">
                                 <svg width="16px" height="16px">
-                                    <use xlink:href="{{asset('template/images/sprite.svg#quickview-16')}}"></use>
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
                                 </svg>
                                 <span class="fake-svg-icon"></span>
                             </button>
@@ -158,13 +158,13 @@
                                 <div class="product-card__badge product-card__badge--new">Новое</div>
                             </div>
                             <div class="product-card__image product-image">
-                                <a href="{{route('product', $products->first())}}" class="product-image__body">
-                                    <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="https://via.placeholder.com/400x400">
+                                <a href="{{route('product', $products->first(), true)}}" class="product-image__body">
+                                    <img class="product-image__img" src="{{secure_asset($products->first()->galleries->first()->image)}}" alt="{{secure_asset($products->first()->galleries->first()->image)}}">
                                 </a>
                             </div>
                             <div class="product-card__info">
                                 <div class="product-card__name">
-                                    <a href="{{route('product', $products->first())}}">{{$products->first()->title}}</a>
+                                    <a href="{{route('product', $products->first(), true)}}">{{$products->first()->title}}</a>
                                 </div>
                                 <div class="product-card__rating">
                                     <div class="product-card__rating-stars">
@@ -185,13 +185,14 @@
                                     {{$products->first()->price}} тг.
                                 </div>
                                 <div class="product-card__buttons">
-                                    <add-to-cart-component
+                                    <add-to-cart-component 
                                             :product="{{ $products->first()->id }}"
                                             :home_url = "homeUrl"
-                                            :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}" @click.native="countCart">
+                                            :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
+                                            @click.native="countCart">
                                     </add-to-cart-component>
-                                    <like-component
-                                        :product="{{ $products->first()->id }}"
+                                    <like-component 
+                                        :product={{ $products->first()->id}}
                                         :home_url = "homeUrl"
                                         :favorited="{{ $products->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                     </like-component>
@@ -206,18 +207,18 @@
                             <div class="product-card product-card--hidden-actions ">
                                 <button class="product-card__quickview" type="button" data-toggle="modal" data-target="#productView{{$product->id}}">
                                     <svg width="16px" height="16px">
-                                        <use xlink:href="{{asset('template/images/sprite.svg#quickview-16')}}"></use>
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
                                     </svg>
                                     <span class="fake-svg-icon"></span>
                                 </button>
                                 <div class="product-card__image product-image">
-                                    <a href="{{route('product', $product)}}" class="product-image__body">
-                                        <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="https://via.placeholder.com/400x400">
+                                    <a href="{{route('product', $product, true)}}" class="product-image__body">
+                                        <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
                                     </a>
                                 </div>
                                 <div class="product-card__info">
                                     <div class="product-card__name">
-                                        <a href="{{route('product', $product)}}">{{$product->title}}</a>
+                                        <a href="{{route('product', $product, true)}}">{{$product->title}}</a>
                                     </div>
                                     <div class="product-card__rating">
                                         <div class="product-card__rating-stars">
@@ -244,13 +245,13 @@
                                         @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component
+                                        <add-to-cart-component 
                                             :product="{{ $product->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
                                             @click.native="countCart">
                                         </add-to-cart-component>
-                                        <like-component
+                                        <like-component 
                                             :product={{ $product->id }}
                                             :home_url = "homeUrl"
                                             :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
@@ -277,7 +278,7 @@
                     <div class="block-categories__item category-card category-card--layout--classic">
                         <div class="category-card__body">
                             <div class="category-card__image">
-                                <a href=""><img src="{{asset('template/images/categories/category-1.jpg')}}" alt=""></a>
+                                <a href=""><img src="{{secure_asset($category->image)}}" alt="{{$category->image}}"></a>
                             </div>
                             <div class="category-card__content">
                                 <div class="category-card__name">
@@ -315,7 +316,7 @@
             <div class="quickview">
                 <button class="quickview__close" type="button" data-dismiss="modal" aria-label="Close">
                     <svg width="20px" height="20px">
-                        <use xlink:href="{{asset('template/images/sprite.svg#cross-20')}}"></use>
+                        <use xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
                     </svg>
                 </button>
                 <div class="product product--layout--quickview" data-layout="quickview">
@@ -326,14 +327,14 @@
                                 <div class="product-gallery__featured">
                                     <button class="product-gallery__zoom">
                                         <svg width="24px" height="24px">
-                                            <use xlink:href="{{asset('template/images/sprite.svg#zoom-in-24')}}"></use>
+                                            <use xlink:href="{{secure_asset('template/images/sprite.svg#zoom-in-24')}}"></use>
                                         </svg>
                                     </button>
                                     <div class="owl-carousel" id="product-image">
                                         @foreach ($product->galleries as $gallery)
                                             <div class="product-image product-image--location--gallery">
-                                                <a href="https://via.placeholder.com/400x400" data-width="700" data-height="700" class="product-image__body" target="_blank">
-                                                    <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="">
+                                                <a href="{{secure_asset($gallery->image)}}" data-width="700" data-height="700" class="product-image__body" target="_blank">
+                                                    <img class="product-image__img" src="{{secure_asset($gallery->image)}}" alt="">
                                                 </a>
                                             </div>
                                         @endforeach
@@ -342,9 +343,9 @@
                                 <div class="product-gallery__carousel">
                                     <div class="owl-carousel" id="product-carousel">
                                         @foreach ($product->galleries as $gallery)
-                                            <a href="https://via.placeholder.com/400x400" class="product-image product-gallery__carousel-item">
+                                            <a href="{{secure_asset($gallery->image)}}" class="product-image product-gallery__carousel-item">
                                                 <div class="product-image__body">
-                                                    <img class="product-image__img product-gallery__carousel-image" src="https://via.placeholder.com/400x400" alt="">
+                                                    <img class="product-image__img product-gallery__carousel-image" src="{{secure_asset($gallery->image)}}" alt="">
                                                 </div>
                                             </a>
                                         @endforeach
@@ -369,7 +370,7 @@
                                 </div>
                             </div>
                             <div class="product__description">
-                                {{$product->description}}
+                                {!!$product->description!!}
                             </div>
                             <ul class="product__meta">
                                 <li class="product__meta-availability">В наличии: <span class="text-success">Да</span></li>
@@ -383,9 +384,8 @@
                                 {{$product->price}} тг.
                             </div>
                             <!-- .product__options -->
-                            <form class="product__options">
+                            <div class="product__options">
                                 <div class="form-group product__option">
-                                    <label class="product__option-label" for="product-quantity">Кол-во</label>
                                     <div class="product__actions">
                                         <div class="product__actions-item">
                                             <div class="input-number product__quantity">
@@ -395,18 +395,23 @@
                                             </div>
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
-                                            <button class="btn btn-success btn-lg" :class="{active:isActive}" v-on:click="isActive = !isActive"  type="button">В корзину</button>
+                                            <div class="product-card__buttons">
+                                                <add-to-cart-component 
+                                                        :product="{{ $products->first()->id }}"
+                                                        :home_url = "homeUrl"
+                                                        :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                        @click.native="countCart">
+                                                </add-to-cart-component>
+                                            </div>
                                         </div>
-                                        <div class="product__actions-item product__actions-item--wishlist">
-                                            <button type="button" class="btn btn-secondary btn-svg-icon btn-lg" data-toggle="tooltip" title="Wishlist">
-                                                <svg width="16px" height="16px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#wishlist-16')}}"></use>
-                                                </svg>
-                                            </button>
-                                        </div>
+                                        <like-component 
+                                            :product={{ $product->id }}
+                                            :home_url = "homeUrl"
+                                            :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
+                                        </like-component>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                             <!-- .product__options / end -->
                         </div>
                         <!-- .product__end -->
@@ -418,7 +423,7 @@
             </div>
         </div>
     </div>
-  
 </div>
 @endforeach
+
 @endsection

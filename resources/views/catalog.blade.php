@@ -10,7 +10,7 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Главная</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Каталог</li>
@@ -32,7 +32,7 @@
                                 <div class="block-sidebar__title">Фильтры</div>
                                 <button class="block-sidebar__close" type="button">
                                     <svg width="20px" height="20px">
-                                        <use xlink:href="{{asset('template/images/sprite.svg#cross-20')}}"></use>
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
                                     </svg>
                                 </button>
                             </div>
@@ -47,7 +47,7 @@
                                                     <button type="button" class="filter__title" data-collapse-trigger>
                                                         {{$category->title}}
                                                         <svg class="filter__arrow" width="12px" height="7px">
-                                                            <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                                            <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                                         </svg>
                                                     </button>
                                                     <div class="filter__body" data-collapse-content>
@@ -57,9 +57,9 @@
                                                                     @foreach ($category->children as $child)
                                                                         <li class="filter-categories__item filter-categories__item--parent">
                                                                             <svg class="filter-categories__arrow" width="6px" height="9px">
-                                                                                <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-left-6x9')}}"></use>
+                                                                                <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-left-6x9')}}"></use>
                                                                             </svg>
-                                                                            <a href="{{ route('catalog.index', ['category' => $child->id]) }}">{{$child->title}}</a>
+                                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
@@ -90,12 +90,12 @@
 {{--                                        </div>--}}
 {{--                                    </div>--}}
 
-                                    <form action="{{ request()->url() }}" method="get">
+                                    {{-- <form action="{{ request()->url() }}" method="get">
                                         <div class="widget-filters__actions d-flex">
                                             <button class="btn btn-primary btn-sm" type="submit">Фильтр</button>
                                             <button class="btn btn-secondary btn-sm" type="reset">Сбросить</button>
                                         </div>
-                                    </form>
+                                    </form> --}}
                                 </div>
                             </div>
 
@@ -107,8 +107,8 @@
                                                 <div class="widget-products__item">
                                                     <div class="widget-products__image">
                                                         <div class="product-image">
-                                                            <a href="{{route('product', $product->id)}}" class="product-image__body">
-                                                                <img class="product-image__img" src="{{asset($product->image)}}" alt="">
+                                                            <a href="{{route('product', $product->id, true)}}" class="product-image__body">
+                                                                <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
                                                             </a>
                                                         </div>
                                                     </div>
@@ -136,7 +136,7 @@
                                     <div class="view-options__filters-button">
                                         <button type="button" class="filters-button">
                                             <svg class="filters-button__icon" width="16px" height="16px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#filters-16')}}"></use>
+                                                <use xlink:href="{{secure_asset('template/images/sprite.svg#filters-16')}}"></use>
                                             </svg>
                                             <span class="filters-button__title">Фильтры</span>
                                             <span class="filters-button__counter">3</span>
@@ -147,17 +147,17 @@
                                             <div class="layout-switcher__list">
                                                 <button data-layout="grid-3-sidebar" data-with-features="false" title="Grid" type="button" class="layout-switcher__button  layout-switcher__button--active ">
                                                     <svg width="16px" height="16px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>
                                                     </svg>
                                                 </button>
                                                 <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">
                                                     <svg width="16px" height="16px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>
                                                     </svg>
                                                 </button>
                                                 <button data-layout="list" data-with-features="false" title="List" type="button" class="layout-switcher__button ">
                                                     <svg width="16px" height="16px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#layout-list-16x16')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-list-16x16')}}"></use>
                                                     </svg>
                                                 </button>
                                             </div>
@@ -180,13 +180,13 @@
                                             <div class="product-card product-card--hidden-actions ">
                                                 <button class="product-card__quickview" type="button">
                                                     <svg width="16px" height="16px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#quickview-16')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
                                                     </svg>
                                                     <span class="fake-svg-icon"></span>
                                                 </button>
                                                 <div class="product-card__image product-image">
-                                                    <a href="{{route('product', $product->id)}}" class="product-image__body">
-                                                        <img class="product-image__img" src="{{asset($product->image)}}" alt="">
+                                                    <a href="{{route('product', $product->id, true)}}" class="product-image__body">
+                                                        <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
                                                     </a>
                                                 </div>
                                                 <div class="product-card__info">
@@ -212,24 +212,17 @@
                                                         {{$product->price}} тг.
                                                     </div>
                                                     <div class="product-card__buttons">
-                                                        <button class="btn btn-primary product-card__addtocart" type="button"
-                                                                v-on:click="addToCart({{$product->id}})"
-                                                        >
-                                                            В корзину
-                                                        </button>
-                                                        <button class="btn btn-secondary product-card__addtocart product-card__addtocart--list" type="button">
-                                                            В корзину
-                                                        </button>
-                                                        <button
-                                                            class="btn btn-light btn-svg-icon btn-svg-icon--fake-svg product-card__wishlist"
-                                                            type="button"
-                                                            @click.prevent="addWishlist({{$product->id}})"
-                                                        >
-                                                            <svg width="16px" height="16px">
-                                                                <use xlink:href="{{asset('template/images/sprite.svg#wishlist-16')}}"></use>
-                                                            </svg>
-                                                            <span class="fake-svg-icon fake-svg-icon--wishlist-16"></span>
-                                                        </button>
+                                                        <add-to-cart-component 
+                                                            :product="{{ $product->id }}"
+                                                            :home_url = "homeUrl"
+                                                            :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                            @click.native="countCart">
+                                                        </add-to-cart-component>
+                                                        <like-component 
+                                                            :product={{ $product->id }}
+                                                            :home_url = "homeUrl"
+                                                            :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
+                                                        </like-component>
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,7 +232,7 @@
                             </div>
                             <div class="products-view__pagination">
                                 <ul class="pagination justify-content-center">
-                                    {{$products->links()}}
+                                    {{ $products->onEachSide(1)->links() }}
                                 </ul>
                             </div>
                         </div>

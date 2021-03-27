@@ -2,6 +2,7 @@
 
 use App\Models\Weekday;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class WeekdaySeeder extends Seeder
 {
@@ -12,12 +13,12 @@ class WeekdaySeeder extends Seeder
      */
     public function run()
     {
-        Weekday::create(['name'=>'Monday']);
-        Weekday::create(['name'=>'Tuesday']);
-        Weekday::create(['name'=>'Wednesday']);
-        Weekday::create(['name'=>'Thursday']);
-        Weekday::create(['name'=>'Friday']);
-        Weekday::create(['name'=>'Saturday']);
-        Weekday::create(['name'=>'Sunday']);
+        $weekdays = DB::connection('mysql_main')->table('weekdays')->get();
+        foreach ($weekdays as $weekday) {
+            DB::connection('mysql_local')->table('weekdays')->insert([
+                'id'=>$weekday->id,
+                'name'=> $weekday->name
+            ]);
+        }
     }
 }

@@ -9,24 +9,24 @@
 
 // -------------------------------------------
 
-function priceAfterCalc(){
-    var discountPercent = $("#discountPercent").val();
-    var newPrice = $("#newPrice").val(); 
-    var discountPrice = (newPrice * discountPercent)/100;
-    var result = newPrice - discountPrice;
-    if(result > 0){
-        $("#priceAfterCalc").text("Цена после скидки " + result + " тг.");
-    }else{
-        $("#priceAfterCalc").text("");
-    }
-}
-$("#discountPercent").bind("change paste keyup", function() {
-    priceAfterCalc();
-});
+// function priceAfterCalc(){
+//     var discountPercent = $("#discountPercent").val();
+//     var newPrice = $("#newPrice").val(); 
+//     var discountPrice = (newPrice * discountPercent)/100;
+//     var result = newPrice - discountPrice;
+//     if(result > 0){
+//         $("#priceAfterCalc").text("Цена после скидки " + result + " тг.");
+//     }else{
+//         $("#priceAfterCalc").text("");
+//     }
+// }
+// $("#discountPercent").bind("change paste keyup", function() {
+//     priceAfterCalc();
+// });
 
-$("#newPrice").bind("change paste keyup", function() {
-    priceAfterCalc();
-});
+// $("#newPrice").bind("change paste keyup", function() {
+//     priceAfterCalc();
+// });
 
 // ----------------------------------------------
 

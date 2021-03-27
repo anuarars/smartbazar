@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
-use App\Traits\StoreImageTrait;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -22,9 +21,6 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    use StoreImageTrait;
-
-    static $GALLERIES_DIR = "galleries/product";
     /**
      * Display a listing of the resource.
      *
@@ -55,9 +51,9 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return array
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         $product = new Product([
             'user_id' => Auth::id(),
@@ -72,18 +68,28 @@ class ProductController extends Controller
             'count' => $request->input('count'),
             'discount' => $request->input('discount'),
             'sku' => rand(100000,999999),
+            'isPublished' => $request->input('isPublished')
         ]);
+
         $product->save();
 
-        Gallery::insert($this->imageArray(
-            static::$GALLERIES_DIR,
-            json_decode($request->galleries, true),
-            $product)
-        );
+        if($request->hasFile('gallery')) {
+            foreach ($request->gallery as $gallery_image) {
 
+                $path = $gallery_image->store('images', 's3');
+                Storage::disk('s3')->setVisibility($path, 'public');
 
+                $gallery = new Gallery([
+                    'image' => Storage::disk('s3')->url($path),
+                    'product_id' => $product->id,
+                    'user_id' => Auth::id()
+                ]);
 
-        return redirect()->back();
+                $gallery->save();
+            }
+        }
+
+        return redirect()->back()->with(['success' => 'Товар успешно добавлен']);
     }
 
     /**
@@ -99,8 +105,7 @@ class ProductController extends Controller
         $countries = Country::all();
         $brands = Brand::all();
         $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
-        $galleries = $product->galleries()->pluck('image');
-        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'galleries', 'measures'));
+        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'measures'));
     }
 
     /**
@@ -123,7 +128,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $request = $request->validate([
+
+        $productId = $product->id;
+
+        // dd($request->gallery);
+
+        if($request->hasFile('gallery')) {
+            foreach ($request->gallery as $gallery_image) {
+                $path = $gallery_image->store('images', 's3');
+                Storage::disk('s3')->setVisibility($path, 'public');
+
+                $gallery = new Gallery([
+                    'image' => Storage::disk('s3')->url($path),
+                    'product_id' => $productId,
+                    'user_id' => Auth::id()
+                ]);
+                $gallery->save();
+            }
+        }
+
+        $updateRequest = $request->validate([
             'category_id'  => 'required',
             'brand_id'  => 'required',
             'country_id'  => 'required',
@@ -134,8 +158,7 @@ class ProductController extends Controller
             'count'  => 'required',
             'discount'  => 'required',
         ]);
-        $product = $product->update($request);
-
+        $product = $product->update($updateRequest);
 
         return redirect()->back()->with('product', $product);
     }
@@ -146,8 +169,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        Storage::deleteDirectory(ProductController::$DIR . $id);
+        $product->delete();
+
+        foreach ($product->galleries as $gallery) {
+            Storage::disk('s3')->delete($gallery->image); 
+            $gallery->delete();
+        }
+
+        return back()->with(['success' => 'Товар успешно удален']);
     }
 }

@@ -10,7 +10,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/">Главная</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Избранное</li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Support\Facades\DB;
 
 class PackerController extends Controller
@@ -32,6 +33,35 @@ class PackerController extends Controller
                 'status_id' => 3,
                 'packer_id' => Auth::id()
             ]);
+
+            $userId = "'".$order->user->id."'";
+
+            $beamsClient = new PushNotifications(array(
+                "instanceId" => env('PUSHER_BEAMS_INSTANCE_ID'),
+                "secretKey" => env('PUSHER_BEAMS_SECRET_KEY'),
+            ));
+            $publishResponse = $beamsClient->publishToUsers(
+                [$userId],//Buyer Id
+                [
+                    "web" => [
+                        "notification" => [
+                            "title" => "Фасовка",
+                            "body" => "Ваши товары фасуются",
+                            'icon' => secure_asset('/img/logo/push.png'),
+                            "deep_link" => env('APP_URL').'home'
+                        ]
+                        ],
+                    "fcm" => [
+                        "notification" => [
+                            "title" => "Фасовка",
+                            "body" => "Ваши товары фасуются",
+                            'icon' => secure_asset('/img/logo/push.png'),
+                            "deep_link" => env('APP_URL').'home'
+                        ]
+                    ]
+                ]
+            );
+
             return view('packer.order', compact('order'));
         }
         return redirect()->route('delivery.index')->with(['error'=>'Данного заказа не существует']);

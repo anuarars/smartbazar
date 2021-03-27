@@ -5,15 +5,16 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
+                @include('includes.errors')
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h4>Добавить товар</h4>
                     </div>
                     <div class="card-body p-4">
-                        <form action="{{route('seller.product.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{secure_url('/company/product')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" placeholder="Наименование">
                                         @error('title')
@@ -23,6 +24,14 @@
                                                 </strong>
                                             </span>
                                         @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <select name="isPublished" class="form-control">
+                                            <option value="0">Не опубликован</option>
+                                            <option value="1">Опубликован</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -47,7 +56,6 @@
                                     <div class="form-group">
                                         <select class="form-control @error('brand_id') is-invalid @enderror" name="brand_id">
                                                 <option disabled selected>Производитель</option>
-                                                <option value="">Другое</option>
                                             @foreach ($brands as $brand)
                                                 <option value="{{$brand->id}}">{{$brand->title}}</option>
                                             @endforeach
@@ -64,7 +72,6 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <select-component :parent_id="2" :items="{{ $categories->toJson() }}" :home_url="homeUrl"></select-component>
-
                                         @error('category_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>
@@ -76,7 +83,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" placeholder="Цена" id="newPrice">
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" placeholder="Цена" id="newPrice" v-model="discount.newPrice">
                                         @error('price')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>
@@ -91,7 +98,7 @@
                                         <select class="form-control @error('measure_id') is-invalid @enderror" name="measure_id">
                                                 <option disabled selected>Единица измерения</option>
                                             @foreach ($measures as $measure)
-                                                <option value="{{$measure->id}}" >{{$measure->title}}</option>
+                                                <option value="{{$measure->id}}">{{$measure->title}}</option>
                                             @endforeach
                                         </select>
                                         @error('measure_id')
@@ -117,8 +124,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <input type="number" class="form-control" id="discountPercent" name="discount" placeholder="Скидка в % не обязательно">
-                                        <small id="priceAfterCalc" class="text-success font-weight-bold"></small>
+                                        <input type="number" class="form-control" id="discountPercent" name="discount" placeholder="Скидка в % не обязательно" v-on:keyup="priceAfterCalc" v-model="discount.discountPercent">
+                                        <small v-if="discount.discountPrice > 0" v-text="discount.discountText" class="text-success font-weight-bold"></small>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -133,12 +140,16 @@
                                         @enderror
                                     </div>
                                 </div>
+
+                                {{-- <images-upload-component></images-upload-component> --}}
+
                                 <div class="col-md-12">
-                                    <upload-image-component></upload-image-component>
+                                    <label class="file-upload">
+                                        <input name="gallery[]" type="file" multiple="true" />
+                                      <span class="file-upload_button">Изображения</span>
+                                    </label>
                                 </div>
-
-
-
+                                        
                                 <div class="col-md-12 mt-3 text-center">
                                     <button type="submit" class="btn btn-primary">Добавить товар</button>
                                 </div>

@@ -24,6 +24,7 @@ export default {
         return {
             isFavorited: '',
             animating: false,
+            authUser: window.authUser,
         }
     },
     mounted() {
@@ -46,27 +47,28 @@ export default {
             if (!this.isFavorited) {
                 this.animating = true;
                 this.favorite(this.product);
+                this.$parent.countWishlist();
             } else {
                 this.unFavorite(this.product);
+                this.isFavorited = false;
+                this.$parent.countWishlist();
             }
         },
         onIconAnimationEnds() {
             this.animating = false;
         },
         favorite(product) {
-            axios.post(this.home_url + 'wishlist/' + product)
-                .then(response => {
-                    this.isFavorited = true;
-                    this.$parent.countWishlist();
-                });
+            if(this.authUser !== null){
+                axios.post(this.home_url + 'wishlist/' + product);
+                this.isFavorited = true;
+            }else{
+                this.$parent.ScrollToForm();
+                this.$parent.isFormOpen = true;
+            }
         },
 
         unFavorite(product) {
-            axios.delete(this.home_url + 'wishlist/unlike/' + product)
-                .then(response => {
-                    this.isFavorited = false;
-                    this.$parent.countWishlist();
-                });
+            axios.delete(this.home_url + 'wishlist/unlike/' + product);
         }
     }
 }

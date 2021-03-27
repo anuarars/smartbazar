@@ -27,7 +27,7 @@
                         </li>
                         <li class="order-success__meta-item">
                             <span class="order-success__meta-title">Сумма:</span>
-                            <span class="order-success__meta-value">{{number_format($sum+1000, 0, ' ', ' ')}} тг.</span>
+                            <span class="order-success__meta-value">{{$order->fullPriceNoDiscount()}} тг.</span>
                         </li>
                         <li class="order-success__meta-item">
                             <span class="order-success__meta-title">Способ оплаты:</span>
@@ -51,7 +51,7 @@
                                         <td class="order-list__column-image">
                                             <div class="product-image">
                                                 <a href="" class="product-image__body">
-                                                    <img class="product-image__img" src="{{asset($product->image)}}" alt="{{$product->image}}">
+                                                    <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->image}}">
                                                 </a>
                                             </div>
                                         </td>
@@ -59,14 +59,14 @@
                                             <a href="">{{$product->title}}</a>
                                         </td>
                                         <td class="order-list__column-quantity" data-title="Qty:">{{$product->pivot->count}}</td>
-                                        <td class="order-list__column-total">{{$product->price * $product->pivot->count}} тг.</td>
+                                        <td class="order-list__column-total">{{$product->priceForCount()}} тг.</td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tbody class="order-list__subtotals">
                                 <tr>
                                     <th class="order-list__column-label" colspan="3">Сумма</th>
-                                    <td class="order-list__column-total">{{number_format($sum,0, ' ', ' ')}} тг.</td>
+                                    <td class="order-list__column-total">{{$order->fullPriceNoDiscount()}} тг.</td>
                                 </tr>
                                 <tr>
                                     <th class="order-list__column-label" colspan="3">Доставка</th>
@@ -76,7 +76,7 @@
                             <tfoot class="order-list__footer">
                                 <tr>
                                     <th class="order-list__column-label" colspan="3">Общая сумма</th>
-                                    <td class="order-list__column-total">{{number_format($sum+1000, 0, ' ', ' ')}} тг.</td>
+                                    <td class="order-list__column-total">{{$order->fullPriceWithDelivery()}} тг.</td>
                                 </tr>
                             </tfoot>
                         </table>

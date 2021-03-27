@@ -2,15 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Order;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Rating;
-use Illuminate\Support\Facades\DB;
-
-use function GuzzleHttp\Promise\all;
+use App\Models\{Category, Order, Product, Rating};
 
 class IndexController extends Controller
 {
@@ -27,13 +21,15 @@ class IndexController extends Controller
     public function product($id = null){
         // $rating = Rating::where('user_id', Auth::id())->where('product_id', $id)->get();
         // return $rating;
-        $product = product::where('id', $id)->first();
-        $reviews = $product->reviews()->where('user_id', Auth::id())->paginate(3);
+        $product = Product::where('id', $id)->first();
+        $reviews = $product->reviews()->paginate(3);
         $product->views += 1;
         $product->update([
             'views' => $product->views
         ]);
-        return view('product', compact('product', 'reviews'));
+
+        $cat_products = Product::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
+        return view('product', compact('product', 'reviews', 'cat_products'));
     }
 
     public function add_rate(Request $request){

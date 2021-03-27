@@ -1,5 +1,5 @@
 @foreach ($categories as $category)
-    <option value="{{$category->id}}" @if(isset($product) && $category == $product->category) selected @endif>
+    <option value="{{$category->id}}">
         {!! $delimiter !!}
         {{$category->title}}
     </option>

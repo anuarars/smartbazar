@@ -10,7 +10,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.html">Главная</a>
                             <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                             </svg>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">Корзина</li>
@@ -26,6 +26,7 @@
         <cart-component
             :order="{{$order ?? 0}}"
             :home_url = "homeUrl" 
+            :deliveryprice = {{$order->deliveryPrice ?? 1000}}
         >
         </cart-component>
     </div>

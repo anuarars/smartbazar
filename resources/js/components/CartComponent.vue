@@ -32,14 +32,28 @@
                     <td class="cart-table__column cart-table__column--image">
                         <div class="product-image">
                             <a href="" class="product-image__body">
-                                <img class="product-image__img" :src="home_url + product.image" alt="">
+                                <img class="product-image__img" :src="product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
                     <td class="cart-table__column cart-table__column--product">
                         <a href="" class="cart-table__product-name">{{product.title}}</a>
                     </td>
-                    <td class="cart-table__column cart-table__column--price" data-title="Цена">{{product.price.toLocaleString()}} тг.</td>
+
+                    <td class="cart-table__column cart-table__column--price" data-title="Цена">
+                        <div class="d-flex flex-column" v-if="product.discount != null">
+                            <span class="text-success">
+                            {{(Math.ceil(product.price - ((product.price * product.discount)/100))).toLocaleString()}} тг.
+                            </span>
+                            <span class="line-through text-danger">
+                                {{(product.price).toLocaleString()}} тг.
+                            </span>
+                        </div>
+                        <div class="d-flex flex-column" v-else>
+                            {{(product.price).toLocaleString()}} тг.
+                        </div>
+                    </td>
+
                     <td class="cart-table__column cart-table__column--quantity" data-title="Кол-во">
                         <strong>{{product.measure.code}}</strong>
                         <div class="input-number">
@@ -48,7 +62,18 @@
                             <div class="input-number__sub" v-on:click="subQuantity(index)"></div>
                         </div>
                     </td>
-                    <td class="cart-table__column cart-table__column--total" data-title="Всего">{{(product.total = product.pivot.count*product.price).toLocaleString()}} тг.</td>
+
+                    <td class="cart-table__column cart-table__column--total" data-title="Всего">
+                        <span v-if="product.discount != null">
+                            {{
+                                (product.pivot.count * Math.ceil(product.price-((product.price * product.discount)/100))).toLocaleString()
+                            }} тг.
+                        </span>
+                        <span v-else>
+                            {{(product.pivot.count * product.price).toLocaleString()}} тг.
+                        </span>
+                    </td>
+
                     <td class="cart-table__column cart-table__column--remove">
                         <button type="button" class="btn btn-light btn-sm btn-svg-icon" v-on:click.prevent="removeItem(index)">
                             <svg width="12px" height="12px">
@@ -75,18 +100,18 @@
                                 <tr>
                                     <th>Доставка</th>
                                     <td>
-                                        1 500 тг.
+                                        {{deliveryprice.toLocaleString()}} тг.
                                     </td>
                                 </tr>
                             </tbody>
                             <tfoot class="cart__totals-footer">
                                 <tr>
                                     <th>Всего</th>
-                                    <td>{{(subTotal + 1500).toLocaleString()}} тг.</td>
+                                    <td>{{(subTotal + deliveryprice).toLocaleString()}} тг.</td>
                                 </tr>
                             </tfoot>
                         </table>
-                        <a class="btn btn-primary btn-xl btn-block cart__checkout-button" :href="'checkout/'+order.id">Продолжить покупку</a>
+                        <a class="btn btn-primary btn-xl btn-block cart__checkout-button" :href="this.home_url + 'checkout/'+order.id">Продолжить покупку</a>
                     </div>
                 </div>
             </div>
@@ -96,7 +121,7 @@
 
 <script>
     export default {
-        props:['order', 'home_url'],
+        props:['order', 'home_url', 'deliveryprice'],
         data(){
             return{
                 products: [],
@@ -145,7 +170,7 @@
             }
         },
         created(){
-            console.log(this.products.length);
+            console.log(this.deliveryprice);
             this.getData();
         },
         computed: {
@@ -153,7 +178,12 @@
                 var subTotal = 0;
 
                 for (var i = 0; i < this.products.length; i++) {
-                    subTotal += this.products[i].price * this.products[i].pivot.count;
+                    if(this.products[i].discount != null){
+                        var discountPrice = Math.ceil(this.products[i].price - ((this.products[i].price * this.products[i].discount)/100))
+                        subTotal += this.products[i].pivot.count * discountPrice;
+                    }else{
+                        subTotal += this.products[i].price * this.products[i].pivot.count;
+                    }
                 }
 
                 return subTotal;
@@ -161,3 +191,9 @@
         },
     }
 </script>
+
+<style>
+    .line-through{
+        text-decoration: line-through;
+    }
+</style>

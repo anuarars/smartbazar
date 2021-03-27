@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
+Route::get('/verify/phone', 'Auth\PhoneVerificationController@index')->name('verify.phone');
+Route::post('/verify/phone', 'Auth\PhoneVerificationController@code')->name('verify.code');
+Route::post('/verify/resend', 'Auth\PhoneVerificationController@resend')->name('verify.resend');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 /*---------------------------------------------------------------------------------------------------------------------------PUBLIC ROUTES GROUP--------------------------------------------------------------------------------------------*/
 
 Route::get('/', 'IndexController@index')->name('index');
@@ -28,7 +30,8 @@ Route::get('/products/{id}', 'IndexController@product')->name('product');
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
 Route::get('/info/faq', 'InfoController@faq')->name('info.faq');
 Route::post('/search/product', 'SearchController@product')->name('search.product');
-
+Route::get('/push/pusher/beams-auth', 'PushController@tokenProvider');
+Route::post('/push/pusher/id', 'PushController@getUserId');
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -71,8 +74,9 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/review/{companyId}', 'ReviewController@show')->name('review.show');
     Route::post('/review/store', 'ReviewController@store')->name('review.store');
 
-    Route::get('checkout/{orderId}', 'CheckoutController@show')->name('checkout.show');
+    Route::get('checkout/{orderId}', 'CheckoutController@show')->name('checkout.show')->middleware('phoneVerified');
     Route::get('checkout/{orderId}/success', 'CheckoutController@success')->name('checkout.success');
+
 });
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -81,19 +85,21 @@ Route::group(['middleware'=>['auth']], function(){
 /*  -----------------------------------------------------------------------------------------------
 ------------------------ADMIN GROUP ROUTES------------------------------------------------------------------------------------------  */
 
-Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'admin', 'prefix'=>'admin'], function(){
+Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'Admin'], function(){
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
+    Route::resource('company', 'CompanyController')->names('admin.company');
     Route::resource('page', 'PageController')->names('admin.page')->parameters([
         'page' => 'page:slug',
     ]);
 });
-Route::get('test/category/{id}', 'Admin\CategoryController@show');
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
 
 /*-------------SELLER GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=>'company'], function(){
     Route::resource('product', 'ProductController')->names('seller.product');
+    Route::resource('gallery', 'GalleryController')->names('seller.gallery');
     Route::get('profile', 'CompanyController@index')->name('seller.company.dashboard');
     Route::get('profile/edit/', 'CompanyController@edit')->name('seller.company.edit');
     Route::post('profile/update', 'CompanyController@update')->name('seller.company.profile.update');
@@ -102,9 +108,8 @@ Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=
     Route::get('user/profile/edit', 'UserController@edit')->name('seller.user.edit');
     Route::get('/sales/live', 'SellerController@live')->name('seller.live');
     // Route::get('products', 'SellerController@products')->name('seller.products');
-
-    /** Беру категории для селекта */
-    Route::get('/category/{id}', 'CategoryController@showChildren')->name('category.show');
+        /** Беру категории для селекта */
+    // Route::get('/category/{id}', 'CategoryController@showChildren')->name('category.show');
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -125,6 +130,7 @@ Route::group(['middleware'=>['auth', 'delivery'], 'namespace'=>'Delivery', 'pref
     Route::post('order/accept', 'DeliveryController@accept')->name('delivery.accept');
     Route::get('order/accept/{id}', 'DeliveryController@order')->name('delivery.order');
     Route::post('order/end/{order}', 'DeliveryController@end')->name('delivery.end');
+    Route::post('/order/available', 'DeliveryController@available')->name('delivery.orders');
 });
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -133,4 +139,3 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
-Route::get('/test2', 'TestController@index2')->name('index2');

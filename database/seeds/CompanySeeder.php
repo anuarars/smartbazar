@@ -12,16 +12,16 @@ class CompanySeeder extends Seeder
      */
     public function run()
         {
-            $data = [
-                [
-                    'name' => 'Бутик 26',
-                    'bin' => '11111111',
-                    'phone' => '3453453',
-                    'code' => 'Бутик 26',
-                    'description' => 'this bouttique has no mall...'
-                ],
-            ];
-
-            DB::table('companies')->insert($data);
+            $companies = DB::connection('mysql_main')->table('companies')->get();
+            foreach ($companies as $company) {
+                DB::connection('mysql_local')->table('companies')->insert([
+                    'id' => $company->id,
+                    'bin'=> $company->bin,
+                    'name'=>$company->name,
+                    'code'=>$company->code,
+                    'phone'=>$company->phone,
+                    'description'=>$company->description
+                ]);
+            }
         }
 }

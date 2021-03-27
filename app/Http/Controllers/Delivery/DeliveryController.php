@@ -14,6 +14,11 @@ class DeliveryController extends Controller
         return view('delivery.index');
     }
 
+    public function available(){
+        $orders = Order::where('status_id', 4)->get();
+        return $orders;
+    }
+
     public function accept(){
         $order_id = request()->input('order_id');
         return redirect()->route('delivery.order', [$order_id])->with(['success'=>'Заказ успешно принят']);

@@ -165,8 +165,8 @@ return [
         /*
          * Package Service Providers...
          */
-        // Nexmo\Laravel\NexmoServiceProvider::class,
         \Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -228,7 +228,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // 'Nexmo' => \Nexmo\Laravel\Facade\Nexmo::class,
     ],
 
 ];

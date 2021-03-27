@@ -15,11 +15,7 @@ class Product extends Model
 
     public $sortable = ['price', 'discount', 'category_id', 'created_at'];
 
-    protected $fillable = [
-        'user_id', 'country_id', 'brand_id',
-        'measure_id', 'company_id', 'category_id',
-        'title', 'description', 'price',
-        'count', 'discount', 'image', 'sku'];
+    protected $fillable = ['user_id', 'country_id', 'brand_id', 'measure_id', 'company_id', 'category_id', 'title', 'description', 'price', 'count', 'discount', 'image', 'sku'];
 
     public function category(){
         return $this->belongsTo(Category::class);
@@ -59,6 +55,10 @@ class Product extends Model
 
     public function reviews(){
         return $this->hasMany(Review::class);
+    }
+
+    public function properties(){
+        return $this->hasMany(Property::class);
     }
 
     public function userRating(){
@@ -137,17 +137,26 @@ class Product extends Model
         }
     }
 
-    public function get_price_for_count(){
+    // ACCESSOR
+    public function getafterDiscountAttribute(){
+        return ceil($this->price - (($this->price * $this->discount)/100));
+    }
+
+    public function priceForCount(){
         if(!is_null($this->pivot)){
+            if(!empty($this->discount)){
+                return $this->pivot->count * $this->getafterDiscountAttribute();
+            }
             return $this->pivot->count * $this->price;
         }
         return $this->price;
     }
 
-
-    // ACCESSOR
-    public function getafterDiscountAttribute(){
-        return ceil($this->price - (($this->price * $this->discount)/100));
+    public function priceForCountNoDiscount(){
+        if(!is_null($this->pivot)){
+            return $this->pivot->count * $this->price;
+        }
+        return $this->price;
     }
 
     public function isFavoritedBy(){
@@ -159,7 +168,7 @@ class Product extends Model
     public function isAddedToCartBy(): bool
     {
         if ($user = User::find(Auth::id())) {
-            $order = $user->order()->where('isFinished', 0)->get()->first();
+            $order = $user->order()->where('status_id', 1)->get()->first();
         } else {
             return false;
         }
@@ -171,10 +180,4 @@ class Product extends Model
             return false;
         }
     }
-    public function getdiscountPercentAttribute(){
-        return ceil($this->price - (($this->price * $this->discount)/100));
-    }
-
-
 }
-

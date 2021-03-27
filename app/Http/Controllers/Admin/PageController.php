@@ -43,12 +43,11 @@ class PageController extends Controller
         $validated = $request->validate([
             'title' => 'required|unique:pages,title|max:50',
             'body' => 'required',
-            'active' => 'required',
         ]);
         $validated['slug'] = Str::slug($validated['title']);
         $page = Page::create($validated);
 
-        return redirect()->route('admin.page.show', $page);
+        return redirect()->route('admin.page.index');
     }
 
     /**
@@ -94,7 +93,6 @@ class PageController extends Controller
         ]);
         $validated['slug'] = Str::slug($validated['title']);
         $page->update($validated);
-.0
         return redirect()->route('admin.page.show', $page);
     }
 

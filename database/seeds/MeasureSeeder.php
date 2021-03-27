@@ -12,16 +12,13 @@ class MeasureSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('measures')->truncate();
-
-        $measures = [
-            ['title' => 'Килограммы', 'code' => 'Кг'],
-            ['title' => 'Граммы', 'code' => 'Гр'],
-            ['title' => 'Метры', 'code' => 'Мт'],
-            ['title' => 'Литры', 'code' => 'Лтр'],
-            ['title' => 'Количество', 'code' => 'Шт'],
-        ];
-
-        DB::table('measures')->insert($measures);
+        $measures = DB::connection('mysql_main')->table('measures')->get();
+        foreach ($measures as $measure) {
+            DB::connection('mysql_local')->table('measures')->insert([
+                'id' => $measure->id,
+                'title' => $measure->title,
+                'code' => $measure->code
+            ]);
+        }
     }
 }

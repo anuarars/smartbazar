@@ -12,18 +12,12 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->truncate();
-
-        $statuses = [
-            ['name' => 'NOT PAID'],
-            ['name' => 'LOOKING FOR PACKING'],
-            ['name' => 'AT PACKING'],
-            ['name' => 'LOOKING FOR DRIVER'],
-            ['name' => 'DRIVING'],
-            ['name' => 'DELIVERED'],
-            ['name' => 'ACCEPTED']
-        ];
-
-        DB::table('statuses')->insert($statuses);
+        $statuses = DB::connection('mysql_main')->table('statuses')->get();
+        foreach ($statuses as $status) {
+            DB::connection('mysql_local')->table('statuses')->insert([
+                'id'=>$status->id,
+                'name'=> $status->name
+            ]);
+        }
     }
 }

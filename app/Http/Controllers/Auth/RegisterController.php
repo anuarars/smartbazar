@@ -9,6 +9,8 @@ use App\Models\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp;
+use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
@@ -30,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = RouteServiceProvider::VERIFY;
 
     /**
      * Create a new controller instance.
@@ -51,11 +53,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'phone.required' => 'Введите телефон',
-            'phone.unique' => 'Пользователь с таким номером уже существует',
-            'password.required' => 'Введите пароль',
-            'password.min' => 'Пароль должен быть не менее :min символов',
-            'password.confirmed' => 'Пароли не совпадают',
+            'firstname' => ['required', 'string', 'max:255'],
+            'lastname' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -67,15 +68,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $data['phone']);
+        $phoneNumber = str_replace(' ', '', $removedSymbols);
+
         $user = User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
+            'phone_verify_code' => rand(1000, 9999)
         ]);
 
-        $role = Role::select('id')->where('name', 'user')->first();
+        // $client = new Client();
+        // $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
 
+        $role = Role::select('id')->where('name', 'user')->first();
         $user->roles()->attach($role);
 
         return $user;

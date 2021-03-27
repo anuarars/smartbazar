@@ -28,6 +28,7 @@ class CreateProductsTable extends Migration
             $table->integer('discount')->nullable();
             $table->integer('views')->default(0);
             $table->string('sku');
+            $table->boolean('isPublished')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

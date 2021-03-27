@@ -15,56 +15,29 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
-        DB::table('role_user')->truncate();
+        $users = DB::connection('mysql_main')->table('users')->get();
+        foreach ($users as $user) {
+            DB::connection('mysql_local')->table('users')->insert([
+                'id' => $user->id,
+                'firstname' => $user->firstname,
+                'lastname' => $user->lastname,
+                'phone' => $user->phone,
+                'company_id' => $user->company_id,
+                'password' => $user->password,
+                'phone_verify_code' => $user->phone_verify_code,
+                'phone_verified_at' => $user->phone_verified_at
+            ]);
+        }
 
-        $userRole = Role::where('name', 'user')->first();
-        $sellerRole = Role::where('name', 'seller')->first();
-        $packerRole = Role::where('name', 'packer')->first();
-        $deliveryRole = Role::where('name', 'delivery')->first();
-        $adminRole = Role::where('name', 'admin')->first();
-
-        $user = User::create([
-            'firstname' => 'user',
-            'lastname' => 'user',
-            'phone' => '+7 (222) 222 2222',
-            'company_id' => '1',
-            'password' => Hash::make('11111111')
-        ]);
-
-        $seller = User::create([
-            'firstname' => 'seller',
-            'lastname' => 'seller',
-            'phone' => '+7 (111) 111 1111',
-            'company_id' => '1',
-            'password' => Hash::make('11111111')
-        ]);
-
-        $packer = User::create([
-            'firstname' => 'packer',
-            'lastname' => 'seller',
-            'phone' => '+7 (333) 333 3333',
-            'password' => Hash::make('11111111')
-        ]);
-
-        $delivery = User::create([
-            'firstname' => 'delivery',
-            'lastname' => 'seller',
-            'phone' => '+7 (444) 444 4444',
-            'password' => Hash::make('11111111')
-        ]);
-
-        $admin = User::create([
-            'firstname' => 'admin',
-            'lastname' => 'seller',
-            'phone' => '+7 (555) 555 5555',
-            'password' => Hash::make('11111111')
-        ]);
-
-        $user->roles()->attach($userRole);
-        $seller->roles()->attach($sellerRole);
-        $packer->roles()->attach($packerRole);
-        $delivery->roles()->attach($deliveryRole);
-        $admin->roles()->attach($adminRole);
+        $items = DB::connection('mysql_main')->table('role_user')->get();
+        foreach ($items as $item) {
+            DB::connection('mysql_local')->table('role_user')->insert([
+                'id' => $item->id,
+                'role_id' => $item->role_id,
+                'user_id' => $item->user_id,
+                'created_at' => $item->created_at,
+                'updated_at' => $item->updated_at
+            ]);
+        }
     }
 }

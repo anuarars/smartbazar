@@ -39,6 +39,10 @@ return [
                 'cluster' => 'eu',
                 'useTLS' => true
             ],
+            'beams' => [
+                'secret_key' => env('PUSHER_BEAMS_SECRET_KEY'),
+                'instance_id' => env('PUSHER_BEAMS_INSTANCE_ID'),
+            ],
         ],
 
         'redis' => [

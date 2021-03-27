@@ -10,6 +10,6 @@ class SearchController extends Controller
     public function product(Request $request){
         $search = $request->searchInput;
         $products = Product::where('title', 'LIKE', "%{$search}%")->orWhere('description', 'LIKE', "%{$search}%")->get()->take(10);
-        return $products;
+        return $products->load('galleries', 'brand');
     }
 }

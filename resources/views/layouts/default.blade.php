@@ -9,22 +9,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
-    <link rel="icon" href="{{asset('img/logo/logo.svg')}}" type="image/x-icon">
+    <link rel="icon" href="{{secure_asset('img/logo/logo.svg')}}" type="image/x-icon">  
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
-<link rel="stylesheet" href="{{asset('template/vendor/bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('template/vendor/owl-carousel/assets/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('template/vendor/photoswipe/photoswipe.css')}}">
-    <link rel="stylesheet" href="{{asset('template/vendor/photoswipe/default-skin/default-skin.css')}}">
-    <link rel="stylesheet" href="{{asset('template/vendor/select2/css/select2.min.css')}}">
-    <link rel="stylesheet" href="{{asset('template/css/style.css')}}">
+<link rel="stylesheet" href="{{secure_asset('template/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/owl-carousel/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/photoswipe/photoswipe.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/photoswipe/default-skin/default-skin.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/css/style.css')}}">
     <!-- font - fontawesome -->
-    <link rel="stylesheet" href="{{asset('template/vendor/fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/fontawesome/css/all.min.css')}}">
     <!-- font - stroyka -->
-    <link rel="stylesheet" href="{{asset('template/fonts/stroyka/stroyka.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/fonts/stroyka/stroyka.css')}}">
     <script src="https://proxyd.tarlanpayments.kz/tarlan/widget-new.js"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
 </head>
 
 <body>
@@ -40,7 +40,7 @@
                             <div class="mobile-header__body">
                                 <button class="mobile-header__menu-button">
                                     <svg width="18px" height="14px">
-                                        <use xlink:href="{{asset('template/images/sprite.svg#menu-18x14')}}"></use>
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
                                     </svg>
                                 </button>
                                 <a class="mobile-header__logo" href="/">
@@ -50,29 +50,29 @@
                                 </a>
                                 <div class="search search--location--mobile-header mobile-header__search">
                                     <div class="search__body">
-                                        <form class="search__form" action="">
-                                            <input
-                                                class="search__input"
-                                                name="search"
-                                                placeholder="Найти..."
-                                                aria-label="Site search"
-                                                type="text"
+                                        <div class="search__form">
+                                            <input 
+                                                class="search__input" 
+                                                name="search" 
+                                                placeholder="Найти..." 
+                                                aria-label="Site search" 
+                                                type="text" 
                                                 autocomplete="off"
                                                 v-model="search.searchInput"
                                                 v-on:keyup="searchProduct"
                                             >
                                             <button class="search__button search__button--type--submit" type="submit">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#search-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
                                                 </svg>
                                             </button>
                                             <button class="search__button search__button--type--close" type="button">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#cross-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
                                                 </svg>
                                             </button>
                                             <div class="search__border"></div>
-                                        </form>
+                                        </div>
                                         <mobile-search-component
                                             v-if="search.searchShow"
                                             v-click-outside="hideSearch"
@@ -87,26 +87,26 @@
                                         <button class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#search-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
                                                 </svg>
                                             </span>
                                         </button>
                                     </div>
                                     <div class="indicator indicator--mobile d-sm-flex d-none">
-                                        <a href="{{route('wishlist.index')}}" class="indicator__button">
+                                        <a href="{{route('wishlist.index', true)}}" class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#heart-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
                                                 </svg>
                                                 <span class="indicator__value">0</span>
                                             </span>
                                         </a>
                                     </div>
                                     <div class="indicator indicator--mobile">
-                                        <a href="{{route('cart.index')}}" class="indicator__button">
+                                        <a href="{{route('cart.index', true)}}" class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#cart-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                 </svg>
                                                 <span class="indicator__value"></span>
                                             </span>
@@ -141,7 +141,7 @@
                                         <button class="topbar-dropdown__btn" type="button">
                                             Аккаунт
                                             <svg width="7px" height="5px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-7x5')}}"></use>
+                                                <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-7x5')}}"></use>
                                             </svg>
                                         </button>
                                         <div class="topbar-dropdown__body">
@@ -196,48 +196,19 @@
                     <!-- .topbar / end -->
                     <div class="site-header__middle container">
                         <div class="site-header__logo">
-                            <a href="{{route('index')}}">
+                            <a href="{{route('index', true)}}">
                                 <!-- logo -->
-                                {{-- <img src="{{asset('img/logo/logo.svg')}}" alt="logo.svg"> --}}
+                                {{-- <img src="{{secure_asset('img/logo/logo.svg')}}" alt="logo.svg"> --}}
                                 <h1>Smart Bazar</h1>
                                 <!-- logo / end -->
                             </a>
                         </div>
                         <div class="site-header__search">
-                            <div class="search search--location--header ">
-                                <div class="search__body">
-                                    <form class="search__form" action="">
-                                        <input
-                                            class="search__input"
-                                            name="search"
-                                            placeholder="Найти"
-                                            aria-label="Site search"
-                                            type="text"
-                                            autocomplete="off"
-                                            v-on:focus="searchFocused = true"
-                                            v-on:blur="searchFocused = !searchFocused"
-                                            v-model="search.searchInput"
-                                            v-on:keyup="searchProduct"
-                                            >
-                                        <button class="search__button search__button--type--submit" type="submit">
-                                            <svg width="20px" height="20px">
-                                                <use xlink:href="{{asset('template/images/sprite.svg#search-20')}}"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="search__border"></div>
-                                    </form>
-                                    <search-component
-                                        v-if="search.searchShow"
-                                        :search = "search.searchResult"
-                                        :home_url = "homeUrl"
-                                        >
-                                    </search-component>
-                                </div>
-                            </div>
+                            <search-component :home_url="homeUrl"></search-component>
                         </div>
                         <div class="site-header__phone">
                             <div class="site-header__phone-title">Служба поддержки</div>
-                            <div class="site-header__phone-number">+7 (777) 060 0730</div>
+                            <div class="site-header__phone-number">+7 (771) 222 9777</div>
                         </div>
                     </div>
                     <div class="site-header__nav-panel">
@@ -254,10 +225,10 @@
                                                     <ul class="departments__links">
                                                         @foreach ($categories as $category)
                                                         <li class="departments__item">
-                                                            <a class="departments__item-link" href="{{ route('catalog.index', ['category' => $category->id]) }}">
+                                                            <a class="departments__item-link" href="{{ route('catalog.index', ['category' => $category->id], true) }}">
                                                                 {{$category->title}}
                                                                 <svg class="departments__item-arrow" width="6px" height="9px">
-                                                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                                                 </svg>
                                                             </a>
                                                             <div class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--xl">
@@ -269,10 +240,10 @@
                                                                             <div class="col-3">
                                                                                 <ul class="megamenu__links megamenu__links--level--0">
                                                                                     <li class="megamenu__item  megamenu__item--with-submenu ">
-                                                                                        <a href="{{ route('catalog.index', ['category' => $child->id]) }}">{{$child->title}}</a>
+                                                                                        <a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a>
                                                                                         <ul class="megamenu__links megamenu__links--level--1">
                                                                                             @foreach ($child->children->take(3) as $grandchild)
-                                                                                                <li class="megamenu__item"><a href="{{ route('catalog.index', ['category' => $grandchild->id]) }}">{{$grandchild->title}}</a></li>
+                                                                                                <li class="megamenu__item"><a href="{{ route('catalog.index', ['category' => $grandchild->id], true) }}">{{$grandchild->title}}</a></li>
                                                                                             @endforeach
                                                                                         </ul>
                                                                                     </li>
@@ -291,11 +262,11 @@
                                             </div>
                                             <button class="departments__button" v-on:click.prevent="hiddenCategory = !hiddenCategory">
                                                 <svg class="departments__button-icon" width="18px" height="14px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#menu-18x14')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
                                                 </svg>
                                                 Категории
                                                 <svg class="departments__button-arrow" width="9px" height="6px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-9x6')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-9x6')}}"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -305,7 +276,7 @@
                                     <div class="nav-panel__nav-links nav-links">
                                         <ul class="nav-links__list">
                                             <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('index')}}">
+                                                <a class="nav-links__item-link" href="{{route('index', true)}}">
                                                     <div class="nav-links__item-body">
                                                         Главная
                                                     </div>
@@ -326,14 +297,14 @@
                                                 </a>
                                             </li> --}}
                                             <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('catalog.index')}}">
+                                                <a class="nav-links__item-link" href="{{route('catalog.index', true)}}">
                                                     <div class="nav-links__item-body">
                                                         Каталог
                                                     </div>
                                                 </a>
                                             </li>
                                             <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('info.faq')}}">
+                                                <a class="nav-links__item-link" href="{{route('info.faq', true)}}">
                                                     <div class="nav-links__item-body">
                                                         FAQ
                                                     </div>
@@ -345,52 +316,52 @@
                                     <div class="nav-panel__indicators">
                                         @auth
                                         <div class="indicator">
-                                            <a href="{{route('wishlist.index')}}" class="indicator__button">
+                                            <a href="{{route('wishlist.index', true)}}" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#heart-20')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
                                                     </svg>
                                                     <span class="indicator__value" v-text="wishlist"></span>
                                                 </span>
                                             </a>
                                         </div>
-                                        <div class="indicator indicator--trigger--click indicator--display indicator--open">
-                                            <a href="{{route('cart.index')}}" class="indicator__button">
+                                        <div class="indicator">
+                                            <a href="{{route('cart.index', true)}}" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="{{asset('template/images/sprite.svg#cart-20')}}"></use>
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                     </svg>
                                                     <span class="indicator__value" v-text="productCount"></span>
                                                 </span>
                                             </a>
-                                            <div class="indicator__dropdown">
+                                            {{-- <div class="indicator__dropdown">
                                                 <div class="dropcart dropcart--style--dropdown">
                                                     <dropdown-cart-component>
                                                     </dropdown-cart-component>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         @endauth
                                         <div class="indicator indicator--trigger--click">
                                             <a href="#" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#person-20')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#person-20')}}"></use>
                                                     </svg>
                                                 </span>
                                             </a>
                                             <div class="indicator__dropdown">
                                                 <div class="account-menu">
                                                      @guest
-                                                        <form method="POST" action="{{ route('login') }}" class="account-menu__form">
+                                                        <form method="POST" action="{{secure_url('login')}}" class="account-menu__form">
                                                             @csrf
                                                             <div class="account-menu__form-title">Войти в аккаунт</div>
                                                             <div class="form-group">
-                                                                <input
-                                                                    id="header-signin-email" type="text"
-                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон"
+                                                                <input 
+                                                                    id="header-signin-email" type="text" 
+                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон" 
                                                                     name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
-                                                                    v-mask="'+7 (###) ### ####'"
+                                                                    v-mask="'+7 (###) ### ####'" 
                                                                     v-model="auth.loginNumber"
                                                                 >
                                                                 @error('phone')
@@ -402,8 +373,8 @@
                                                             <div class="form-group">
                                                                 <label for="header-signin-password" class="sr-only">Пароль</label>
                                                                 <div class="account-menu__form-forgot">
-                                                                    <input
-                                                                        id="header-signin-password" type="password"
+                                                                    <input              
+                                                                        id="header-signin-password" type="password" 
                                                                         v-model="auth.loginPassword"
                                                                         class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required placeholder="Пароль" autocomplete="current-password"
                                                                     >
@@ -412,28 +383,28 @@
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
                                                                     @enderror
-                                                                    <a href="{{ route('password.request') }}" class="account-menu__form-forgot-link">Забыли пароль?</a>
+                                                                    <a href="{{ route('password.request', true) }}" class="account-menu__form-forgot-link">Забыли пароль?</a>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group account-menu__form-button">
-                                                                <button type="submit" class="btn btn-primary btn-sm">Войти</button>
+                                                                <button type="submit" class="btn btn-primary btn-sm" id="loginDefault">Войти</button>
                                                             </div>
-                                                            <div class="account-menu__form-link"><a href="{{route('register')}}">Регистрация</a></div>
+                                                            <div class="account-menu__form-link"><a href="{{route('register', true)}}">Регистрация</a></div>
                                                         </form>
                                                      @endguest
                                                      @auth
                                                         <div class="account-menu__divider"></div>
                                                         <ul class="account-menu__links">
-                                                            <li><a href="{{route('profile.index')}}">Профиль</a></li>
-                                                            <li><a href="{{route('profile.history')}}">Покупки</a></li>
-                                                            <li><a href="{{route('profile.address')}}">Адресс</a></li>
-                                                            <li><a href="{{route('profile.password')}}">Пароль</a></li>
+                                                            <li><a href="{{route('profile.index', true)}}">Профиль</a></li>
+                                                            <li><a href="{{route('profile.history', true)}}">Покупки</a></li>
+                                                            <li><a href="{{route('profile.address', true)}}">Адрес</a></li>
+                                                            <li><a href="{{route('profile.password', true)}}">Пароль</a></li>
                                                         </ul>
                                                         <div class="account-menu__divider"></div>
                                                         <ul class="account-menu__links">
-                                                            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            <li><a href="{{ route('logout', true) }}" onclick="event.preventDefault();
                                                                 document.getElementById('logout-form').submit();">Выйти</a></li>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                            <form id="logout-form" action="{{ route('logout', true) }}" method="POST" style="display: none;">
                                                                 @csrf
                                                             </form>
                                                         </ul>
@@ -464,7 +435,7 @@
                                         <ul class="footer-contacts__contacts">
                                             <li><i class="footer-contacts__icon far fa-envelope"></i> info@smartbazar.kz</li>
                                             <li><i class="footer-contacts__icon fas fa-mobile-alt"></i>
-                                                +7 (777) 222 9977</li>
+                                                +7 (771) 222 9777</li>
                                             <li><i class="footer-contacts__icon far fa-clock"></i>24/7</li>
                                         </ul>
                                     </div>
@@ -501,14 +472,14 @@
                                             <div class="container">
                                                 <div class="helpdesk_inner">
                                                     <div class="helpdesk_contact">
-
+                                                       
                                                         <span style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
-
+                                                        
                                                         <div class="helpdesk_contact_img_wrap">
-                                                            <img src="{{asset('icons/apple.svg')}}" alt="apple">
+                                                            <img src="{{secure_asset('icons/apple.svg')}}" alt="apple">
                                                         </div>
                                                         <div class="helpdesk_contact_img_wrap">
-                                                            <img src="{{asset('icons/playmarket.svg')}}" alt="playmarket">
+                                                            <img src="{{secure_asset('icons/playmarket.svg')}}" alt="playmarket">
                                                         </div>
                                                     </div>
                                         <div class="footer-newsletter__text footer-newsletter__text--social">
@@ -557,7 +528,7 @@
                             <div class="totop__end">
                                 <button type="button" class="totop__button">
                                     <svg width="13px" height="8px">
-                                        <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-up-13x8')}}"></use>
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-up-13x8')}}"></use>
                                     </svg>
                                 </button>
                             </div>
@@ -583,7 +554,7 @@
                     <div class="mobilemenu__title">Меню</div>
                     <button type="button" class="mobilemenu__close">
                         <svg width="20px" height="20px">
-                            <use xlink:href="{{asset('template/images/sprite.svg#cross-20')}}"></use>
+                            <use xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
                         </svg>
                     </button>
                 </div>
@@ -591,18 +562,18 @@
                     <ul class="mobile-links mobile-links--level--0" data-collapse data-collapse-opened-class="mobile-links__item--open">
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="{{route('index')}}" class="mobile-links__item-link">Главная</a>
+                                <a href="{{route('index', true)}}" class="mobile-links__item-link">Главная</a>
                             </div>
                         </li>
                         @guest
                             <li class="mobile-links__item" data-collapse-item>
                                 <div class="mobile-links__item-title">
-                                    <a href="{{route('login')}}" class="mobile-links__item-link">Войти</a>
+                                    <a href="{{route('login', true)}}" class="mobile-links__item-link">Войти</a>
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
                                 <div class="mobile-links__item-title">
-                                    <a href="{{route('register')}}" class="mobile-links__item-link">Регистрация</a>
+                                    <a href="{{route('register', true)}}" class="mobile-links__item-link">Регистрация</a>
                                 </div>
                             </li>
                             <li class="mobile-links__item" data-collapse-item>
@@ -616,7 +587,7 @@
                                     <a href="#" class="mobile-links__item-link">Аккаунт</a>
                                     <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                         <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                            <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                            <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                         </svg>
                                     </button>
                                 </div>
@@ -651,7 +622,7 @@
                                 <a href="" class="mobile-links__item-link">Категории</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                        <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                     </svg>
                                 </button>
                             </div>
@@ -663,7 +634,7 @@
                                             <a href="" class="mobile-links__item-link">{{$category->title}}</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -740,40 +711,22 @@
     @endif
     <!-- photoswipe / end -->
     <!-- js -->
-    <script>window.homeUrl='http://smartbazar.test/';</script>
-    <script src="{{asset('template/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('template/vendor/nouislider/nouislider.min.js')}}"></script>
-    <script src="{{asset('template/vendor/photoswipe/photoswipe.min.js')}}"></script>
-    <script src="{{asset('template/vendor/photoswipe/photoswipe-ui-default.min.js')}}"></script>
-    <script src="{{asset('template/vendor/select2/js/select2.min.js')}}"></script>
-    <script src="{{asset('template/js/number.js')}}"></script>
-    <script src="{{asset('template/js/main.js')}}"></script>
-    <script src="{{asset('template/js/header.js')}}"></script>
-    <script src="{{asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
+    <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
+    <script src="{{secure_asset('template/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/nouislider/nouislider.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/photoswipe/photoswipe.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/photoswipe/photoswipe-ui-default.min.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/select2/js/select2.min.js')}}"></script>
+    <script src="{{secure_asset('template/js/number.js')}}"></script>
+    <script src="{{secure_asset('template/js/main.js')}}"></script>
+    <script src="{{secure_asset('template/js/header.js')}}"></script>
+    <script src="{{secure_asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
     <script>
         svg4everybody();
     </script>
     <script>
-        // function loadcart(){
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }
-        //     });
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "../modules/LoadCart.php",
-        //         datatype: "html",
-        //         cache: false,
-        //         success: function(data){
-        //             if(data!="0"){
-        //                 $('#basket').html(data);
-        //             }
-        //         }
-        //     });
-        // }
         $('.add-to-cart').click(function(){
             var product_id = $(this).attr("product-id");
             $.ajaxSetup({
@@ -856,22 +809,6 @@
             }
         });
 
-        // $('#add_review').click(function(){
-        //     var review_user_id = $('.menu__item-link').attr('user-id');
-        //     var review_product_id = $('.update-cart').attr("product-id");
-        //     var review_description = $('#review-text').val();
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "../modules/add_review.php",
-        //         data: {review_user_id: review_user_id, review_product_id: review_product_id, review_description:review_description},
-        //         datatype: "html",
-        //         cache: false,
-        //         success: function(data){
-        //             $('#review-text').val('');
-        //         }
-        //     });
-        // });
-
         function setRate(max){
             for (var i=0; i <= max; i++){
                 $('.stars .fa-star:eq('+i+')').addClass('fa');
@@ -881,25 +818,6 @@
         function resetStarColor(){
             $('.stars .fa-star').removeClass('fa');
         }
-
-        // function saveRating(){
-        //     $.ajaxSetup({
-        //         headers: {
-        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //         }
-        //     });
-        //     var product_id = $('.update-cart').attr("product-id");
-        //     $.ajax({
-        //         type: "POST",
-        //         url: "{{ route('rate.add',) }}",
-        //         data: {ratedIndex: ratedIndex, product_id:product_id},
-        //         datatype: "html",
-        //         cache: false,
-        //         success: function(data){
-        //             $('.rank').html(data);
-        //         }
-        //     });
-        // }
 
         $(".remove-cart").click(function(){
             console.log('remove');

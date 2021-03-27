@@ -41,17 +41,16 @@ class LoginController extends Controller
     }
 
     public function redirectTo(){
-        $user = User::find(Auth::id());
-        if($user->hasRole('admin')){
+        if(Auth::user()->hasRole('admin')){
             $this->redirectTo = route('admin.user.index');
             return $this->redirectTo;
-        }elseif($user->hasRole('packer')){
+        }elseif(Auth::user()->hasRole('packer')){
             $this->redirectTo = route('packer.index');
             return $this->redirectTo;
-        }elseif($user->hasRole('delivery')){
+        }elseif(Auth::user()->hasRole('delivery')){
             $this->redirectTo = route('delivery.index');
             return $this->redirectTo;
-        }elseif($user->hasRole('seller')){
+        }elseif(Auth::user()->hasRole('seller')){
             $this->redirectTo = route('seller.company.dashboard');
             return $this->redirectTo;
         }else{

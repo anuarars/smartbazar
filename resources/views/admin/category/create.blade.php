@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('body')
+@section('content')
 <div class="col-md-12">
     <form action="{{route('admin.category.store')}}" method="post">
         @csrf

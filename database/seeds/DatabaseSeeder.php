@@ -26,8 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(GallerySeeder::class);
-        // factory(App\Models\Product::class, 100)->create();
-        // factory(App\Models\Gallery::class, 100)->create();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

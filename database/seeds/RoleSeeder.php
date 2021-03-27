@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\Role;
+use Illuminate\Support\Facades\DB;
 
 class RoleSeeder extends Seeder
 {
@@ -12,12 +13,12 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::truncate();
-
-        Role::create(['name'=>'user']);
-        Role::create(['name'=>'seller']);
-        Role::create(['name'=>'packer']);
-        Role::create(['name'=>'delivery']);
-        Role::create(['name'=>'admin']);
+        $roles = DB::connection('mysql_main')->table('roles')->get();
+        foreach ($roles as $role) {
+            DB::connection('mysql_local')->table('roles')->insert([
+                'id' => $role->id,
+                'name'=> $role->name
+            ]);
+        }
     }
 }

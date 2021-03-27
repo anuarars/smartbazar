@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <a href="{{route('seller.user.edit')}}" class="profile-edit-btn">Изменить</a>
+                                    <a href="{{route('seller.user.edit', true)}}" class="profile-edit-btn">Изменить</a>
                                 </div>
                             </div>
                             <div class="row">

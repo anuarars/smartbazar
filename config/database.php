@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Str;
 
-// define('RDS_HOSTNAME', $_SERVER['RDS_HOSTNAME']);
-// define('RDS_USERNAME', $_SERVER['RDS_USERNAME']);
-// define('RDS_PASSWORD', $_SERVER['RDS_PASSWORD']);
-// define('RDS_DB_NAME', $_SERVER['RDS_DB_NAME']);
-
 return [
 
     /*
@@ -19,8 +14,8 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DEFAULT_CONNECTION'),
+    // 'default' => env('DB_CONNECTION_MAIN', 'mysql_main'),
 
     /*
     |--------------------------------------------------------------------------
@@ -48,18 +43,34 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'mysql' => [
+        'mysql_main' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            // 'host' => RDS_HOSTNAME,
-            // 'database' => RDS_DB_NAME,
-            // 'username' => RDS_USERNAME,
-            // 'password' => RDS_PASSWORD,
-            'port' => env('DB_PORT', '3306'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'port' => env('DB_PORT_MAIN', '3306'),
+            'host' => env('DB_HOST_MAIN', '127.0.0.1'),
+            'database' => env('DB_DATABASE_MAIN', 'forge'),
+            'username' => env('DB_USERNAME_MAIN', 'forge'),
+            'password' => env('DB_PASSWORD_MAIN', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'mysql_local' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'port' => env('DB_PORT_LOCAL', '3306'),
+            'host' => env('DB_HOST_LOCAL', '127.0.0.1'),
+            'database' => env('DB_DATABASE_LOCAL', 'forge'),
+            'username' => env('DB_USERNAME_LOCAL', 'forge'),
+            'password' => env('DB_PASSWORD_LOCAL', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

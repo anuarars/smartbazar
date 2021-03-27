@@ -8,7 +8,7 @@
           <div class="card author-box">
             <div class="card-body">
               <div class="author-box-center">
-                <img alt="image" src="{{asset('template/images/banners/banner-1-mobile.jpg')}}" class="rounded-circle author-box-picture">
+                <img alt="image" src="{{secure_asset('template/images/banners/banner-1-mobile.jpg')}}" class="rounded-circle author-box-picture">
                 <div class="clearfix"></div>
                 <div class="author-box-name">
                   <a href="#">{{Auth::user()->company->name}}</a>
@@ -157,7 +157,7 @@
                 </p>    
                 </div>
                 <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
-                  <form method="post" action="{{route('seller.company.profile.update')}}">
+                  <form method="post" action="{{route('seller.company.profile.update', true)}}">
                       @csrf
                     <div class="card-header">
                       <h4>Изменить</h4>

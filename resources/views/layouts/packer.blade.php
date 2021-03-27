@@ -9,17 +9,20 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Продажи | Smartbazar.kz</title>
   <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{asset('dashboard/css/app.min.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('dashboard/css/app.min.css')}}">
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{asset('dashboard/css/style.css')}}">
-  <link rel="stylesheet" href="{{asset('dashboard/css/components.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('dashboard/css/style.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('dashboard/css/components.css')}}">
   <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{asset('dashboard/bundles/bootstrap-social/bootstrap-social.css')}}">
-  <link rel="stylesheet" href="{{asset('dashboard/css/custom.css')}}">
-  <link rel='shortcut icon' type='image/x-icon' href='{{asset('/img/logo/logo.svg')}}' />
+  <link rel="stylesheet" href="{{secure_asset('dashboard/bundles/bootstrap-social/bootstrap-social.css')}}">
+  <link rel="stylesheet" href="{{secure_asset('dashboard/css/custom.css')}}">
+  <link rel='shortcut icon' type='image/x-icon' href='{{secure_asset('/img/logo/logo.svg')}}' />
   <script src="https://cdn.tiny.cloud/1/vuko5n8zosfrtuvle80aeae8o7nyj7sm85hwt10pa3bie19s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
-  <script>
+  {{-- <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script> --}}
+
+  <script src="{{ secure_asset('js/app.js') }}" defer></script>
+  
+  {{-- <script>
     const beamsClient = new PusherPushNotifications.Client({
       instanceId: '41acbae0-ec93-4866-bce7-937bff9c4d27',
     });
@@ -28,10 +31,7 @@
       .then(() => beamsClient.addDeviceInterest('hello'))
       .then(() => console.log('Successfully registered and subscribed!'))
       .catch(console.error);
-  </script>
-  {{-- <script src="{{asset('serviceWorker.min.js')}}"></script>
-  <script src="{{asset('push.min.js')}}"></script> --}}
-  {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+  </script> --}}
 </head>
 
 <body>
@@ -50,9 +50,9 @@
           </ul>
         </div>
         <ul class="navbar-nav navbar-right">
-          <li><a class="text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <li><a class="text-danger" href="{{ route('logout', true) }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();"><span>Выйти</span></a></li>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          <form id="logout-form" action="{{ route('logout', true) }}" method="POST" style="display: none;">
             @csrf
           </form>
         </ul>
@@ -60,13 +60,13 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="#"> <img alt="image" src="{{asset('img/logo/logo.svg')}}" class="header-logo" /> <span
+            <a href="#"> <img alt="image" src="{{secure_asset('img/logo/logo.svg')}}" class="header-logo" /> <span
                 class="logo-name">Фасовка</span>
             </a>
           </div>
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="{{route('packer.index')}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
+              <a href="{{route('packer.index', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
             </li>
             <li>
               <a href="#" class="nav-link"><i
@@ -87,17 +87,17 @@
       </footer>
     </div>
   </div>
-  <script>window.homeUrl='http://127.0.0.1:8000/';</script>
+  <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
   <!-- General JS Scripts -->
-  <script src="{{asset("dashboard/js/app.min.js")}}"></script>
+  <script src="{{secure_asset("dashboard/js/app.min.js")}}"></script>
   <!-- JS Libraies -->
-  <script src="{{asset("dashboard/bundles/apexcharts/apexcharts.min.js")}}"></script>
+  <script src="{{secure_asset("dashboard/bundles/apexcharts/apexcharts.min.js")}}"></script>
   <!-- Page Specific JS File -->
-  <script src="{{asset("dashboard/js/page/index.js")}}"></script>
+  <script src="{{secure_asset("dashboard/js/page/index.js")}}"></script>
   <!-- Template JS File -->
-  <script src="{{asset("dashboard/js/scripts.js")}}"></script>
+  <script src="{{secure_asset("dashboard/js/scripts.js")}}"></script>
   <!-- Custom JS File -->
-  <script src="{{asset("dashboard/js/custom.js")}}"></script>
+  <script src="{{secure_asset("dashboard/js/custom.js")}}"></script>
 </body>
 
 

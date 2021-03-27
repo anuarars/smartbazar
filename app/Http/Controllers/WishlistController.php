@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Product;
-use App\Models\Wishlist;
+use App\Models\{Category, Product, Wishlist};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class WishlistController extends Controller
 {
@@ -76,7 +75,7 @@ class WishlistController extends Controller
     }
 
     public function getData(){
-        $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company')->get();
+        $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company', 'product.galleries')->get();
         return $wishlists;
     }
 }

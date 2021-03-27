@@ -6,12 +6,6 @@
                     <div class="card mb-lg-0">
                         <div class="card-body">
                             <h3 class="card-title">Адрес доставки</h3>
-                            <div class="form-group">
-                                <select name="" v-show="!!user.address.length > 0"class="form-control" v-model="selected">
-                                    <option>Адрес доставки</option>
-                                    <option v-for="address in user.address" :value="address">{{address.name}}</option>
-                                </select>
-                            </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="checkout-first-name">Имя</label>
@@ -23,18 +17,28 @@
                                 </div>
                             </div>
 
-                            <div class="form-row">
-                                <div class="form-group col-md-3">
-                                    <label for="checkout-address">Дом</label>
-                                    <input type="text" class="form-control" v-model="selected.home">
-                                </div>
-                                <div class="form-group col-md-7">
-                                    <label for="checkout-street-address">Улица</label>
-                                    <input type="text" class="form-control" placeholder="Улица" v-model="selected.street">
-                                </div>
-                                <div class="form-group col-md-2">
-                                    <label for="checkout-address">Кв</label>
-                                    <input type="text" class="form-control" v-model="selected.unit">
+                            <div class="form-group">
+                                <select name="" class="form-control" v-model="selected">
+                                    <option value="self">Самовывоз</option>
+                                    <option value="create">Адрес доставки</option>
+                                    <option v-show="!!user.address.length > 0" v-for="address in user.address" :value="address">{{address.name}}</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <div class="form-row" v-if="selected !== 'self'">
+                                    <div class="form-group col-md-3">
+                                        <label for="checkout-address">Дом</label>
+                                        <input type="text" class="form-control" :value="selected.home">
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <label for="checkout-street-address">Улица</label>
+                                        <input type="text" class="form-control" placeholder="Улица" :value="selected.street">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="checkout-address">Кв</label>
+                                        <input type="text" class="form-control" :value="selected.unit">
+                                    </div>
                                 </div>
                             </div>
 
@@ -73,7 +77,14 @@
                                 <tbody class="checkout__totals-products">
                                 <tr v-for="product in order.products">
                                     <td>{{product.title}}</td>
-                                    <td>{{(product.price*product.pivot.count).toLocaleString()}} тг.</td>
+                                    <td>
+                                        <span v-if="product.discount != null">
+                                            {{(Math.ceil(product.price - ((product.price * product.discount)/100))).toLocaleString()}} тг.
+                                        </span>
+                                        <span v-else>
+                                            {{(product.price*product.pivot.count).toLocaleString()}} тг.
+                                        </span>
+                                    </td>
                                 </tr>
                                 </tbody>
                                 <tbody class="checkout__totals-subtotals">
@@ -83,7 +94,7 @@
                                 </tr>
                                 <tr>
                                     <th>Доставка</th>
-                                    <td>1 000 тг.</td>
+                                    <td>{{deliveryprice.toLocaleString()}} тг.</td>
                                 </tr>
                                 </tbody>
                                 <tfoot class="checkout__totals-footer">
@@ -93,8 +104,8 @@
                                 </tr>
                                 </tfoot>
                             </table>
-                            <a :href="home_url + 'checkout/'+ order.id +'/success'" v-on:click="addOrUpdateAddress" class="btn btn-primary btn-xl btn-block">Оплатить</a>
-                            <button class="btn btn-danger" v-on:click="generateForm">pay</button>
+                            <button  v-on:click="addOrUpdateAddress" class="btn btn-primary btn-xl btn-block">Подтвердить</button>
+                            <!--<button class="btn btn-danger" v-on:click="generateForm">pay</button>-->
                         </div>
                     </div>
                 </div>
@@ -108,37 +119,45 @@
 <script>
 export default {
     props:[
-        'user', 'order', 'sum', 'home_url'
+        'user', 'order', 'sum', 'home_url', 'deliveryprice'
     ],
     data() {
         return {
-            selected: {},
-
-        }
-    },
-    computed: {
-        isSelected: function () {
-            return this.selected.id != null;
+            selected: '',
+            createRecord:{
+                home: '',
+                street: '',
+                unit: '',
+            }
         }
     },
     methods:{
         addOrUpdateAddress() {
+            // if(this.selected == 'create'){
+            //    this.createAddress();
+            // }else if(this.selected == 'self'){
+            //     console.log('an');
+            // }
+            window.location.href = this.home_url + 'checkout/' + this.order.id + '/success';
 
-            if (this.isSelected) {
-                axios.post("/profile/address/update/" + this.selected.id, this.selected)
-                .then(function (response) {
-                    console.log("success");
-                }).catch(function (error) {
-                    console.log(error);
-                })
-            } else {
-                this.selected.name = "Новый";
-                axios.post("/profile/address", this.selected)
-                .then(function (response) {
-                    console.log("success")
-                })
-            }
+            // if (this.selected) {
+            //     axios.post(this.home_url + "/profile/address/update/" + this.selected.id, this.selected)
+            //     .then(function (response) {
+            //         // window.location.href = this.home_url + this.order.id + '/success';
+            //         // console.log(response);
+            //         // console.log(response.success);
+            //     })
+            // }
+            // console.log(this.selected);
 
+        },
+        createAddress(){
+            console.log(this.selected.home)
+            // axios.post(this.home_url + 'profile/address', {
+            //     throughPayment: 1,
+            // }).then(response => {
+            //     console.log(response.data)
+            // });
         },
         generateForm() {
             var widget = new tp.TarlanPayments();
@@ -156,6 +175,7 @@ export default {
                 },
                 function (data) {
                     console.log(data);
+                    window.location.href = data.data.redirect_url;
                 },
                 function (err) {
                     console.log(err);

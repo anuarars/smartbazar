@@ -7,17 +7,39 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = ['user_id'];
+    public $deliveryPrice = 1000;
 
-    public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('count', 'id')->withTimestamps();
+    public function delivery(){
+        return 100;
     }
 
-    public function get_full_price(){
+    public function products(){
+        return $this->belongsToMany(Product::class)->withPivot('count', 'id')->withTimestamps();;
+    }
+
+    public function fullPrice(){
         $sum = 0;
         foreach($this->products as $product){
-            $sum += $product->get_price_for_count();
+            $sum += $product->priceForCount();
         }
-        return $sum;
+        return number_format($sum, 0, ' ', ' ');
+    }
+
+    public function fullPriceNoDiscount(){
+        $sum = 0;
+        foreach($this->products as $product){
+            $sum += $product->priceForCountNoDiscount();
+        }
+        return number_format($sum, 0, ' ', ' ');
+    }
+
+    public function fullPriceWithDelivery(){
+        $sum = 0;
+        foreach($this->products as $product){
+            $sum += $product->priceForCount();
+        }
+        $sum += $this->deliveryPrice;
+        return number_format($sum, 0, ' ', ' ');
     }
 
     public function cart_count(){
@@ -26,13 +48,6 @@ class Order extends Model
             $total += $product->pivot->count;
         }
         return $total;
-    }
-
-    public function decrementProductsCount() {
-        $this->products()->each(function ($p) {
-            $p->decrement('count');
-        });
-
     }
 
     public function user(){

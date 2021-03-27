@@ -13,6 +13,11 @@
               <div id="aniimated-thumbnials" class="list-unstyled row clearfix">
                 @foreach ($product->galleries as $gallery)
                     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <form action="{{route('seller.gallery.destroy', $gallery->id)}}" method="post">
+                            {{method_field('DELETE')}}
+                            @csrf
+                            <button class="btn btn-danger">x</button>
+                        </form>
                         <a href="{{asset($gallery->image)}}" data-sub-html="Demo Description">
                             <img class="img-responsive thumbnail" src="{{asset($gallery->image)}}" alt="{{asset($gallery->image)}}">
                         </a>
@@ -60,7 +65,7 @@
                               </div>
                           </div>
                           <p class="m-t-30">
-                              {{$product->description}}
+                              {!!$product->description!!}
                           </p>
                           <div class="row">
                               <div class="col-md-3 col-6 b-r">
@@ -88,7 +93,7 @@
                           </div>
                       </div>
                       <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
-                          <form method="post" action="{{route('seller.product.update', ['product' => $product])}}">
+                          <form method="post" action="{{route('seller.product.update', ['product' => $product])}}" enctype="multipart/form-data">
                               @csrf
                               @method('PUT')
 
@@ -96,7 +101,6 @@
                                   <h4>Изменить</h4>
                               </div>
                               <div class="card-body">
-
                                   <div class="row">
                                       <div class="form-group col-md-6 col-12">
                                           <label>Наименование</label>
@@ -178,11 +182,18 @@
                                       </div>
                                   </div>
                                   <div class="row">
+                                    <div class="form-group col-md-3 col-12">
+                                        <label>Цена со скидкой</label>
+                                        <input type="number" class="form-control" value="{{$product->afterDiscount ?? ""}}" name="price_after_discount" disabled>
+                                    </div>
 
-                                      <div class="form-group col-md-6 col-12">
-                                          <label>Цена со скидкой</label>
-                                          <input type="number" class="form-control" value="{{$product->afterDiscount ?? ""}}" name="price_after_discount" disabled>
-                                      </div>
+                                    <div class="form-group col-md-3 col-12">
+                                        <label>Опубликован</label>
+                                        <select name="isPublished" class="form-control">
+                                            <option value="1">Да</option>
+                                            <option value="0">Нет</option>
+                                        </select>
+                                    </div>
 
                                       <div class="form-group col-md-3 col-12">
                                           <label>Цена</label>
@@ -196,7 +207,7 @@
                                   <div class="row">
                                       <div class="col-md-12">
                                           <div class="form-group">
-                                              <editor :inputname="'description'" :inputvalue="{{ json_encode($product->description) }}"/>
+                                            <editor :inputname="'description'" :inputvalue="{{ json_encode($product->description) }}"/>
                                               @error('description')
                                               <span class="invalid-feedback" role="alert">
                                                 <strong>
@@ -207,8 +218,14 @@
                                           </div>
                                       </div>
                                   </div>
+
+                                    <div class="col-md-12">
+                                        <label class="file-upload">
+                                            <input name="gallery[]" type="file" multiple="true" />
+                                            <span class="file-upload_button">Изображения</span>
+                                        </label>
+                                    </div>
                               </div>
-                              <upload-image-component :images="{{ json_encode($galleries) }}"></upload-image-component>
                               <div class="card-footer text-right">
                                   <button class="btn btn-primary">Сохранить</button>
                               </div>

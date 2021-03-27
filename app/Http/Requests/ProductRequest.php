@@ -33,7 +33,6 @@ class ProductRequest extends FormRequest
             'price' => 'required|integer',
             'count' => 'required|integer',
             'discount' => 'integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:3000',
             'gallery' => 'required'
         ];
     }
@@ -50,7 +49,6 @@ class ProductRequest extends FormRequest
             'price.required' => 'Цена товара не указана',
             'count.required' => 'Количество товара не должно быть пустым',
             'discount.integer' => 'Скидка должна быть указана в цифрах',
-            'image.required' => 'Добавьте изображение для товара',
             'gallery.required' => 'Добавьте изображения для товара',
         ];
     }

@@ -29,7 +29,6 @@
 
 <script>
 import Editor from '@tinymce/tinymce-vue'
-
 export default {
     props: ["inputvalue", "inputname"],
     name: 'app',

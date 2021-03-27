@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="col-md-12 text-center">
-                <form action="{{route('delivery.end', $order)}}" method="POST">
+                <form action="{{route('delivery.end', $order, true)}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-success">Завершить заказ</button>
                 </form>

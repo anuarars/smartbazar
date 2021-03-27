@@ -1,62 +1,91 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container rounded bg-white mt-5 mb-5">
-    {{-- @include('includes.alerts') --}}
-    <form action="#" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                    {{-- <img class="mt-5 w-100" src="#"> --}}
-                    {{-- <span class="font-weight-bold">Name</span> --}}
+    <div class="site__body">
+        <div class="page-header">
+            <div class="page-header__container container">
+                <div class="page-header__breadcrumb">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="index.html">Главная</a>
+                                <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                </svg>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Аккаунт</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="page-header__title">
+                    <h1>Аккаунт</h1>
                 </div>
             </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Профиль</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Имя</label><input type="text" name="name" class="form-control" placeholder="Имя" value="{{Auth::user()->firstname}}"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Фамилия</label><input type="text" name="name" class="form-control" placeholder="Фамилия" value="{{Auth::user()->lastname}}"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Телефон</label><input type="text" name="name" class="form-control" placeholder="Телефон" value="{{Auth::user()->phone}}"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Пароль</label><input type="password" name="password" class="form-control"></div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Подтвердить пароль</label><input type="password" name="password_confirmation" class="form-control"></div>
-                    </div>
-                    <div class="mt-5 text-center"><button type="submit" class="btn btn-primary profile-button" type="button">Изменить Профиль</button></div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Адресс</h4>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col-md-12"><label class="labels">Область</label>
-                            <select name="region_id" class="form-control">
-                                <option value="#" selected>test
-                                </option>
-                            </select>
+        </div>
+        <div class="block">
+            <div class="container">
+                <div class="row">
+                    @include('includes.profile.menu')
+                    <div class="col-12 col-lg-9 mt-4 mt-lg-0">
+                        <div class="dashboard">
+                            <div class="dashboard__orders card">
+                                <div class="card-header">
+                                    <h5>Последние покупки</h5>
+                                </div>
+                                <div class="card-divider"></div>
+                                <div class="card-table">
+                                    <div class="table-responsive-sm">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>№</th>
+                                                    <th>Дата</th>
+                                                    <th>Статус</th>
+                                                    <th>Сумма</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (!empty(Auth::user()->order))
+                                                    @foreach ($orders as $order)
+                                                        <tr>
+                                                            <td>{{$order->id}}</td>
+                                                            <td>{{$order->created_at}}</td>
+                                                            <td>
+                                                                @switch($order->status->name)
+                                                                    @case('LOOKING FOR PACKING')
+                                                                        Фасовзщик принимает заказ
+                                                                        @break
+                                                                    @case('AT PACKING')
+                                                                        Фасуется
+                                                                        @break
+                                                                    @case('DRIVING')
+                                                                        В пути с курьером
+                                                                        @break
+                                                                    @case('LOOKING FOR DRIVER')
+                                                                        Ждет водителя
+                                                                        @break
+                                                                    @case('DELIVERED')
+                                                                        Доставлен
+                                                                        @break
+                                                                    @case('ACCEPTED')
+                                                                        Принят
+                                                                        @break
+                                                                    @default
+                                                                @endswitch
+                                                            </td>
+                                                            <td>{{$order->fullPrice()}} тг.</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12"><label class="labels">Район</label><input type="text" class="form-control" name="district" placeholder="Район"></div>
-                        <div class="col-md-12"><label class="labels">Город/Село</label><input type="text" class="form-control" name="town" placeholder="Город/Село"></div>
-                        <div class="col-md-3"><label class="labels">Дом</label><input type="text" class="form-control" name="home" placeholder="Дом"></div>
-                        <div class="col-md-6"><label class="labels">Улица</label><input type="text" class="form-control" name="street" placeholder="Улица"></div>
-                        <div class="col-md-3"><label class="labels">Офис</label><input type="text" class="form-control" name="unit" placeholder="Офис"></div>
-                        <div class="col-md-12"><label class="labels">Индекс</label><input type="text" class="form-control" name="postcode" placeholder="Индекс"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-</div>
+    </div>
 @endsection

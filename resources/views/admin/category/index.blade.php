@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('body')
+@section('content')
 <div class="col-md-12">
     <a href="{{route('admin.category.create')}}" class="btn btn-primary pull-left">Создать категорию</a>
 </div>

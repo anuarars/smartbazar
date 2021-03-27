@@ -18,6 +18,8 @@
 </template>
 
 <script>
+    import * as PusherPushNotifications from "@pusher/push-notifications-web"
+
     export default {
         props:[
             'user', 'home_url'
@@ -25,6 +27,7 @@
         data(){
             return{
                 orders: [],
+                token: '',
             }
         },
         methods:{
@@ -45,10 +48,19 @@
             Echo.channel('packer-channel')
             .listen('.packer-event', (e) => {
                 this.orders.push(e.order);
-                Push.create("Новый заказ для фасовки", {
-                    icon: 'https://via.placeholder.com/32x32',
-                });
             });
+            
+            const tokenProvider = new PusherPushNotifications.TokenProvider({
+                url: this.home_url + 'push/pusher/beams-auth',
+            })
+
+            const beamsClient = new PusherPushNotifications.Client({
+                instanceId: '41acbae0-ec93-4866-bce7-937bff9c4d27',
+            })
+
+            beamsClient.start()
+                .then(() => beamsClient.setUserId(this.user.id.toString(), tokenProvider))
+                .catch(console.error);
         }
     }
 </script>

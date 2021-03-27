@@ -24,7 +24,7 @@
                     <td class="wishlist__column wishlist__column--image">
                         <div class="product-image">
                             <a href="" class="product-image__body">
-                                <img class="product-image__img" :src="home_url + wishlist.product.image" alt="">
+                                <img class="product-image__img" :src="wishlist.product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
@@ -51,7 +51,7 @@
                     <td class="wishlist__column wishlist__column--remove">
                         <button type="button" class="btn btn-light btn-sm btn-svg-icon" v-on:click.prevent="removeItem(index)">
                             <svg width="12px" height="12px">
-                                <use xlink:href="http://smartbazar/public/template/images/sprite.svg#cross-12"></use>
+                                <use xlink:href="https://smartbazar.kz/template/images/sprite.svg#cross-12"></use>
                             </svg>
                         </button>
                     </td>
@@ -66,14 +66,13 @@
         props:['home_url'],
         data(){
             return{
-                // homeUrl: window.homeUrl,
                 authUser: window.authUser,
                 wishlists: [],
             }
         },
         methods:{
             getData(){
-                axios.get('wishlist/get').then((response) => {
+                axios.get(this.home_url + 'wishlist/get').then((response) => {
                     this.wishlists = response.data;
                 })
             },
@@ -81,7 +80,7 @@
                 let id = this.wishlists[index].id;
                 this.wishlists.splice(index, 1);
 
-                axios.delete('wishlist/'+id).then(response => {
+                axios.delete(this.home_url + 'wishlist/'+id).then(response => {
                     this.$parent.countWishlist();
                 });
             },

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Gallery extends Model
 {
@@ -16,9 +15,4 @@ class Gallery extends Model
     // public function user(){
     //     return $this->belongsTo(User::class);
     // }
-    public function delete()
-    {
-        Storage::disk('public')->delete($this->image);
-        return parent::delete();
-    }
 }

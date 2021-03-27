@@ -10,14 +10,14 @@
               <div class="row ">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                   <div class="card-content">
-                    <a href="{{route('seller.company.edit')}}" class="text-dark">
+                    <a href="{{route('seller.company.edit', true)}}" class="text-dark">
                         <h5 class="font-15">Компания</h5>
                     </a>
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/1.png')}}" alt="{{asset('dashboard/img/banner/1.png')}}">
+                    <img src="{{secure_asset('dashboard/img/banner/1.png')}}" alt="{{secure_asset('dashboard/img/banner/1.png')}}">
                   </div>
                 </div>
               </div>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/2.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/2.png')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/3.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/3.png')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/4.png')}}" alt="{{asset('dashboard/img/banner/4.png')}}">
+                    <img src="{{secure_asset('dashboard/img/banner/4.png')}}" alt="{{secure_asset('dashboard/img/banner/4.png')}}">
                   </div>
                 </div>
               </div>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/1.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/1.png')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -129,7 +129,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/2.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/2.png')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/3.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/3.png')}}" alt="">
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pl-0">
                   <div class="banner-img">
-                    <img src="{{asset('dashboard/img/banner/4.png')}}" alt="">
+                    <img src="{{secure_asset('dashboard/img/banner/4.png')}}" alt="">
                   </div>
                 </div>
               </div>

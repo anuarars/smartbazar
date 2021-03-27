@@ -12,7 +12,7 @@ class CartController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        $order = Order::where('user_id', $user_id)->where('isFinished', 0)->get()->first();
+        $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
         return view('cart', compact('order'));
     }
 
@@ -36,24 +36,12 @@ class CartController extends Controller
     }
 
     public function unlike($product_id){
-        return $product_id;
-        // $user_id = Auth::id();
-        // $order = Order::where('user_id', $user_id)->where('status', 0)->get()->first();
-        // if($order == null){
-        //     $order = Order::create([
-        //         'user_id' => Auth::id(),
-        //     ]);
-        // }
-        // if($order->products->contains($product_id)){
-        //     $pivot_row = $order->products()->where('product_id', $product_id)->first()->pivot;
-        //     if($pivot_row->count < 2){
-        //         $order->products()->detach($product_id);
-        //     }else{
-        //         $pivot_row->count--;
-        //         $pivot_row->update();
-        //     }       
-        // }
-        // return redirect()->route('cart.index');
+        $user_id = Auth::id();
+        $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
+        if($order->products->contains($product_id)){
+            $order->products()->detach($product_id);
+            return $product_id;
+        }
     }
 
     public function update(Request $request){
@@ -87,9 +75,8 @@ class CartController extends Controller
 
     public function getData(){
         $user_id = Auth::id();
-        $order = Order::where('user_id', $user_id)->where('isFinished', 0)->get()->first();
-        return $order->products->load('measure');
-        // return "test";
+        $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
+        return $order->products->load('measure', 'galleries');
     }
 
     public function destroy(Request $request){
@@ -98,29 +85,14 @@ class CartController extends Controller
     }
 
     public function count(){
-        $user_id = Auth::id();
-        $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
-        if($order == null){
-            return 0;
-        }else{
-            return $order->products;
+        if (Auth::check()) {
+            $user_id = Auth::id();
+            $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
+            if($order == null){
+                return 0;
+            }else{
+                return $order->products;
+            }
         }
-        // $productNominal = $order->products->count();
-
-        // $sum = 0;
-        // $productCount = 0;
-        // foreach($order->products as $product){
-        //     $priceForProduct = $product->pivot->count * $product->price;
-        //     $sum += $priceForProduct;
-        //     $productCount += $product->pivot->count;
-        // }
-
-        // $response = [
-        //     'sum' => $sum, 
-        //     'products' => $productNominal, 
-        //     'productsCount' => $productCount
-        // ];
-
-        // return $response;
     }
 }
