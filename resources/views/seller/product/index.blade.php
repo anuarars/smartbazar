@@ -24,7 +24,7 @@
                                         <th scope="col">Скидка в %</th>
                                         <th scope="col">Действия</th>
                                     </tr>
-                                </thead>
+                                </thead> 
                                 @foreach ($products as $product)
                                 <tr>
                                     <td data-label="ID">{{$product->id}}</td>

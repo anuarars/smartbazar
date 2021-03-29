@@ -245,7 +245,7 @@
                                         @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component 
+                                        <add-to-cart-component
                                             :product="{{ $product->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"

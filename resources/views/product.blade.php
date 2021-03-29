@@ -116,7 +116,14 @@
                                         </div>
                                     </div>
                                     <div class="product__actions-item product__actions-item--addtocart">
-                                        <button class="btn btn-primary btn-lg">В корзину</button>
+                                        <div class="product-card__buttons">
+                                            <add-to-cart-component 
+                                                    :product="{{ $product->first()->id }}"
+                                                    :home_url = "homeUrl"
+                                                    :cart="{{ $product->first()->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                    @click.native="countCart">
+                                            </add-to-cart-component>
+                                        </div>
                                     </div>
                                     <like-component 
                                         :product={{ $product->id }}
@@ -124,6 +131,7 @@
                                         :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                     </like-component>
                                 </div>
+                                
                             </div>
                         </div>
                         <!-- .product__options / end -->
@@ -158,7 +166,7 @@
                         <div class="spec">
                             <h3 class="spec__header">Характеристики</h3>
                             <div class="spec__section">
-                                {{-- <h4 class="spec__section-title">General</h4>
+                                {{-- <h4 class="spec__section-tАitle">General</h4>
                                 <div class="spec__row">
                                     <div class="spec__name">Material</div>
                                     <div class="spec__value">Aluminium, Plastic</div>

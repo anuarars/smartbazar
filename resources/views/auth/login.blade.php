@@ -7,6 +7,7 @@
             <div class="card">
                 <div class="card-header">Войти</div>
                 <div class="card-body">
+                    @include('includes.errors')
                     <form method="POST" action="{{route('login', true)}}">
                         @csrf
 

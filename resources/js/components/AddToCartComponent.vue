@@ -10,7 +10,7 @@
 <script>
 export default {
     name: "AddToCartComponent",
-    props: [
+    props: [ 
         'cart',
         'product',
         'home_url'
