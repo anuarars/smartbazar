@@ -27,13 +27,12 @@
 
                             <div>
                                 <div class="form-row" v-if="selected !== 'self'">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-10">
                                         <label for="checkout-address">Дом</label>
-                                        <input type="text" class="form-control" :value="selected.home">
-                                    </div>
-                                    <div class="form-group col-md-7">
-                                        <label for="checkout-street-address">Улица</label>
-                                        <input type="text" class="form-control" placeholder="Улица" :value="selected.street">
+                                        <autocomplete id="checkout-address"
+                                                      :search="searchDebounced"
+                                                      :get-result-value="getResultAddress"
+                                                      :debounce-time="500"></autocomplete>
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="checkout-address">Кв</label>
@@ -117,10 +116,21 @@
 </template>
 
 <script>
+import Autocomplete from '@trevoreyre/autocomplete-vue';
+import '@trevoreyre/autocomplete-vue/dist/style.css'
+
+const geocodeUrl = 'https://geocode-maps.yandex.ru/1.x';
+const apikey = '471d7ae6-c5c6-45cc-9c09-52b2246b5fba';
+const astana_bbox = '71.170665,50.986637~71.665036,51.309052'
+
+
 export default {
     props:[
         'user', 'order', 'sum', 'home_url', 'deliveryprice'
     ],
+    components: {
+        Autocomplete
+    },
     data() {
         return {
             selected: '',
@@ -132,6 +142,29 @@ export default {
         }
     },
     methods:{
+        searchDebounced(input) {
+            const url = `${geocodeUrl}?apikey=${
+                apikey
+            }&geocode=${encodeURI(input)}&format=json`
+
+            return new Promise(resolve => {
+                if (input.length < 3) {
+                    return resolve([])
+                }
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        // возвращаю массив с адресами и потом парсится с помощью getResultAddress
+                        resolve(data.response.GeoObjectCollection.featureMember)
+                    })
+            })
+
+        },
+        getResultAddress(result){
+            return result.GeoObject.description;
+        },
         addOrUpdateAddress() {
             // if(this.selected == 'create'){
             //    this.createAddress();
@@ -191,3 +224,5 @@ export default {
     }
 }
 </script>
+
+
