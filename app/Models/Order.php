@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = ['user_id'];
-    public $deliveryPrice = 1000;
+    public $deliveryPrice = 1500;
 
     public function delivery(){
         return 100;
@@ -22,7 +22,7 @@ class Order extends Model
         foreach($this->products as $product){
             $sum += $product->priceForCount();
         }
-        return number_format($sum, 0, ' ', ' ');
+        return $sum;
     }
 
     public function fullPriceNoDiscount(){
@@ -61,5 +61,9 @@ class Order extends Model
     public function phone()
     {
         return $this->morphOne('App\Models\Phone', 'phoneable');
+    }
+
+    public function address(){
+        return $this->belongsTo(Address::class);
     }
 }

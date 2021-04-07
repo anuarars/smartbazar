@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class AddImageColumnToBoutiques extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,8 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('description')->nullable();
+        Schema::table('companies', function (Blueprint $table) {
             $table->string('image')->nullable();
-            $table->integer('parent_id')->unsigned()->default(0);
-            $table->timestamps();
         });
     }
 
@@ -30,6 +25,8 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::table('companies', function (Blueprint $table) {
+            //
+        });
     }
 }

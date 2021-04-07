@@ -10,7 +10,7 @@
                             <li class="breadcrumb-item">
                                 <a href="index.html">Главная</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
-                                    <use xlink:href="{{asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                 </svg>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Аккаунт</li>
@@ -48,7 +48,7 @@
                                                 @if (!empty(Auth::user()->order))
                                                     @foreach ($orders as $order)
                                                         <tr>
-                                                            <td><a href="">{{$order->id}}</a></td>
+                                                            <td>{{$order->id}}</td>
                                                             <td>{{$order->created_at}}</td>
                                                             <td>
                                                                 @switch($order->status->name)
@@ -73,7 +73,7 @@
                                                                     @default
                                                                 @endswitch
                                                             </td>
-                                                            <td>{{$order->count()}}</td>
+                                                            <td>{{$order->fullPrice()}} тг.</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif

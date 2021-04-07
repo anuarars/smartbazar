@@ -42,4 +42,14 @@ class Category extends Model
     {
         $q->has('grandchildren', '!=', 0);
     }
+
+    // public function productQuantity(){
+    //     $count = $this->products()->count();
+
+    //     foreach ($this->children as $child) {
+    //         $count += $child->products()->count();
+    //     }
+
+    //     return $count;
+    // }
 }

@@ -1,81 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-<style>
-   body {
-    line-height: 1.6;
-  }
-  
-  table {
-    width: 100%;
-    table-layout: auto;
-  }
-  
-  table caption {
-    font-size: 17px;
-    margin: .5em 0 .75em;
-  }
-  
-  table tr {
-    background-color: #f8f8f8;
-    padding: .35em;
-  }
-  
-  table th,
-  table td {
-    padding: .625em;
-  }
-  
-  table th {
-    font-size: .85em;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-  }
-  
-  @media screen and (max-width: 865px) {
-    table {
-      border: 0;
-    }
-    
-    table thead {
-      border: none;
-      clip: rect(0 0 0 0);
-      height: 1px;
-      margin: -1px;
-      overflow: hidden;
-      padding: 0;
-      position: absolute;
-      width: 1px;
-    }
-    
-    table tr {
-      border-bottom: 2em solid white;
-      display: block;
-      
-    }
-    
-    table td {
-      border-bottom: 1px solid #ddd;
-      display: block;
-      font-size: 14px;
-      text-align: right;
-      padding: 10px!important;
-     
-    }
-    
-    table td::before {
-      content: attr(data-label);
-      float: left;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    
-    table td:last-child {
-      border-bottom: 0;
-    }
-  }
-}
-</style>
     <div class="site__body">
         <div class="page-header">
             <div class="page-header__container container">
@@ -108,27 +33,27 @@
                                     <h5>Последние покупки</h5>
                                 </div>
                                 <div class="card-divider"></div>
-                                <div class="card-body p-0">
-                                    <div class="table">
-                                        <table class="table table-striped table-md">
+                                <div class="card-table">
+                                    <div class="table-responsive-sm">
+                                        <table>
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">№</th>
-                                                    <th scope="col">Дата</th>
-                                                    <th scope="col">Статус</th>
-                                                    <th scope="col">Сумма</th>
+                                                    <th>№</th>
+                                                    <th>Дата</th>
+                                                    <th>Статус</th>
+                                                    <th>Сумма</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @if (!empty(Auth::user()->order))
                                                     @foreach ($orders as $order)
                                                         <tr>
-                                                            <td scope="row" data-label="№">{{$order->id}}</td>
-                                                            <td data-label="ДАТА">{{$order->created_at}}</td>
-                                                            <td data-label="СТАТУС">
+                                                            <td>{{$order->id}}</td>
+                                                            <td>{{$order->created_at}}</td>
+                                                            <td>
                                                                 @switch($order->status->name)
                                                                     @case('LOOKING FOR PACKING')
-                                                                        Фасовщик принимает заказ
+                                                                        Фасовзщик принимает заказ
                                                                         @break
                                                                     @case('AT PACKING')
                                                                         Фасуется
@@ -148,7 +73,7 @@
                                                                     @default
                                                                 @endswitch
                                                             </td>
-                                                            <td data-label="СУММА">{{$order->fullPrice()}} тг.</td>
+                                                            <td>{{$order->fullPrice()}} тг.</td>
                                                         </tr>
                                                     @endforeach
                                                 @endif

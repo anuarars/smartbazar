@@ -102,7 +102,16 @@
                             В наличии: <span class="text-success">Да</span>
                         </div>
                         <div class="product__prices">
-                            {{$product->price}} тг.
+                            @if ($product->discount == null)
+                                {{$product->priceAfterFee()}} тг.
+                            @else
+                                <span class="product-card__new-price">
+                                    {{$product->afterDiscount}} тг.
+                                </span>
+                                <span class="product-card__old-price">
+                                    {{$product->priceAfterFee()}} тг.
+                                </span>
+                            @endif
                         </div>
                         <!-- .product__options -->
                         <div class="product__options">
@@ -131,7 +140,6 @@
                                         :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                     </like-component>
                                 </div>
-                                
                             </div>
                         </div>
                         <!-- .product__options / end -->
@@ -166,7 +174,7 @@
                         <div class="spec">
                             <h3 class="spec__header">Характеристики</h3>
                             <div class="spec__section">
-                                {{-- <h4 class="spec__section-tАitle">General</h4>
+                                {{-- <h4 class="spec__section-title">General</h4>
                                 <div class="spec__row">
                                     <div class="spec__name">Material</div>
                                     <div class="spec__value">Aluminium, Plastic</div>
@@ -425,7 +433,16 @@
                         <!-- .product__sidebar -->
                         <div class="product__sidebar">
                             <div class="product__prices">
-                                {{$product->price}} тг.
+                                @if ($product->discount == null)
+                                    {{$product->price}} тг.
+                                @else
+                                    <span class="product-card__new-price">
+                                        {{$product->afterDiscount}} тг.
+                                    </span>
+                                    <span class="product-card__old-price">
+                                        {{$product->price}} тг.
+                                    </span>
+                                @endif
                             </div>
                             <!-- .product__options -->
                             <div class="product__options">

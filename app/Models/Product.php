@@ -139,7 +139,11 @@ class Product extends Model
 
     // ACCESSOR
     public function getafterDiscountAttribute(){
-        return ceil($this->price - (($this->price * $this->discount)/100));
+        return ceil($this->priceAfterFee() - (($this->priceAfterFee() * $this->discount)/100));
+    }
+
+    public function priceAfterFee(){
+        return $this->price+(($this->price*10)/100);
     }
 
     public function priceForCount(){
@@ -147,16 +151,16 @@ class Product extends Model
             if(!empty($this->discount)){
                 return $this->pivot->count * $this->getafterDiscountAttribute();
             }
-            return $this->pivot->count * $this->price;
+            return $this->pivot->count * $this->priceAfterFee();
         }
-        return $this->price;
+        return $this->priceAfterFee();
     }
 
     public function priceForCountNoDiscount(){
         if(!is_null($this->pivot)){
-            return $this->pivot->count * $this->price;
+            return $this->pivot->count * $this->priceAfterFee();
         }
-        return $this->price;
+        return $this->priceAfterFee();
     }
 
     public function isFavoritedBy(){

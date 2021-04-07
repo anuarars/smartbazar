@@ -182,7 +182,16 @@
                             </div>
                             <div class="product-card__actions">
                                 <div class="product-card__prices">
-                                    {{$products->first()->price}} тг.
+                                    @if ($products->first()->discount == null)
+                                        {{$products->first()->priceAfterFee()}} тг.
+                                    @else
+                                        <span class="product-card__new-price">
+                                            {{$products->first()->afterDiscount}} тг.
+                                        </span>
+                                        <span class="product-card__old-price">
+                                            {{$products->first()->priceAfterFee()}} тг.
+                                        </span>
+                                    @endif
                                 </div>
                                 <div class="product-card__buttons">
                                     <add-to-cart-component 
@@ -234,18 +243,18 @@
                                 <div class="product-card__actions">
                                     <div class="product-card__prices">
                                         @if ($product->discount == null)
-                                            {{$product->price}} тг.
+                                            {{$product->priceAfterFee()}} тг.
                                         @else
                                             <span class="product-card__new-price">
                                                 {{$product->afterDiscount}} тг.
                                             </span>
                                             <span class="product-card__old-price">
-                                                {{$product->price}} тг.
+                                                {{$product->priceAfterFee()}} тг.
                                             </span>
                                         @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component
+                                        <add-to-cart-component 
                                             :product="{{ $product->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
@@ -278,7 +287,7 @@
                     <div class="block-categories__item category-card category-card--layout--classic">
                         <div class="category-card__body">
                             <div class="category-card__image">
-                                <a href=""><img src="{{secure_asset($category->image)}}" alt="{{$category->image}}"></a>
+                                <a href="{{ route('catalog.index', ['category' => $category->id], true) }}"><img src="{{secure_asset($category->image)}}" alt="{{$category->image}}"></a>
                             </div>
                             <div class="category-card__content">
                                 <div class="category-card__name">
@@ -286,15 +295,15 @@
                                 </div>
                                 <ul class="category-card__links">
                                     @foreach ($category->children->take(4) as $child)
-                                        <li><a href="">{{$child->title}}</a></li>
+                                        <li><a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a></li>
                                     @endforeach
                                 </ul>
                                 <div class="category-card__all">
-                                    <a href="">Показать все</a>
+                                    <a href="{{ route('catalog.index', ['category' => $category->id], true) }}">Показать все</a>
                                 </div>
-                                <div class="category-card__products">
-                                    572 Products
-                                </div>
+                                {{-- <div class="category-card__products">
+                                    8 Products
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -381,7 +390,16 @@
                         <!-- .product__sidebar -->
                         <div class="product__sidebar">
                             <div class="product__prices">
-                                {{$product->price}} тг.
+                                @if ($product->discount == null)
+                                {{$product->priceAfterFee()}} тг.
+                                @else
+                                    <span class="product-card__new-price">
+                                        {{$product->afterDiscount}} тг.
+                                    </span>
+                                    <span class="product-card__old-price">
+                                        {{$product->priceAfterFee()}} тг.
+                                    </span>
+                                @endif
                             </div>
                             <!-- .product__options -->
                             <div class="product__options">

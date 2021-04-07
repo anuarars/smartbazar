@@ -26,7 +26,7 @@ class PackerController extends Controller
     }
 
     public function order($id){
-        if($order = Order::where('id', $id)->where('isFinished', 0)->first()){
+        if($order = Order::where('id', $id)->first()){
             DB::table('orders')
             ->where('id', $id)
             ->update([
@@ -37,8 +37,8 @@ class PackerController extends Controller
             $userId = "'".$order->user->id."'";
 
             $beamsClient = new PushNotifications(array(
-                "instanceId" => env('PUSHER_BEAMS_INSTANCE_ID'),
-                "secretKey" => env('PUSHER_BEAMS_SECRET_KEY'),
+                "instanceId" => "41acbae0-ec93-4866-bce7-937bff9c4d27",
+                "secretKey" => "6EF41FB22546E116081BFE4439F77EF66F1F52FE24841500853EB04A9DB20D06",
             ));
             $publishResponse = $beamsClient->publishToUsers(
                 [$userId],//Buyer Id

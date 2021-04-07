@@ -92,13 +92,13 @@
                                             </span>
                                         </button>
                                     </div>
-                                    <div class="indicator indicator--mobile d-sm-flex d-none">
+                                    <div class="indicator indicator--mobile d-sm-flex">
                                         <a href="{{route('wishlist.index', true)}}" class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
                                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
                                                 </svg>
-                                                <span class="indicator__value">0</span>
+                                                <span class="indicator__value" v-text="wishlist"></span>
                                             </span>
                                         </a>
                                     </div>
@@ -108,7 +108,7 @@
                                                 <svg width="20px" height="20px">
                                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                 </svg>
-                                                <span class="indicator__value"></span>
+                                                <span class="indicator__value" v-text="productCount"></span>
                                             </span>
                                         </a>
                                     </div>
@@ -310,6 +310,13 @@
                                                     </div>
                                                 </a>
                                             </li>
+                                            {{-- <li class="nav-links__item  nav-links__item--has-submenu ">
+                                                <a class="nav-links__item-link" href="{{route('boutique.index', true)}}">
+                                                    <div class="nav-links__item-body">
+                                                        Бутики
+                                                    </div>
+                                                </a>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                     <!-- .nav-links / end -->
@@ -403,7 +410,7 @@
                                                         <div class="account-menu__divider"></div>
                                                         <ul class="account-menu__links">
                                                             <li><a href="{{ route('logout', true) }}" onclick="event.preventDefault();
-                                                                document.getElementById('logout-form').submit();">Выйти</a></li>
+                                                                document.getElementById('logout-form').submit();" id="logoutMain">Выйти</a></li>
                                                             <form id="logout-form" action="{{ route('logout', true) }}" method="POST" style="display: none;">
                                                                 @csrf
                                                             </form>
@@ -576,11 +583,6 @@
                                     <a href="{{route('register', true)}}" class="mobile-links__item-link">Регистрация</a>
                                 </div>
                             </li>
-                            <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title">
-                                    <a href="blog-classic.html" class="mobile-links__item-link">Блог</a>
-                                </div>
-                            </li>
                         @else
                             <li class="mobile-links__item" data-collapse-item>
                                 <div class="mobile-links__item-title">
@@ -595,22 +597,17 @@
                                     <ul class="mobile-links mobile-links--level--1">
                                         <li class="mobile-links__item" data-collapse-item>
                                             <div class="mobile-links__item-title">
-                                                <a href="account-dashboard.html" class="mobile-links__item-link">Профиль</a>
+                                                <a href="{{route('profile.index', true)}}" class="mobile-links__item-link">Профиль</a>
                                             </div>
                                         </li>
                                         <li class="mobile-links__item" data-collapse-item>
                                             <div class="mobile-links__item-title">
-                                                <a href="account-profile.html" class="mobile-links__item-link">Изменить</a>
+                                                <a href="{{route('profile.history', true)}}" class="mobile-links__item-link">Покупки</a>
                                             </div>
                                         </li>
                                         <li class="mobile-links__item" data-collapse-item>
                                             <div class="mobile-links__item-title">
-                                                <a href="account-orders.html" class="mobile-links__item-link">Покупки</a>
-                                            </div>
-                                        </li>
-                                        <li class="mobile-links__item" data-collapse-item>
-                                            <div class="mobile-links__item-title">
-                                                <a href="account-addresses.html" class="mobile-links__item-link">Адрес</a>
+                                                <a href="{{route('profile.address', true)}}" class="mobile-links__item-link">Адрес</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -619,7 +616,7 @@
                         @endguest
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
-                                <a href="" class="mobile-links__item-link">Категории</a>
+                                <a href="{{route('catalog.index', true)}}" class="mobile-links__item-link">Категории</a>
                                 <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                     <svg class="mobile-links__item-arrow" width="12px" height="7px">
                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
@@ -631,7 +628,7 @@
                                     @foreach ($categories as $category)
                                     <li class="mobile-links__item" data-collapse-item>
                                         <div class="mobile-links__item-title">
-                                            <a href="" class="mobile-links__item-link">{{$category->title}}</a>
+                                            <a href="{{ route('catalog.index', ['category' => $category->id], true) }}" class="mobile-links__item-link">{{$category->title}}</a>
                                             <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
                                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
@@ -643,7 +640,7 @@
                                                 @foreach ($category->children as $child)
                                                     <li class="mobile-links__item" data-collapse-item>
                                                         <div class="mobile-links__item-title">
-                                                            <a href="" class="mobile-links__item-link">{{$child->title}}</a>
+                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}" class="mobile-links__item-link">{{$child->title}}</a>
                                                         </div>
                                                     </li>
                                                 @endforeach
@@ -659,7 +656,7 @@
                             <li class="mobile-links__item" data-collapse-item>
                                 <div class="mobile-links__item-title">
                                     <a href="blog-classic.html" class="mobile-links__item-link" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">Выйти</a>
+                                    document.getElementById('logout-form').submit();" id="logoutMobile">Выйти</a>
                                 </div>
                             </li>
                         @endguest
@@ -725,103 +722,6 @@
     <script src="{{secure_asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
     <script>
         svg4everybody();
-    </script>
-    <script>
-        $('.add-to-cart').click(function(){
-            var product_id = $(this).attr("product-id");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "cart/create",
-                data: {product_id: product_id},
-                datatype: "html",
-                cache: false,
-                success: function(data){
-                    console.log(data);
-                    loadcart();
-                }
-            });
-        });
-        $('.input-number__add').click(function(){
-            var product_id = $(this).attr("product_id");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "cart/update",
-                data: "product-id-plus="+product_id,
-                datatype: "html",
-                cache: false,
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-
-        $('.input-number__sub').click(function(){
-            var product_id = $(this).attr("product_id");
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                type: "POST",
-                url: "cart/update",
-                data: "product-id-minus="+product_id,
-                datatype: "html",
-                cache: false,
-                success: function(data){
-                    console.log(data);
-                }
-            });
-        });
-
-        var ratedIndex = -1;
-
-        if(localStorage.getItem('ratedIndex') != null){
-            setRate(parseInt(localStorage.getItem('ratedIndex')));
-        }
-
-        $('.stars .fa-star').click(function(){
-            ratedIndex = parseInt($(this).attr('data-index'));
-            $('.stars .fa-star').css('color','green');
-            localStorage.setItem('ratedIndex', ratedIndex);
-            saveRating();
-        })
-
-        $('.stars .fa-star').mouseover(function(){
-            var currentIndex = parseInt($(this).attr('data-index'));
-            setRate(currentIndex);
-        })
-
-        $('.stars .fa-star').mouseleave(function(){
-            resetStarColor();
-            if(ratedIndex != -1){
-                setRate(ratedIndex);
-            }
-        });
-
-        function setRate(max){
-            for (var i=0; i <= max; i++){
-                $('.stars .fa-star:eq('+i+')').addClass('fa');
-            }
-        }
-
-        function resetStarColor(){
-            $('.stars .fa-star').removeClass('fa');
-        }
-
-        $(".remove-cart").click(function(){
-            console.log('remove');
-        });
     </script>
 </body>
 

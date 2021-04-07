@@ -23,6 +23,7 @@ class CheckoutController extends Controller
     }
 
     public function success($orderId){
+        $url = env('APP_URL');
         $order = Order::where('id', $orderId)->with('status')->first();
         DB::table('orders')
             ->where('id', $orderId)
@@ -31,10 +32,10 @@ class CheckoutController extends Controller
         event(new PackerEvent($order));
         event(new SaleEvent($order));
 
-        // foreach ($order->products as $product) {
-//send notification to each boutique
-        // }
-
+        $beamsClient = new PushNotifications(array(
+            "instanceId" => "41acbae0-ec93-4866-bce7-937bff9c4d27",
+            "secretKey" => "6EF41FB22546E116081BFE4439F77EF66F1F52FE24841500853EB04A9DB20D06"
+        ));
 
         // PACKERS ARRAY PREPARE TO SEND
         $userIds = Role::find(3)->users()->pluck('user_id');
@@ -43,11 +44,7 @@ class CheckoutController extends Controller
             $packageUsers[] = $sendId;
         }
 
-        $beamsClient = new PushNotifications(array(
-            "instanceId" => env('PUSHER_BEAMS_INSTANCE_ID'),
-            "secretKey" => env('PUSHER_BEAMS_SECRET_KEY'),
-        ));
-        $publishResponse = $beamsClient->publishToUsers(
+        $publishToPacker = $beamsClient->publishToUsers(
             $packageUsers,//packers Ids
             [
                 "web" => [
@@ -55,7 +52,7 @@ class CheckoutController extends Controller
                         "title" => "Заказ",
                         "body" => "Новая Фасовка",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'packer'
+                        "deep_link" => $url.'packer'
                     ]
                 ],
                 "fcm" => [
@@ -63,12 +60,50 @@ class CheckoutController extends Controller
                         "title" => "Заказ",
                         "body" => "Новая Фасовка",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'packer'
+                        "deep_link" => $url.'packer'
+                    ]
+                ]
+            ]
+        );
+
+        foreach ($order->products as $product){
+            $userId = "'".$product->user->id."'";
+            $sale[] = $userId;
+        }
+        $saleUsers = array_unique($sale);
+        
+        $publishToSeller = $beamsClient->publishToUsers(
+            $saleUsers,//Buyer Id
+            [
+                "web" => [
+                    "notification" => [
+                        "title" => "Покупки",
+                        "body" => "Ваши товар куплен",
+                        'icon' => secure_asset('/img/logo/push.png'),
+                        "deep_link" => env('APP_URL').'home'
+                    ]
+                    ],
+                "fcm" => [
+                    "notification" => [
+                        "title" => "Покупки",
+                        "body" => "Ваши товар куплен",
+                        'icon' => secure_asset('/img/logo/push.png'),
+                        "deep_link" => env('APP_URL').'home'
                     ]
                 ]
             ]
         );
 
         return view('checkout.success', compact('order'));
+    }
+    
+    public function updateOrderByUser(Request $request){
+        DB::table('orders')->where('id', $request->order_id)->update([
+            'address_id' => $request->address_id,
+            'infoByUser' => $request->infoByUser,
+            'phone' => $request->orderPhone
+        ]);
+
+        return "success";
     }
 }

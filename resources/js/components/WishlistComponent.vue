@@ -44,7 +44,19 @@
                     <td class="wishlist__column wishlist__column--stock">
                         <div class="badge badge-success">Да</div>
                     </td>
-                    <td class="wishlist__column wishlist__column--price">{{wishlist.product.price}} Тг.</td>
+                    <td class="wishlist__column wishlist__column--price">
+                        <div class="d-flex flex-column" v-if="wishlist.product.discount != 0">
+                            <span class="text-success">
+                            {{(Math.ceil((wishlist.product.price+((wishlist.product.price*10)/100)) - (((wishlist.product.price+((wishlist.product.price*10)/100)) * wishlist.product.discount)/100))).toLocaleString()}} тг.
+                            </span>
+                            <span class="line-through text-danger">
+                                {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.
+                            </span>
+                        </div>
+                        <div class="d-flex flex-column" v-else>
+                            {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.
+                        </div>
+                    </td>
                     <td class="wishlist__column wishlist__column--tocart">
                         <button type="button" class="btn btn-primary btn-sm" v-on:click="addToCart(wishlist.product.id)">Добавить в корзину</button>
                     </td>
@@ -74,6 +86,7 @@
             getData(){
                 axios.get(this.home_url + 'wishlist/get').then((response) => {
                     this.wishlists = response.data;
+                    console.log(this.wishlists);
                 })
             },
             removeItem: function(index) {
@@ -94,6 +107,6 @@
         },
         created(){
             this.getData();
-        }
+        },
     }
 </script>

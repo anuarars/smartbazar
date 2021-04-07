@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -16,7 +18,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -37,6 +39,65 @@ class AuthController extends Controller
         return $this->respondWithToken($token);
     }
 
+    public function register(Request $request){
+        
+        $this->validate($request,[
+            'firstname' => 'required|min:3|max:20',
+            'lastname' => 'required|min:3|max:20',
+            'phone' => 'required',
+            'password' => 'required'
+        ]);
+
+        $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $request->phone);
+        $phoneNumber = str_replace(' ', '', $removedSymbols);
+
+        $phone_verify_code = rand(1000, 9999);
+        $user = User::create([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+            'phone_verify_code' => $phone_verify_code
+        ]);
+
+        $client = new Client();
+        $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
+
+        $credentials = request(['phone', 'password']);
+
+        $token = auth()->guard('api')->attempt($credentials);
+
+        if (!$token) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return $this->respondWithToken($token);
+    }
+
+    public function verify(Request $request){
+        $user = User::find(Auth::id());
+        if($request->phone_verify_code == $user->phone_verify_code){
+            $user->phone_verified_at = now();
+            $user->save();
+            return response()->json('verified', 200);
+        }else{
+            return response()->json('error', 406);
+        }
+    }
+
+    public function resend(){
+        $user = User::find(Auth::id());
+        $user->phone_verify_code = rand(1000, 9999);
+        $user->save();
+
+        $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $user->phone);
+        $phoneNumber = str_replace(' ', '', $removedSymbols);
+
+        $client = new Client();
+        $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
+
+        return response()->json('sent', 200);
+    }
     /**
      * Get the authenticated User.
      *
@@ -85,31 +146,6 @@ class AuthController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    public function register(Request $request){
-        
-        $this->validate($request,[
-            'firstname' => 'required|min:3|max:20',
-            'lastname' => 'required|min:3|max:20',
-            'phone' => 'required',
-            'password' => 'required'
-        ]);
-
-        $phone_verify_code = rand(1000, 9999);
-
-        $user = User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-            'phone_verify_code' => $phone_verify_code
-        ]);
-
-        $token = $user->createToken('smartbazarkz')->accessToken;
-
-        return response()->json(['token' => $token], 200);
-
-    }
-
     /**
      * Get the token array structure.
      *
@@ -122,7 +158,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in'   => auth('api')->factory()->getTTL() * 60,
+            'expires_in'   => 60,
         ]);
     }
 }

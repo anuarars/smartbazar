@@ -79,8 +79,8 @@ class RegisterController extends Controller
             'phone_verify_code' => rand(1000, 9999)
         ]);
 
-        // $client = new Client();
-        // $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
+        $client = new Client();
+        $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
 
         $role = Role::select('id')->where('name', 'user')->first();
         $user->roles()->attach($role);

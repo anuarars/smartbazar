@@ -31,33 +31,33 @@
                 <tr class="cart-table__row" v-for="(product, index) in products">
                     <td class="cart-table__column cart-table__column--image">
                         <div class="product-image">
-                            <a href="" class="product-image__body">
+                            <a :href="home_url + 'products/' + product.id" class="product-image__body">
                                 <img class="product-image__img" :src="product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
                     <td class="cart-table__column cart-table__column--product">
-                        <a href="" class="cart-table__product-name">{{product.title}}</a>
+                        <a :href="home_url + 'products/' + product.id"  class="cart-table__product-name">{{product.title}}</a>
                     </td>
 
                     <td class="cart-table__column cart-table__column--price" data-title="Цена">
-                        <div class="d-flex flex-column" v-if="product.discount != null">
+                        <div class="d-flex flex-column" v-if="product.discount != 0">
                             <span class="text-success">
-                            {{(Math.ceil(product.price - ((product.price * product.discount)/100))).toLocaleString()}} тг.
+                            {{(Math.ceil((product.price+((product.price*10)/100)) - (((product.price+((product.price*10)/100)) * product.discount)/100))).toLocaleString()}} тг.
                             </span>
                             <span class="line-through text-danger">
-                                {{(product.price).toLocaleString()}} тг.
+                                {{(product.price+((product.price*10)/100)).toLocaleString()}} тг.
                             </span>
                         </div>
                         <div class="d-flex flex-column" v-else>
-                            {{(product.price).toLocaleString()}} тг.
+                            {{(product.price+((product.price*10)/100)).toLocaleString()}} тг.
                         </div>
                     </td>
 
                     <td class="cart-table__column cart-table__column--quantity" data-title="Кол-во">
                         <strong>{{product.measure.code}}</strong>
                         <div class="input-number">
-                            <input class="form-control input-number__input" type="number" min="1" :value="product.pivot.count">
+                            <input class="form-control input-number__input" type="number" min="1" :value="product.pivot.count" disabled>
                             <div class="input-number__add" v-on:click="addQuantity(index)"></div>
                             <div class="input-number__sub" v-on:click="subQuantity(index)"></div>
                         </div>
@@ -66,11 +66,11 @@
                     <td class="cart-table__column cart-table__column--total" data-title="Всего">
                         <span v-if="product.discount != null">
                             {{
-                                (product.pivot.count * Math.ceil(product.price-((product.price * product.discount)/100))).toLocaleString()
+                                (product.pivot.count * Math.ceil((product.price+((product.price*10)/100))-(((product.price+((product.price*10)/100)) * product.discount)/100))).toLocaleString()
                             }} тг.
                         </span>
                         <span v-else>
-                            {{(product.pivot.count * product.price).toLocaleString()}} тг.
+                            {{(product.pivot.count * (product.price+((product.price*10)/100))).toLocaleString()}} тг.
                         </span>
                     </td>
 
@@ -170,7 +170,6 @@
             }
         },
         created(){
-            console.log(this.deliveryprice);
             this.getData();
         },
         computed: {
@@ -179,10 +178,10 @@
 
                 for (var i = 0; i < this.products.length; i++) {
                     if(this.products[i].discount != null){
-                        var discountPrice = Math.ceil(this.products[i].price - ((this.products[i].price * this.products[i].discount)/100))
+                        var discountPrice = Math.ceil((this.products[i].price+((this.products[i].price*10)/100)) - (((this.products[i].price+((this.products[i].price*10)/100)) * this.products[i].discount)/100))
                         subTotal += this.products[i].pivot.count * discountPrice;
                     }else{
-                        subTotal += this.products[i].price * this.products[i].pivot.count;
+                        subTotal += (this.products[i].price+((this.products[i].price*10)/100))* this.products[i].pivot.count;
                     }
                 }
 

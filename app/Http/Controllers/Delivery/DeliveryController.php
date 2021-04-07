@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Support\Facades\DB;
 
 class DeliveryController extends Controller
@@ -25,7 +26,7 @@ class DeliveryController extends Controller
     }
 
     public function order($id){
-        if($order = Order::where('id', $id)->where('isFinished', 0)->first()){
+        if($order = Order::where('id', $id)->first()){
             DB::table('orders')
             ->where('id', $id)
             ->update(['status_id' => 5]);
@@ -37,10 +38,39 @@ class DeliveryController extends Controller
         DB::table('orders')
         ->where('id', $order->id)
         ->update([
-            'isFinished' => 1,
             'delivery_id' => Auth::id(),
-            'status_id' => 6
+            'status_id' => 7
         ]);
+
+        $userId = "'".$order->user->id."'";
+
+        $beamsClient = new PushNotifications(array(
+            "instanceId" => "41acbae0-ec93-4866-bce7-937bff9c4d27",
+            "secretKey" => "6EF41FB22546E116081BFE4439F77EF66F1F52FE24841500853EB04A9DB20D06",
+        ));
+        $beamsClient->publishToUsers(
+            [$userId],//Buyer Id
+            [
+                "web" => [
+                    "notification" => [
+                        "title" => "Фасовка",
+                        "body" => "Ваши товар прибыл",
+                        'icon' => secure_asset('/img/logo/push.png'),
+                        "deep_link" => env('APP_URL').'home'
+                    ]
+                    ],
+                "fcm" => [
+                    "notification" => [
+                        "title" => "Фасовка",
+                        "body" => "Ваши товар прибыл",
+                        'icon' => secure_asset('/img/logo/push.png'),
+                        "deep_link" => env('APP_URL').'home'
+                    ]
+                ]
+            ]
+        );
+
+
 
         return redirect()->route('delivery.index')->with(['success'=>'Доставка завершена']);
     }

@@ -1,11 +1,11 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">Восстановить пароль</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,17 +13,25 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <form method="POST" action="{{ route('password.email') }}">
+                        @include('includes.errors')
+                    <form method="POST" action="{{ route('verify.reset') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Телефон</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input 
+                                    type="text" 
+                                    class="form-control @error('phone') is-invalid @enderror" name="phone" 
+                                    value="{{ old('phone') }}" 
+                                    required 
+                                    autofocus
+                                    v-mask="'+7 (###) ### ####'" 
+                                    v-model="auth.loginNumber"
+                                >
 
-                                @error('email')
+                                @error('phond')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -34,7 +42,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                                    Восстановить
                                 </button>
                             </div>
                         </div>

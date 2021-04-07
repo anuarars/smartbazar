@@ -4,6 +4,21 @@
 <section class="section">
     <div class="section-body">
         <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>{{$order->user->firstname}} {{$order->user->lastname}}</h4>
+                    </div>
+                    <div class="card-body">
+                        {{$order->address->home}}, {{$order->address->street}}, {{$order->address->unit}}
+                        <hr>
+                        {{$order->fullPrice()}}
+                    </div>
+                    <div class="card-footer">
+                        <h6>Телефон: {{$order->user->phone}}, {{$order->phone ?? ""}}</h6>
+                    </div>
+                </div>
+            </div>
             @foreach ($order->products as $product)
                 <div class="col-12 col-md-4 col-lg-4">
                     <div class="card">
@@ -17,7 +32,7 @@
                             </ul>
                         </div>
                         <div class="card-footer">
-                            <h4>{{$product->price}} тг.</h4>
+                            <h4>{{$product->priceForCount()}} тг.</h4>
                         </div>
                     </div>
                 </div>

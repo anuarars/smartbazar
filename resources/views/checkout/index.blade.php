@@ -25,7 +25,7 @@
         <payment-component
             :user = "{{Auth::user()->load('address')}}"
             :order = "{{$order}}"
-            :sum = "{{$sum}}"
+            :sum = "{{$order->fullPrice()}}"
             :home_url = "homeUrl"
             :deliveryprice = "{{$order->deliveryPrice}}"
         >

@@ -17,15 +17,58 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <select name="" class="form-control" v-model="selected">
-                                    <option value="self">Самовывоз</option>
-                                    <option value="create">Адрес доставки</option>
-                                    <option v-show="!!user.address.length > 0" v-for="address in user.address" :value="address">{{address.name}}</option>
+                            <!--<div class="form-group" v-if="user.address.length !=0">
+
+                                <select class="form-control" :class="{'is-invalid': emptyAddress}" v-model="selected" v-on:change="showInputs=true">
+                                    <option value="" selected disabled>Выберите Адрес</option>
+                                    <option v-for="address in user.address" :value="address">{{address.name}}</option>
                                 </select>
                             </div>
 
                             <div>
+                                <div class="form-row" v-if="user.address.length !=0" :class="{'d-none': !showInputs}">
+                                    <div class="form-group col-md-3">
+                                        <label for="checkout-address">Дом</label>
+                                        <input type="text" class="form-control" :value="selected.home">
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <label for="checkout-street-address">Улица</label>
+                                        <input type="text" class="form-control" placeholder="Улица" :value="selected.street">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="checkout-address">Кв</label>
+                                        <input type="text" class="form-control" :value="selected.unit">
+                                    </div>
+                                </div>
+
+                                <div class="form-row" v-else>
+                                    <div class="form-group col-md-3">
+                                        <label for="checkout-address">Дом</label>
+                                        <input type="text" class="form-control" v-model="create.home" :class="{'is-invalid': emptyAddress}">
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <label for="checkout-street-address">Улица</label>
+                                        <input type="text" class="form-control" placeholder="Улица" v-model="create.street" :class="{'is-invalid': emptyAddress}">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="checkout-address">Кв</label>
+                                        <input type="text" class="form-control" v-model="create.unit" :class="{'is-invalid': emptyAddress}">
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="checkout-phone">Адрес</label>
+                                    <input type="text" class="form-control" placeholder="Адрес" v-model="address" v-on:keyup="searchAddress">
+                                    <ul class="list-group" v-if="addressList.length > 0">
+                                        <li v-for="address in addressList" class="list-group-item">{{address.GeoObject.metaDataProperty.GeocoderMetaData}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!--<div>
                                 <div class="form-row" v-if="selected !== 'self'">
                                     <div class="form-group col-md-10">
                                         <label for="checkout-address">Дом</label>
@@ -39,7 +82,7 @@
                                         <input type="text" class="form-control" :value="selected.unit">
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
@@ -48,7 +91,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="checkout-phone">Дополнительный</label>
-                                    <input type="text" class="form-control" id="checkout-phone2" placeholder="Телефон">
+                                    <input type="text" class="form-control" id="checkout-phone2" placeholder="Телефон" v-model="orderPhone">
                                 </div>
                             </div>
                         </div>
@@ -57,7 +100,7 @@
                             <h3 class="card-title">Дополнительная информация для доставки</h3>
                             <div class="form-group">
                                 <label for="checkout-comment">Необязательно</label>
-                                <textarea id="checkout-comment" class="form-control" rows="4"></textarea>
+                                <textarea id="checkout-comment" class="form-control" rows="4" v-model="infoByUser"></textarea>
                             </div>
                         </div>
                     </div>
@@ -78,10 +121,12 @@
                                     <td>{{product.title}}</td>
                                     <td>
                                         <span v-if="product.discount != null">
-                                            {{(Math.ceil(product.price - ((product.price * product.discount)/100))).toLocaleString()}} тг.
+                                            {{
+                                                (product.pivot.count * Math.ceil((product.price+((product.price*10)/100))-(((product.price+((product.price*10)/100)) * product.discount)/100))).toLocaleString()
+                                            }} тг.
                                         </span>
                                         <span v-else>
-                                            {{(product.price*product.pivot.count).toLocaleString()}} тг.
+                                            {{(product.pivot.count * (product.price+((product.price*10)/100))).toLocaleString()}} тг.
                                         </span>
                                     </td>
                                 </tr>
@@ -99,11 +144,11 @@
                                 <tfoot class="checkout__totals-footer">
                                 <tr>
                                     <th>Всего</th>
-                                    <td>{{(sum+1000).toLocaleString()}} тг.</td>
+                                    <td>{{(sum+deliveryprice).toLocaleString()}} тг.</td>
                                 </tr>
                                 </tfoot>
                             </table>
-                            <button  v-on:click="addOrUpdateAddress" class="btn btn-primary btn-xl btn-block">Подтвердить</button>
+                            <button v-on:click="addOrUpdateAddress()" class="btn btn-primary btn-xl btn-block">Подтвердить</button>
                             <!--<button class="btn btn-danger" v-on:click="generateForm">pay</button>-->
                         </div>
                     </div>
@@ -112,85 +157,82 @@
         </div>
     </div>
 
-
 </template>
 
 <script>
-import Autocomplete from '@trevoreyre/autocomplete-vue';
-import '@trevoreyre/autocomplete-vue/dist/style.css'
+// import Autocomplete from '@trevoreyre/autocomplete-vue';
+// import '@trevoreyre/autocomplete-vue/dist/style.css'
 
-const geocodeUrl = 'https://geocode-maps.yandex.ru/1.x';
-const apikey = '471d7ae6-c5c6-45cc-9c09-52b2246b5fba';
-const astana_bbox = '71.170665,50.986637~71.665036,51.309052'
-
+// const geocodeUrl = 'https://geocode-maps.yandex.ru/1.x';
+// const apikey = '471d7ae6-c5c6-45cc-9c09-52b2246b5fba';
+// const astana_bbox = '71.170665,50.986637~71.665036,51.309052';
 
 export default {
     props:[
         'user', 'order', 'sum', 'home_url', 'deliveryprice'
     ],
-    components: {
-        Autocomplete
-    },
+    // components: {
+    //     Autocomplete
+    // },
     data() {
         return {
             selected: '',
-            createRecord:{
+            orderPhone: '',
+            infoByUser: '',
+            create:{
                 home: '',
                 street: '',
-                unit: '',
-            }
+                unit: ''
+            },
+            emptyAddress: false,
+            showInputs: false,
+
+            address: '',
+            addressList: [],
+            astana_bbox: '71.170665,50.986637~71.665036,51.309052',
         }
     },
     methods:{
-        searchDebounced(input) {
-            const url = `${geocodeUrl}?apikey=${
-                apikey
-            }&geocode=${encodeURI(input)}&format=json`
-
-            return new Promise(resolve => {
-                if (input.length < 3) {
-                    return resolve([])
-                }
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        // возвращаю массив с адресами и потом парсится с помощью getResultAddress
-                        resolve(data.response.GeoObjectCollection.featureMember)
-                    })
-            })
-
-        },
-        getResultAddress(result){
-            return result.GeoObject.description;
-        },
         addOrUpdateAddress() {
-            // if(this.selected == 'create'){
-            //    this.createAddress();
-            // }else if(this.selected == 'self'){
-            //     console.log('an');
-            // }
-            window.location.href = this.home_url + 'checkout/' + this.order.id + '/success';
-
-            // if (this.selected) {
-            //     axios.post(this.home_url + "/profile/address/update/" + this.selected.id, this.selected)
-            //     .then(function (response) {
-            //         // window.location.href = this.home_url + this.order.id + '/success';
-            //         // console.log(response);
-            //         // console.log(response.success);
-            //     })
-            // }
-            // console.log(this.selected);
-
+            if(this.user.address.length!=0){
+                this.updateOrder();
+            }else{
+                this.createAddress();
+            }
         },
         createAddress(){
-            console.log(this.selected.home)
-            // axios.post(this.home_url + 'profile/address', {
-            //     throughPayment: 1,
-            // }).then(response => {
-            //     console.log(response.data)
-            // });
+            if(this.create.home=='' || this.create.street=='' || this.create.unit==''){
+                this.emptyAddress=true;
+            }else{
+                axios.post(this.home_url + 'profile/address/create/payment', {
+                    home: this.create.home,
+                    street: this.create.street,
+                    unit: this.create.street,
+                }).then(response => {
+                    axios.post(this.home_url + 'checkout/update/order', {
+                        address_id: response.data.id,
+                        orderPhone: this.orderPhone,
+                        infoByUser: this.infoByUser,
+                        order_id: this.order.id,
+                    }).then(response => {
+                        window.location.href = this.home_url + 'checkout/' + this.order.id + '/success';
+                    });
+                });
+            }
+        },
+        updateOrder(){
+            if(this.selected == ''){
+                this.emptyAddress=true;
+            }else{
+                axios.post(this.home_url + 'checkout/update/order', {
+                    address_id: this.selected.id,
+                    orderPhone: this.orderPhone,
+                    infoByUser: this.infoByUser,
+                    order_id: this.order.id,
+                }).then(response => {
+                    window.location.href = this.home_url + 'checkout/' + this.order.id + '/success';
+                });
+            }
         },
         generateForm() {
             var widget = new tp.TarlanPayments();
@@ -215,14 +257,33 @@ export default {
                 }
             );
         },
-
-    },
-    created(){
-        console.log(this.order.products);
-        console.log(this.user);
-
+        searchAddress(){
+            this.addressList = '';
+            axios.get('https://geocode-maps.yandex.ru/1.x/?apikey=471d7ae6-c5c6-45cc-9c09-52b2246b5fba&format=json&geocode=Астана,'+this.address+'&lang=ru_RU').then(response => {
+                console.log(response.data.response.GeoObjectCollection.featureMember);
+                this.addressList = response.data.response.GeoObjectCollection.featureMember;
+            });
+        },
+        // searchDebounced(input) {
+        //     const url = `${geocodeUrl}?apikey=${
+        //         apikey
+        //     }&geocode=${encodeURI(input)}&format=json`
+        //     return new Promise(resolve => {
+        //         if (input.length < 3) {
+        //             return resolve([])
+        //         }
+        //         fetch(url)
+        //             .then(response => response.json())
+        //             .then(data => {
+        //                 console.log(data);
+        //                 // возвращаю массив с адресами и потом парсится с помощью getResultAddress
+        //                 resolve(data.response.GeoObjectCollection.featureMember)
+        //             })
+        //     })
+        // },
+        // getResultAddress(result){
+        //     return result.GeoObject.description;
+        // },
     }
 }
 </script>
-
-

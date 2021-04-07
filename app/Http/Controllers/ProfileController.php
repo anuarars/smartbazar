@@ -19,21 +19,17 @@ class ProfileController extends Controller
     }
 
     public function addressCreate(Request $request){
-        // $user = User::find(Auth::id());
-        // $data = [
-        //     'name' => $request->name,
-        //     'city' => 'Астана',
-        //     'home' => $request->home,
-        //     'unit' => $request->unit,
-        //     'street' => $request->street
-        // ];
+        $user = User::find(Auth::id());
+        $data = [
+            'name' => $request->name,
+            'city' => 'Астана',
+            'home' => $request->home,
+            'unit' => $request->unit,
+            'street' => $request->street
+        ];
 
-        if($request->throughPayment){
-            return "test2";
-        }else{
-            // $user->address()->create($data);
-            return redirect()->route('profile.address');
-        }
+        $user->address()->create($data);
+        return redirect()->route('profile.address');
     }
 
     public function addressUpdate(Request $request, Address $address){
@@ -48,6 +44,20 @@ class ProfileController extends Controller
 
         $address->update($data);
         return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
+    }
+
+    public function addressCreateByPayment(Request $request){
+        $user = User::find(Auth::id());
+        $data = [
+            'name' => $request->street,
+            'city' => 'Астана',
+            'home' => $request->home,
+            'unit' => $request->unit,
+            'street' => $request->street
+        ];
+
+        $address = $user->address()->create($data);
+        return $address;
     }
 
     public function addressRemove(Request $request, Address $address){

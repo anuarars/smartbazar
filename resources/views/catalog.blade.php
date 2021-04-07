@@ -103,24 +103,33 @@
                                 <div class="widget-products widget">
                                     <h4 class="widget__title">Последние товары</h4>
                                     <div class="widget-products__list">
-                                            @foreach ($latest_products as $product)
-                                                <div class="widget-products__item">
-                                                    <div class="widget-products__image">
-                                                        <div class="product-image">
-                                                            <a href="{{route('product', $product->id, true)}}" class="product-image__body">
-                                                                <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="widget-products__info">
-                                                        <div class="widget-products__name">
-                                                            <a href="product.html">{{$product->title}}</a>
-                                                        </div>
-                                                        <div class="widget-products__prices">
-                                                            {{$product->price}} тг.
-                                                        </div>
+                                        @foreach ($latest_products as $product)
+                                            <div class="widget-products__item">
+                                                <div class="widget-products__image">
+                                                    <div class="product-image">
+                                                        <a href="{{route('product', $product->id, true)}}" class="product-image__body">
+                                                            <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
+                                                        </a>
                                                     </div>
                                                 </div>
+                                                <div class="widget-products__info">
+                                                    <div class="widget-products__name">
+                                                        <a href="{{route('product', $product->id, true)}}">{{$product->title}}</a>
+                                                    </div>
+                                                    <div class="widget-products__prices">
+                                                        @if ($product->discount == null)
+                                                            {{$product->priceAfterFee()}} тг.
+                                                        @else
+                                                            <span class="product-card__new-price">
+                                                                {{$product->afterDiscount}} тг.
+                                                            </span>
+                                                            <span class="product-card__old-price">
+                                                                {{$product->priceAfterFee()}} тг.
+                                                            </span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -197,11 +206,13 @@
                                                         <div class="product-card__rating-stars">
                                                             <div class="rating">
                                                                 <div class="rating__body">
-                                                                    <star-component></star-component>
+                                                                    <div class="rating__body">
+                                                                        <star-component :rating="{{$product->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="product-card__rating-legend">Отзывов: 5</div>
+                                                        <div class="product-card__rating-legend">Отзывов: {{$products->first()->reviews->count()}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__actions">
@@ -209,7 +220,16 @@
                                                         В наличии: <span class="text-success">Да</span>
                                                     </div>
                                                     <div class="product-card__prices">
-                                                        {{$product->price}} тг.
+                                                        @if ($product->discount == null)
+                                                            {{$product->priceAfterFee()}} тг.
+                                                        @else
+                                                            <span class="product-card__new-price">
+                                                                {{$product->afterDiscount}} тг.
+                                                            </span>
+                                                            <span class="product-card__old-price">
+                                                                {{$product->priceAfterFee()}} тг.
+                                                            </span>
+                                                        @endif
                                                     </div>
                                                     <div class="product-card__buttons">
                                                         <add-to-cart-component 

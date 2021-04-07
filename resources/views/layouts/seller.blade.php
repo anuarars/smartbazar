@@ -40,7 +40,7 @@
         </div>
         <ul class="navbar-nav navbar-right">
           <li><a class="text-danger" href="#" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><span>Выйти</span></a></li>
+            document.getElementById('logout-form').submit();" id="logoutMobile"><span>Выйти</span></a></li>
           <form id="logout-form" action="https://smartbazar.kz/logout" method="POST" style="display: none;">
             @csrf
           </form>

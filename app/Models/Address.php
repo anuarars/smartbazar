@@ -12,4 +12,8 @@ class Address extends Model
     {
         return $this->morphTo();
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class);
+    }
 }

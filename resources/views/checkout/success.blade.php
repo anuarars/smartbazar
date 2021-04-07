@@ -12,7 +12,7 @@
                     <h1 class="order-success__title">Спасибо!</h1>
                     <div class="order-success__subtitle">Покупка успешно совершена</div>
                     <div class="order-success__actions">
-                        <a href="" class="btn btn-xs btn-secondary">Вернуться на главную</a>
+                        <a href="{{route('index', true)}}" class="btn btn-xs btn-secondary">Вернуться на главную</a>
                     </div>
                 </div>
                 <div class="order-success__meta">
@@ -27,7 +27,7 @@
                         </li>
                         <li class="order-success__meta-item">
                             <span class="order-success__meta-title">Сумма:</span>
-                            <span class="order-success__meta-value">{{$order->fullPriceNoDiscount()}} тг.</span>
+                            <span class="order-success__meta-value">{{$order->fullPrice()}} тг.</span>
                         </li>
                         <li class="order-success__meta-item">
                             <span class="order-success__meta-title">Способ оплаты:</span>
@@ -66,11 +66,11 @@
                             <tbody class="order-list__subtotals">
                                 <tr>
                                     <th class="order-list__column-label" colspan="3">Сумма</th>
-                                    <td class="order-list__column-total">{{$order->fullPriceNoDiscount()}} тг.</td>
+                                    <td class="order-list__column-total">{{$order->fullPrice()}} тг.</td>
                                 </tr>
                                 <tr>
                                     <th class="order-list__column-label" colspan="3">Доставка</th>
-                                    <td class="order-list__column-total">1 000 тг.</td>
+                                    <td class="order-list__column-total">{{$order->deliveryprice}}</td>
                                 </tr>
                             </tbody>
                             <tfoot class="order-list__footer">
@@ -89,11 +89,9 @@
                                 <div class="address-card__badge address-card__badge--muted">Адрес</div>
                                 <div class="address-card__name">{{Auth::user()->firstname}} {{Auth::user()->lastname}}</div>
                                 <div class="address-card__row">
-                                    @if (Auth::user()->address)
-                                        {{Auth::user()->address->first()->home}}<br>
-                                        {{Auth::user()->address->first()->street}}<br>
-                                        {{Auth::user()->address->first()->unit}}
-                                    @endif
+                                    {{$order->address->home}}<br>
+                                    {{$order->address->street}}<br>
+                                    {{$order->address->unit}}
                                 </div>
                                 <div class="address-card__row">
                                     <div class="address-card__row-title">Телефон</div>
