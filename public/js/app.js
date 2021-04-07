@@ -9462,7 +9462,6 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    console.log(this.deliveryprice);
     this.getData();
   },
   computed: {
@@ -9471,10 +9470,10 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var i = 0; i < this.products.length; i++) {
         if (this.products[i].discount != null) {
-          var discountPrice = Math.ceil(this.products[i].price - this.products[i].price * this.products[i].discount / 100);
+          var discountPrice = Math.ceil(this.products[i].price + this.products[i].price * 10 / 100 - (this.products[i].price + this.products[i].price * 10 / 100) * this.products[i].discount / 100);
           subTotal += this.products[i].pivot.count * discountPrice;
         } else {
-          subTotal += this.products[i].price * this.products[i].pivot.count;
+          subTotal += (this.products[i].price + this.products[i].price * 10 / 100) * this.products[i].pivot.count;
         }
       }
 
@@ -10244,41 +10243,121 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// import Autocomplete from '@trevoreyre/autocomplete-vue';
+// import '@trevoreyre/autocomplete-vue/dist/style.css'
+// const geocodeUrl = 'https://geocode-maps.yandex.ru/1.x';
+// const apikey = '471d7ae6-c5c6-45cc-9c09-52b2246b5fba';
+// const astana_bbox = '71.170665,50.986637~71.665036,51.309052';
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user', 'order', 'sum', 'home_url', 'deliveryprice'],
+  // components: {
+  //     Autocomplete
+  // },
   data: function data() {
     return {
       selected: '',
-      createRecord: {
+      orderPhone: '',
+      infoByUser: '',
+      create: {
         home: '',
         street: '',
         unit: ''
-      }
+      },
+      emptyAddress: false,
+      showInputs: false,
+      address: '',
+      addressList: [],
+      astana_bbox: '71.170665,50.986637~71.665036,51.309052'
     };
   },
   methods: {
     addOrUpdateAddress: function addOrUpdateAddress() {
-      // if(this.selected == 'create'){
-      //    this.createAddress();
-      // }else if(this.selected == 'self'){
-      //     console.log('an');
-      // }
-      window.location.href = this.home_url + 'checkout/' + this.order.id + '/success'; // if (this.selected) {
-      //     axios.post(this.home_url + "/profile/address/update/" + this.selected.id, this.selected)
-      //     .then(function (response) {
-      //         // window.location.href = this.home_url + this.order.id + '/success';
-      //         // console.log(response);
-      //         // console.log(response.success);
-      //     })
-      // }
-      // console.log(this.selected);
+      if (this.user.address.length != 0) {
+        this.updateOrder();
+      } else {
+        this.createAddress();
+      }
     },
     createAddress: function createAddress() {
-      console.log(this.selected.home); // axios.post(this.home_url + 'profile/address', {
-      //     throughPayment: 1,
-      // }).then(response => {
-      //     console.log(response.data)
-      // });
+      var _this = this;
+
+      if (this.create.home == '' || this.create.street == '' || this.create.unit == '') {
+        this.emptyAddress = true;
+      } else {
+        axios.post(this.home_url + 'profile/address/create/payment', {
+          home: this.create.home,
+          street: this.create.street,
+          unit: this.create.street
+        }).then(function (response) {
+          axios.post(_this.home_url + 'checkout/update/order', {
+            address_id: response.data.id,
+            orderPhone: _this.orderPhone,
+            infoByUser: _this.infoByUser,
+            order_id: _this.order.id
+          }).then(function (response) {
+            window.location.href = _this.home_url + 'checkout/' + _this.order.id + '/success';
+          });
+        });
+      }
+    },
+    updateOrder: function updateOrder() {
+      var _this2 = this;
+
+      if (this.selected == '') {
+        this.emptyAddress = true;
+      } else {
+        axios.post(this.home_url + 'checkout/update/order', {
+          address_id: this.selected.id,
+          orderPhone: this.orderPhone,
+          infoByUser: this.infoByUser,
+          order_id: this.order.id
+        }).then(function (response) {
+          window.location.href = _this2.home_url + 'checkout/' + _this2.order.id + '/success';
+        });
+      }
     },
     generateForm: function generateForm() {
       var widget = new tp.TarlanPayments();
@@ -10306,11 +10385,36 @@ __webpack_require__.r(__webpack_exports__);
       }, function (err) {
         console.log(err);
       });
-    }
-  },
-  created: function created() {
-    console.log(this.order.products);
-    console.log(this.user);
+    },
+    searchAddress: function searchAddress() {
+      var _this3 = this;
+
+      this.addressList = '';
+      axios.get('https://geocode-maps.yandex.ru/1.x/?apikey=471d7ae6-c5c6-45cc-9c09-52b2246b5fba&format=json&geocode=Астана,' + this.address + '&lang=ru_RU').then(function (response) {
+        console.log(response.data.response.GeoObjectCollection.featureMember);
+        _this3.addressList = response.data.response.GeoObjectCollection.featureMember;
+      });
+    } // searchDebounced(input) {
+    //     const url = `${geocodeUrl}?apikey=${
+    //         apikey
+    //     }&geocode=${encodeURI(input)}&format=json`
+    //     return new Promise(resolve => {
+    //         if (input.length < 3) {
+    //             return resolve([])
+    //         }
+    //         fetch(url)
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data);
+    //                 // возвращаю массив с адресами и потом парсится с помощью getResultAddress
+    //                 resolve(data.response.GeoObjectCollection.featureMember)
+    //             })
+    //     })
+    // },
+    // getResultAddress(result){
+    //     return result.GeoObject.description;
+    // },
+
   }
 });
 
@@ -10903,6 +11007,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['home_url'],
   data: function data() {
@@ -10917,6 +11033,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(this.home_url + 'wishlist/get').then(function (response) {
         _this.wishlists = response.data;
+        console.log(_this.wishlists);
       });
     },
     removeItem: function removeItem(index) {
@@ -38437,7 +38554,9 @@ var render = function() {
                             "a",
                             {
                               staticClass: "product-image__body",
-                              attrs: { href: "" }
+                              attrs: {
+                                href: _vm.home_url + "products/" + product.id
+                              }
                             },
                             [
                               _c("img", {
@@ -38464,7 +38583,9 @@ var render = function() {
                           "a",
                           {
                             staticClass: "cart-table__product-name",
-                            attrs: { href: "" }
+                            attrs: {
+                              href: _vm.home_url + "products/" + product.id
+                            }
                           },
                           [_vm._v(_vm._s(product.title))]
                         )
@@ -38479,15 +38600,18 @@ var render = function() {
                         attrs: { "data-title": "Цена" }
                       },
                       [
-                        product.discount != null
+                        product.discount != 0
                           ? _c("div", { staticClass: "d-flex flex-column" }, [
                               _c("span", { staticClass: "text-success" }, [
                                 _vm._v(
                                   "\n                        " +
                                     _vm._s(
                                       Math.ceil(
-                                        product.price -
-                                          (product.price * product.discount) /
+                                        product.price +
+                                          (product.price * 10) / 100 -
+                                          ((product.price +
+                                            (product.price * 10) / 100) *
+                                            product.discount) /
                                             100
                                       ).toLocaleString()
                                     ) +
@@ -38501,7 +38625,12 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                            " +
-                                      _vm._s(product.price.toLocaleString()) +
+                                      _vm._s(
+                                        (
+                                          product.price +
+                                          (product.price * 10) / 100
+                                        ).toLocaleString()
+                                      ) +
                                       " тг.\n                        "
                                   )
                                 ]
@@ -38510,7 +38639,12 @@ var render = function() {
                           : _c("div", { staticClass: "d-flex flex-column" }, [
                               _vm._v(
                                 "\n                        " +
-                                  _vm._s(product.price.toLocaleString()) +
+                                  _vm._s(
+                                    (
+                                      product.price +
+                                      (product.price * 10) / 100
+                                    ).toLocaleString()
+                                  ) +
                                   " тг.\n                    "
                               )
                             ])
@@ -38530,7 +38664,7 @@ var render = function() {
                         _c("div", { staticClass: "input-number" }, [
                           _c("input", {
                             staticClass: "form-control input-number__input",
-                            attrs: { type: "number", min: "1" },
+                            attrs: { type: "number", min: "1", disabled: "" },
                             domProps: { value: product.pivot.count }
                           }),
                           _vm._v(" "),
@@ -38571,8 +38705,11 @@ var render = function() {
                                     (
                                       product.pivot.count *
                                       Math.ceil(
-                                        product.price -
-                                          (product.price * product.discount) /
+                                        product.price +
+                                          (product.price * 10) / 100 -
+                                          ((product.price +
+                                            (product.price * 10) / 100) *
+                                            product.discount) /
                                             100
                                       )
                                     ).toLocaleString()
@@ -38585,7 +38722,9 @@ var render = function() {
                                 "\n                        " +
                                   _vm._s(
                                     (
-                                      product.pivot.count * product.price
+                                      product.pivot.count *
+                                      (product.price +
+                                        (product.price * 10) / 100)
                                     ).toLocaleString()
                                   ) +
                                   " тг.\n                    "
@@ -39585,109 +39724,53 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "select",
-                  {
+              _c("div", { staticClass: "form-row" }, [
+                _c("div", { staticClass: "form-group col-md-12" }, [
+                  _c("label", { attrs: { for: "checkout-phone" } }, [
+                    _vm._v("Адрес")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.selected,
-                        expression: "selected"
+                        value: _vm.address,
+                        expression: "address"
                       }
                     ],
                     staticClass: "form-control",
-                    attrs: { name: "" },
+                    attrs: { type: "text", placeholder: "Адрес" },
+                    domProps: { value: _vm.address },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.selected = $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
+                      keyup: _vm.searchAddress,
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.address = $event.target.value
                       }
                     }
-                  },
-                  [
-                    _c("option", { attrs: { value: "self" } }, [
-                      _vm._v("Самовывоз")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "create" } }, [
-                      _vm._v("Адрес доставки")
-                    ]),
-                    _vm._v(" "),
-                    _vm._l(_vm.user.address, function(address) {
-                      return _c(
-                        "option",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: !!_vm.user.address.length > 0,
-                              expression: "!!user.address.length > 0"
-                            }
-                          ],
-                          domProps: { value: address }
-                        },
-                        [_vm._v(_vm._s(address.name))]
+                  }),
+                  _vm._v(" "),
+                  _vm.addressList.length > 0
+                    ? _c(
+                        "ul",
+                        { staticClass: "list-group" },
+                        _vm._l(_vm.addressList, function(address) {
+                          return _c("li", { staticClass: "list-group-item" }, [
+                            _vm._v(
+                              _vm._s(
+                                address.GeoObject.metaDataProperty
+                                  .GeocoderMetaData
+                              )
+                            )
+                          ])
+                        }),
+                        0
                       )
-                    })
-                  ],
-                  2
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", [
-                _vm.selected !== "self"
-                  ? _c("div", { staticClass: "form-row" }, [
-                      _c("div", { staticClass: "form-group col-md-3" }, [
-                        _c("label", { attrs: { for: "checkout-address" } }, [
-                          _vm._v("Дом")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.selected.home }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-7" }, [
-                        _c(
-                          "label",
-                          { attrs: { for: "checkout-street-address" } },
-                          [_vm._v("Улица")]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text", placeholder: "Улица" },
-                          domProps: { value: _vm.selected.street }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group col-md-2" }, [
-                        _c("label", { attrs: { for: "checkout-address" } }, [
-                          _vm._v("Кв")
-                        ]),
-                        _vm._v(" "),
-                        _c("input", {
-                          staticClass: "form-control",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.selected.unit }
-                        })
-                      ])
-                    ])
-                  : _vm._e()
+                    : _vm._e()
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-row" }, [
@@ -39708,13 +39791,75 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c("div", { staticClass: "form-group col-md-6" }, [
+                  _c("label", { attrs: { for: "checkout-phone" } }, [
+                    _vm._v("Дополнительный")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.orderPhone,
+                        expression: "orderPhone"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "checkout-phone2",
+                      placeholder: "Телефон"
+                    },
+                    domProps: { value: _vm.orderPhone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.orderPhone = $event.target.value
+                      }
+                    }
+                  })
+                ])
               ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-divider" }),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "card-body" }, [
+              _c("h3", { staticClass: "card-title" }, [
+                _vm._v("Дополнительная информация для доставки")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "checkout-comment" } }, [
+                  _vm._v("Необязательно")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.infoByUser,
+                      expression: "infoByUser"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "checkout-comment", rows: "4" },
+                  domProps: { value: _vm.infoByUser },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.infoByUser = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -39724,7 +39869,7 @@ var render = function() {
               _c("h3", { staticClass: "card-title" }, [_vm._v("Ваш заказ")]),
               _vm._v(" "),
               _c("table", { staticClass: "checkout__totals" }, [
-                _vm._m(2),
+                _vm._m(0),
                 _vm._v(" "),
                 _c(
                   "tbody",
@@ -39739,9 +39884,16 @@ var render = function() {
                               _vm._v(
                                 "\n                                        " +
                                   _vm._s(
-                                    Math.ceil(
-                                      product.price -
-                                        (product.price * product.discount) / 100
+                                    (
+                                      product.pivot.count *
+                                      Math.ceil(
+                                        product.price +
+                                          (product.price * 10) / 100 -
+                                          ((product.price +
+                                            (product.price * 10) / 100) *
+                                            product.discount) /
+                                            100
+                                      )
                                     ).toLocaleString()
                                   ) +
                                   " тг.\n                                    "
@@ -39752,7 +39904,9 @@ var render = function() {
                                 "\n                                        " +
                                   _vm._s(
                                     (
-                                      product.price * product.pivot.count
+                                      product.pivot.count *
+                                      (product.price +
+                                        (product.price * 10) / 100)
                                     ).toLocaleString()
                                   ) +
                                   " тг.\n                                    "
@@ -39789,7 +39943,10 @@ var render = function() {
                     _c("th", [_vm._v("Всего")]),
                     _vm._v(" "),
                     _c("td", [
-                      _vm._v(_vm._s((_vm.sum + 1000).toLocaleString()) + " тг.")
+                      _vm._v(
+                        _vm._s((_vm.sum + _vm.deliveryprice).toLocaleString()) +
+                          " тг."
+                      )
                     ])
                   ])
                 ])
@@ -39799,7 +39956,11 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-primary btn-xl btn-block",
-                  on: { click: _vm.addOrUpdateAddress }
+                  on: {
+                    click: function($event) {
+                      return _vm.addOrUpdateAddress()
+                    }
+                  }
                 },
                 [_vm._v("Подтвердить")]
               )
@@ -39811,42 +39972,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-md-6" }, [
-      _c("label", { attrs: { for: "checkout-phone" } }, [
-        _vm._v("Дополнительный")
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", id: "checkout-phone2", placeholder: "Телефон" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("h3", { staticClass: "card-title" }, [
-        _vm._v("Дополнительная информация для доставки")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "checkout-comment" } }, [
-          _vm._v("Необязательно")
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { id: "checkout-comment", rows: "4" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40672,7 +40797,56 @@ var render = function() {
                 _c(
                   "td",
                   { staticClass: "wishlist__column wishlist__column--price" },
-                  [_vm._v(_vm._s(wishlist.product.price) + " Тг.")]
+                  [
+                    wishlist.product.discount != 0
+                      ? _c("div", { staticClass: "d-flex flex-column" }, [
+                          _c("span", { staticClass: "text-success" }, [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(
+                                  Math.ceil(
+                                    wishlist.product.price +
+                                      (wishlist.product.price * 10) / 100 -
+                                      ((wishlist.product.price +
+                                        (wishlist.product.price * 10) / 100) *
+                                        wishlist.product.discount) /
+                                        100
+                                  ).toLocaleString()
+                                ) +
+                                " тг.\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "line-through text-danger" },
+                            [
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(
+                                    (
+                                      wishlist.product.price +
+                                      (wishlist.product.price * 10) / 100
+                                    ).toLocaleString()
+                                  ) +
+                                  " тг.\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      : _c("div", { staticClass: "d-flex flex-column" }, [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(
+                                (
+                                  wishlist.product.price +
+                                  (wishlist.product.price * 10) / 100
+                                ).toLocaleString()
+                              ) +
+                              " тг.\n                    "
+                          )
+                        ])
+                  ]
                 ),
                 _vm._v(" "),
                 _c(

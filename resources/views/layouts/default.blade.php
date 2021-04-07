@@ -370,7 +370,7 @@
                                                                     name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
                                                                     v-mask="'+7 (###) ### ####'" 
                                                                     v-model="auth.loginNumber"
-                                                                >
+                                                            >
                                                                 @error('phone')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>

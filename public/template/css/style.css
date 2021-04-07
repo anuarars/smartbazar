@@ -1872,6 +1872,7 @@ select.form-control-lg.is-invalid {
   min-width: 88px;
   padding: 0 24px 1px;
   text-align: center;
+  border-radius: 10px;
 }
 
 .input-number__input::-webkit-inner-spin-button, .input-number__input::-webkit-outer-spin-button {
@@ -4090,9 +4091,9 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 .form-control + .select2-container--open .select2-selection--single {
-  border-color: #80bdff;
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-          box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #000000;
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 255, 136, 0.25);
+          box-shadow: 0 0 0 0.2rem rgba(12, 230, 23, 0.25);
 }
 
 .form-control + .select2-container .select2-selection--single {
@@ -17495,8 +17496,8 @@ button.cart-button.clicked {
 .product-card__buttons .cart-button {
 	position: relative;
 	padding: 15px;
-	width: 100px!important;
-	height: 50px;
+	width: 110px!important;
+	height: 25px;
 	border: 0;
 	border-radius: 10px;
 	background-color: #47991f;
@@ -17526,7 +17527,7 @@ button.cart-button.clicked {
 	z-index: 3;
 	top: -25%;
 	left: 52%;
-	font-size: 11px;
+	font-size: 12px;
 	transform: translate(-50%,-50%);
 }
 .cart-button span {
@@ -17534,7 +17535,7 @@ button.cart-button.clicked {
 	z-index: 3;
 	left: 50%;
 	top: 50%;
-	font-size: 14px;
+	font-size: 11px;
 	color: #fff;
 	transform: translate(-50%,-50%);
 }
@@ -17820,5 +17821,9 @@ button.cart-button.clicked {
 .sdf{
   width: 200px;
 }
-    
+.form-control:focus {color: #495057;
+  background-color: #fff;
+  border-color: #1bec13;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(114, 219, 16, 0.25);  }  
   
