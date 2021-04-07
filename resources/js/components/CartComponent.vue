@@ -54,14 +54,7 @@
                         </div>
                     </td>
 
-                    <td class="cart-table__column cart-table__column--quantity" data-title="Кол-во">
-                        <strong>{{product.measure.code}}</strong>
-                        <div class="input-number">
-                            <input class="form-control input-number__input" type="number" min="1" :value="product.pivot.count" disabled>
-                            <div class="input-number__add" v-on:click="addQuantity(index)"></div>
-                            <div class="input-number__sub" v-on:click="subQuantity(index)"></div>
-                        </div>
-                    </td>
+                    <product-quantity-component :product="product" :home_url="home_url"></product-quantity-component>
 
                     <td class="cart-table__column cart-table__column--total" data-title="Всего">
                         <span v-if="product.discount != null">
@@ -122,6 +115,7 @@
 <script>
     export default {
         props:['order', 'home_url', 'deliveryprice'],
+
         data(){
             return{
                 products: [],
@@ -136,26 +130,36 @@
                     })
                 }
             },
-            addQuantity: function(index){
-                this.products[index].pivot.count++;
-                let id = this.products[index].id;
+            addQuantity: function(product){
+                let count = product.pivot.count;
+                if (product.measure_id === 1) {
+                    product.pivot.count = (count * 10 + 0.1 * 10) / 10;
+                } else {
+                    product.pivot.count++;
+                }
                 axios.post(this.home_url + 'cart/update', {
-                    product_add: id,
+                    product_id: product.id,
+                    count: count
                 }).then(response => {
                     console.log(response.data);
                 });
-                this.products[index].total = this.products[index].pivot.count * this.products[index].price;
+                product.total = product.pivot.count * product.price;
             },
-            subQuantity: function(index){
-                if(this.products[index].pivot.count > 1){
-                    this.products[index].pivot.count--;
-                    let id = this.products[index].id;
+            subQuantity: function(product){
+                let count = product.pivot.count;
+                if(count >= 0){
+                    if (product.measure_id === 1) {
+                        product.pivot.count = (count * 10 - 0.1 * 10) / 10;
+                    } else {
+                        product.pivot.count--;
+                    }
                     axios.post(this.home_url + 'cart/update', {
-                        product_sub: id,
+                        product_id: product.id,
+                        count: count
                     }).then(response => {
                         console.log(response.data);
                     });
-                    this.products[index].total = this.products[index].pivot.count * this.products[index].price;
+                    product.total = product.pivot.count * product.price;
                 }
             },
             removeItem: function(index) {

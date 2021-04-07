@@ -61,6 +61,10 @@ class Product extends Model
         return $this->hasMany(Property::class);
     }
 
+    public function orders(){
+        return $this->belongsToMany(Order::class);
+    }
+
     public function userRating(){
         $user_id = Auth::id();
         $userRating = $this->ratings->where('user_id', $user_id)->first();

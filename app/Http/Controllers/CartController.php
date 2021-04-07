@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class CartController extends Controller
 {
@@ -45,32 +47,22 @@ class CartController extends Controller
     }
 
     public function update(Request $request){
-        $product_id_plus = $request->product_add;
-        $product_id_minus = $request->product_sub;
-        $user_id = Auth::id();
-        $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
+        $product_id = $request->product_id;
+        $count = $request->count;
 
-        if(!empty($product_id_plus)){
-            if($order->products->contains($product_id_plus)){
-                $pivot_row = $order->products()->where('product_id', $product_id_plus)->first()->pivot;
-                $pivot_row->count++;
-                $pivot_row->update();
-            }
-            return $product_id_plus;
+        $order = Order::where('user_id', Auth::id())->where('status_id', '=' , 1)
+            ->with('products')
+            ->first();
+        if ($count <= 0) {
+            $order->products()->detach($product_id);
+            return response('Deleted');
+        } else {
+            $pivot = $order->products->find($product_id)->pivot;
+            $pivot->count = $count;
+            $pivot->update();
         }
 
-        if(!empty($product_id_minus)){
-            if($order->products->contains($product_id_minus)){
-                $pivot_row = $order->products()->where('product_id', $product_id_minus)->first()->pivot;
-                if($pivot_row->count < 2){
-                    $order->products()->detach($product_id_minus);
-                }else{
-                    $pivot_row->count--;
-                    $pivot_row->update();
-                }       
-            }
-            return $product_id_minus;
-        }
+        return $order;
     }
 
     public function getData(){

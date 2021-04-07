@@ -21,7 +21,7 @@ class IndexController extends Controller
     public function product($id = null){
         // $rating = Rating::where('user_id', Auth::id())->where('product_id', $id)->get();
         // return $rating;
-        $product = Product::where('id', $id)->first();
+        $product = Product::where('id', $id)->with('measure')->first();
         $reviews = $product->reviews()->paginate(3);
         $product->views += 1;
         $product->update([
