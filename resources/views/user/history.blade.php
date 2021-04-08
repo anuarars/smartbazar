@@ -42,9 +42,56 @@
                                                     <th>Дата</th>
                                                     <th>Статус</th>
                                                     <th>Сумма</th>
+                                                    <th>Действие</th>
                                                 </tr>
                                             </thead>
+                                            <tbody>
+                                                @foreach($orders as $order)
+                                                    <tr>
+                                                        <th>{{ $order->id }}</th>
+                                                        <th>{{ $order->updated_at }}</th>
+                                                        <th>{{ $order->status->name }}</th>
+                                                        <th>{{ $order->fullPrice() }}</th>
+                                                        <th>
+                                                            <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#orderModal-{{$order->id}}">Увидеть продукты</button>
+                                                        </th>
 
+                                                    </tr>
+                                                    <div class="modal fade" id="orderModal-{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Продукты</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                @foreach($order->products as $product)
+
+                                                                    <div class="modal-body">
+                                                                        <ul class="list-group">
+                                                                            <li class="list-group-item">
+                                                                                {{ $product->title }}
+                                                                                <img src="{{ $product->galleries()->first()->image }}" width="70px"/>
+                                                                                <rate-component
+                                                                                    :home_url="homeUrl"
+                                                                                    :product="{{$product}}"
+                                                                                    :order_id="{{$order->id}}"
+                                                                                    :reviewed="{{ $product->isReviewedByAuthUser() ? 'true' : 'false' }}"
+                                                                                ></rate-component>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                @endforeach
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Send message</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

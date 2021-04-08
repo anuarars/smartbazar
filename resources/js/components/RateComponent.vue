@@ -1,6 +1,6 @@
 <template>
 <div class="col-12 col-lg-9 col-xl-8">
-    <div v-if="!review_id">
+    <div v-if="!isReviewed">
         <div class="form-row">
             <div class="form-group col-md-4">
                 <h4>Оцените: </h4>
@@ -15,7 +15,7 @@
                         @rating-selected="setRating"
                     />
                     </star-rating>
-                    <star-rating 
+                    <star-rating
                         v-else
                         :star-size="30"
                         active-color="#47991f"
@@ -51,13 +51,17 @@
             StarRating
         },
         props:[
-            'home_url', 'product'
+            'home_url', 'product', 'order_id', 'reviewed'
         ],
+        mounted() {
+            this.isReviewed = !!this.reviewed;
+            },
         data(){
             return{
                 rate: '',
                 description: '',
-                review_id: ''
+                review_id: '',
+                isReviewed: ''
             }
         },
         methods:{
@@ -68,9 +72,11 @@
                 axios.post(this.home_url + 'review/store', {
                     rate: this.rate,
                     product_id: this.product.id,
-                    description: this.description
+                    description: this.description,
+                    order_id: this.order_id
                 }).then(response => {
                     this.review_id = response.data
+                    this.isReviewed = true;
                 });
             }
         }

@@ -19,7 +19,8 @@ class ReviewController extends Controller
             'product_id' => $request->product_id,
             'user_id' => $user_id,
             'description' => $request->description,
-            'rate' => $request->rate
+            'rate' => $request->rate,
+            'order_id' => $request->order_id
         ]);
         return $review->id;
     }

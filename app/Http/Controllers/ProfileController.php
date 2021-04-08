@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{User, Address};
+use App\Models\{Order, User, Address};
 use Illuminate\Support\Facades\{Auth, Hash};
 
 class ProfileController extends Controller
@@ -43,7 +43,7 @@ class ProfileController extends Controller
         ];
 
         $address->update($data);
-        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
+        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');
     }
 
     public function addressCreateByPayment(Request $request){
@@ -82,7 +82,8 @@ class ProfileController extends Controller
     }
 
     public function history(){
-        return view('user.history');
+        $orders = Order::where('user_id', Auth::id())->where('status_id', 7)->with('products', 'products.reviews')->get();
+        return view('user.history', compact('orders'));
     }
 
 
@@ -105,7 +106,7 @@ class ProfileController extends Controller
             'login' => $request->login,
             'phone' => $request->phone
         ]);
-        
+
         return redirect()->route('profile.index');
     }
 }
