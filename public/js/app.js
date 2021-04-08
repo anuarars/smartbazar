@@ -9402,13 +9402,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['order', 'home_url', 'deliveryprice'],
   data: function data() {
@@ -9427,26 +9420,40 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    addQuantity: function addQuantity(index) {
-      this.products[index].pivot.count++;
-      var id = this.products[index].id;
+    addQuantity: function addQuantity(product) {
+      var count = product.pivot.count;
+
+      if (product.measure_id === 1) {
+        product.pivot.count = (count * 10 + 0.1 * 10) / 10;
+      } else {
+        product.pivot.count++;
+      }
+
       axios.post(this.home_url + 'cart/update', {
-        product_add: id
+        product_id: product.id,
+        count: count
       }).then(function (response) {
         console.log(response.data);
       });
-      this.products[index].total = this.products[index].pivot.count * this.products[index].price;
+      product.total = product.pivot.count * product.price;
     },
-    subQuantity: function subQuantity(index) {
-      if (this.products[index].pivot.count > 1) {
-        this.products[index].pivot.count--;
-        var id = this.products[index].id;
+    subQuantity: function subQuantity(product) {
+      var count = product.pivot.count;
+
+      if (count >= 0) {
+        if (product.measure_id === 1) {
+          product.pivot.count = (count * 10 - 0.1 * 10) / 10;
+        } else {
+          product.pivot.count--;
+        }
+
         axios.post(this.home_url + 'cart/update', {
-          product_sub: id
+          product_id: product.id,
+          count: count
         }).then(function (response) {
           console.log(response.data);
         });
-        this.products[index].total = this.products[index].pivot.count * this.products[index].price;
+        product.total = product.pivot.count * product.price;
       }
     },
     removeItem: function removeItem(index) {
@@ -10524,12 +10531,16 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     StarRating: vue_star_rating__WEBPACK_IMPORTED_MODULE_0___default.a
   },
-  props: ['home_url', 'product'],
+  props: ['home_url', 'product', 'order_id', 'reviewed'],
+  mounted: function mounted() {
+    this.isReviewed = !!this.reviewed;
+  },
   data: function data() {
     return {
       rate: '',
       description: '',
-      review_id: ''
+      review_id: '',
+      isReviewed: ''
     };
   },
   methods: {
@@ -10542,9 +10553,11 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(this.home_url + 'review/store', {
         rate: this.rate,
         product_id: this.product.id,
-        description: this.description
+        description: this.description,
+        order_id: this.order_id
       }).then(function (response) {
         _this.review_id = response.data;
+        _this.isReviewed = true;
       });
     }
   }
@@ -38541,235 +38554,206 @@ var render = function() {
                 "tbody",
                 { staticClass: "cart-table__body" },
                 _vm._l(_vm.products, function(product, index) {
-                  return _c("tr", { staticClass: "cart-table__row" }, [
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--image"
-                      },
-                      [
-                        _c("div", { staticClass: "product-image" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "product-image__body",
-                              attrs: {
-                                href: _vm.home_url + "products/" + product.id
-                              }
-                            },
-                            [
-                              _c("img", {
-                                staticClass: "product-image__img",
-                                attrs: {
-                                  src: product.galleries[0].image,
-                                  alt: ""
-                                }
-                              })
-                            ]
-                          )
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--product"
-                      },
-                      [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "cart-table__product-name",
-                            attrs: {
-                              href: _vm.home_url + "products/" + product.id
-                            }
-                          },
-                          [_vm._v(_vm._s(product.title))]
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--price",
-                        attrs: { "data-title": "Цена" }
-                      },
-                      [
-                        product.discount != 0
-                          ? _c("div", { staticClass: "d-flex flex-column" }, [
-                              _c("span", { staticClass: "text-success" }, [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(
-                                      Math.ceil(
-                                        product.price +
-                                          (product.price * 10) / 100 -
-                                          ((product.price +
-                                            (product.price * 10) / 100) *
-                                            product.discount) /
-                                            100
-                                      ).toLocaleString()
-                                    ) +
-                                    " тг.\n                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "span",
-                                { staticClass: "line-through text-danger" },
-                                [
-                                  _vm._v(
-                                    "\n                            " +
-                                      _vm._s(
-                                        (
-                                          product.price +
-                                          (product.price * 10) / 100
-                                        ).toLocaleString()
-                                      ) +
-                                      " тг.\n                        "
-                                  )
-                                ]
-                              )
-                            ])
-                          : _c("div", { staticClass: "d-flex flex-column" }, [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(
-                                    (
-                                      product.price +
-                                      (product.price * 10) / 100
-                                    ).toLocaleString()
-                                  ) +
-                                  " тг.\n                    "
-                              )
-                            ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--quantity",
-                        attrs: { "data-title": "Кол-во" }
-                      },
-                      [
-                        _c("strong", [_vm._v(_vm._s(product.measure.code))]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "input-number" }, [
-                          _c("input", {
-                            staticClass: "form-control input-number__input",
-                            attrs: { type: "number", min: "1", disabled: "" },
-                            domProps: { value: product.pivot.count }
-                          }),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "input-number__add",
-                            on: {
-                              click: function($event) {
-                                return _vm.addQuantity(index)
-                              }
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "input-number__sub",
-                            on: {
-                              click: function($event) {
-                                return _vm.subQuantity(index)
-                              }
-                            }
-                          })
-                        ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--total",
-                        attrs: { "data-title": "Всего" }
-                      },
-                      [
-                        product.discount != null
-                          ? _c("span", [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(
-                                    (
-                                      product.pivot.count *
-                                      Math.ceil(
-                                        product.price +
-                                          (product.price * 10) / 100 -
-                                          ((product.price +
-                                            (product.price * 10) / 100) *
-                                            product.discount) /
-                                            100
-                                      )
-                                    ).toLocaleString()
-                                  ) +
-                                  " тг.\n                    "
-                              )
-                            ])
-                          : _c("span", [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(
-                                    (
-                                      product.pivot.count *
-                                      (product.price +
-                                        (product.price * 10) / 100)
-                                    ).toLocaleString()
-                                  ) +
-                                  " тг.\n                    "
-                              )
-                            ])
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "td",
-                      {
-                        staticClass:
-                          "cart-table__column cart-table__column--remove"
-                      },
-                      [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light btn-sm btn-svg-icon",
-                            attrs: { type: "button" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.removeItem(index)
-                              }
-                            }
-                          },
-                          [
+                  return _c(
+                    "tr",
+                    { staticClass: "cart-table__row" },
+                    [
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "cart-table__column cart-table__column--image"
+                        },
+                        [
+                          _c("div", { staticClass: "product-image" }, [
                             _c(
-                              "svg",
-                              { attrs: { width: "12px", height: "12px" } },
+                              "a",
+                              {
+                                staticClass: "product-image__body",
+                                attrs: {
+                                  href: _vm.home_url + "products/" + product.id
+                                }
+                              },
                               [
-                                _c("use", {
+                                _c("img", {
+                                  staticClass: "product-image__img",
                                   attrs: {
-                                    "xlink:href":
-                                      "template/images/sprite.svg#cross-12"
+                                    src: product.galleries[0].image,
+                                    alt: ""
                                   }
                                 })
                               ]
                             )
-                          ]
-                        )
-                      ]
-                    )
-                  ])
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "cart-table__column cart-table__column--product"
+                        },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "cart-table__product-name",
+                              attrs: {
+                                href: _vm.home_url + "products/" + product.id
+                              }
+                            },
+                            [_vm._v(_vm._s(product.title))]
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "cart-table__column cart-table__column--price",
+                          attrs: { "data-title": "Цена" }
+                        },
+                        [
+                          product.discount != 0
+                            ? _c("div", { staticClass: "d-flex flex-column" }, [
+                                _c("span", { staticClass: "text-success" }, [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(
+                                        Math.ceil(
+                                          product.price +
+                                            (product.price * 10) / 100 -
+                                            ((product.price +
+                                              (product.price * 10) / 100) *
+                                              product.discount) /
+                                              100
+                                        ).toLocaleString()
+                                      ) +
+                                      " тг.\n                        "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "span",
+                                  { staticClass: "line-through text-danger" },
+                                  [
+                                    _vm._v(
+                                      "\n                            " +
+                                        _vm._s(
+                                          (
+                                            product.price +
+                                            (product.price * 10) / 100
+                                          ).toLocaleString()
+                                        ) +
+                                        " тг.\n                        "
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _c("div", { staticClass: "d-flex flex-column" }, [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(
+                                      (
+                                        product.price +
+                                        (product.price * 10) / 100
+                                      ).toLocaleString()
+                                    ) +
+                                    " тг.\n                    "
+                                )
+                              ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("product-quantity-component", {
+                        attrs: { product: product, home_url: _vm.home_url }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "cart-table__column cart-table__column--total",
+                          attrs: { "data-title": "Всего" }
+                        },
+                        [
+                          product.discount != null
+                            ? _c("span", [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(
+                                      (
+                                        product.pivot.count *
+                                        Math.ceil(
+                                          product.price +
+                                            (product.price * 10) / 100 -
+                                            ((product.price +
+                                              (product.price * 10) / 100) *
+                                              product.discount) /
+                                              100
+                                        )
+                                      ).toLocaleString()
+                                    ) +
+                                    " тг.\n                    "
+                                )
+                              ])
+                            : _c("span", [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(
+                                      (
+                                        product.pivot.count *
+                                        (product.price +
+                                          (product.price * 10) / 100)
+                                      ).toLocaleString()
+                                    ) +
+                                    " тг.\n                    "
+                                )
+                              ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        {
+                          staticClass:
+                            "cart-table__column cart-table__column--remove"
+                        },
+                        [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-light btn-sm btn-svg-icon",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.removeItem(index)
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "svg",
+                                { attrs: { width: "12px", height: "12px" } },
+                                [
+                                  _c("use", {
+                                    attrs: {
+                                      "xlink:href":
+                                        "template/images/sprite.svg#cross-12"
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
                 }),
                 0
               )
@@ -40095,7 +40079,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-12 col-lg-9 col-xl-8" }, [
-    !_vm.review_id
+    !_vm.isReviewed
       ? _c("div", [
           _c("div", { staticClass: "form-row" }, [
             _vm._m(0),

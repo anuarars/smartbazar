@@ -11323,7 +11323,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 .product-tabs__content {
   border: 2px solid #f0f0f0;
   border-radius: 2px;
-  padding: 80px 90px;
+  padding: 40px 90px;
 }
 
 .product-tabs__pane {
@@ -17827,3 +17827,74 @@ button.cart-button.clicked {
   outline: 0;
   box-shadow: 0 0 0 .2rem rgba(114, 219, 16, 0.25);  }  
   
+  /* for boutique */
+/*
+.main{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 20px;
+  margin: 10% 0;
+  flex-wrap: wrap;
+}
+
+.main_image{
+  width: 100%;
+}
+
+.main_photo{
+  width: 80%;
+}
+
+.main_info{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+} 
+
+.main_info_text h2{
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.main_info_price{
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.line{
+  border: 2px solid black;
+  width: 20%;
+  font-weight: bold;
+  text-align:left;
+  margin-left:0;
+}
+*/
+.all_the_days{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.all_the_days h3{
+  margin-bottom: 20px;
+}
+
+.days{
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  
+  margin-bottom: 10px;
+}
+
+.day_of_the_week{
+ margin-right:20px;
+ text-align: left;
+}
+.day_time{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+

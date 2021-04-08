@@ -317,6 +317,13 @@
                                                     </div>
                                                 </a>
                                             </li> --}}
+                                            <li class="nav-links__item  nav-links__item--has-submenu ">
+                                                <a class="nav-links__item-link" href="{{route('info.faq', true)}}">
+                                                    <div class="nav-links__item-body">
+                                                        Бутики
+                                                    </div>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                     <!-- .nav-links / end -->
