@@ -214,6 +214,13 @@
                                                         </div>
                                                         <div class="product-card__rating-legend">Отзывов: {{$products->first()->reviews->count()}}</div>
                                                     </div>
+                                                    <div class="input-number product__quantity">
+                                                        <input id="product-quantity"
+                                                               class="input-number__input form-control form-control-lg"
+                                                               type="number" min="1" value="1">
+                                                        <div class="input-number__add"></div>
+                                                        <div class="input-number__sub"></div>
+                                                    </div>
                                                 </div>
                                                 <div class="product-card__actions">
                                                     <div class="product-card__availability">
