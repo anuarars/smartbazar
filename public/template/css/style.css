@@ -638,6 +638,7 @@ h6 {
   border-radius: 1.5px;
   font-weight: 500;
   padding: .25em .5em;
+  border-radius: 15px!important;
 }
 
 /*
@@ -1100,6 +1101,7 @@ h6 {
   background: #47991f;
   color: #fff;
   fill: #fff;
+  border-radius: 15px;
 }
 
 .btn-primary .fake-svg-icon, .btn-primary.disabled .fake-svg-icon, .btn-primary:disabled .fake-svg-icon {
@@ -11376,7 +11378,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
 }
 
-.product-tabs--stuck .product-tabs__list-body:before {
+/* .product-tabs--stuck .product-tabs__list-body:before {
   display: block;
   content: '';
   position: absolute;
@@ -11386,7 +11388,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   height: 54px;
   background: inherit;
 }
-
+ */
 .product-tabs--stuck .product-tabs__item {
   padding: 8px 20px;
   font-size: 16px;
@@ -12876,7 +12878,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   }
   [dir=ltr] .wishlist__column--price {
     text-align: right;
-    padding-left: 90px;
+  /*   padding-left: 90px; */
   }
   [dir=rtl] .wishlist__column--price {
     text-align: left;
@@ -13002,6 +13004,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+            align-items: baseline;
   }
 }
 
@@ -15265,6 +15268,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
             justify-content: center;
     margin-bottom: -9px;
     margin-top: 16px;
+    align-items:flex-end;
   }
   .block-products[data-mobile-grid-columns="2"] .block-products__list-item .product-card .product-card__buttons > * + * {
     margin-top: 6px;
@@ -17388,7 +17392,7 @@ transform: rotate(0deg) scale(1.7);
 	width: 140px;
 	height: 23px;
 	border: 0;
-	border-radius: 10px;
+	border-radius: 15px;
 	background-color: #47991f;
 	outline: none;
 	cursor: pointer;
@@ -17712,10 +17716,12 @@ button.cart-button.clicked {
   
   @media (min-width: 320px) and (max-width: 374px) {
 
-
+    h3{
+      font-size: 24px;
+    font-weight: 700;
+    }
     .product-card__buttons .cart-button {
       position: relative;
-      width: 103px!important;
       height: 25px;
       border: 0;
       border-radius: 10px;
@@ -17905,4 +17911,15 @@ button.cart-button.clicked {
     flex-direction: column;
     flex-wrap: wrap;
   }
+}
+@media (min-width: 280px) and (max-width: 280px) {
+.cart-button span{
+  font-size: 10px;
+}
+h3{
+  font-size: 20px;
+}
+.block-slideshow--layout--with-departments .block-slideshow__slide-button .btn{
+  font-size: 13px;
+}
 }

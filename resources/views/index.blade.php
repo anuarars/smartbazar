@@ -148,7 +148,7 @@
                 <div class="block-products__featured">
                     <div class="block-products__featured-item">
                         <div class="product-card product-card--hidden-actions ">
-                            <button class="product-card__quickview" type="button">
+                            <button class="product-card__quickview" type="button" >
                                 <svg width="16px" height="16px">
                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
                                 </svg>
