@@ -25,7 +25,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*---------------------------------------------------------------------------------------------------------------------------PUBLIC ROUTES GROUP--------------------------------------------------------------------------------------------*/
 
 Route::get('/', 'IndexController@index')->name('index');
-//Route::get('/{page:slug}', 'PageController@show')->name('page.show');
 Route::get('/products/{id}', 'IndexController@product')->name('product');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
@@ -92,7 +91,7 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'
     Route::resource('company', 'CompanyController')->names('admin.company');
     Route::resource('page', 'PageController')->names('admin.page')->parameters([
         'page' => 'page:slug',
-    ]);
+    ])->except("show");
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -140,3 +139,4 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
+Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');

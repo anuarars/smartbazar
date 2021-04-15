@@ -8,6 +8,7 @@ use App\Services\PageService;
 use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class PageController extends Controller
@@ -60,8 +61,13 @@ class PageController extends Controller
      */
     public function show(Page $page, PageService $service)
     {
-        $page->body = $service->wrapWith($page->body, "container");
-        return view('admin.page.show', compact('page'));
+        if (Gate::allows('see-page', $page)) {
+            $page->body = $service->wrapWith($page->body, "container");
+            return view('admin.page.show', compact('page'));
+        }
+        // If not active or not admin then not found
+        abort(404);
+
     }
 
     /**
@@ -99,7 +105,7 @@ class PageController extends Controller
         $validated['slug'] = Str::slug($validated['title']);
         $page->update($validated);
 
-        return redirect()->route('admin.page.show', $page);
+        return redirect()->route('page.show', $page);
     }
 
     /**
