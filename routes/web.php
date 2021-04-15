@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*---------------------------------------------------------------------------------------------------------------------------PUBLIC ROUTES GROUP--------------------------------------------------------------------------------------------*/
 
 Route::get('/', 'IndexController@index')->name('index');
+//Route::get('/{page:slug}', 'PageController@show')->name('page.show');
 Route::get('/products/{id}', 'IndexController@product')->name('product');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');

@@ -43,6 +43,7 @@ Vue.component('select-component', require('./components/Category/SelectComponent
 Vue.component('create-category-component', require('./components/Category/CreateCategoryComponent').default);
 Vue.component('images-upload-component', require('./components/Sale/ImagesUploadComponent').default);
 Vue.component('editor', require('./components/Sale/EditorComponent.vue').default);
+Vue.component('product-quantity-component', require('./components/ProductQuantityComponent').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

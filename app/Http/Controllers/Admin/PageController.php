@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Services\PageService;
+use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Str;
@@ -56,8 +58,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show(Page $page)
+    public function show(Page $page, PageService $service)
     {
+        $page->body = $service->wrapWith($page->body, "container");
         return view('admin.page.show', compact('page'));
     }
 
@@ -91,8 +94,11 @@ class PageController extends Controller
             'body' => 'required',
             'active' => 'required',
         ]);
+
+
         $validated['slug'] = Str::slug($validated['title']);
         $page->update($validated);
+
         return redirect()->route('admin.page.show', $page);
     }
 
