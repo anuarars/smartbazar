@@ -8,7 +8,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="index.html">Главная</a>
+                                <a href="{{route('index')}}">Главная</a>
                                 <svg class="breadcrumb-arrow" width="6px" height="9px">
                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                 </svg>
@@ -22,13 +22,13 @@
                 </div>
             </div>
         </div>
-        <payment-component
-            :user = "{{Auth::user()->load('address')}}"
-            :order = "{{$order}}"
+        <checkout-component
+            :user = "{{Auth::user()}}"
+            :order = "{{$order->load('items.product')}}"
             :sum = "{{$order->fullPrice()}}"
             :home_url = "homeUrl"
             :deliveryprice = "{{$order->deliveryPrice}}"
         >
-        </payment-component>
+        </checkout-component>
     </div>
 @endsection

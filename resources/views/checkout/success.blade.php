@@ -29,10 +29,10 @@
                             <span class="order-success__meta-title">Сумма:</span>
                             <span class="order-success__meta-value">{{$order->fullPrice()}} тг.</span>
                         </li>
-                        <li class="order-success__meta-item">
+                        {{-- <li class="order-success__meta-item">
                             <span class="order-success__meta-title">Способ оплаты:</span>
                             <span class="order-success__meta-value">Карточка</span>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="card">
@@ -46,20 +46,20 @@
                                 </tr>
                             </thead>
                             <tbody class="order-list__products">
-                                @foreach ($order->products as $product)
+                                @foreach ($order->items as $item)
                                     <tr>
                                         <td class="order-list__column-image">
                                             <div class="product-image">
                                                 <a href="" class="product-image__body">
-                                                    <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->image}}">
+                                                    <img class="product-image__img" src="{{secure_asset($item->product->galleries->first()->image)}}" alt="{{$item->product->galleries->first()->image}}">
                                                 </a>
                                             </div>
                                         </td>
                                         <td class="order-list__column-product">
-                                            <a href="">{{$product->title}}</a>
+                                            <a href="">{{$item->product->title}}</a>
                                         </td>
-                                        <td class="order-list__column-quantity" data-title="Qty:">{{$product->pivot->count}}</td>
-                                        <td class="order-list__column-total">{{$product->priceForCount()}} тг.</td>
+                                        <td class="order-list__column-quantity" data-title="Qty:">{{$item->pivot->count}} {{$item->product->measure->code}}</td>
+                                        <td class="order-list__column-total">{{$item->priceForCount()}} тг.</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -89,9 +89,7 @@
                                 <div class="address-card__badge address-card__badge--muted">Адрес</div>
                                 <div class="address-card__name">{{Auth::user()->firstname}} {{Auth::user()->lastname}}</div>
                                 <div class="address-card__row">
-                                    {{$order->address->home}}<br>
-                                    {{$order->address->street}}<br>
-                                    {{$order->address->unit}}
+                                    {{$order->address()->first()->description}}<br>
                                 </div>
                                 <div class="address-card__row">
                                     <div class="address-card__row-title">Телефон</div>

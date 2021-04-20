@@ -4,32 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{Category, Order, Product, Rating};
+use Pusher\PushNotifications\PushNotifications;
+use App\Models\{Category, Order, Product, Rating, Item};
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
     public function index(){
-        $products = Product::where('discount', '!=', 'null')
-            ->orderBy('discount', 'asc')
-            ->get()
-            // ->sortByDesc('discountPercent')
-            ->take(6);
+        $itemsDiscount = Item::where('discount', '!=', 'null')->orderBy('created_at', 'desc')->limit(6)
+            ->get();
+        // $popular = Product::
         $categories = Category::with('children')->where('parent_id', '0')->get();
-        return view('index', compact('products', 'categories'));
+        return view('index', compact('itemsDiscount', 'categories'));
     }
 
-    public function product($id = null){
-        // $rating = Rating::where('user_id', Auth::id())->where('product_id', $id)->get();
-        // return $rating;
-        $product = Product::where('id', $id)->with('measure')->first();
-        $reviews = $product->reviews()->paginate(3);
-        $product->views += 1;
-        $product->update([
-            'views' => $product->views
+    public function item($id = null){
+        $item = Item::where('id', $id)->with('product.measure', 'product.galleries')->first();// находим товар
+        // $reviews = $product->reviews()->paginate(3);// отзывы товара
+        $item->views += 1;//добавляем просмотр
+        $item->update([
+            'views' => $item->views
         ]);
 
-        $cat_products = Product::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
-        return view('product', compact('product', 'reviews', 'cat_products'));
+        // $cat_products = Item::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
+        return view('item', compact('item'));
     }
 
     public function add_rate(Request $request){

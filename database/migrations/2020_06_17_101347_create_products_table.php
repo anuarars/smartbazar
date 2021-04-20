@@ -20,15 +20,14 @@ class CreateProductsTable extends Migration
             $table->bigInteger('brand_id')->unsigned()->nullable();
             $table->bigInteger('country_id')->unsigned();
             $table->bigInteger('measure_id')->unsigned();
-            $table->bigInteger('company_id')->unsigned();
             $table->string('title');
             $table->text('description');
-            $table->integer('price');
-            $table->integer('count');
-            $table->integer('discount')->nullable();
-            $table->integer('views')->default(0);
-            $table->string('sku');
-            $table->boolean('isPublished')->default(0);
+            // $table->integer('price');
+            // $table->integer('count');
+            // $table->integer('discount')->nullable();
+            // $table->integer('views')->default(0);
+            // $table->string('sku');
+            // $table->boolean('isPublished')->default(0);
             $table->timestamps();
             $table->softDeletes();
 

@@ -43,22 +43,22 @@ class ProfileController extends Controller
         ];
 
         $address->update($data);
-        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');
+        return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
     }
 
-    public function addressCreateByPayment(Request $request){
-        $user = User::find(Auth::id());
-        $data = [
-            'name' => $request->street,
-            'city' => 'Астана',
-            'home' => $request->home,
-            'unit' => $request->unit,
-            'street' => $request->street
-        ];
+    // public function addressCreateByPayment(Request $request){
+    //     $user = User::find(Auth::id());
+    //     $data = [
+    //         'name' => $request->street,
+    //         'city' => 'Астана',
+    //         'home' => $request->home,
+    //         'unit' => $request->unit,
+    //         'street' => $request->street
+    //     ];
 
-        $address = $user->address()->create($data);
-        return $address;
-    }
+    //     $address = $user->address()->create($data);
+    //     return $address;
+    // }
 
     public function addressRemove(Request $request, Address $address){
         $address->delete();
@@ -82,16 +82,9 @@ class ProfileController extends Controller
     }
 
     public function history(){
-        $orders = Order::where('user_id', Auth::id())->where('status_id', 7)->with('products', 'products.reviews')->get();
+        $orders = Order::where('user_id', Auth::id())->where('status_id', '!=', '1')->with('items.product')->get();
         return view('user.history', compact('orders'));
     }
-
-
-
-
-
-
-
 
 
     public function info(){
@@ -106,7 +99,7 @@ class ProfileController extends Controller
             'login' => $request->login,
             'phone' => $request->phone
         ]);
-
+        
         return redirect()->route('profile.index');
     }
 }

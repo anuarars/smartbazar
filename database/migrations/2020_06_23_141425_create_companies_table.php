@@ -21,6 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->string('code');
             $table->string('phone');
             $table->string('description');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

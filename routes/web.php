@@ -20,18 +20,21 @@ Auth::routes();
 Route::get('/verify/phone', 'Auth\PhoneVerificationController@index')->name('verify.phone');
 Route::post('/verify/phone', 'Auth\PhoneVerificationController@code')->name('verify.code');
 Route::post('/verify/resend', 'Auth\PhoneVerificationController@resend')->name('verify.resend');
+Route::post('/verify/reset', 'Auth\PhoneVerificationController@reset')->name('verify.reset');
 
 Route::get('/home', 'HomeController@index')->name('home');
 /*---------------------------------------------------------------------------------------------------------------------------PUBLIC ROUTES GROUP--------------------------------------------------------------------------------------------*/
 
 Route::get('/', 'IndexController@index')->name('index');
-Route::get('/products/{id}', 'IndexController@product')->name('product');
+//Route::get('/{page:slug}', 'PageController@show')->name('page.show');
+Route::get('/items/{id}', 'IndexController@item')->name('item');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
 Route::get('/info/faq', 'InfoController@faq')->name('info.faq');
 Route::post('/search/product', 'SearchController@product')->name('search.product');
 Route::get('/push/pusher/beams-auth', 'PushController@tokenProvider');
 Route::post('/push/pusher/id', 'PushController@getUserId');
+// Route::get('page/', 'Admin/PageController')
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -40,21 +43,22 @@ Route::post('/push/pusher/id', 'PushController@getUserId');
 Route::group(['middleware'=>['auth']], function(){
 
     // Wishlist Controllers---------
-    Route::get('/wishlist', 'WishlistController@index')->name('wishlist.index');
-    Route::post('/wishlist/{product}', 'WishlistController@store')->name('wishlist.store');
+    Route::post('/wishlist/{item}', 'WishlistController@store')->name('wishlist.store');
     Route::get('/wishlist/count', 'WishlistController@count')->name('wishlist.count');
     Route::get('/wishlist/get', 'WishlistController@getData')->name('wishlist.get');
-    Route::delete('/wishlist/{wishlist}', 'WishlistController@destroy')->name('wishlist.destroy');
-    Route::delete('/wishlist/unlike/{product}', 'WishlistController@unlike')->name('wishlist.unlike');
+    Route::delete('/wishlist/unlike/{item}', 'WishlistController@unlike')->name('wishlist.unlike');
+    Route::resource('/wishlist', 'WishlistController')->names('wishlist')->only(['index', 'destroy']);
     // --------------
 
+    // Cart Controllers----------------------
     Route::get('/cart', 'CartController@index')->name('cart.index');
     Route::post('/cart/create', 'CartController@create')->name('cart.create');
-    Route::post('/cart/update/', 'CartController@update')->name('cart.increase');
+    Route::post('/cart/update/', 'CartController@update');
     Route::get('/cart/count', 'CartController@count')->name('cart.count');
     Route::get('/cart/get', 'CartController@getData')->name('cart.get');
     Route::post('/cart/destroy', 'CartController@destroy')->name('cart.destroy');
     Route::post('/cart/unlike/{id}', 'CartController@unlike')->name('cart.unlike');
+    //------------------------------------------------------------------------ 
 
     // Profile---------------------------------------------------
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
@@ -62,6 +66,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::post('/profile/address', 'ProfileController@addressCreate')->name('profile.address.create');
     Route::post('/profile/address/update/{address}', 'ProfileController@addressUpdate')->name('profile.address.update');
     Route::delete('/profile/address/remove/{address}', 'ProfileController@addressRemove')->name('profile.address.destroy');
+    // Route::post('/profile/address/create/payment', 'ProfileController@addressCreateByPayment');
     Route::get('/profile/password', 'ProfileController@password')->name('profile.password');
     Route::post('/profile/password', 'ProfileController@passwordUpdate')->name('profile.password.update');
     Route::get('/profile/history', 'ProfileController@history')->name('profile.history');
@@ -76,7 +81,11 @@ Route::group(['middleware'=>['auth']], function(){
 
     Route::get('checkout/{orderId}', 'CheckoutController@show')->name('checkout.show')->middleware('phoneVerified');
     Route::get('checkout/{orderId}/success', 'CheckoutController@success')->name('checkout.success');
+    Route::post('checkout/update/order', 'CheckoutController@updateOrderByUser');
+    
 
+    // Companies controllers
+    Route::resource('boutique', 'BoutiqueController')->names('boutique')->only(['show', 'index']);
 });
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -85,7 +94,7 @@ Route::group(['middleware'=>['auth']], function(){
 /*  -----------------------------------------------------------------------------------------------
 ------------------------ADMIN GROUP ROUTES------------------------------------------------------------------------------------------  */
 
-Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'Admin'], function(){
+Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'admin'], function(){
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
     Route::resource('company', 'CompanyController')->names('admin.company');
@@ -96,8 +105,8 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
-/*-------------SELLER GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Seller', 'prefix'=>'company'], function(){
+/*-------------SALE GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Sale', 'prefix'=>'company'], function(){
     Route::resource('product', 'ProductController')->names('seller.product');
     Route::resource('gallery', 'GalleryController')->names('seller.gallery');
     Route::get('profile', 'CompanyController@index')->name('seller.company.dashboard');

@@ -12,4 +12,9 @@ class CategoryController extends Controller
         $categories = Category::where('parent_id', $parent_id)->get();
         return response()->json($categories);
     }
+
+    public function index(){
+        $categories = Category::all();
+        return response()->json($categories);
+    }
 }

@@ -20,5 +20,14 @@ class CategorySeeder extends Seeder
                 'parent_id'=>$category->parent_id
             ]);
         }
+
+        // $categories = DB::connection('mysql_local')->table('categories')->get();
+        // foreach ($categories as $category) {
+        //     DB::connection('mysql_main')->table('categories')->insert([
+        //         'id' => $category->id,
+        //         'title'=> $category->title,
+        //         'parent_id'=>$category->parent_id
+        //     ]);
+        // }
     }
 }

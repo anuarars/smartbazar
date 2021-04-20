@@ -19,5 +19,13 @@
                     'title'=> $brand->title
                 ]);
             }
+
+            // $brands = DB::connection('mysql_local')->table('brands')->get();
+            // foreach ($brands as $brand) {
+            //     DB::connection('mysql_main')->table('brands')->insert([
+            //         'id' => $brand->id,
+            //         'title'=> $brand->title
+            //     ]);
+            // }
         }
     }

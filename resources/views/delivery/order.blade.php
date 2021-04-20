@@ -43,9 +43,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item"><b>Дом</b>:</li>
-                            <li class="list-group-item"><b>Улица</b>:</li>
-                            <li class="list-group-item"><b>Кв</b>:</li>
+                            <li class="list-group-item">{{$order->address()->first()->description}}</li>
                         </ul>
                     </div>
                     <div class="card-footer">
@@ -59,12 +57,10 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item"><b>Дом</b>:</li>
-                            <li class="list-group-item"><b>Улица</b>:</li>
-                            <li class="list-group-item"><b>Кв</b>:</li>
+                            <li class="list-group-item">{{$order->infoByUser ?? ""}}</li>
+                            <li class="list-group-item">{{$order->phone ?? ""}}</li>
+                            <li class="list-group-item">{{$order->fullPrice()}}</li>
                         </ul>
-                    </div>
-                    <div class="card-footer">
                     </div>
                 </div>
             </div>

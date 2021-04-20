@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Builder;
 
 class CartController extends Controller
 {
@@ -20,7 +18,7 @@ class CartController extends Controller
 
     public function create(Request $request)
     {
-        $product_id = $request->product_id;
+        $item_id = $request->item_id;
         $user_id = Auth::id();
         $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
         if($order == null){
@@ -28,36 +26,36 @@ class CartController extends Controller
                 'user_id' => Auth::id(),
             ]);
         }
-        if($order->products->contains($product_id)){
-            $pivot_row = $order->products()->where('product_id', $product_id)->first()->pivot;
+        if($order->items->contains($item_id)){
+            $pivot_row = $order->items()->where('product_id', $item_id)->first()->pivot;
             $pivot_row->count++;
             $pivot_row->update();
         }else{
-            $order->products()->attach($product_id);
+            $order->items()->attach($item_id);
         }
     }
 
-    public function unlike($product_id){
+    public function unlike($item_id){
         $user_id = Auth::id();
         $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
-        if($order->products->contains($product_id)){
-            $order->products()->detach($product_id);
-            return $product_id;
+        if($order->items->contains($item_id)){
+            $order->items()->detach($item_id);
+            return $item_id;
         }
     }
 
     public function update(Request $request){
-        $product_id = $request->product_id;
+        $item_id = $request->item_id;
         $count = $request->count;
 
         $order = Order::where('user_id', Auth::id())->where('status_id', '=' , 1)
-            ->with('products')
+            ->with('items')
             ->first();
         if ($count <= 0) {
-            $order->products()->detach($product_id);
+            $order->items()->detach($item_id);
             return response('Deleted');
         } else {
-            $pivot = $order->products->find($product_id)->pivot;
+            $pivot = $order->items->find($item_id)->pivot;
             $pivot->count = $count;
             $pivot->update();
         }
@@ -68,12 +66,12 @@ class CartController extends Controller
     public function getData(){
         $user_id = Auth::id();
         $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
-        return $order->products->load('measure', 'galleries');
+        return $order->items->load('product.galleries', 'product.measure');
     }
 
     public function destroy(Request $request){
         $order = Order::where('user_id', Auth::id())->where('status_id', '=' , 1)->get()->first();
-        $order->products()->detach($request->product_id);
+        $order->items()->detach($request->item_id);
     }
 
     public function count(){
@@ -83,7 +81,7 @@ class CartController extends Controller
             if($order == null){
                 return 0;
             }else{
-                return $order->products;
+                return $order->items;
             }
         }
     }

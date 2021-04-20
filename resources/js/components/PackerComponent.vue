@@ -50,7 +50,7 @@
                 this.orders.push(e.order);
             });
             
-            const tokenProvider = new PusherPushNotifications.TokenProvider({
+            const beamsTokenProvider = new PusherPushNotifications.TokenProvider({
                 url: this.home_url + 'push/pusher/beams-auth',
             })
 
@@ -58,8 +58,12 @@
                 instanceId: '41acbae0-ec93-4866-bce7-937bff9c4d27',
             })
 
+            // beamsClient
+            // .stop()
+            // .catch(console.error);
+
             beamsClient.start()
-                .then(() => beamsClient.setUserId(this.user.id.toString(), tokenProvider))
+                .then(() => beamsClient.setUserId(this.user.id.toString(), beamsTokenProvider))
                 .catch(console.error);
         }
     }

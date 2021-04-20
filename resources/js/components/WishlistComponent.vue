@@ -24,12 +24,12 @@
                     <td class="wishlist__column wishlist__column--image">
                         <div class="product-image">
                             <a href="" class="product-image__body">
-                                <img class="product-image__img" :src="wishlist.product.galleries[0].image" alt="">
+                                <img class="product-image__img" :src="wishlist.item.product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
                     <td class="wishlist__column wishlist__column--product">
-                        <a href="" class="wishlist__product-name">{{wishlist.product.title}}</a>
+                        <a href="" class="wishlist__product-name">{{wishlist.item.product.title}}</a>
                         <div class="wishlist__product-rating">
                             <div class="rating">
                                 <div class="rating__body">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="wishlist__product-rating-legend">
-                                Просмотров: {{wishlist.product.views}}
+                                Просмотров: {{wishlist.item.views}}
                             </div>
                         </div>
                     </td>
@@ -45,8 +45,8 @@
                         <div class="badge badge-success">Да</div>
                     </td>
                     <td class="wishlist__column wishlist__column--price">
-                        <div class="d-flex flex-column" v-if="wishlist.product.discount != 0">
-                            <span class="text-success">
+                        <div class="d-flex flex-column" v-if="wishlist.item.discount != 0">
+                            <!--<span class="text-success">
                             {{(Math.ceil((wishlist.product.price+((wishlist.product.price*10)/100)) - (((wishlist.product.price+((wishlist.product.price*10)/100)) * wishlist.product.discount)/100))).toLocaleString()}} тг.
                             </span>
                             <span class="line-through text-danger">
@@ -54,16 +54,16 @@
                             </span>
                         </div>
                         <div class="d-flex flex-column" v-else>
-                            {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.
+                            {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.-->
                         </div>
                     </td>
                     <td class="wishlist__column wishlist__column--tocart">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="addToCart(wishlist.product.id)">Добавить в корзину</button>
+                        <button type="button" class="btn btn-primary btn-sm" v-on:click="addToCart(wishlist.item.id)">Добавить в корзину</button>
                     </td>
                     <td class="wishlist__column wishlist__column--remove">
                         <button type="button" class="btn btn-light btn-sm btn-svg-icon" v-on:click.prevent="removeItem(index)">
                             <svg width="12px" height="12px">
-                                <use xlink:href="https://smartbazar.kz/template/images/sprite.svg#cross-12"></use>
+                                <use v-bind="{'xlink:href': home_url + 'template/images/sprite.svg#cross-12'}"></use>
                             </svg>
                         </button>
                     </td>

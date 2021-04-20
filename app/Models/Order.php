@@ -13,30 +13,30 @@ class Order extends Model
         return 100;
     }
 
-    public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('count', 'id')->withTimestamps();;
+    public function items(){
+        return $this->belongsToMany(Item::class)->withPivot('count', 'id')->withTimestamps();;
     }
 
     public function fullPrice(){
         $sum = 0;
-        foreach($this->products as $product){
-            $sum += $product->priceForCount();
+        foreach($this->items as $item){
+            $sum += $item->priceForCount();
         }
         return $sum;
     }
 
     public function fullPriceNoDiscount(){
         $sum = 0;
-        foreach($this->products as $product){
-            $sum += $product->priceForCountNoDiscount();
+        foreach($this->items as $item){
+            $sum += $item->priceForCountNoDiscount();
         }
         return number_format($sum, 0, ' ', ' ');
     }
 
     public function fullPriceWithDelivery(){
         $sum = 0;
-        foreach($this->products as $product){
-            $sum += $product->priceForCount();
+        foreach($this->items as $item){
+            $sum += $item->priceForCount();
         }
         $sum += $this->deliveryPrice;
         return number_format($sum, 0, ' ', ' ');
@@ -63,7 +63,8 @@ class Order extends Model
         return $this->morphOne('App\Models\Phone', 'phoneable');
     }
 
-    public function address(){
-        return $this->belongsTo(Address::class);
+    public function address()
+    {
+        return $this->morphMany('App\Models\Address', 'addressable');
     }
 }

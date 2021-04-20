@@ -9,7 +9,7 @@
             <img src="icons/red_heart.svg" alt="heart" class="favorite_unlike">
         </a>
         <star-component
-            :rating = rating
+            :rating = "rating"
         ></star-component>
         <div class="product_item_title">{{product.description}}</div>
         <div class="product_item_country">{{product.discountPercent}}</div>

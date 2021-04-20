@@ -7,12 +7,18 @@
                 <div class="page-header__breadcrumb">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                           
+                            <li class="breadcrumb-item">
+                                <a href="{{route('index')}}">Главная</a>
+                                <svg class="breadcrumb-arrow" width="6px" height="9px">
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                </svg>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Каталог</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="page-header__title">
-                   
+                    <h1>Каталог</h1>
                 </div>
             </div>
         </div>
@@ -97,28 +103,28 @@
                                 <div class="widget-products widget">
                                     <h4 class="widget__title">Последние товары</h4>
                                     <div class="widget-products__list">
-                                        @foreach ($latest_products as $product)
+                                        @foreach ($latest_items as $item)
                                             <div class="widget-products__item">
                                                 <div class="widget-products__image">
                                                     <div class="product-image">
-                                                        <a href="{{route('product', $product->id, true)}}" class="product-image__body">
-                                                            <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
+                                                        <a href="{{route('item', $item->id, true)}}" class="product-image__body">
+                                                            <img class="product-image__img" src="{{secure_asset($item->product->galleries->first()->image)}}" alt="{{$item->product->galleries->first()->image}}">
                                                         </a>
                                                     </div>
                                                 </div>
                                                 <div class="widget-products__info">
                                                     <div class="widget-products__name">
-                                                        <a href="{{route('product', $product->id, true)}}">{{$product->title}}</a>
+                                                        <a href="{{route('item', $item->id, true)}}">{{$item->product->title}}</a>
                                                     </div>
                                                     <div class="widget-products__prices">
-                                                        @if ($product->discount == null)
-                                                            {{$product->priceAfterFee()}} тг.
+                                                        @if ($item->discount == null)
+                                                            {{$item->priceAfterFee()}} тг.
                                                         @else
                                                             <span class="product-card__new-price">
-                                                                {{$product->afterDiscount}} тг.
+                                                                {{$item->afterDiscount}} тг.
                                                             </span>
                                                             <span class="product-card__old-price">
-                                                                {{$product->priceAfterFee()}} тг.
+                                                                {{$item->priceAfterFee()}} тг.
                                                             </span>
                                                         @endif
                                                     </div>
@@ -153,11 +159,11 @@
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>
                                                     </svg>
                                                 </button>
-                                               {{--  <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">
+                                                <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">
                                                     <svg width="16px" height="16px">
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>
                                                     </svg>
-                                                </button> --}}
+                                                </button>
                                                 <button data-layout="list" data-with-features="false" title="List" type="button" class="layout-switcher__button ">
                                                     <svg width="16px" height="16px">
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-list-16x16')}}"></use>
@@ -170,15 +176,21 @@
                                     <div class="view-options__control">
                                         <label for="">Сортировать по</label>
                                         <div>
-                                            @sortablelink('created_by', 'По Дате')
-                                            @sortablelink('title', 'Названию (A-Z)')
+                                            <a href="{{URL::current()}}">По Дате</a>
+                                            <i class="fa fa-sort"></i>
+                                            <a href="{{URL::current()."?sort=name"}}">Названию (A-Z)</a>
+                                            <i class="fa fa-sort"></i>
+                                            <a href="{{URL::current()."?sort=price_desc"}}">Цене</a>
+                                            <i class="fa fa-sort"></i>
+                                            <a href="{{URL::current()."?sort=rate"}}">Рейтингу</a>
+                                            <i class="fa fa-sort"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="products-view__list products-list" data-layout="grid-3-sidebar" data-with-features="false" data-mobile-grid-columns="2">
                                 <div class="products-list__body">
-                                    @foreach ($products as $product)
+                                    @foreach ($items as $item)
                                         <div class="products-list__item">
                                             <div class="product-card product-card--hidden-actions ">
                                                 <button class="product-card__quickview" type="button">
@@ -188,32 +200,25 @@
                                                     <span class="fake-svg-icon"></span>
                                                 </button>
                                                 <div class="product-card__image product-image">
-                                                    <a href="{{route('product', $product->id, true)}}" class="product-image__body">
-                                                        <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image)}}" alt="{{$product->galleries->first()->image}}">
+                                                    <a href="{{route('item', $item->id, true)}}" class="product-image__body">
+                                                        <img class="product-image__img" src="{{secure_asset($item->product->galleries->first()->image ?? "")}}" alt="{{$item->product->galleries->first()->image ?? ""}}">
                                                     </a>
                                                 </div>
                                                 <div class="product-card__info">
                                                     <div class="product-card__name">
-                                                        <a href="product.html">{{$product->title}}</a>
+                                                        <a href="product.html">{{$item->product->title}}</a>
                                                     </div>
                                                     <div class="product-card__rating">
                                                         <div class="product-card__rating-stars">
                                                             <div class="rating">
                                                                 <div class="rating__body">
                                                                     <div class="rating__body">
-                                                                        <star-component :rating="{{$product->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
+                                                                        <star-component :rating="{{$item->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="product-card__rating-legend">Отзывов: {{$products->first()->reviews->count()}}</div>
-                                                    </div>
-                                                    <div class="input-number product__quantity">
-                                                        <input id="product-quantity"
-                                                               class="input-number__input form-control form-control-lg"
-                                                               type="number" min="1" value="1">
-                                                        <div class="input-number__add"></div>
-                                                        <div class="input-number__sub"></div>
+                                                        <div class="product-card__rating-legend">Отзывов: {{$item->first()->reviews->count()}}</div>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__actions">
@@ -221,28 +226,28 @@
                                                         В наличии: <span class="text-success">Да</span>
                                                     </div>
                                                     <div class="product-card__prices">
-                                                        @if ($product->discount == null)
-                                                            {{$product->priceAfterFee()}} тг.
+                                                        @if ($item->discount == null)
+                                                            {{$item->priceAfterFee()}} тг.
                                                         @else
                                                             <span class="product-card__new-price">
-                                                                {{$product->afterDiscount}} тг.
+                                                                {{$item->afterDiscount}} тг.
                                                             </span>
                                                             <span class="product-card__old-price">
-                                                                {{$product->priceAfterFee()}} тг.
+                                                                {{$item->priceAfterFee()}} тг.
                                                             </span>
                                                         @endif
                                                     </div>
                                                     <div class="product-card__buttons">
                                                         <add-to-cart-component 
-                                                            :product="{{ $product->id }}"
+                                                            :item="{{ $item->id }}"
                                                             :home_url = "homeUrl"
-                                                            :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                            :cart="{{ $item->isAddedToCartBy() ? 'true' : 'false' }}"
                                                             @click.native="countCart">
                                                         </add-to-cart-component>
                                                         <like-component 
-                                                            :product={{ $product->id }}
+                                                            :item={{ $item->id }}
                                                             :home_url = "homeUrl"
-                                                            :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
+                                                            :favorited="{{ $item->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                                         </like-component>
                                                     </div>
                                                 </div>
@@ -253,7 +258,7 @@
                             </div>
                             <div class="products-view__pagination">
                                 <ul class="pagination justify-content-center">
-                                    {{ $products->onEachSide(1)->links() }}
+                                    {{ $items->onEachSide(1)->links() }}
                                 </ul>
                             </div>
                         </div>

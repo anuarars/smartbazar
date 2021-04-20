@@ -145,7 +145,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                   <div class="card-content">
                     <h5 class="font-15">Просмотры:</h5>
-                    <h2 class="mb-3 font-18">{{Auth::user()->products()->sum('views')}}</h2>
+                    {{-- <h2 class="mb-3 font-18">{{Auth::user()->products()->sum('views')}}</h2> --}}
                     <p class="mb-0">Рост: <span class="col-green">18%</span></p>
                   </div>
                 </div>
@@ -167,7 +167,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pr-0 pt-3">
                   <div class="card-content">
                     <h5 class="font-15">Товаров: </h5>
-                    <h2 class="mb-3 font-18">{{Auth::user()->company->products()->count()}}</h2>
+                    {{-- <h2 class="mb-3 font-18">{{Auth::user()->company->products()->count()}}</h2> --}}
                     <p class="mb-0">Рост: <span class="col-green">5%</span></p>
                   </div>
                 </div>

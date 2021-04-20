@@ -10,7 +10,7 @@
                         <h4>{{$order->user->firstname}} {{$order->user->lastname}}</h4>
                     </div>
                     <div class="card-body">
-                        {{$order->address->home}}, {{$order->address->street}}, {{$order->address->unit}}
+                        {{$order->address()->first()->description}}
                         <hr>
                         {{$order->fullPrice()}}
                     </div>

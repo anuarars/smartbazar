@@ -1,6 +1,6 @@
 <template>
-<div class="col-12 col-lg-9 col-xl-8">
-    <div v-if="!isReviewed">
+<div class="col-12">
+    <div v-if="!reviewed">
         <div class="form-row">
             <div class="form-group col-md-4">
                 <h4>Оцените: </h4>
@@ -45,13 +45,12 @@
 
 <script>
     import StarRating from 'vue-star-rating'
-
     export default {
         components: {
             StarRating
         },
         props:[
-            'home_url', 'product', 'order_id', 'reviewed'
+            'home_url', 'item', 'order_id', 'reviewed'
         ],
         mounted() {
             this.isReviewed = !!this.reviewed;
@@ -61,7 +60,6 @@
                 rate: '',
                 description: '',
                 review_id: '',
-                isReviewed: ''
             }
         },
         methods:{
@@ -71,15 +69,15 @@
             addReview(){
                 axios.post(this.home_url + 'review/store', {
                     rate: this.rate,
-                    product_id: this.product.id,
+                    item_id: this.item.id,
                     description: this.description,
                     order_id: this.order_id
                 }).then(response => {
-                    this.review_id = response.data
-                    this.isReviewed = true;
+                    console.log(response.data)
+                    // this.review_id = response.data
+                    // this.isReviewed = true;
                 });
             }
         }
     }
 </script>
-

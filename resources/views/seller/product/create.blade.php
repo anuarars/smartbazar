@@ -5,10 +5,73 @@
     <div class="section-body">
         <div class="row">
             <div class="col-12">
-                @include('includes.errors')
+                <create-product-component
+                    :home_url = "homeUrl"
+                >
+                </create-product-component>
+                {{-- @include('includes.errors')
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        <h4>Добавить товар</h4>
+                        <h4>Добавить товар из каталога</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="{{secure_url('/company/product')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Найти товар">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <select name="isPublished" class="form-control">
+                                            <option value="0">Не опубликован</option>
+                                            <option value="1">Опубликован</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" placeholder="Цена" id="newPrice" v-model="discount.newPrice">
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>
+                                                    {{ $message }}
+                                                </strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control @error('count') is-invalid @enderror" name="count" placeholder="Количество">
+                                        @error('count')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>
+                                                    {{ $message }}
+                                                </strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="discountPercent" name="discount" placeholder="Скидка в % не обязательно" v-on:keyup="priceAfterCalc" v-model="discount.discountPercent">
+                                        <small v-if="discount.discountPrice > 0" v-text="discount.discountText" class="text-success font-weight-bold"></small>
+                                    </div>
+                                </div>
+                                        
+                                <div class="col-md-12 mt-3 text-center">
+                                    <button type="submit" class="btn btn-primary">Добавить товар</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h4>Добавить новый товар</h4>
                     </div>
                     <div class="card-body p-4">
                         <form action="{{secure_url('/company/product')}}" method="post" enctype="multipart/form-data">
@@ -141,8 +204,6 @@
                                     </div>
                                 </div>
 
-                                {{-- <images-upload-component></images-upload-component> --}}
-
                                 <div class="col-md-12">
                                     <label class="file-upload">
                                         <input name="gallery[]" type="file" multiple="true" />
@@ -156,7 +217,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

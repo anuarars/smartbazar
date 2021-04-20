@@ -20,5 +20,13 @@ class WeekdaySeeder extends Seeder
                 'name'=> $weekday->name
             ]);
         }
+
+        // $weekdays = DB::connection('mysql_local')->table('weekdays')->get();
+        // foreach ($weekdays as $weekday) {
+        //     DB::connection('mysql_main')->table('weekdays')->insert([
+        //         'id'=>$weekday->id,
+        //         'name'=> $weekday->name
+        //     ]);
+        // }
     }
 }

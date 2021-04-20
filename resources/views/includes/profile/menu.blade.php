@@ -5,9 +5,9 @@
             <li class="account-nav__item  account-nav__item--active ">
                 <a href="{{route('profile.index')}}">Профиль</a>
             </li>
-            <li class="account-nav__item ">
+            {{-- <li class="account-nav__item ">
                 <a href="{{route('profile.address')}}">Адреса</a>
-            </li>
+            </li> --}}
             <li class="account-nav__item ">
                 <a href="{{route('profile.history')}}">История покупок</a>
             </li>

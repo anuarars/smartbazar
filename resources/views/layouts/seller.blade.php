@@ -17,9 +17,6 @@
   <link rel="stylesheet" href="{{secure_asset('dashboard/bundles/bootstrap-social/bootstrap-social.css')}}">
   <link rel="stylesheet" href="{{secure_asset('dashboard/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href='{{secure_asset('/img/logo/logo.svg')}}' />
-  <script src="https://cdn.tiny.cloud/1/vuko5n8zosfrtuvle80aeae8o7nyj7sm85hwt10pa3bie19s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="{{secure_asset('serviceWorker.min.js')}}"></script>
-  <script src="{{secure_asset('push.min.js')}}"></script>
   <script src="{{secure_asset('js/app.js')}}" defer></script>
 </head>
 

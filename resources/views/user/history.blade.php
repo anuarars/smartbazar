@@ -51,14 +51,14 @@
                                                         <th>{{ $order->id }}</th>
                                                         <th>{{ $order->updated_at }}</th>
                                                         <th>{{ $order->status->name }}</th>
-                                                        <th>{{ $order->fullPrice() }}</th>
+                                                        <th>{{$order->fullPrice()}} тг.</th>
                                                         <th>
                                                             <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#orderModal-{{$order->id}}">Увидеть продукты</button>
                                                         </th>
 
                                                     </tr>
                                                     <div class="modal fade" id="orderModal-{{$order->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog" role="document">
+                                                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">Продукты</h5>
@@ -66,26 +66,25 @@
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                 </div>
-                                                                @foreach($order->products as $product)
-
+                                                                @foreach($order->items as $item)
                                                                     <div class="modal-body">
                                                                         <ul class="list-group">
                                                                             <li class="list-group-item">
-                                                                                {{ $product->title }}
-                                                                                <img src="{{ $product->galleries()->first()->image }}" width="70px"/>
+                                                                                {{ $item->product->title }}
+                                                                                <img src="{{ $item->product->galleries()->first()->image }}" width="70px"/>
                                                                                 <rate-component
                                                                                     :home_url="homeUrl"
-                                                                                    :product="{{$product}}"
+                                                                                    :item="{{$item}}"
                                                                                     :order_id="{{$order->id}}"
-                                                                                    :reviewed="{{ $product->isReviewedByAuthUser() ? 'true' : 'false' }}"
+                                                                                    {{-- :reviewed="{{ $item->isReviewedByAuthUser() ? 'true' : 'false' }}" --}}
                                                                                 ></rate-component>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
                                                                 @endforeach
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                    <button type="button" class="btn btn-primary">Send message</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                                                    <button type="button" class="btn btn-primary">Отправить</button>
                                                                 </div>
                                                             </div>
                                                         </div>

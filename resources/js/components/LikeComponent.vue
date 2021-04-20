@@ -16,7 +16,7 @@
 import FavoriteIcon from "./FavoriteIcon";
 
 export default {
-    props: ['product', 'favorited', 'home_url'],
+    props: ['item', 'favorited', 'home_url'],
     components: {
         FavoriteIcon
     },
@@ -46,10 +46,10 @@ export default {
             // Only animate on favoriting.
             if (!this.isFavorited) {
                 this.animating = true;
-                this.favorite(this.product);
+                this.favorite(this.item);
                 this.$parent.countWishlist();
             } else {
-                this.unFavorite(this.product);
+                this.unFavorite(this.item);
                 this.isFavorited = false;
                 this.$parent.countWishlist();
             }
@@ -57,9 +57,9 @@ export default {
         onIconAnimationEnds() {
             this.animating = false;
         },
-        favorite(product) {
+        favorite(item) {
             if(this.authUser !== null){
-                axios.post(this.home_url + 'wishlist/' + product);
+                axios.post(this.home_url + 'wishlist/' + item);
                 this.isFavorited = true;
             }else{
                 this.$parent.ScrollToForm();
@@ -67,8 +67,8 @@ export default {
             }
         },
 
-        unFavorite(product) {
-            axios.delete(this.home_url + 'wishlist/unlike/' + product);
+        unFavorite(item) {
+            axios.delete(this.home_url + 'wishlist/unlike/' + item);
         }
     }
 }

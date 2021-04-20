@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,8 +28,9 @@ class BoutiqueController extends Controller
      */
     public function show($id)
     {
+        $products = Product::where('company_id', $id)->paginate(6);
         $boutique = Company::find($id);
-        return view('public.boutique.show', compact('boutique'));
+        return view('public.boutique.show', compact('boutique', 'products'));
     }
 
 }

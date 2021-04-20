@@ -21,5 +21,14 @@ class CountrySeeder extends Seeder
                 'code'=>$country->code
             ]);
         }
+
+        // $countries = DB::connection('mysql_local')->table('countries')->get();
+        // foreach ($countries as $country) {
+        //     DB::connection('mysql_main')->table('countries')->insert([
+        //         'id' => $country->id,
+        //         'name'=>$country->name,
+        //         'code'=>$country->code
+        //     ]);
+        // }
     }
 }

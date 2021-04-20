@@ -12,11 +12,14 @@ class Company extends Model
 
     public function users(){
         return $this->hasMany(User::class);
-        // return $this->belongsToMany(User::class);
+    }
+
+    public function items(){
+        return $this->hasMany(Item::class);
     }
 
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class)->withPivot('discount', 'price', 'count', 'isPublished', 'views')->withTimestamps();
     }
 
     public function worktimes(){

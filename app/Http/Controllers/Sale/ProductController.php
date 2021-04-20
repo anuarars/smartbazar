@@ -16,6 +16,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Gallery;
 use App\Http\Requests\ProductRequest;
+use App\Models\Company;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -55,41 +56,60 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product = new Product([
-            'user_id' => Auth::id(),
-            'company_id' => Auth::user()->company_id,
-            'category_id' => $request->input('category_id'),
-            'brand_id' => $request->brand_id,
-            'country_id' => $request->country_id,
-            'measure_id' => $request->input('measure_id'),
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'count' => $request->input('count'),
-            'discount' => $request->input('discount'),
-            'sku' => rand(100000,999999),
-            'isPublished' => $request->input('isPublished')
-        ]);
-
-        $product->save();
-
-        if($request->hasFile('gallery')) {
-            foreach ($request->gallery as $gallery_image) {
-
-                $path = $gallery_image->store('images', 's3');
-                Storage::disk('s3')->setVisibility($path, 'public');
-
-                $gallery = new Gallery([
-                    'image' => Storage::disk('s3')->url($path),
-                    'product_id' => $product->id,
-                    'user_id' => Auth::id()
-                ]);
-
-                $gallery->save();
-            }
+        $company = Company::find(Auth::user()->company_id);
+        if($company->products->contains($request->product_id)){
+            $product = $company->products()->where('product_id', $request->product_id)->first()->pivot;
+            $product->price = $request->price;
+            $product->discount = $request->discount;
+            $product->count = $request->count;
+            $product->isPublished = $request->isPublished;
+            $product->update();
+            return response()->json('Updated', 200);
+        }else{
+            $company->products()->attach($request->product_id, [
+                'price' => $request->price,
+                'discount' => $request->discount,
+                'count' => $request->count,
+                'isPublished' => $request->isPublished
+            ]);
+            return response()->json('Created', 200);
         }
+        
+        // $product = new Product([
+        //     'user_id' => Auth::id(),
+        //     'company_id' => Auth::user()->company_id,
+        //     'category_id' => $request->input('category_id'),
+        //     'brand_id' => $request->brand_id,
+        //     'country_id' => $request->country_id,
+        //     'measure_id' => $request->input('measure_id'),
+        //     'title' => $request->input('title'),
+        //     'description' => $request->input('description'),
+        //     'price' => $request->input('price'),
+        //     'count' => $request->input('count'),
+        //     'discount' => $request->input('discount'),
+        //     'sku' => rand(100000,999999),
+        //     'isPublished' => $request->input('isPublished')
+        // ]);
 
-        return redirect()->back()->with(['success' => 'Товар успешно добавлен']);
+        // $product->save();
+
+        // if($request->hasFile('gallery')) {
+        //     foreach ($request->gallery as $gallery_image) {
+
+        //         $path = $gallery_image->store('images', 's3');
+        //         Storage::disk('s3')->setVisibility($path, 'public');
+
+        //         $gallery = new Gallery([
+        //             'image' => Storage::disk('s3')->url($path),
+        //             'product_id' => $product->id,
+        //             'user_id' => Auth::id()
+        //         ]);
+
+        //         $gallery->save();
+        //     }
+        // }
+
+        // return redirect()->back()->with(['success' => 'Товар успешно добавлен']);
     }
 
     /**

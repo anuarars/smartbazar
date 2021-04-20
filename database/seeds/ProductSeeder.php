@@ -20,14 +20,50 @@ class ProductSeeder extends Seeder
                 'user_id' => $product->user_id,
                 'country_id' => $product->country_id,
                 'measure_id' => $product->measure_id,
-                'company_id' => $product->company_id,
                 'title' => $product->title,
                 'description' => $product->description,
-                'price' => $product->price,
-                'count' => $product->count,
-                'discount' => $product->discount,
-                'sku' => $product->sku
             ]);
         }
+
+        $items = DB::connection('mysql_main')->table('company_product')->get();
+        foreach ($items as $item) {
+            DB::connection('mysql_local')->table('company_product')->insert([
+                'id' => $item->id,
+                'company_id' => $item->company_id,
+                'product_id' => $item->id,
+                'count' => $item->count,
+                'discount' => $item->discount,
+                'views' => $item->views,
+                'isPublished' => $item->isPublished,
+                'price' => $item->price,
+            ]);
+        }
+
+        // $products = DB::connection('mysql_local')->table('products')->get();
+        // foreach ($products as $product) {
+        //     DB::connection('mysql_main')->table('products')->insert([
+        //         'id' => $product->id,
+        //         'category_id' => $product->category_id,
+        //         'user_id' => $product->user_id,
+        //         'country_id' => $product->country_id,
+        //         'measure_id' => $product->measure_id,
+        //         'title' => $product->title,
+        //         'description' => $product->description,
+        //     ]);
+        // }
+
+        // $items = DB::connection('mysql_local')->table('company_product')->get();
+        // foreach ($items as $item) {
+        //     DB::connection('mysql_main')->table('company_product')->insert([
+        //         'id' => $item->id,
+        //         'company_id' => $item->company_id,
+        //         'product_id' => $item->id,
+        //         'count' => $item->count,
+        //         'discount' => $item->discount,
+        //         'views' => $item->views,
+        //         'isPublished' => $item->isPublished,
+        //         'price' => $item->price,
+        //     ]);
+        // }
     }
 }

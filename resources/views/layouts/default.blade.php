@@ -108,7 +108,7 @@
                                                 <svg width="20px" height="20px">
                                                     <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                 </svg>
-                                                <span class="indicator__value" v-text="productCount"></span>
+                                                <span class="indicator__value" v-text="itemCount"></span>
                                             </span>
                                         </a>
                                     </div>
@@ -310,15 +310,8 @@
                                                     </div>
                                                 </a>
                                             </li>
-                                            {{-- <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('boutique.index', true)}}">
-                                                    <div class="nav-links__item-body">
-                                                        Бутики
-                                                    </div>
-                                                </a>
-                                            </li> --}}
                                             <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('info.faq', true)}}">
+                                                <a class="nav-links__item-link" href="{{route('boutique.index', true)}}">
                                                     <div class="nav-links__item-body">
                                                         Бутики
                                                     </div>
@@ -345,7 +338,7 @@
                                                     <svg width="20px" height="20px">
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                     </svg>
-                                                    <span class="indicator__value" v-text="productCount"></span>
+                                                    <span class="indicator__value" v-text="itemCount"></span>
                                                 </span>
                                             </a>
                                             {{-- <div class="indicator__dropdown">
@@ -377,7 +370,7 @@
                                                                     name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
                                                                     v-mask="'+7 (###) ### ####'" 
                                                                     v-model="auth.loginNumber"
-                                                            >
+                                                                >
                                                                 @error('phone')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Category, Product, Wishlist};
+use App\Models\{Category, Product, Wishlist, Item};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,16 +27,16 @@ class WishlistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Product $product)
+    public function store(Item $item)
     {
-        if($product){
+        if($item){
             Wishlist::updateOrCreate([
                 'user_id' => Auth::id(),
-                'product_id' => $product->id
+                'item_id' => $item->id
             ],
             [
                 'user_id' => Auth::id(),
-                'product_id' => $product->id
+                'item_id' => $item->id
             ]);
         }
         return response('Successfully stored', 204);
@@ -53,9 +53,9 @@ class WishlistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function unlike(Product $product)
+    public function unlike(Item $item)
     {
-        Wishlist::where('product_id', $product->id)->where('user_id', Auth::id())->delete();
+        Wishlist::where('item_id', $item->id)->where('user_id', Auth::id())->delete();
         return response('Successfully deleted', 204);
     }
 
@@ -65,7 +65,7 @@ class WishlistController extends Controller
     }
 
     public function getData(){
-        $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company', 'product.galleries')->get();
+        $wishlists = Wishlist::where('user_id', Auth::id())->with('item.product.galleries')->get();
         return $wishlists;
     }
 }

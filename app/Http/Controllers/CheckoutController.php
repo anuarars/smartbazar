@@ -15,11 +15,7 @@ class CheckoutController extends Controller
 {
     public function show($orderId){
         $order = Order::find($orderId);
-        $sum = 0;
-        foreach ($order->products as $product) {
-            $sum += $product->price * $product->pivot->count;
-        }
-        return view('checkout.index', compact('order', 'sum'));
+        return view('checkout.index', compact('order'));
     }
 
     public function success($orderId){
@@ -66,10 +62,13 @@ class CheckoutController extends Controller
             ]
         );
 
-        foreach ($order->products as $product){
-            $userId = "'".$product->user->id."'";
-            $sale[] = $userId;
+        foreach ($order->items as $item){
+            foreach ($item->company->users as $user) {
+                $userId = "'".$user->id."'";
+                $sale[] = $userId;
+            }
         }
+        
         $saleUsers = array_unique($sale);
         
         $publishToSeller = $beamsClient->publishToUsers(
@@ -98,12 +97,16 @@ class CheckoutController extends Controller
     }
     
     public function updateOrderByUser(Request $request){
-        DB::table('orders')->where('id', $request->order_id)->update([
-            'address_id' => $request->address_id,
-            'infoByUser' => $request->infoByUser,
-            'phone' => $request->orderPhone
-        ]);
 
-        return "success";
+        $order = Order::find($request->order_id);
+        $order->address()->create([
+            'description' => $request->description
+        ]);
+        
+        $order->infoByUser = $request->infoByUser;
+        $order->phone = $request->orderPhone;
+        $order->save();
+
+        return $order;
     }
 }

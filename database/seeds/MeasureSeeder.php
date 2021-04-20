@@ -20,5 +20,14 @@ class MeasureSeeder extends Seeder
                 'code' => $measure->code
             ]);
         }
+
+        // $measures = DB::connection('mysql_local')->table('measures')->get();
+        // foreach ($measures as $measure) {
+        //     DB::connection('mysql_main')->table('measures')->insert([
+        //         'id' => $measure->id,
+        //         'title' => $measure->title,
+        //         'code' => $measure->code
+        //     ]);
+        // }
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="products.length === 0" class="container">
+    <div v-if="items.length === 0" class="container">
         <div class="block-empty__body">
             <div class="block-empty__message">Ваша корзина пуста</div>
             <div class="block-empty__actions">
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div v-else class="container">
-        <table class="cart__table cart-table" v-if="products">
+        <table class="cart__table cart-table" v-if="items">
             <thead class="cart-table__head">
                 <tr class="cart-table__row">
                     <th class="cart-table__column cart-table__column--image"></th>
@@ -28,42 +28,42 @@
                 </tr>
             </thead>
             <tbody class="cart-table__body">
-                <tr class="cart-table__row" v-for="(product, index) in products">
+                <tr class="cart-table__row" v-for="(item, index) in items">
                     <td class="cart-table__column cart-table__column--image">
                         <div class="product-image">
-                            <a :href="home_url + 'products/' + product.id" class="product-image__body">
-                                <img class="product-image__img" :src="product.galleries[0].image" alt="">
+                            <a :href="home_url + 'products/' + item.id" class="product-image__body">
+                                <img class="product-image__img" :src="item.product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
                     <td class="cart-table__column cart-table__column--product">
-                        <a :href="home_url + 'products/' + product.id"  class="cart-table__product-name">{{product.title}}</a>
+                        <a :href="home_url + 'products/' + item.id"  class="cart-table__product-name">{{item.product.title}}</a>
                     </td>
 
                     <td class="cart-table__column cart-table__column--price" data-title="Цена">
-                        <div class="d-flex flex-column" v-if="product.discount != 0">
+                        <div class="d-flex flex-column" v-if="item.discount != 0">
                             <span class="text-success">
-                            {{(Math.ceil((product.price+((product.price*10)/100)) - (((product.price+((product.price*10)/100)) * product.discount)/100))).toLocaleString()}} тг.
+                            {{(Math.ceil((item.price+((item.price*$parent.fee)/100)) - (((item.price+((item.price*$parent.fee)/100)) * item.discount)/100))).toLocaleString()}} тг.
                             </span>
                             <span class="line-through text-danger">
-                                {{(product.price+((product.price*10)/100)).toLocaleString()}} тг.
+                                {{(item.price+((item.price*$parent.fee)/100)).toLocaleString()}} тг.
                             </span>
                         </div>
                         <div class="d-flex flex-column" v-else>
-                            {{(product.price+((product.price*10)/100)).toLocaleString()}} тг.
+                            {{(item.price+((item.price*$parent.fee)/100)).toLocaleString()}} тг.
                         </div>
                     </td>
 
-                    <product-quantity-component :product="product" :home_url="home_url"></product-quantity-component>
+                    <item-quantity-component :item="item" :home_url="home_url"></item-quantity-component>
 
                     <td class="cart-table__column cart-table__column--total" data-title="Всего">
-                        <span v-if="product.discount != null">
+                        <span v-if="item.discount != null">
                             {{
-                                (product.pivot.count * Math.ceil((product.price+((product.price*10)/100))-(((product.price+((product.price*10)/100)) * product.discount)/100))).toLocaleString()
+                                Math.ceil((item.pivot.count * (item.price+((item.price*10)/100))-(((item.price+((item.price*10)/100)) * item.discount)/100))).toLocaleString()
                             }} тг.
                         </span>
                         <span v-else>
-                            {{(product.pivot.count * (product.price+((product.price*10)/100))).toLocaleString()}} тг.
+                            {{Math.ceil((item.pivot.count * (item.price+((item.price*10)/100)))).toLocaleString()}} тг.
                         </span>
                     </td>
 
@@ -104,7 +104,7 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        <a class="btn btn-primary btn-xl btn-block cart__checkout-button" :href="this.home_url + 'checkout/'+order.id">Продолжить покупку</a>
+                        <a class="btn btn-primary btn-xl btn-block cart__checkout-button" :href="this.home_url + 'checkout/'+ order.id">Продолжить покупку</a>
                     </div>
                 </div>
             </div>
@@ -115,59 +115,26 @@
 <script>
     export default {
         props:['order', 'home_url', 'deliveryprice'],
-
         data(){
             return{
-                products: [],
+                items: [],
             }
         },
         methods:{
             getData(){
                 if(this.order != 0){
                     axios.get('cart/get').then((response) => {
-                        this.products = response.data;
-                        console.log(this.products);
+                        this.items = response.data;
+                        console.log(this.items);
                     })
                 }
             },
-            addQuantity: function(product){
-                let count = product.pivot.count;
-                if (product.measure_id === 1) {
-                    product.pivot.count = (count * 10 + 0.1 * 10) / 10;
-                } else {
-                    product.pivot.count++;
-                }
-                axios.post(this.home_url + 'cart/update', {
-                    product_id: product.id,
-                    count: count
-                }).then(response => {
-                    console.log(response.data);
-                });
-                product.total = product.pivot.count * product.price;
-            },
-            subQuantity: function(product){
-                let count = product.pivot.count;
-                if(count >= 0){
-                    if (product.measure_id === 1) {
-                        product.pivot.count = (count * 10 - 0.1 * 10) / 10;
-                    } else {
-                        product.pivot.count--;
-                    }
-                    axios.post(this.home_url + 'cart/update', {
-                        product_id: product.id,
-                        count: count
-                    }).then(response => {
-                        console.log(response.data);
-                    });
-                    product.total = product.pivot.count * product.price;
-                }
-            },
             removeItem: function(index) {
-                let id = this.products[index].id;
-                this.products.splice(index, 1);
+                let id = this.items[index].id;
+                this.items.splice(index, 1);
 
                 axios.post(this.home_url + 'cart/destroy', {
-                    product_id: id,
+                    item_id: id,
                 }).then(response => {
                     this.$parent.countCart();
                 });
@@ -180,12 +147,12 @@
             subTotal: function() {
                 var subTotal = 0;
 
-                for (var i = 0; i < this.products.length; i++) {
-                    if(this.products[i].discount != null){
-                        var discountPrice = Math.ceil((this.products[i].price+((this.products[i].price*10)/100)) - (((this.products[i].price+((this.products[i].price*10)/100)) * this.products[i].discount)/100))
-                        subTotal += this.products[i].pivot.count * discountPrice;
+                for (var i = 0; i < this.items.length; i++) {
+                    if(this.items[i].discount != null){
+                        var discountPrice = (this.items[i].price+((this.items[i].price*this.$parent.fee)/100)) - (((this.items[i].price+((this.items[i].price*this.$parent.fee)/100)) * this.items[i].discount)/100)
+                        subTotal += Math.ceil(this.items[i].pivot.count * discountPrice);
                     }else{
-                        subTotal += (this.products[i].price+((this.products[i].price*10)/100))* this.products[i].pivot.count;
+                        subTotal += Math.ceil((this.items[i].price+((this.items[i].price*this.$parent.fee)/100))* this.items[i].pivot.count);
                     }
                 }
 

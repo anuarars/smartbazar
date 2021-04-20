@@ -88,20 +88,18 @@
                                         <div class="product-card product-card--hidden-actions ">
                                             <div class="product-card__image product-image">
                                                 <a href="{{route('boutique.show', $boutique->id, true)}}" class="product-image__body">
-                                                    <img class="product-image__img" src="images/products/product-13.jpg" alt="">
+                                                    <img class="product-image__img" src="https://via.placeholder.com/400x400" alt="">
                                                 </a>
                                             </div>
                                             <div class="product-card__info">
                                                 <div class="product-card__name">
                                                     <a href="{{route('boutique.show', $boutique->id, true)}}">{{$boutique->name}}</a>
                                                 </div>
+                                                <div class="text-center">
+                                                    <star-component></star-component>
+                                                </div>
                                                 <div class="product-card__rating">
-                                                    <div class="product-card__rating-stars">
-                                                        <div class="rating">
-                                                            <star-component></star-component>
-                                                        </div>
-                                                    </div>
-                                                    <div class="product-card__rating-legend">4 Отзыва</div>
+                                                    <div class="product-card__rating-legend">Отзывов: 0</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,7 +107,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="products-view__pagination">
+                        {{-- <div class="products-view__pagination">
                             <ul class="pagination justify-content-center">
                                 <li class="page-item disabled">
                                     <a class="page-link page-link--with-arrow" href="" aria-label="Previous">
@@ -129,7 +127,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -23,5 +23,17 @@ class CompanySeeder extends Seeder
                     'description'=>$company->description
                 ]);
             }
+
+            // $companies = DB::connection('mysql_local')->table('companies')->get();
+            // foreach ($companies as $company) {
+            //     DB::connection('mysql_main')->table('companies')->insert([
+            //         'id' => $company->id,
+            //         'bin'=> $company->bin,
+            //         'name'=>$company->name,
+            //         'code'=>$company->code,
+            //         'phone'=>$company->phone,
+            //         'description'=>$company->description
+            //     ]);
+            // }
         }
 }

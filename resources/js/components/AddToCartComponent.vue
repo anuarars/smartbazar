@@ -12,7 +12,7 @@ export default {
     name: "AddToCartComponent",
     props: [
         'cart',
-        'product',
+        'item',
         'home_url'
     ],
     data: function () {
@@ -32,18 +32,18 @@ export default {
     methods: {
         toggle(){
             if (!this.isAdded) {
-                    this.addToCart(this.product);
+                    this.addToCart(this.item);
                     this.$parent.countCart();
                 } else {
-                    this.removeFromCart(this.product);
+                    this.removeFromCart(this.item);
                     this.isAdded = !this.isAdded;
                     this.$parent.countCart();
             }
         },
-        addToCart(product){
+        addToCart(item){
             if(this.authUser !== null){
                 axios.post(this.home_url + 'cart/create', {
-                    product_id: product,
+                    item_id: item,
                 }).then(response => {
                     console.log(response.data);
                 });
@@ -53,11 +53,11 @@ export default {
                 this.$parent.isFormOpen = true;
             }
         },
-        removeFromCart(product) {
-            axios.post(this.home_url + 'cart/unlike/' + product)
-                .then(response => {
-                    console.log(response.data);
-                });
+        removeFromCart(item) {
+            axios.post(this.home_url + 'cart/unlike/' + item)
+            .then(response => {
+                console.log(response.data);
+            });
       }
     }
 }

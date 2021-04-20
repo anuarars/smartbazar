@@ -77,7 +77,6 @@
                 </div>
             </div>
         </div>
-
     -->
         <div class="row mx-auto w-100 my-5 my-sm-5 d-flex flex-wrap">
             <div class="col w-100 mt-3 mt-sm-3">

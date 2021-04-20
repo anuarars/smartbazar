@@ -20,5 +20,13 @@ class RoleSeeder extends Seeder
                 'name'=> $role->name
             ]);
         }
+
+        // $roles = DB::connection('mysql_local')->table('roles')->get();
+        // foreach ($roles as $role) {
+        //     DB::connection('mysql_main')->table('roles')->insert([
+        //         'id' => $role->id,
+        //         'name'=> $role->name
+        //     ]);
+        // }
     }
 }

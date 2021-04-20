@@ -34,16 +34,18 @@ Vue.component('categories-component', require('./components/CategoryComponent.vu
 Vue.component('review-star-component', require('./components/ReviewStartComponent.vue').default);
 Vue.component('dropdown-cart-component', require('./components/DropdownCartComponent.vue').default);
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
-Vue.component('payment-component', require('./components/PaymentComponent.vue').default);
+Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('delivery-component', require('./components/DeliveryComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
 Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('select-component', require('./components/Category/SelectComponent').default);
+Vue.component('address-component', require('./components/AddressComponent').default);
 Vue.component('create-category-component', require('./components/Category/CreateCategoryComponent').default);
 Vue.component('images-upload-component', require('./components/Sale/ImagesUploadComponent').default);
+Vue.component('item-quantity-component', require('./components/ItemQuantityComponent').default);
 Vue.component('editor', require('./components/Sale/EditorComponent.vue').default);
-Vue.component('product-quantity-component', require('./components/ProductQuantityComponent').default);
+Vue.component('create-product-component',require('./components/Sale/CreateProductComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -53,13 +55,21 @@ import VueMask from 'v-mask'
 Vue.use(VueMask);
 
 import vClickOutside from 'v-click-outside'
+import ItemQuantityComponent from "../js/components/ItemQuantityComponent";
+import Vue from 'vue';
+
+import Toaster from 'v-toaster';
+Vue.use(Toaster, {timeout: 5000});
+import 'v-toaster/dist/v-toaster.css';
 
 const app = new Vue({
     el: '#app',
     directives: {
         clickOutside: vClickOutside.directive
     },
+    components: {ItemQuantityComponent},
     data: {
+        fee: 10,
         homeUrl: window.homeUrl,
         authUser: window.authUser,
         searchFocused: false,
@@ -69,16 +79,11 @@ const app = new Vue({
         isLogin: true,
         // isFormOpen: false,
         wishlist: '',
-        productCount: '',
+        itemCount: '',
         isMove: false,
         isActive: true,
-        search:{
-            searchInput: '',
-            searchResult: '',
-            searchShow: false
-        },
         cart:{
-            products: '',
+            items: '',
         },
         discount:{
             discountPercent: '',
@@ -93,6 +98,11 @@ const app = new Vue({
             registerConfirm: '',
             loginNumber: '',
             loginPassword: ''
+        },
+        search:{
+            searchInput: '',
+            searchResult: '',
+            searchShow: false
         },
     },
     methods: {
@@ -120,11 +130,11 @@ const app = new Vue({
             if(this.authUser !== null){
                 axios.get(this.homeUrl + 'cart/count').then((response) => {
                     if(response.data == 0){
-                        this.productCount = 0;
-                        this.cart.products = 0;
+                        this.itemCount = 0;
+                        this.cart.items = 0;
                     }else{
-                        this.productCount = response.data.length,
-                        this.cart.products = response.data
+                        this.itemCount = response.data.length,
+                        this.cart.items = response.data
                     }
                 });
             }

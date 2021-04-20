@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
-use App\Models\Product;
+use App\Models\Item;
 
 class CatalogController extends Controller
 {
 
     public function index(){
-        $categories = Category::where('parent_id', 0)->get();
-        $latest_products = Product::orderBy('created_at')->take(5)->get();
-        $products = Product::paginate(15);
-        return view('catalog', compact('latest_products', 'categories', 'products'));
+        // $categories = Category::where('parent_id', 0)->get();
+        $latest_items = Item::orderBy('created_at')->limit(5)->get();
+        dd($latest_items);
+        // $items = Item::paginate(15);
+        // return view('catalog', compact('latest_items', 'categories', 'items'));
     }
 
     public function indexFilters() {

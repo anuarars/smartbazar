@@ -6,14 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    protected $fillable = ['name', 'city', 'home', 'street', 'unit'];
+    protected $fillable = ['description'];
 
     public function addressable()
     {
         return $this->morphTo();
-    }
-
-    public function orders(){
-        return $this->hasMany(Order::class);
     }
 }
