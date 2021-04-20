@@ -152,7 +152,694 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
         
+        <!--<div class="cartForBoutique my-5" style="display: flex; flex-direction: row; justify-content: space-around;">-->
+        <div class="products-list__body my-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>    
+
+        <div class="products-list__body my-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div> 
+
+        <div class="products-list__body my-5" style="display: flex; flex-direction: row; justify-content: space-around;">
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item" >
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+            <div class="products-list__item">
+                <div class="product-card product-card--hidden-actions ">
+                    <button class="product-card__quickview" type="button">
+                        <svg width="16px" height="16px">
+                            <use xlink:href=""></use>
+                        </svg>
+                        <span class="fake-svg-icon"></span>
+                    </button>
+                    <div class="product-card__image product-image">
+                        <a href="" class="product-image__body">
+                            <img class="product-image__img" src="" alt="">
+                        </a>
+                    </div>
+                    <div class="product-card__info">
+                        <div class="product-card__name">
+                            <a href="product.html"></a>
+                        </div>
+                        <div class="product-card__rating">
+                            <div class="product-card__rating-stars">
+                                <div class="rating">
+                                    <div class="rating__body">
+                                        <div class="rating__body">
+                                            <star-component ></star-component>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-card__rating-legend">Отзывов: </div>
+                        </div>
+                        <div class="input-number product__quantity">
+                            <input id="product-quantity"
+                                    class="input-number__input form-control form-control-lg"
+                                    type="number" min="1" value="1">
+                            <div class="input-number__add"></div>
+                            <div class="input-number__sub"></div>
+                        </div>
+                    </div>
+                    <div class="product-card__actions" style="padding: 0 24px 48px;">
+                        <div class="product-card__availability" style="display: none;">
+                            В наличии: <span class="text-success">Да</span>
+                        </div>
+                       
+                        <div class="product-card__prices">
+                            2000 тг
+                        </div>
+                        <div class="product-card__buttons">
+                            <add-to-cart-component>
+                            </add-to-cart-component>
+                            <like-component >
+                            </like-component>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div> 
+        <!--</div>-->
+
+       
+
     </div>
 @endsection

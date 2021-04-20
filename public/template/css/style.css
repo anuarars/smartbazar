@@ -11457,6 +11457,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  
 }
 
 .products-list__item .product-card {
