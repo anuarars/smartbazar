@@ -145,21 +145,23 @@ const app = new Vue({
         hideSearch(){
             this.searchFocused=false
         },
+
         priceAfterCalc(){
+            const formatter=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
             var discountPrice = (this.discount.newPrice * this.discount.discountPercent)/100;
             var priceAfterDiscount = this.discount.newPrice - discountPrice;
             if(priceAfterDiscount > 0){
                 this.discount.discountPrice = priceAfterDiscount;
-                this.discount.discountText = 'Цена после скидки '+ this.discount.discountPrice +' тг.';
+                this.discount.discountText = 'Цена после скидки '+ formatter.format(this.discount.discountPrice).toFixed() +' тг.'+'nu';
+
             }else{
                 this.discount.discountPrice = 0;
             }
-        },
-        ScrollToForm(){
-            window.scrollTo({top: 0, behavior: 'smooth'});
-            // this.isFormOpen = true;
         }
+
     },
+
+
     created(){
         this.countWishlist();
         this.countCart();

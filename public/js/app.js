@@ -10699,19 +10699,26 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     priceAfterCalc: function priceAfterCalc() {
+      var formatter = new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0
+      });
       var discountPrice = this.create.price * this.create.discount / 100;
       var priceAfterDiscount = this.create.price - discountPrice;
       this.priceAfterFee(priceAfterDiscount);
 
       if (priceAfterDiscount > 0) {
-        this.discountPrice = priceAfterDiscount;
+        this.discountPrice = formatter.format(priceAfterDiscount);
       } else {
         this.discountPrice = 0;
       }
     },
     priceAfterFee: function priceAfterFee(price) {
+      var formatter = new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0
+      });
       var feePrice = Number(price) * Number(this.$parent.fee) / 100;
       this.finalPrice = Number(price) + feePrice;
+      this.finalPrice = formatter.format(this.finalPrice);
     }
   }
 });
@@ -55425,21 +55432,18 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
       this.searchFocused = false;
     },
     priceAfterCalc: function priceAfterCalc() {
+      var formatter = new Intl.NumberFormat('en-US', {
+        maximumFractionDigits: 0
+      });
       var discountPrice = this.discount.newPrice * this.discount.discountPercent / 100;
       var priceAfterDiscount = this.discount.newPrice - discountPrice;
 
       if (priceAfterDiscount > 0) {
         this.discount.discountPrice = priceAfterDiscount;
-        this.discount.discountText = 'Цена после скидки ' + this.discount.discountPrice + ' тг.';
+        this.discount.discountText = 'Цена после скидки ' + formatter.format(this.discount.discountPrice).toFixed() + ' тг.' + 'nu';
       } else {
         this.discount.discountPrice = 0;
       }
-    },
-    ScrollToForm: function ScrollToForm() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      }); // this.isFormOpen = true;
     }
   },
   created: function created() {
@@ -57509,8 +57513,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\smartbazar\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

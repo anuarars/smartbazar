@@ -21,7 +21,6 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
-        
     },
     "dependencies": {
         "@pusher/push-notifications-web": "^1.1.0",
@@ -33,6 +32,7 @@
         "pusher-js": "^7.0.3",
         "v-click-outside": "^3.1.2",
         "v-mask": "^2.2.4",
+        "v-toaster": "^1.0.3",
         "v-treeview": "^0.2.1",
         "vue-star-rating": "^1.7.0",
         "vue-upload-multiple-image": "^1.1.6",

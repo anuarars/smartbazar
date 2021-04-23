@@ -194,13 +194,13 @@
                                     @endif
                                 </div>
                                 <div class="product-card__buttons">
-                                    <add-to-cart-component 
+                                    <add-to-cart-component
                                             :item="{{ $itemsDiscount->first()->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $itemsDiscount->first()->isAddedToCartBy() ? 'true' : 'false' }}"
                                             @click.native="countCart">
                                     </add-to-cart-component>
-                                    <like-component 
+                                    <like-component
                                         :item={{ $itemsDiscount->first()->id}}
                                         :home_url = "homeUrl"
                                         :favorited="{{ $itemsDiscount->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
@@ -254,13 +254,13 @@
                                         @endif
                                     </div>
                                     <div class="product-card__buttons">
-                                        <add-to-cart-component 
+                                        <add-to-cart-component
                                             :item="{{ $item->id }}"
                                             :home_url = "homeUrl"
                                             :cart="{{ $item->isAddedToCartBy() ? 'true' : 'false' }}"
                                             @click.native="countCart">
                                         </add-to-cart-component>
-                                        <like-component 
+                                        <like-component
                                             :item={{ $item->id }}
                                             :home_url = "homeUrl"
                                             :favorited="{{ $item->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
@@ -423,7 +423,7 @@
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
                                             <div class="product-card__buttons">
-                                                <add-to-cart-component 
+                                                <add-to-cart-component
                                                         :product="{{ $products->first()->id }}"
                                                         :home_url = "homeUrl"
                                                         :cart="{{ $products->first()->isAddedToCartBy() ? 'true' : 'false' }}"
@@ -431,7 +431,7 @@
                                                 </add-to-cart-component>
                                             </div>
                                         </div>
-                                        <like-component 
+                                        <like-component
                                             :product={{ $product->id }}
                                             :home_url = "homeUrl"
                                             :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
