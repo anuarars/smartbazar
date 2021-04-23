@@ -30,17 +30,24 @@ Route::group(['middleware' => 'api','prefix' => 'auth','namespace' => 'Api'], fu
     Route::get('pusher/beams-auth', 'AuthController@beams');
     Route::post('verify/code', 'AuthController@verify');
     Route::post('verify/resend', 'AuthController@resend');
-    
+
     // Wishlist APIs
-    Route::post('wishlist/{product}', 'WishlistController@store');
-    Route::get('wishlist/count', 'WishlistController@count');
-    Route::delete('wishlist/{wishlist}', 'WishlistController@destroy');
     Route::get('wishlists', 'WishlistController@index');
-    
+    Route::post('wishlists', 'WishlistController@store');
+    Route::delete('wishlists', 'WishlistController@destroy');
+    Route::get('wishlists/count', 'WishlistController@count');
+
+    // Cart APIs
+    Route::apiResource('carts', 'CartController')->except('show');
+
+    Route::get('/carts/count', 'CartController@count');
+    Route::post('/cart/unlike/{id}', 'CartController@unlike');
+
 });
 
 Route::group(['namespace' => 'Api'], function(){
     Route::get('products', 'ProductController@index');
     Route::get('categories/', 'CategoryController@index');
     Route::apiResource('items', 'ItemController');
+
 });
