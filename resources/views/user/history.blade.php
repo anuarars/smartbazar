@@ -76,7 +76,7 @@
                                                                                     :home_url="homeUrl"
                                                                                     :item="{{$item}}"
                                                                                     :order_id="{{$order->id}}"
-                                                                                    {{-- :reviewed="{{ $item->isReviewedByAuthUser() ? 'true' : 'false' }}" --}}
+                                                                                     :reviewed="{{ $item->isReviewedByAuthUser() ? 'true' : 'false' }}"
                                                                                 ></rate-component>
                                                                             </li>
                                                                         </ul>

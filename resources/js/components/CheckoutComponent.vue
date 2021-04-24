@@ -20,7 +20,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="checkout-phone">Адрес</label>
-                                    <input type="text" class="form-control" placeholder="Адрес, Дом" v-model="address" v-on:keyup="searchAddress" v-bind:class="{ 'is-invalid': emptyAddress }">
+                                    <input type="text" class="form-control" placeholder="Адрес, Дом" v-model="address.street" v-on:keyup="searchAddress" v-bind:class="{ 'is-invalid': emptyAddress }" required>
                                     <ul class="list-group" v-if="addressList.length > 0" v-click-outside="emptyAddressList">
                                         <li v-for="address in addressList" class="list-group-item">
                                             <a href="#" v-on:click.prevent="addAddress(address.GeoObject.name)">{{address.GeoObject.name}}</a>
@@ -29,15 +29,15 @@
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="checkout-phone">Кв</label>
-                                    <input type="text" class="form-control" placeholder="Кв">
+                                    <input type="text" class="form-control" v-model="address.unit" placeholder="Кв">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="checkout-phone">Подъезд</label>
-                                    <input type="text" class="form-control" placeholder="Пд">
+                                    <input type="text" class="form-control" v-model="address.entrance" placeholder="Пд">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="checkout-phone">Этаж</label>
-                                    <input type="text" class="form-control" placeholder="Этаж">
+                                    <input type="text" class="form-control" v-model="address.floor" placeholder="Этаж">
                                 </div>
                             </div>
 
@@ -130,19 +130,37 @@ export default {
             orderPhone: '',
             infoByUser: '',
 
-            address: '',
+            address: {},
             addressList: [],
             astana_bbox: '71.170665,50.986637~71.665036,51.309052',
-            emptyAddress: false
+        }
+    },
+    computed: {
+        addressTranslated: function () {
+
+            return [this.addressStreet, this.addressUnit, this.addressFloor, this.addressEntrance];
+        },
+        addressStreet: function () {
+            return 'Улица: ' + this.address.street;
+        },
+        addressUnit: function () {
+            return 'Кв: ' + this.address.unit;
+        },
+        addressFloor: function () {
+            return 'Этаж: ' + this.address.floor;
+        },
+        addressEntrance: function () {
+            return 'Подъезд: ' + this.address.entrance;
         }
     },
     methods:{
         sendForPack(){
-            if(this.address === ""){
+            if(this.address.street === ""){
                 this.emptyAddress = true;
             }else{
+
                 axios.post(this.home_url + 'checkout/update/order', {
-                    description: this.address,
+                    description: this.addressTranslated ,
                     orderPhone: this.orderPhone,
                     infoByUser: this.infoByUser,
                     order_id: this.order.id,
@@ -153,13 +171,13 @@ export default {
         },
         searchAddress(){
             this.addressList = '';
-            axios.get('https://geocode-maps.yandex.ru/1.x/?apikey=471d7ae6-c5c6-45cc-9c09-52b2246b5fba&format=json&geocode=Астана,'+this.address+'&results=5&lang=ru_RU').then(response => {
+            axios.get('https://geocode-maps.yandex.ru/1.x/?apikey=471d7ae6-c5c6-45cc-9c09-52b2246b5fba&format=json&geocode=Астана,'+this.address.street+'&results=5&lang=ru_RU').then(response => {
                 console.log(response.data.response.GeoObjectCollection.featureMember);
                 this.addressList = response.data.response.GeoObjectCollection.featureMember;
             });
         },
         addAddress(x){
-            this.address = x;
+            this.address.street = x;
             this.addressList = '';
         },
         emptyAddressList(){

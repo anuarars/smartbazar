@@ -18,19 +18,21 @@ class WishlistController extends Controller
     }
 
     public function index(){
-        $wishlists = Wishlist::where('user_id', Auth::id())->with('product.company', 'product.galleries')->get();
+        $wishlists = Wishlist::where('user_id', Auth::id())->get();
         return response()->json($wishlists);
     }
 
-    public function store(Product $product)
+    public function store(Request $request)
     {
+        $item_id = $request->item_id;
+        $user_id = Auth::id();
         Wishlist::updateOrCreate([
-            'user_id' =>auth()->id(),
-            'product_id' => $product->id
+            'user_id' =>$user_id,
+            'item_id' => $item_id
         ],
         [
-            'user_id' => auth()->id(),
-            'product_id' => $product->id
+            'user_id' =>$user_id,
+            'item_id' => $item_id
         ]);
         return response()->json(['succesfully added']);
     }

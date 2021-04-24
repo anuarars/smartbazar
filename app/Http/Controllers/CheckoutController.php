@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use Illuminate\Http\Request;
 use App\Events\PackerEvent;
 use App\Events\SaleEvent;
-use App\Models\User;
+use App\Models\Order;
 use App\Models\Role;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Pusher\PushNotifications\PushNotifications;
 
 class CheckoutController extends Controller
 {
-    public function show($orderId){
+    public function show($orderId)
+    {
         $order = Order::find($orderId);
         return view('checkout.index', compact('order'));
     }
 
-    public function success($orderId){
+    public function success($orderId)
+    {
         $url = env('APP_URL');
         $order = Order::where('id', $orderId)->with('status')->first();
         DB::table('orders')
@@ -35,8 +36,8 @@ class CheckoutController extends Controller
 
         // PACKERS ARRAY PREPARE TO SEND
         $userIds = Role::find(3)->users()->pluck('user_id');
-        foreach($userIds as $id) {
-            $sendId = "'".$id."'";
+        foreach ($userIds as $id) {
+            $sendId = "'" . $id . "'";
             $packageUsers[] = $sendId;
         }
 
@@ -48,7 +49,7 @@ class CheckoutController extends Controller
                         "title" => "Заказ",
                         "body" => "Новая Фасовка",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => $url.'packer'
+                        "deep_link" => $url . 'packer'
                     ]
                 ],
                 "fcm" => [
@@ -56,21 +57,21 @@ class CheckoutController extends Controller
                         "title" => "Заказ",
                         "body" => "Новая Фасовка",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => $url.'packer'
+                        "deep_link" => $url . 'packer'
                     ]
                 ]
             ]
         );
 
-        foreach ($order->items as $item){
+        foreach ($order->items as $item) {
             foreach ($item->company->users as $user) {
-                $userId = "'".$user->id."'";
+                $userId = "'" . $user->id . "'";
                 $sale[] = $userId;
             }
         }
-        
+
         $saleUsers = array_unique($sale);
-        
+
         $publishToSeller = $beamsClient->publishToUsers(
             $saleUsers,//Buyer Id
             [
@@ -79,15 +80,15 @@ class CheckoutController extends Controller
                         "title" => "Покупки",
                         "body" => "Ваши товар куплен",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'home'
+                        "deep_link" => env('APP_URL') . 'home'
                     ]
-                    ],
+                ],
                 "fcm" => [
                     "notification" => [
                         "title" => "Покупки",
                         "body" => "Ваши товар куплен",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'home'
+                        "deep_link" => env('APP_URL') . 'home'
                     ]
                 ]
             ]
@@ -95,14 +96,17 @@ class CheckoutController extends Controller
 
         return view('checkout.success', compact('order'));
     }
-    
-    public function updateOrderByUser(Request $request){
+
+
+    public function updateOrderByUser(Request $request)
+    {
 
         $order = Order::find($request->order_id);
+
         $order->address()->create([
-            'description' => $request->description
+            'description' => implode(', ', $request->description),
         ]);
-        
+
         $order->infoByUser = $request->infoByUser;
         $order->phone = $request->orderPhone;
         $order->save();

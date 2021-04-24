@@ -16,9 +16,6 @@ class CreateAddressesTable extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->string('unit')->nullable();
-            $table->string('floor')->nullable();
-            $table->string('entrance')->nullable();
             $table->morphs('addressable');
             $table->timestamps();
         });

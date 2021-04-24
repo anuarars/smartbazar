@@ -18,18 +18,15 @@ class ProfileController extends Controller
         return view('user.address');
     }
 
-    public function addressCreate(Request $request){
-        $user = User::find(Auth::id());
-        $data = [
-            'name' => $request->name,
-            'city' => 'Астана',
-            'home' => $request->home,
-            'unit' => $request->unit,
-            'street' => $request->street
-        ];
-
-        $user->address()->create($data);
-        return redirect()->route('profile.address');
+    public function addressCreate(Request $request)
+    {
+        $user = Auth::user();
+        $address = implode(', ', $request->all());
+        if ($user->address) {
+            $user->address()->update(['description' => $address]);
+        } else {
+            $user->address()->create(['description' => $address]);
+        }
     }
 
     public function addressUpdate(Request $request, Address $address){
