@@ -145,73 +145,8 @@
                 <div class="block-header__divider"></div>
             </div>
             <div class="block-products__body">
-                <div class="block-products__featured">
-                    <div class="block-products__featured-item">
-                        <div class="product-card product-card--hidden-actions ">
-                            <button class="product-card__quickview" type="button">
-                                <svg width="16px" height="16px">
-                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
-                                </svg>
-                                <span class="fake-svg-icon"></span>
-                            </button>
-                            <div class="product-card__badges-list">
-                                <div class="product-card__badge product-card__badge--new">Новое</div>
-                            </div>
-                            <div class="product-card__image product-image">
-                                <a href="{{route('item', $itemsDiscount->first(), true)}}" class="product-image__body">
-                                    <img class="product-image__img" src="{{secure_asset($itemsDiscount->first()->product->galleries->first()->image)}}" alt="{{secure_asset($itemsDiscount->first()->product->galleries->first()->image)}}">
-                                </a>
-                            </div>
-                            <div class="product-card__info">
-                                <div class="product-card__name">
-                                    <a href="{{route('item', $itemsDiscount->first(), true)}}">{{$itemsDiscount->first()->product->title}}</a>
-                                </div>
-                                <div class="product-card__rating">
-                                    <div class="product-card__rating-stars">
-                                        <div class="rating">
-                                            <div class="rating__body">
-                                                {{-- <star-component :rating="{{$products->first()->reviews->pluck('rate')->avg() ?? 5}}"></star-component> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="product-card__rating-legend">Отзывов: {{$products->first()->reviews->count()}}</div> --}}
-                                </div>
-                                <ul class="product-card__features-list d-block">
-                                    {!!$itemsDiscount->first()->product->description!!}
-                                </ul>
-                            </div>
-                            <div class="product-card__actions">
-                                <div class="product-card__prices">
-                                    @if ($itemsDiscount->first()->discount == null)
-                                        {{$itemsDiscount->first()->priceAfterFee()}} тг.
-                                    @else
-                                        <span class="product-card__new-price">
-                                            {{$itemsDiscount->first()->afterDiscount}} тг.
-                                        </span>
-                                        <span class="product-card__old-price">
-                                            {{$itemsDiscount->first()->priceAfterFee()}} тг.
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="product-card__buttons">
-                                    <add-to-cart-component
-                                            :item="{{ $itemsDiscount->first()->id }}"
-                                            :home_url = "homeUrl"
-                                            :cart="{{ $itemsDiscount->first()->isAddedToCartBy() ? 'true' : 'false' }}"
-                                            @click.native="countCart">
-                                    </add-to-cart-component>
-                                    <like-component
-                                        :item={{ $itemsDiscount->first()->id}}
-                                        :home_url = "homeUrl"
-                                        :favorited="{{ $itemsDiscount->first()->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
-                                    </like-component>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="block-products__list">
-                    @foreach ($itemsDiscount as $item)
+                    @foreach ($items as $item)
                         <div class="block-products__list-item">
                             <div class="product-card product-card--hidden-actions ">
                                 <button class="product-card__quickview" type="button" data-toggle="modal" data-target="#productView{{$item->id}}">
