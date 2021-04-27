@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('packer-component', require('./components/PackerComponent.vue').default);
 Vue.component('wishlist-component', require('./components/WishlistComponent.vue').default);
 Vue.component('slider-component', require('./components/Sale/SliderComponent.vue').default);
+Vue.component('home-slider-component', require('./components/HomeSliderComponent.vue').default);
 Vue.component('star-component', require('./components/StarComponent.vue').default);
 Vue.component('rate-component', require('./components/RateComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);

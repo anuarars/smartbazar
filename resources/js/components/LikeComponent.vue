@@ -81,8 +81,8 @@ export default {
 
 $particles-animation-duration: 0.8s;
 $icon-animation-duration: 0.48s;
-$icon-color: #47991f;
-$icon-border-color: #47991f;
+$icon-color:  #C31162;
+$icon-border-color:#C31162;
 
 button {
     background: none;
