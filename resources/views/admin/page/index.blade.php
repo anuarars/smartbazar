@@ -19,14 +19,26 @@
                                         <th scope="col">ЧПУ</th>
                                         <th scope="col">Изменить</th>
                                         <th scope="col">Посмотреть</th>
+                                        <th scope="col">Удалить</th>
                                     </tr>
                                     </thead>
                                     @foreach ($pages as $p)
                                         <tr>
                                             <td data-label="Название">{{$p->title}}</td>
                                             <td data-label="ЧПУ">{{$p->slug}}</td>
-                                            <td data-label="Редактировать"><a href="{{route('admin.page.edit', $p)}}" class="btn btn-info">Редактировать</a></td>
-                                            <td data-label="Посмотреть"><a href="{{route('page.show', $p)}}" class="btn btn-primary">Посмотреть</a></td>
+                                            <td data-label="Редактировать"><a href="{{route('admin.page.edit', $p)}}"
+                                                                              class="btn btn-info">Редактировать</a>
+                                            </td>
+                                            <td data-label="Посмотреть"><a href="{{route('page.show', $p)}}"
+                                                                           class="btn btn-primary">Посмотреть</a></td>
+                                            <td data-label="Удалить">
+                                                <form action="{{route('admin.page.destroy', $p)}}" method="post"
+                                                >
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </table>

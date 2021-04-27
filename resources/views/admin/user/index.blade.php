@@ -1,47 +1,60 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Users</div>
 
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Имя</th>
-                                <th scope="col">Фамилия</th>
-                                <th scope="col">Телефон</th>
-                                <th scope="col">Actions</th>
-                                <th scope="col">Roles</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
-                            <tr>
-                                <th scope="row">{{$user->id}}</th>
-                                <td>{{$user->fitstname}}</td>
-                                <td>{{$user->lastname}}</td>
-                                <td>{{$user->phone}}</td>
-                                <td>
-                                    <a href="{{route('admin.user.edit', $user->id)}}" class="btn btn-primary float-left">Edit</a>
-                                    <form action="{{route('admin.user.destroy', $user->id)}}" method="post" class="float-left">
-                                        @csrf
-                                        {{method_field('DELETE')}}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                                <td>{{implode(', ', $user->roles()->get()->pluck('name')->toArray())}}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                      </table>
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between">
+                            <h4>Пользователи</h4>
+                            <a href="{{route('admin.user.create')}}" class="btn btn-warning">Добавить организацию</a>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table">
+                                <table class="table table-striped table-md">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Имя</th>
+                                        <th scope="col">Фамилия</th>
+                                        <th scope="col">Телефон</th>
+                                        <th scope="col">Редактировать</th>
+                                        <th scope="col">Удалить</th>
+                                        <th scope="col">Роли</th>
+                                    </tr>
+                                    </thead>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <th data-label="ID">{{$user->id}}</th>
+                                            <td data-label="Имя">{{$user->firstname}}</td>
+                                            <td data-label="Фамилия">{{$user->lastname}}</td>
+                                            <td data-label="Телефон">{{$user->phone}}</td>
+                                            <td data-label="Редактировать">
+                                                <a href="{{route('admin.user.edit', $user->id)}}"
+                                                   class="btn btn-primary">Edit</a>
+                                            </td>
+                                            <td data-label="Удалить">
+                                                <form action="{{route('admin.user.destroy', $user->id)}}" method="post"
+                                                >
+                                                    @csrf
+                                                    {{method_field('DELETE')}}
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
+                                            <td data-label="Роли">{{implode(', ', $user->roles()->get()->pluck('name')->toArray())}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            {{-- {{ $companies->links() }} --}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection

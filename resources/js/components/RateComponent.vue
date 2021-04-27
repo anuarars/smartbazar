@@ -1,6 +1,6 @@
 <template>
 <div class="col-12">
-    <div v-if="!reviewed">
+    <div v-if="!isReviewed">
         <div class="form-row">
             <div class="form-group col-md-4">
                 <h4>Оцените: </h4>
@@ -60,6 +60,7 @@
                 rate: '',
                 description: '',
                 review_id: '',
+                isReviewed: ''
             }
         },
         methods:{
@@ -74,8 +75,8 @@
                     order_id: this.order_id
                 }).then(response => {
                     console.log(response.data)
-                    // this.review_id = response.data
-                    // this.isReviewed = true;
+                    this.review_id = response.data
+                    this.isReviewed = true;
                 });
             }
         }

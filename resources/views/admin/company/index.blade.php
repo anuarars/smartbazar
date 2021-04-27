@@ -17,21 +17,31 @@
                                     <tr>
                                         <th scope="col">Название</th>
                                         <th scope="col">Телефон</th>
-                                        <th scope="col">Посмотреть</th>
+                                        <th scope="col">Редактировать</th>
+                                        <th scope="col">Удалить</th>
                                     </tr>
                                     </thead>
                                     @foreach ($companies as $company)
                                         <tr>
                                             <td data-label="Название">{{$company->name}}</td>
                                             <td data-label="ЧПУ">{{$company->phone}}</td>
-                                            <td data-label="Посмотреть"><a href="{{route('admin.company.show', $company)}}" class="btn btn-primary">Посмотреть</a></td>
+                                            <td data-label="Посмотреть"><a href="{{route('admin.company.edit', $company)}}" class="btn btn-info">Редактировать</a></td>
+                                            <td data-label="Посмотреть">
+                                                <form action="{{route('admin.company.destroy', $company)}}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button class="btn btn-danger" type="submit">
+                                                        Удалить
+                                                    </button>
+                                                </form></td>
                                         </tr>
                                     @endforeach
                                 </table>
                             </div>
                         </div>
                         <div class="card-footer">
-                            {{-- {{ $companies->links() }} --}}
+                             {{ $companies->links() }}
                         </div>
                     </div>
                 </div>

@@ -7,27 +7,34 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h4>Добавить Категорию</h4>
+                            <h4>Категория {{ $category->title }}</h4>
                         </div>
-                        <form action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
+                        <form action="{{route('admin.category.update', ['category' => $category])}}" method="post"
+                              enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label for="category">Название категории</label>
                                         <input type="text" name="title" class="form-control"
-                                               placeholder="Название категории...">
+                                               placeholder="Название категории..." value="{{ $category->title }}">
                                         <label for="category">Родитель Категории</label>
+
+
                                         <select-component :parent_id="2" :items="{{ $categories->toJson() }}"
-                                                          :home_url="homeUrl"></select-component>
+                                                          :home_url="homeUrl"
+                                                          :value="{{$category->parent_id}}" :isadmin="true"></select-component>
 
                                         <label for="category">Описание</label>
-                                        <editor :inputname="'description'"></editor>
+                                        <editor :inputname="'description'"
+                                                :inputvalue="{{ json_encode($category->description)}}"></editor>
                                     </div>
 
                                 </div>
                                 <div class="col-md-12">
+                                    <img src="{{ $category->image }}"/>
                                     <label class="file-upload">
                                         <input name="image" type="file"/>
                                         <span class="file-upload_button">Изображения</span>

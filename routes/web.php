@@ -98,9 +98,12 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
     Route::resource('company', 'CompanyController')->names('admin.company');
+    // в самом конце роутов добавил show для page
     Route::resource('page', 'PageController')->names('admin.page')->parameters([
         'page' => 'page:slug',
     ])->except("show");
+    Route::get('/reviews', 'ReviewController@index')->name("review.index");
+    Route::delete('/reviews/{review}', 'ReviewController@destroy')->name("review.destroy");
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 

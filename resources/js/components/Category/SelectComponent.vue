@@ -12,8 +12,15 @@
             :limit="3"
             :max-height="200"
             :value="value"
+            :disabled="disabled"
         />
+        <label class="custom-switch mt-2" v-show="isadmin">
+            <input type="checkbox" name="active" class="custom-switch-input" v-model="disabled">
+            <span class="custom-switch-indicator"></span>
+            <span class="custom-switch-description">Сделать основателем</span>
+        </label>
     </div>
+
 </template>
 
 <script>
@@ -21,9 +28,18 @@
 import Treeselect from '@riophae/vue-treeselect'
 // import the styles
 import '@riophae/vue-treeselect/dist/vue-treeselect.css'
+
 export default {
-    props: ['items', 'parent_id', 'home_url', 'value'],
-    components: { Treeselect },
+    props: [
+        'items', 'parent_id', 'home_url',
+        'value', 'name', 'isadmin'
+    ],
+    data: function () {
+        return {
+            disabled: false
+        }
+    },
+    components: {Treeselect},
 }
 </script>
 
