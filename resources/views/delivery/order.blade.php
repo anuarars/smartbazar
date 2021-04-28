@@ -27,8 +27,8 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
-                            @foreach ($order->products as $product)
-                                <li class="list-group-item"><b>{{$product->title}}</b>: {{$product->pivot->count}} {{$product->measure->code}}</li>
+                            @foreach ($order->items as $item)
+                                <li class="list-group-item"><b>{{$item->product->title}}</b>: {{$item->pivot->count}} {{$item->product->measure->code}}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -59,7 +59,7 @@
                         <ul class="list-group">
                             <li class="list-group-item">{{$order->infoByUser ?? ""}}</li>
                             <li class="list-group-item">{{$order->phone ?? ""}}</li>
-                            <li class="list-group-item">{{$order->fullPrice()}}</li>
+                            <li class="list-group-item">Сумма: {{$order->fullPrice()}} тг.</li>
                         </ul>
                     </div>
                 </div>

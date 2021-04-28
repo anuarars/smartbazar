@@ -13,7 +13,7 @@ class CatalogController extends Controller
 {
     public function index($category = null)
     {
-        $items = Item::sortable();
+        $products = Product::sortable();
 
         $categories = Category::with('children')->where('parent_id',0)->get();
 
@@ -23,6 +23,6 @@ class CatalogController extends Controller
 
         $latest_items = Item::latest()->limit(5)->get();
         return view('catalog', compact('categories', 'latest_items'))
-            ->with('items', $items->paginate(12));
+            ->with('products', $products->paginate(12));
     }
 }

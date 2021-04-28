@@ -36,7 +36,7 @@
                             <div class="suggestions__item-meta">Производитель: {{result.brand_id}}</div>
                         </a>
                         <div class="suggestions__item-price">
-                            {{result.price.toLocaleString()}} тг.
+                            {{result.items[0].price.toLocaleString()}} тг.
                         </div>
                         <div class="suggestions__item-actions">
                             <button type="button" title="В корзину" class="btn btn-primary btn-sm btn-svg-icon" v-on:click="addToCart(result.id)">

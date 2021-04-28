@@ -8,6 +8,7 @@ use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'reset']]);
     }
 
     /**
@@ -97,6 +98,24 @@ class AuthController extends Controller
         $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Код подтверждения для SMARTBAZAR.KZ: '.$user->phone_verify_code.'');
 
         return response()->json('sent', 200);
+    }
+
+    public function reset(Request $request){
+        $password = rand(11111111,99999999);
+        $user = User::where('phone', $request->phone)->get();
+        if($user->count()==0){
+            return response()->json('fail');
+        }else{
+            DB::table('users')->where('phone', $request->phone)->update([
+                'password' => bcrypt($password)
+            ]);
+            $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $request->phone);
+            $phoneNumber = str_replace(' ', '', $removedSymbols);
+
+            $client = new Client();
+            $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Новый пароль для SMARTBAZAR.KZ: '.$password.'');
+            return response()->json('success');
+        }
     }
     /**
      * Get the authenticated User.

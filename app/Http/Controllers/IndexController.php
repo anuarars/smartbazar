@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function index(){
-        $itemsDiscount = Item::where('discount', '!=', 'null')->orderBy('created_at', 'desc')->limit(6)
+        $itemsDiscount = Item::where('discount', '!=', 'null')->orderBy('created_at', 'desc')->limit(10)
             ->get();
         // $popular = Product::
         $categories = Category::with('children')->where('parent_id', '0')->get();
@@ -28,6 +28,11 @@ class IndexController extends Controller
 
         // $cat_products = Item::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
         return view('item', compact('item'));
+    }
+
+    public function product($id = null){
+        $product = Product::find($id);
+        return view('product', compact('product'));
     }
 
     public function add_rate(Request $request){

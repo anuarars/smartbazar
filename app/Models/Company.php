@@ -35,4 +35,8 @@ class Company extends Model
     {
         return $this->morphOne('App\Models\Email', 'emailable');
     }
+
+    public function mall(){
+        return $this->belongsTo(Mall::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Delivery;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Duration;
 use Illuminate\Support\Facades\Auth;
 use Pusher\PushNotifications\PushNotifications;
 use Illuminate\Support\Facades\DB;
@@ -20,9 +21,19 @@ class DeliveryController extends Controller
         return $orders;
     }
 
-    public function accept(){
-        $order_id = request()->input('order_id');
-        return redirect()->route('delivery.order', [$order_id])->with(['success'=>'Заказ успешно принят']);
+    public function accept(Request $request){
+        DB::table('orders')
+        ->where('id', $request->id)
+        ->update([
+            'status_id' => 5,
+            'delivery_id' => Auth::id()
+        ]);
+        Duration::create([
+            'user_id' => Auth::id(),
+            'order_id' =>$request->id,
+            'started_at' => now()
+        ]);
+        return response()->json('success');
     }
 
     public function order($id){
@@ -32,6 +43,16 @@ class DeliveryController extends Controller
             ->update(['status_id' => 5]);
             return view('delivery.order', compact('order'));
         }
+    }
+
+    public function history(){
+        $orders = Order::where('delivery_id', Auth::id())->whereIn('status_id', [6,7])->paginate(10);
+        return view('delivery.history', compact('orders'));
+    }
+
+    public function current(){
+        $orders = Order::where([['status_id', '5'],['delivery_id',Auth::id()]])->get();
+        return view('delivery.current', compact('orders'));
     }
 
     public function end(Order $order){
@@ -56,7 +77,7 @@ class DeliveryController extends Controller
                         "title" => "Фасовка",
                         "body" => "Ваши товар прибыл",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'home'
+                        "deep_link" => 'https://smartbazar.kz/delivery'
                     ]
                     ],
                 "fcm" => [
@@ -64,7 +85,7 @@ class DeliveryController extends Controller
                         "title" => "Фасовка",
                         "body" => "Ваши товар прибыл",
                         'icon' => secure_asset('/img/logo/push.png'),
-                        "deep_link" => env('APP_URL').'home'
+                        "deep_link" => 'https://smartbazar.kz/delivery'
                     ]
                 ]
             ]

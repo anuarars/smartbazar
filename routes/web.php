@@ -28,6 +28,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'IndexController@index')->name('index');
 //Route::get('/{page:slug}', 'PageController@show')->name('page.show');
 Route::get('/items/{id}', 'IndexController@item')->name('item');
+Route::get('/products/{id}', 'IndexController@product')->name('product');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
 Route::get('/info/faq', 'InfoController@faq')->name('info.faq');
@@ -73,7 +74,6 @@ Route::group(['middleware'=>['auth']], function(){
     // --------------------------------------------------------------------
 
     Route::post('/notification/packer/', 'NotificationController@packer')->name('notification.packer');
-    Route::post('/notification/delivery/{order}', 'NotificationController@delivery')->name('notification.delivery');
 
     Route::post('/rate/add', 'IndexController@add_rate')->name('rate.add');
     Route::get('/review/{companyId}', 'ReviewController@show')->name('review.show');
@@ -98,7 +98,6 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
     Route::resource('company', 'CompanyController')->names('admin.company');
-    // в самом конце роутов добавил show для page
     Route::resource('page', 'PageController')->names('admin.page')->parameters([
         'page' => 'page:slug',
     ])->except("show");
@@ -130,19 +129,24 @@ Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Sale', 'prefix'=>'
 
 Route::group(['middleware'=>['auth', 'packer'], 'namespace'=>'Packer', 'prefix'=>'packer'], function(){
     Route::get('/', 'PackerController@index')->name('packer.index');
+    Route::get('history', 'PackerController@history')->name('packer.history');
     Route::post('order/accept', 'PackerController@accept')->name('packer.accept');
     Route::get('order/accept/{id}', 'PackerController@order')->name('packer.order');
-    Route::post('/order/available', 'PackerController@available')->name('packer.orders');
+    Route::post('order/available', 'PackerController@available')->name('packer.orders');
+    Route::post('order/delivery/{order}', 'PackerController@delivery')->name('packer.delivery');
+    Route::get('order/current', 'PackerController@current')->name('packer.current');
 });
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*-------------DELIVERY GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 Route::group(['middleware'=>['auth', 'delivery'], 'namespace'=>'Delivery', 'prefix'=>'delivery'], function(){
-    Route::get('order', 'DeliveryController@index')->name('delivery.index');
+    Route::get('/', 'DeliveryController@index')->name('delivery.index');
     Route::post('order/accept', 'DeliveryController@accept')->name('delivery.accept');
+    Route::get('history', 'DeliveryController@history')->name('delivery.history');
     Route::get('order/accept/{id}', 'DeliveryController@order')->name('delivery.order');
     Route::post('order/end/{order}', 'DeliveryController@end')->name('delivery.end');
     Route::post('/order/available', 'DeliveryController@available')->name('delivery.orders');
+    Route::get('order/current', 'DeliveryController@current')->name('delivery.current');
 });
 
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/

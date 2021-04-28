@@ -13,7 +13,7 @@ class Product extends Model
     // use Searchable;
      use Sortable;
 
-    public $sortable = ['price', 'discount', 'category_id', 'created_at'];
+    public $sortable = ['category_id', 'created_at'];
 
     protected $fillable = [
         'user_id', 'country_id', 'brand_id',
@@ -23,6 +23,10 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function items(){
+        return $this->hasMany(Item::class);
     }
 
     public function user(){

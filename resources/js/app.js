@@ -22,7 +22,6 @@ window.Vue = require('vue');
 Vue.component('packer-component', require('./components/PackerComponent.vue').default);
 Vue.component('wishlist-component', require('./components/WishlistComponent.vue').default);
 Vue.component('slider-component', require('./components/Sale/SliderComponent.vue').default);
-Vue.component('home-slider-component', require('./components/HomeSliderComponent.vue').default);
 Vue.component('star-component', require('./components/StarComponent.vue').default);
 Vue.component('rate-component', require('./components/RateComponent.vue').default);
 Vue.component('login-component', require('./components/LoginComponent.vue').default);
@@ -47,6 +46,7 @@ Vue.component('images-upload-component', require('./components/Sale/ImagesUpload
 Vue.component('item-quantity-component', require('./components/ItemQuantityComponent').default);
 Vue.component('editor', require('./components/Sale/EditorComponent.vue').default);
 Vue.component('create-product-component',require('./components/Sale/CreateProductComponent.vue').default);
+Vue.component('home-slider-component', require('./components/HomeSliderComponent.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -114,6 +114,7 @@ const app = new Vue({
                 searchInput: this.search.searchInput,
             }).then(response => {
                 this.search.searchResult = response.data;
+                console.log(this.search.searchResult);
                 setTimeout(() => {
                     this.search.searchResult = '';
                     this.search.searchShow = false;
@@ -146,24 +147,23 @@ const app = new Vue({
         hideSearch(){
             this.searchFocused=false
         },
-
         priceAfterCalc(){
-            const formatter=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
             var discountPrice = (this.discount.newPrice * this.discount.discountPercent)/100;
             var priceAfterDiscount = this.discount.newPrice - discountPrice;
             if(priceAfterDiscount > 0){
                 this.discount.discountPrice = priceAfterDiscount;
-                this.discount.discountText = 'Цена после скидки '+ formatter.format(this.discount.discountPrice).toFixed() +' тг.'+'nu';
-
+                this.discount.discountText = 'Цена после скидки '+ this.discount.discountPrice +' тг.';
             }else{
                 this.discount.discountPrice = 0;
             }
+        },
+        ScrollToForm(){
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            // this.isFormOpen = true;
         }
-
     },
-
-
     created(){
+        console.log(this.homeUrl)
         this.countWishlist();
         this.countCart();
     }

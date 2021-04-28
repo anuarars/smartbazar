@@ -18,8 +18,6 @@
   <link rel="stylesheet" href="{{secure_asset('dashboard/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href='{{secure_asset('/img/logo/logo.svg')}}' />
   <script src="https://cdn.tiny.cloud/1/vuko5n8zosfrtuvle80aeae8o7nyj7sm85hwt10pa3bie19s/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-  <script src="{{secure_asset('serviceWorker.min.js')}}"></script>
-  <script src="{{secure_asset('push.min.js')}}"></script>
   <script src="{{ secure_asset('js/app.js') }}" defer></script>
 </head>
 
@@ -55,11 +53,15 @@
           </div>
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="{{route('packer.index', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
+              <a href="{{route('delivery.index', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
             </li>
             <li>
-              <a href="#" class="nav-link"><i
+              <a href="{{route('delivery.history')}}" class="nav-link"><i
                   data-feather="briefcase"></i><span>История</span></a>
+            </li>
+            <li>
+              <a href="{{route('delivery.current')}}" class="nav-link"><i
+                  data-feather="briefcase"></i><span>Действующие заказы</span></a>
             </li>
           </ul>
         </aside>
@@ -76,7 +78,8 @@
       </footer>
     </div>
   </div>
-  <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
+  {{-- <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script> --}}
+  <script>window.homeUrl='https://localhost/';</script>
   <!-- General JS Scripts -->
   <script src="{{secure_asset("dashboard/js/app.min.js")}}"></script>
   <!-- JS Libraies -->

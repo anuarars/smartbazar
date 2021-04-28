@@ -117,7 +117,6 @@
 
 <script>
 import vClickOutside from 'v-click-outside'
-
 export default {
     props:[
         'user', 'order', 'sum', 'home_url', 'deliveryprice'
@@ -127,9 +126,9 @@ export default {
     },
     data() {
         return {
+            emptyAddress: '',
             orderPhone: '',
             infoByUser: '',
-
             address: {},
             addressList: [],
             astana_bbox: '71.170665,50.986637~71.665036,51.309052',
@@ -137,7 +136,6 @@ export default {
     },
     computed: {
         addressTranslated: function () {
-
             return [this.addressStreet, this.addressUnit, this.addressFloor, this.addressEntrance];
         },
         addressStreet: function () {
@@ -158,7 +156,6 @@ export default {
             if(this.address.street === ""){
                 this.emptyAddress = true;
             }else{
-
                 axios.post(this.home_url + 'checkout/update/order', {
                     description: this.addressTranslated ,
                     orderPhone: this.orderPhone,

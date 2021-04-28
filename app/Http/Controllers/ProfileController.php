@@ -43,20 +43,6 @@ class ProfileController extends Controller
         return redirect()->route('profile.address')->with('success','Адрес успешно добавлен');;
     }
 
-    // public function addressCreateByPayment(Request $request){
-    //     $user = User::find(Auth::id());
-    //     $data = [
-    //         'name' => $request->street,
-    //         'city' => 'Астана',
-    //         'home' => $request->home,
-    //         'unit' => $request->unit,
-    //         'street' => $request->street
-    //     ];
-
-    //     $address = $user->address()->create($data);
-    //     return $address;
-    // }
-
     public function addressRemove(Request $request, Address $address){
         $address->delete();
         return redirect()->back()->with('success','Адрес удален');

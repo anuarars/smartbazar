@@ -15,7 +15,6 @@
                     <th class="wishlist__column wishlist__column--product">Продукт</th>
                     <th class="wishlist__column wishlist__column--stock">В наличии</th>
                     <th class="wishlist__column wishlist__column--price">Цена</th>
-                    <th class="wishlist__column wishlist__column--tocart"></th>
                     <th class="wishlist__column wishlist__column--remove"></th>
                 </tr>
             </thead>
@@ -46,19 +45,16 @@
                     </td>
                     <td class="wishlist__column wishlist__column--price">
                         <div class="d-flex flex-column" v-if="wishlist.item.discount != 0">
-                            <!--<span class="text-success">
-                            {{(Math.ceil((wishlist.product.price+((wishlist.product.price*10)/100)) - (((wishlist.product.price+((wishlist.product.price*10)/100)) * wishlist.product.discount)/100))).toLocaleString()}} тг.
+                            <span class="text-success">
+                            {{(Math.ceil((wishlist.item.price+((wishlist.item.price*$parent.fee)/100)) - (((wishlist.item.price+((wishlist.item.price*$parent.fee)/100)) * wishlist.item.discount)/100))).toLocaleString()}} тг.
                             </span>
                             <span class="line-through text-danger">
-                                {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.
+                                {{(wishlist.item.price+((wishlist.item.price*$parent.fee)/100)).toLocaleString()}} тг.
                             </span>
                         </div>
                         <div class="d-flex flex-column" v-else>
-                            {{(wishlist.product.price+((wishlist.product.price*10)/100)).toLocaleString()}} тг.-->
+                            {{(wishlist.item.price+((wishlist.item.price*$parent.fee)/100)).toLocaleString()}} тг.
                         </div>
-                    </td>
-                    <td class="wishlist__column wishlist__column--tocart">
-                        <button type="button" class="btn btn-primary btn-sm" v-on:click="addToCart(wishlist.item.id)">Добавить в корзину</button>
                     </td>
                     <td class="wishlist__column wishlist__column--remove">
                         <button type="button" class="btn btn-light btn-sm btn-svg-icon" v-on:click.prevent="removeItem(index)">

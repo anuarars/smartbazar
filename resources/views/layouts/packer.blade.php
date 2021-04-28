@@ -66,11 +66,15 @@
           </div>
           <ul class="sidebar-menu">
             <li class="dropdown">
-              <a href="{{route('packer.index', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
+              <a href="{{route('packer.index', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Заказы</span></a>
             </li>
             <li>
-              <a href="#" class="nav-link"><i
-                  data-feather="briefcase"></i><span>История</span></a>
+              <a href="{{route('packer.history')}}" class="nav-link"><i
+                  data-feather="briefcase"></i><span>Выполненные</span></a>
+            </li>
+            <li>
+              <a href="{{route('packer.current')}}" class="nav-link"><i
+                  data-feather="briefcase"></i><span>Принятые</span></a>
             </li>
           </ul>
         </aside>
@@ -87,7 +91,7 @@
       </footer>
     </div>
   </div>
-  <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
+  <script>window.homeUrl="https://localhost/";</script>
   <!-- General JS Scripts -->
   <script src="{{secure_asset("dashboard/js/app.min.js")}}"></script>
   <!-- JS Libraies -->

@@ -2,13 +2,13 @@
     <div class="section">
         <div class="section-body">
             <div class="row">
-                <div v-for="(order, index) in orders" class="col-12 col-md-4 col-lg-4">
+                <div v-for="(order, index) in orders" :key="index" class="col-12 col-md-4 col-lg-4">
                     <div class="card card-primary">
                     <div class="card-header">
                         <h4>Заказ # {{order.id}}</h4>
                     </div>
                     <div class="card-body text-center">
-                        <a :href="home_url + 'delivery/order/accept/' + order.id" class="btn btn-success" v-on:click="acceptOrder(index)">Принять</a>
+                        <button class="btn btn-success" v-on:click="acceptOrder(index)">Принять</button>
                     </div>
                     </div>
                 </div>
@@ -31,7 +31,14 @@
         methods:{
             acceptOrder: function(index){
                 let id = this.orders[index].id;
-                this.orders.splice(index, 1);
+                axios.post(this.home_url + 'delivery/order/accept',{
+                    id: id,
+                }).then(response => {
+                    if(response.data == 'success'){
+                        this.orders.splice(index, 1);
+                        window.location.href = this.home_url + 'delivery/order/accept/' + id
+                    }
+                });
             },
             fetchOrders(){
                 axios.post(this.home_url + 'delivery/order/available').then(response => {

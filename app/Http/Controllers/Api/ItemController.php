@@ -15,9 +15,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $discountItems = Item::where('discount', '!=', 'null')->orderBy('created_at', 'desc')->with('product.galleries', 'product.measure')->limit(20)
-            ->get();
-            return response()->json($discountItems);
+        $items = Item::with('product.measure', 'product.category', 'product.galleries')->get();
+        return response()->json($items);
     }
 
     /**

@@ -7498,7 +7498,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 .search--location--mobile-header .search__suggestions {
   border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding: 6px 0;
-  display: none;
+  display: block;
   overflow-y: auto;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;

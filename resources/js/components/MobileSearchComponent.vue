@@ -4,7 +4,7 @@
             <li class="suggestions__item" v-for="result in search">
                 <div class="suggestions__item-image product-image">
                     <div class="product-image__body">
-                        <img class="product-image__img" :src="home_url + result.image" alt="">
+                        <img class="product-image__img" :src="result.galleries[0].image" alt="">
                     </div>
                 </div>
                 <div class="suggestions__item-info">
@@ -14,12 +14,12 @@
                     <div class="suggestions__item-meta">Произвадитель: {{result.brand_id}}</div>
                 </div>
                 <div class="suggestions__item-price">
-                    {{result.price}} тг.
+                    {{result.items[0].price}} тг.
                 </div>
                 <div class="suggestions__item-actions">
                     <button type="button" title="В корзину" class="btn btn-primary btn-sm btn-svg-icon">
                         <svg width="16px" height="16px">
-                            <use xlink:href="http://smartbazar/public/template/images/sprite.svg#cart-16"></use>
+                            <use v-bind="{'xlink:href': home_url + 'template/images/sprite.svg#cart-16'}"></use>
                         </svg>
                     </button>
                 </div>

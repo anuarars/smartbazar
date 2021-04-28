@@ -1,4 +1,4 @@
-    <template>
+<template>
     <div class="section">
         <div class="section-body">
             <div class="row">
@@ -8,7 +8,7 @@
                         <h4>Заказ # {{order.id}}</h4>
                     </div>
                     <div class="card-body text-center">
-                        <a :href="home_url + 'packer/order/accept/' + order.id" class="btn btn-success" v-on:click="acceptOrder(index)">Принять</a>
+                        <button class="btn btn-success" v-on:click="acceptOrder(index)">Принять</button>
                     </div>
                     </div>
                 </div>
@@ -27,19 +27,23 @@
         data(){
             return{
                 orders: [],
-                token: '',
             }
         },
         methods:{
             acceptOrder: function(index){
                 let id = this.orders[index].id;
-                this.orders.splice(index, 1);
+                axios.post(this.home_url + 'packer/order/accept',{
+                    id: id,
+                }).then(response => {
+                    if(response.data == 'success'){
+                        this.orders.splice(index, 1);
+                        window.location.href = this.home_url + 'packer/order/accept/' + id
+                    }
+                });
             },
             fetchOrders(){
                 axios.post(this.home_url + 'packer/order/available').then(response => {
-                    // console.log(response.data);
                     this.orders = response.data;
-                    console.log(this.orders);
                 });
             }
         },
@@ -57,10 +61,6 @@
             const beamsClient = new PusherPushNotifications.Client({
                 instanceId: '41acbae0-ec93-4866-bce7-937bff9c4d27',
             })
-
-            // beamsClient
-            // .stop()
-            // .catch(console.error);
 
             beamsClient.start()
                 .then(() => beamsClient.setUserId(this.user.id.toString(), beamsTokenProvider))

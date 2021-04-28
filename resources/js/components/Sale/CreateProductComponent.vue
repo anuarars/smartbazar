@@ -71,7 +71,7 @@
                             <div v-if="create.price != 0" class="text-warning font-weight-bold">Цена после комиссии {{finalPrice}} тг.</div>
                         </div>
                     </div>
-
+                            
                     <div class="col-md-12 mt-3 text-center">
                         <button class="btn btn-primary" v-on:click="addProduct()">Добавить товар</button>
                     </div>
@@ -151,21 +151,18 @@ export default {
             });
         },
         priceAfterCalc(){
-            const formatter = new Intl.NumberFormat('en-US', {maximumFractionDigits: 0});
             var discountPrice = (this.create.price * this.create.discount)/100;
             var priceAfterDiscount = this.create.price - discountPrice;
             this.priceAfterFee(priceAfterDiscount);
             if(priceAfterDiscount > 0){
-                this.discountPrice = formatter.format(priceAfterDiscount);
+                this.discountPrice = priceAfterDiscount;
             }else{
                 this.discountPrice = 0;
             }
         },
         priceAfterFee(price){
-            const formatter = new Intl.NumberFormat('en-US', {maximumFractionDigits: 0});
             var feePrice = Number(price)*Number(this.$parent.fee)/100;
             this.finalPrice = Number(price) + feePrice;
-            this.finalPrice = formatter.format(this.finalPrice)
         }
     },
 }

@@ -47,14 +47,19 @@ class PhoneVerificationController extends Controller
 
     public function reset(Request $request){
         $password = rand(11111111,99999999);
-        DB::table('users')->where('phone', $request->phone)->update([
-            'password' => bcrypt($password)
-        ]);
-        $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $request->phone);
-        $phoneNumber = str_replace(' ', '', $removedSymbols);
-
-        $client = new Client();
-        $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Новый пароль для SMARTBAZAR.KZ: '.$password.'');
-        return redirect()->back()->with(['success' => 'Пароль отправлен на ваш номер']);
+        $user = User::where('phone', $request->phone)->get();
+        if($user->count()==0){
+            return redirect()->back()->with(['error' => 'Введенный вами номер не найден']);
+        }else{
+            DB::table('users')->where('phone', $request->phone)->update([
+                'password' => bcrypt($password)
+            ]);
+            $removedSymbols = preg_replace("/[^a-zA-Z0-9\s]/", "", $request->phone);
+            $phoneNumber = str_replace(' ', '', $removedSymbols);
+    
+            $client = new Client();
+            $client->post('http://kazinfoteh.org:9507/api?action=sendmessage&username=smartbaza1&password=kJ6uViovf&recipient='.$phoneNumber.'&messagetype=SMS:TEXT&originator=SMARTBAZAR&messagedata=Новый пароль для SMARTBAZAR.KZ: '.$password.'');
+            return redirect()->back()->with(['success' => 'Пароль отправлен на ваш номер']);
+        }
     }
 }

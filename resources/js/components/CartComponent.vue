@@ -31,13 +31,13 @@
                 <tr class="cart-table__row" v-for="(item, index) in items">
                     <td class="cart-table__column cart-table__column--image">
                         <div class="product-image">
-                            <a :href="home_url + 'products/' + item.id" class="product-image__body">
+                            <a :href="home_url + 'items/' + item.id" class="product-image__body">
                                 <img class="product-image__img" :src="item.product.galleries[0].image" alt="">
                             </a>
                         </div>
                     </td>
                     <td class="cart-table__column cart-table__column--product">
-                        <a :href="home_url + 'products/' + item.id"  class="cart-table__product-name">{{item.product.title}}</a>
+                        <a :href="home_url + 'items/' + item.id"  class="cart-table__product-name">{{item.product.title}}</a>
                     </td>
 
                     <td class="cart-table__column cart-table__column--price" data-title="Цена">

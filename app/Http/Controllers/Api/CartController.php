@@ -16,15 +16,15 @@ class CartController extends Controller
 
     public function index()
     {
-        $user_id = \Auth::id();
-        $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
+        $user_id = Auth::id();
+        $order = Order::where('user_id', $user_id)->where('status_id', 1)->with('items')->get()->first();
         return response(compact('order'));
     }
 
     public function store(Request $request)
     {
         $item_id = $request->item_id;
-        $user_id = \Auth::id();
+        $user_id = Auth::id();
         $order = Order::where('user_id', $user_id)->where('status_id', '=' , 1)->get()->first();
         if($order == null){
             $order = Order::create([
@@ -42,14 +42,14 @@ class CartController extends Controller
         return response(compact('order'));
     }
 
-    public function unlike($item_id){
-        $user_id = Auth::id();
-        $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
-        if($order->items->contains($item_id)){
-            $order->items()->detach($item_id);
-            return $item_id;
-        }
-    }
+    // public function unlike($item_id){
+    //     $user_id = Auth::id();
+    //     $order = Order::where('user_id', $user_id)->where('status_id', 1)->get()->first();
+    //     if($order->items->contains($item_id)){
+    //         $order->items()->detach($item_id);
+    //         return $item_id;
+    //     }
+    // }
 
     public function update(Request $request){
         $item_id = $request->item_id;
@@ -82,7 +82,7 @@ class CartController extends Controller
             if($order == null){
                 return 0;
             }else{
-                return $order->items;
+                return $order->items->count();
             }
         }
     }

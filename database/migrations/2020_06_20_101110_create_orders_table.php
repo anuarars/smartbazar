@@ -20,7 +20,6 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('packer_id')->nullable();
             $table->bigInteger('delivery_id')->nullable();
-            $table->bigInteger('address_id')->nullable();
             $table->string('phone')->nullable();
             $table->text('infoByUser')->nullable();
             $table->text('infoByPacker')->nullable();

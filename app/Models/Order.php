@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -11,6 +14,19 @@ class Order extends Model
 
     public function delivery(){
         return 100;
+    }
+
+    public function durations(){
+        return $this->hasMany(Duration::class);
+    }
+
+    public function durationTime(){
+        return $this->durations->where('user_id', Auth::id())->first();
+    }
+
+    public function timeSpend(){
+        $minutes = Carbon::parse(optional($this->durationTime())->finished_at)->diffInMinutes(Carbon::parse(optional($this->durationTime())->started_at));
+        return $minutes;
     }
 
     public function items(){

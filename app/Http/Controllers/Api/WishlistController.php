@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Item;
 use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
@@ -18,23 +18,23 @@ class WishlistController extends Controller
     }
 
     public function index(){
-        $wishlists = Wishlist::where('user_id', Auth::id())->get();
+        $wishlists = Wishlist::where('user_id', Auth::id())->with('item.product.galleries')->get();
         return response()->json($wishlists);
     }
 
-    public function store(Request $request)
+    public function store(Item $item)
     {
-        $item_id = $request->item_id;
-        $user_id = Auth::id();
-        Wishlist::updateOrCreate([
-            'user_id' =>$user_id,
-            'item_id' => $item_id
-        ],
-        [
-            'user_id' =>$user_id,
-            'item_id' => $item_id
-        ]);
-        return response()->json(['succesfully added']);
+        if($item){
+            Wishlist::updateOrCreate([
+                'user_id' => Auth::id(),
+                'item_id' => $item->id
+            ],
+            [
+                'user_id' => Auth::id(),
+                'item_id' => $item->id
+            ]);
+        }
+        return response('Successfully stored', 204);
     }
 
     public function count(){
@@ -48,4 +48,8 @@ class WishlistController extends Controller
         return response()->json(['succesfully removed']);
     }
 
+    public function unlike(Item $item){
+        Wishlist::where('item_id', $item->id)->where('user_id', Auth::id())->delete();
+        return response('Successfully deleted', 204);
+    }
 }

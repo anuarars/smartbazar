@@ -159,11 +159,11 @@
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>
                                                     </svg>
                                                 </button>
-{{--                                                <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">--}}
-{{--                                                    <svg width="16px" height="16px">--}}
-{{--                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>--}}
-{{--                                                    </svg>--}}
-{{--                                                </button>--}}
+                                                <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>
+                                                    </svg>
+                                                </button>
                                                 <button data-layout="list" data-with-features="false" title="List" type="button" class="layout-switcher__button ">
                                                     <svg width="16px" height="16px">
                                                         <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-list-16x16')}}"></use>
@@ -190,7 +190,7 @@
                             </div>
                             <div class="products-view__list products-list" data-layout="grid-3-sidebar" data-with-features="false" data-mobile-grid-columns="2">
                                 <div class="products-list__body">
-                                    @foreach ($items as $item)
+                                    @foreach ($products as $product)
                                         <div class="products-list__item">
                                             <div class="product-card product-card--hidden-actions ">
                                                 <button class="product-card__quickview" type="button">
@@ -200,15 +200,15 @@
                                                     <span class="fake-svg-icon"></span>
                                                 </button>
                                                 <div class="product-card__image product-image">
-                                                    <a href="{{route('item', $item->id, true)}}" class="product-image__body">
-                                                        <img class="product-image__img" src="{{secure_asset($item->product->galleries->first()->image ?? "")}}" alt="{{$item->product->galleries->first()->image ?? ""}}">
+                                                    <a href="{{route('product', $product->id, true)}}" class="product-image__body">
+                                                        <img class="product-image__img" src="{{secure_asset($product->galleries->first()->image ?? "")}}" alt="{{$product->galleries->first()->image ?? ""}}">
                                                     </a>
                                                 </div>
                                                 <div class="product-card__info">
                                                     <div class="product-card__name">
-                                                        <a href="product.html">{{$item->product->title}}</a>
+                                                        <a href="{{route('product', $product->id, true)}}">{{$product->title}}</a>
                                                     </div>
-                                                    <div class="product-card__rating">
+                                                    {{-- <div class="product-card__rating">
                                                         <div class="product-card__rating-stars">
                                                             <div class="rating">
                                                                 <div class="rating__body">
@@ -219,37 +219,34 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-card__rating-legend">Отзывов: {{$item->first()->reviews->count()}}</div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <div class="product-card__actions">
-                                                    <div class="product-card__availability">
-                                                        В наличии: <span class="text-success">Да</span>
-                                                    </div>
-                                                    <div class="product-card__prices">
-                                                        @if ($item->discount == null)
-                                                            {{$item->priceAfterFee()}} тг.
+                                                    {{-- <div class="product-card__prices">
+                                                        @if ($product->item->first()->discount == null)
+                                                            {{$product->item->first()->priceAfterFee()}} тг.
                                                         @else
                                                             <span class="product-card__new-price">
-                                                                {{$item->afterDiscount}} тг.
+                                                                {{$product->item->first()->afterDiscount}} тг.
                                                             </span>
                                                             <span class="product-card__old-price">
-                                                                {{$item->priceAfterFee()}} тг.
+                                                                {{$product->item->first()->priceAfterFee()}} тг.
                                                             </span>
                                                         @endif
-                                                    </div>
-                                                    <div class="product-card__buttons">
-                                                        <add-to-cart-component
+                                                    </div> --}}
+                                                    {{-- <div class="product-card__buttons">
+                                                        <add-to-cart-component 
                                                             :item="{{ $item->id }}"
                                                             :home_url = "homeUrl"
                                                             :cart="{{ $item->isAddedToCartBy() ? 'true' : 'false' }}"
                                                             @click.native="countCart">
                                                         </add-to-cart-component>
-                                                        <like-component
+                                                        <like-component 
                                                             :item={{ $item->id }}
                                                             :home_url = "homeUrl"
                                                             :favorited="{{ $item->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">
                                                         </like-component>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -258,7 +255,7 @@
                             </div>
                             <div class="products-view__pagination">
                                 <ul class="pagination justify-content-center">
-                                    {{ $items->onEachSide(1)->links() }}
+                                    {{ $products->onEachSide(1)->links() }}
                                 </ul>
                             </div>
                         </div>

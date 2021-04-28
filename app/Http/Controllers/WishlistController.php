@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Category, Product, Wishlist, Item};
+use App\Models\{Category, Wishlist, Item};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
