@@ -47,4 +47,12 @@
         background: rgba(0, 0, 0, 0.25);
         color: #ea4967;
     }
+    .vueper-slide{
+        background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        -webkit-background-size: cover;
+        -moz-background-size:  cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
 </style>

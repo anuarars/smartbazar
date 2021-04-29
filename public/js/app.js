@@ -10602,6 +10602,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /***/ }),
 
@@ -11464,7 +11465,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container{\n    padding: 0;\n}\n.vueperslides__progress {\n    background: rgba(0, 0, 0, 0.25);\n    color: #ea4967;\n}\n", ""]);
+exports.push([module.i, "\n.container{\n    padding: 0;\n}\n.vueperslides__progress {\n    background: rgba(0, 0, 0, 0.25);\n    color: #ea4967;\n}\n.vueper-slide{\n    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));\n    background-size: cover;\n}\n\n", ""]);
 
 // exports
 
@@ -40838,7 +40839,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("test")])])
+    return _c("div", { staticClass: "container" }, [
+      _c("div", [
+        _c("h1", { staticClass: "register" }, [_vm._v("Регистрация")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -64215,8 +64220,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\smartbazar\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
