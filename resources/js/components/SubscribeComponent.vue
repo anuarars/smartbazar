@@ -8,7 +8,7 @@
             <div class="h-100 d-flex flex-column justify-content-center align-items-center product-card__buttons" v-if="!isSubscribed">
                 <h5>Покупать легко со SmartBazar.kz!</h5>
                 <p>Подпишитесь на рассылку об акциях и скидках</p>
-                <input type="email" placeholder="Введите ваш email адрес" class="m-2">
+                <input type="email" placeholder="Введите ваш email адрес" class="m-2" v-model="email">
                 <button class="m-2 btn-subscribe" v-on:click="subscribe()">Подпишитесь</button>
             </div>
             <div class="h-100 d-flex flex-column justify-content-center align-items-center product-card__buttons" v-else>
@@ -37,8 +37,13 @@
                     email: this.email
                 }).then(response => {
                     console.log(response.data);
+                    if(response.data == 'created'){
+                        this.isSubscribed = true;
+                    }
+                    if(response.data == 'exist'){
+                        this.isSubscribed = false;
+                    }
                 });
-                // this.isSubscribed = true;
             }
         }
     }

@@ -135,8 +135,6 @@
                                                 <div class="input-number__add"></div>
                                                 <div class="input-number__sub"></div>
                                             </div>
-{{--                                            ТО ЧТО Я ПЫТАЮСЬ СДЕЛАТЬ --}}
-{{--                                            <product-quantity-component :product="'{!! json_encode($product) !!}'" :home_url="homeUrl"></product-quantity-component>--}}
                                         </div>
                                         <div class="product__actions-item product__actions-item--addtocart">
                                             <div class="product-card__buttons">
@@ -285,11 +283,48 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Магазин</th>
+                        <th>Доступен</th>
+                        <th>Цена</th>
+                        <th>Купить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($item->product->items->except($item->id) as $i)
+                        <tr class="active-row">
+                            <td>{{$i->company->name}}</td>
+                            <td>{{$i->isPublished}}</td>
+                            <td>
+                                @if ($i->discount == null)
+                                    {{$i->priceAfterFee()}} тг.
+                                @else
+                                    <span class="product-card__new-price">
+                                        {{$i->afterDiscount}} тг.
+                                    </span>
+                                    <span class="product-card__old-price">
+                                        {{$i->priceAfterFee()}} тг.
+                                    </span>
+                                @endif
+                            </td>
+                            <td class="cart-button">
+                                <a href="{{route('item', $i->id)}}">Выбрать</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
         <!-- .block-products-carousel -->
-        {{-- <div class="block block-products-carousel" data-layout="grid-5" data-mobile-grid-columns="2">
+        <div class="block block-products-carousel" data-layout="grid-5" data-mobile-grid-columns="2">
             <div class="container">
                 <div class="block-header">
-                    <h3 class="block-header__title">Похожие Товары</h3>
+                    <h3 class="block-header__title">Другие товары продавца</h3>
                     <div class="block-header__divider"></div>
                     <div class="block-header__arrows-list">
                         <button class="block-header__arrow block-header__arrow--left" type="button">
@@ -309,12 +344,12 @@
                 <div class="block-products-carousel__slider">
                     <div class="block-products-carousel__preloader"></div>
                     <div class="owl-carousel">
-                        @foreach ($cat_products as $product)
+                        @foreach ($company_items as $item)
                             <div class="block-products-carousel__column">
                                 <div class="block-products-carousel__cell">
                                     <div class="product-card product-card--hidden-actions ">
                                         <button class="product-card__quickview" type="button" data-toggle="modal"
-                                                data-target="#productView{{$product->id}}">
+                                                data-target="#productView{{$item->id}}">
                                             <svg width="16px" height="16px">
                                                 <use
                                                     xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
@@ -322,56 +357,56 @@
                                             <span class="fake-svg-icon"></span>
                                         </button>
                                         <div class="product-card__image product-image">
-                                            <a href="{{route('product', $product, true)}}" class="product-image__body">
+                                            <a href="{{route('item', $item, true)}}" class="product-image__body">
                                                 <img 
                                                     class="product-image__img"
-                                                    src="{{secure_asset($product->galleries->first()->image ?? "")}}"
-                                                    alt="{{$product->galleries->first()->image ?? ""}}"
+                                                    src="{{secure_asset($item->product->galleries->first()->image ?? "")}}"
+                                                    alt="{{$item->product->galleries->first()->image ?? ""}}"
                                                 >
                                             </a>
                                         </div>
                                         <div class="product-card__info">
                                             <div class="product-card__name">
-                                                <a href="{{route('product', $product, true)}}">{{$product->title}}</a>
+                                                <a href="{{route('item', $item, true)}}">{{$item->product->title}}</a>
                                             </div>
                                             <div class="product-card__rating">
                                                 <div class="product-card__rating-stars">
                                                     <div class="rating">
                                                         <div class="rating__body">
                                                             <star-component
-                                                                :rating="{{$product->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
+                                                                :rating="{{$item->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__rating-legend">
-                                                    Просмотров: {{$product->views}}</div>
+                                                    Просмотров: {{$item->views}}</div>
                                             </div>
                                         </div>
                                         <div class="product-card__actions">
                                             <div class="product-card__prices">
-                                                @if ($product->discount == null)
-                                                    {{$product->price}} тг.
+                                                @if ($item->discount == null)
+                                                    {{$item->price}} тг.
                                                 @else
                                                     <span class="product-card__new-price">
-                                                {{$product->afterDiscount}} тг.
+                                                {{$item->afterDiscount}} тг.
                                             </span>
                                                     <span class="product-card__old-price">
-                                                {{$product->price}} тг.
+                                                {{$item->price}} тг.
                                             </span>
                                                 @endif
                                             </div>
                                             <div class="product-card__buttons">
                                                 <add-to-cart-component
-                                                    :product="{{ $product->id }}"
+                                                    :item="{{ $item->id }}"
                                                     :home_url="homeUrl"
-                                                    :cart="{{ $product->isAddedToCartBy() ? 'true' : 'false' }}"
+                                                    :cart="{{ $item->isAddedToCartBy() ? 'true' : 'false' }}"
                                                     @click.native="countCart">
                                                 </add-to-cart-component>
                                                 <like-component
-                                                    :product={{ $product->id }}
+                                                    :item={{ $item->id }}
                                                         :home_url
                                                 = "homeUrl"
-                                                :favorited="{{ $product->isFavoritedBy() ? 'true' : 'false' }}"
+                                                :favorited="{{ $item->isFavoritedBy() ? 'true' : 'false' }}"
                                                 @click.native="countWishlist">
                                                 </like-component>
                                             </div>
@@ -383,7 +418,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div>
         <!-- .block-products-carousel / end -->
     </div>
 

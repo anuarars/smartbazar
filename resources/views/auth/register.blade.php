@@ -2,7 +2,6 @@
 
 @section('content')
 <register-component></register-component>
-
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -16,14 +15,14 @@
                         <div class="form-group row{{ $errors->has('firstname') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Имя</label>
                             <div class="col-md-6">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="firstname" value="{{ old('firstname') }}"
-                                    required
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="firstname" value="{{ old('firstname') }}" 
+                                    required 
                                     autofocus
                                     >
-
+                         
                              @if ($errors->has('firstname'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('firstname') }}</strong>
@@ -35,14 +34,14 @@
                         <div class="form-group row{{ $errors->has('lastname') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Фамилия</label>
                             <div class="col-md-6">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="lastname" value="{{ old('lastname') }}"
-                                    required
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="lastname" value="{{ old('lastname') }}" 
+                                    required 
                                     autofocus
                                     >
-
+                         
                              @if ($errors->has('lastname'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('lastname') }}</strong>
@@ -54,16 +53,16 @@
                         <div class="form-group row{{ $errors->has('phone') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Телефон</label>
                             <div class="col-md-6">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="phone" value="{{ old('phone') }}"
-                                    required
+                                <input 
+                                    type="text" 
+                                    class="form-control" 
+                                    name="phone" value="{{ old('phone') }}" 
+                                    required 
                                     autofocus
-                                    v-mask="'+7 (###) ### ####'"
+                                    v-mask="'+7 (###) ### ####'" 
                                     v-model="auth.loginNumber"
                                     >
-
+                         
                              @if ($errors->has('phone'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('phone') }}</strong>
@@ -126,5 +125,4 @@
         </div>
     </div>
 </div>
-
 @endsection

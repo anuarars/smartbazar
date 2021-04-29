@@ -36,6 +36,7 @@ Route::post('/search/product', 'SearchController@product')->name('search.product
 Route::get('/push/pusher/beams-auth', 'PushController@tokenProvider');
 Route::post('/push/pusher/id', 'PushController@getUserId');
 // Route::get('page/', 'Admin/PageController')
+Route::resource('/subscribe', 'SubscribeController')->names('subscribe')->only('store');
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 

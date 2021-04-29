@@ -148,41 +148,42 @@
                                                 <use xlink:href="{{secure_asset('template/images/sprite.svg#filters-16')}}"></use>
                                             </svg>
                                             <span class="filters-button__title">Фильтры</span>
+                                            <span class="filters-button__counter">3</span>
                                         </button>
                                     </div>
                                     <div class="view-options__layout">
-{{--                                        <div class="layout-switcher">--}}
-{{--                                            <div class="layout-switcher__list">--}}
-{{--                                                <button data-layout="grid-3-sidebar" data-with-features="false" title="Grid" type="button" class="layout-switcher__button  layout-switcher__button--active ">--}}
-{{--                                                    <svg width="16px" height="16px">--}}
-{{--                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>--}}
-{{--                                                    </svg>--}}
-{{--                                                </button>--}}
-{{--                                                <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">--}}
-{{--                                                    <svg width="16px" height="16px">--}}
-{{--                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>--}}
-{{--                                                    </svg>--}}
-{{--                                                </button>--}}
-{{--                                                <button data-layout="list" data-with-features="false" title="List" type="button" class="layout-switcher__button ">--}}
-{{--                                                    <svg width="16px" height="16px">--}}
-{{--                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-list-16x16')}}"></use>--}}
-{{--                                                    </svg>--}}
-{{--                                                </button>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
+                                        <div class="layout-switcher">
+                                            <div class="layout-switcher__list">
+                                                <button data-layout="grid-3-sidebar" data-with-features="false" title="Grid" type="button" class="layout-switcher__button  layout-switcher__button--active ">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-16x16')}}"></use>
+                                                    </svg>
+                                                </button>
+                                                <button data-layout="grid-3-sidebar" data-with-features="true" title="Grid With Features" type="button" class="layout-switcher__button ">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-grid-with-details-16x16')}}"></use>
+                                                    </svg>
+                                                </button>
+                                                <button data-layout="list" data-with-features="false" title="List" type="button" class="layout-switcher__button ">
+                                                    <svg width="16px" height="16px">
+                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#layout-list-16x16')}}"></use>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="view-options__divider"></div>
                                     <div class="view-options__control">
                                         <label for="">Сортировать по</label>
                                         <div>
-{{--                                            <a href="{{URL::current()}}">По Дате</a>--}}
-{{--                                            <i class="fa fa-sort"></i>--}}
+                                            <a href="{{URL::current()}}">По Дате</a>
+                                            <i class="fa fa-sort"></i>
                                             <a href="{{URL::current()."?sort=name"}}">Названию (A-Z)</a>
                                             <i class="fa fa-sort"></i>
-{{--                                            <a href="{{URL::current()."?sort=price_desc"}}">Цене</a>--}}
-{{--                                            <i class="fa fa-sort"></i>--}}
-{{--                                            <a href="{{URL::current()."?sort=rate"}}">Рейтингу</a>--}}
-{{--                                            <i class="fa fa-sort"></i>--}}
+                                            <a href="{{URL::current()."?sort=price_desc"}}">Цене</a>
+                                            <i class="fa fa-sort"></i>
+                                            <a href="{{URL::current()."?sort=rate"}}">Рейтингу</a>
+                                            <i class="fa fa-sort"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -234,13 +235,13 @@
                                                         @endif
                                                     </div> --}}
                                                     {{-- <div class="product-card__buttons">
-                                                        <add-to-cart-component
+                                                        <add-to-cart-component 
                                                             :item="{{ $item->id }}"
                                                             :home_url = "homeUrl"
                                                             :cart="{{ $item->isAddedToCartBy() ? 'true' : 'false' }}"
                                                             @click.native="countCart">
                                                         </add-to-cart-component>
-                                                        <like-component
+                                                        <like-component 
                                                             :item={{ $item->id }}
                                                             :home_url = "homeUrl"
                                                             :favorited="{{ $item->isFavoritedBy() ? 'true' : 'false' }}" @click.native="countWishlist">

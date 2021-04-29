@@ -26,8 +26,10 @@ class IndexController extends Controller
             'views' => $item->views
         ]);
 
+        $company_items = Item::where('company_id', $item->company_id)->inRandomOrder()->limit(10)->get();
         // $cat_products = Item::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
-        return view('item', compact('item'));
+
+        return view('item', compact('item', 'company_items'));
     }
 
     public function product($id = null){

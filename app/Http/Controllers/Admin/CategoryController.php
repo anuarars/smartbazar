@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::orderBy('parent_id')->paginate(10);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -100,7 +100,6 @@ class CategoryController extends Controller
      */
     public function update(Category $category, Request $request)
     {
-
         $validated = $request->validate([
             'title' => 'required',
             'category_id' => 'required',
