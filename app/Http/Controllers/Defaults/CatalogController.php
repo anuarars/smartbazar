@@ -8,21 +8,21 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
     public function index($category = null)
     {
         $products = Product::sortable();
-
         $categories = Category::with('children')->where('parent_id',0)->get();
 
         if ($category) {
-            Product::whereIn('category_id', Category::find($category)->getAllChildren()->pluck('id')->push($category));
+            $products->whereIn('category_id', Category::find($category)->getAllChildren()->pluck('id')->push($category));
         }
 
-        $latest_items = Item::latest()->limit(5)->get();
-        return view('catalog', compact('categories', 'latest_items'))
+        $latest_products = Product::latest()->limit(5)->get();
+        return view('catalog', compact('categories', 'latest_products'))
             ->with('products', $products->paginate(12));
     }
 }

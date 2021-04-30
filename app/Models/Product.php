@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Kyslik\ColumnSortable\Sortable;
 
 // use Laravel\Scout\Searchable;
@@ -13,7 +13,7 @@ class Product extends Model
     // use Searchable;
      use Sortable;
 
-    public $sortable = ['category_id', 'created_at'];
+    public $sortable = ['price', 'discount', 'category_id', 'created_at', 'title'];
 
     protected $fillable = [
         'user_id', 'country_id', 'brand_id',
@@ -23,10 +23,6 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
-    }
-
-    public function items(){
-        return $this->hasMany(Item::class);
     }
 
     public function user(){
@@ -61,9 +57,9 @@ class Product extends Model
         return $this->hasMany(Property::class);
     }
 
-    // public function userRating(){
-
-    // }
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
 
     public function avgRating(){
         $average_rating = $this->ratings->avg('rate');
@@ -76,5 +72,17 @@ class Product extends Model
 
     public function withDiscount() {
         return $this->companies()->wherePivot('discount', true);
+    }
+
+    public function priceSortable($query, $direction)
+    {
+        return $query->join('company_product', 'products.id', '=', 'company_product.product_id')
+            ->addSelect(DB::raw('products.*, MIN(price) as minPrice'))
+            ->groupBy('product_id')
+            ->orderBy("minPrice", $direction);
+    }
+    public function getMinimumPriceAttribute()
+    {
+        return $this->items()->min('price');
     }
 }
