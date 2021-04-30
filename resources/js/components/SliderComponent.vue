@@ -19,9 +19,8 @@
     components: { VueperSlides, VueperSlide },
     data: () => ({
         slides: [
-            {
-            title: 'El Teide Volcano, Spain',
-            content: 'Photo by Max Rive',
+            {title: 'Широкий ассортимент товаров.',
+            content: 'Все необходимые товары можете найти здесь',
             image: 'https://via.placeholder.com/1000x500'
             },
             {

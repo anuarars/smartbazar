@@ -36,7 +36,9 @@ Vue.component('dropdown-cart-component', require('./components/DropdownCartCompo
 Vue.component('cart-component', require('./components/CartComponent.vue').default);
 Vue.component('checkout-component', require('./components/CheckoutComponent.vue').default);
 Vue.component('delivery-component', require('./components/DeliveryComponent.vue').default);
+Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('sale-component', require('./components/SaleComponent.vue').default);
+Vue.component('item-component', require('./components/ItemComponent.vue').default);
 Vue.component('add-to-cart-component', require('./components/AddToCartComponent.vue').default);
 Vue.component('like-component', require('./components/LikeComponent.vue').default);
 Vue.component('select-component', require('./components/Category/SelectComponent').default);
@@ -76,7 +78,7 @@ const app = new Vue({
     components: {ItemQuantityComponent},
     data: {
         fee: 10,
-        homeUrl: window.homeUrl,
+        homeUrl: "https://smartbazar.test/",
         authUser: window.authUser,
         searchFocused: false,
 

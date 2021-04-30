@@ -5,23 +5,23 @@
         />
       <div class="input_container" v-show="show">
         <ul>
-          <li v-bind:class="{ is_valid: contains_eight_characters }">8 Characters</li>
-          <li v-bind:class="{ is_valid: contains_number }">Contains Number</li>
-          <li v-bind:class="{ is_valid: contains_uppercase }">Contains Uppercase</li>
-          <li v-bind:class="{ is_valid: contains_special_character }">Contains Special Character</li>
+          <li v-bind:class="{ is_valid: contains_eight_characters }">8 переменных</li>
+          <li v-bind:class="{ is_valid: contains_number }">Содержит числа</li>
+          <li v-bind:class="{ is_valid: contains_uppercase }">Содержит заглавную</li>
+          <li v-bind:class="{ is_valid: contains_special_character }">Имеет знак</li>
         </ul>
 
-        <div class="checkmark_container" v-bind:class="{ show_checkmark: valid_password }">    
+        <div class="checkmark_container" v-bind:class="{ show_checkmark: valid_password }">
           <svg width="50%" height="50%" viewBox="0 0 140 100">
             <path class="checkmark" v-bind:class="{ checked: valid_password }" d="M10,50 l25,40 l95,-70" />
           </svg>
         </div>
       </div>
     </div>
-    
-    
 
-   
+
+
+
 </template>
 
 <script>
@@ -42,10 +42,10 @@ export default {
 
             };
         },
-        
+
         methods: {
             checkPassword() {
-            
+
               this.password_length = this.password.length;
               if(this.password == '') {
                 this.show = false;
@@ -53,38 +53,38 @@ export default {
               }
               this.show = true;
               const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-              
+
               if (this.password_length > 8) {
                 this.contains_eight_characters = true;
               } else {
                 this.contains_eight_characters = false;
               }
-              
+
               this.contains_number = /\d/.test(this.password);
               this.contains_uppercase = /[A-Z]/.test(this.password);
               this.contains_special_character = format.test(this.password);
-              
+
               if (this.contains_eight_characters === true &&
                   this.contains_special_character === true &&
                   this.contains_uppercase === true &&
                   this.contains_number === true) {
-                    this.valid_password = true;      
+                    this.valid_password = true;
               } else {
                 this.valid_password = false;
               }
 
-              
+
             }
 
-          
+
         }
 
     }
 
-      
+
 </script>
 
-<style>
+<style scoped>
   .password {
     width: 50%;
     margin: 25px auto;
@@ -97,7 +97,7 @@ export default {
   align-items: flex-start;
 }
 
-li { 
+li {
   margin-bottom: 8px;
   color: #525f7f;
   position: relative;
@@ -178,7 +178,7 @@ input[type="password"]:focus {
 }
 
 .checked { animation: draw 0.5s ease forwards; }
- 
+
 @keyframes draw {
   to { stroke-dashoffset: 0; }
 }

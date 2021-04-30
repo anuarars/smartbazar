@@ -1,6 +1,6 @@
 <template>
     <div>
-    <h1>test</h1></div>
+    <h1>Регистрация</h1></div>
 </template>
 
 <script>

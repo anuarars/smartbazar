@@ -2,7 +2,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <img :src="home_url + 'icons/banner_phone.svg'" alt="banner_phone">    
+            <div class="imgs">
+                <img :src="'https://smartbazar.test/icons/banner_phone.svg'" alt="banner_phone">
+            </div>
         </div>
         <div class="col-md-6">
             <div class="h-100 d-flex flex-column justify-content-center align-items-center product-card__buttons" v-if="!isSubscribed">
@@ -16,7 +18,9 @@
             </div>
         </div>
         <div class="col-md-3">
-            <img :src="home_url + 'icons/banner_basket.svg'" alt="banner_phone"> 
+            <div class="imgs">
+                <img :src="'https://smartbazar.test/icons/banner_basket.svg'" alt="banner_phone">
+            </div>
         </div>
     </div>
 </div>

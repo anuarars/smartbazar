@@ -17485,7 +17485,7 @@ footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form but
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-  } 
+  }
 }*/
 
 @media screen and (max-width: 374px) and (-ms-high-contrast: active), (max-width: 374px) and (-ms-high-contrast: none) {
@@ -17931,4 +17931,91 @@ footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form but
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__image {
+  width: 120px;
+  padding: 16px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__badges-list {
+  top: 10px;
+}
+
+[dir=ltr] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__badges-list {
+  left: 10px;
+}
+
+[dir=rtl] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__badges-list {
+  right: 10px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__badge {
+  padding: 3px 5px 2px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__info {
+  padding-top: 14px;
+  padding-bottom: 42px;
+  width: 100%;
+}
+
+[dir=ltr] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__info {
+  padding-left: 0;
+  padding-right: 30px;
+}
+
+[dir=rtl] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__info {
+  padding-right: 0;
+  padding-left: 30px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__name {
+  overflow: hidden;
+  max-height: 38px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__rating {
+  white-space: nowrap;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__description {
+  display: none;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__availability {
+  display: none;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__buttons {
+  display: none;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__actions {
+  position: absolute;
+  bottom: 18px;
+}
+
+[dir=ltr] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__actions {
+  left: 120px;
+}
+
+[dir=rtl] .block-products-carousel[data-layout="horizontal"] .product-card .product-card__actions {
+  right: 120px;
+}
+
+.block-products-carousel[data-layout="horizontal"] .product-card .product-card__features-list {
+  display: none;
+}
+
+.btn-subscribe{
+  border: 0;
+	border-radius: 15px;
+  padding: 10px 15px;
+  font-family: "Neue-medium";
+  background:-webkit-linear-gradient(#FF3A44, #C31162);
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  transition: .3s ease-in-out;
 }
