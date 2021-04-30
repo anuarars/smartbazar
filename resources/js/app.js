@@ -50,6 +50,8 @@ Vue.component('home-slider-component', require('./components/HomeSliderComponent
 Vue.component('carousel-component', require('./components/CarouselComponent.vue').default);
 Vue.component('item-component', require('./components/ItemComponent.vue').default);
 Vue.component('subscribe-component', require('./components/SubscribeComponent.vue').default);
+Vue.component('checking-password-component', require('./components/CheckingPassword.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

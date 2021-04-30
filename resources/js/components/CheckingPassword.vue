@@ -1,7 +1,8 @@
 <template>
 
     <div class="input_password">
-        <input type="password" @input="checkPassword" v-model="password" autocomplete="off" />
+        <input type="password" @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password" required
+        />
       <div class="input_container" v-show="show">
         <ul>
           <li v-bind:class="{ is_valid: contains_eight_characters }">8 Characters</li>
