@@ -53,7 +53,7 @@
                                                             <td>
                                                                 @switch($order->status->name)
                                                                     @case('LOOKING FOR PACKING')
-                                                                        Фасовзщик принимает заказ
+                                                                        Фасовщик принимает заказ
                                                                         @break
                                                                     @case('AT PACKING')
                                                                         Фасуется
