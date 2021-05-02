@@ -173,37 +173,57 @@
                         <div class="product-tabs__pane product-tabs__pane--active" id="tab-sale">
                             <div class="typography">
                                 <h3>Продавцы</h3>
-                                <table class="content-table">
+{{--                                    </thead>--}}
+{{--                                    <tbody>--}}
+{{--                                        @foreach ($product->items as $item)--}}
+{{--                                            <tr class="active-row">--}}
+{{--                                                <td>{{$item->company->name}}</td>--}}
+{{--                                                <td>{{$item->isPublished}}</td>--}}
+{{--                                                <td>--}}
+{{--                                                    @if ($item->discount == null)--}}
+{{--                                                        {{$item->priceAfterFee()}} тг.--}}
+{{--                                                    @else--}}
+{{--                                                        <span class="product-card__new-price">--}}
+{{--                                                            {{$item->afterDiscount}} тг.--}}
+{{--                                                        </span>--}}
+{{--                                                        <span class="product-card__old-price">--}}
+{{--                                                            {{$item->priceAfterFee()}} тг.--}}
+{{--                                                        </span>--}}
+{{--                                                    @endif--}}
+{{--                                                </td>--}}
+{{--                                                <td class="cart-button">--}}
+{{--                                                    <a href="{{route('item', $item->id)}}">Выбрать</a>--}}
+{{--                                                </td>--}}
+{{--                                            </tr>--}}
+{{--                                        @endforeach--}}
+{{--                                    </tbody>--}}
+{{--                                </table>--}}
+
+                                <table class="content_table" >
                                     <thead>
-                                        <tr>
-                                            <th>Магазин</th>
-                                            <th>Доступен</th>
-                                            <th>Цена</th>
-                                            <th>Купить</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Магазин</th>
+                                        <th>Доступен</th>
+                                        <th>Цена</th>
+                                        <th>Купить</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($product->items as $item)
-                                            <tr class="active-row">
-                                                <td>{{$item->company->name}}</td>
-                                                <td>{{$item->isPublished}}</td>
-                                                <td>
-                                                    @if ($item->discount == null)
-                                                        {{$item->priceAfterFee()}} тг.
-                                                    @else
-                                                        <span class="product-card__new-price">
+                                    @foreach ($product->items as $item)
+                                    <tr>
+                                        <td>{{$item->company->name}}</td>
+                                        <td>{{$item->isPublished}}</td>
+                                        <td>
+                                            @if ($item->discount == null)
+                                                {{$item->priceAfterFee()}} тг.
+                                            @else<span class="product-card__new-price">
                                                             {{$item->afterDiscount}} тг.
-                                                        </span>
-                                                        <span class="product-card__old-price">
+                                                        </span> <span class="product-card__old-price">
                                                             {{$item->priceAfterFee()}} тг.
-                                                        </span>
-                                                    @endif
-                                                </td>
-                                                <td class="cart-button">
-                                                    <a href="{{route('item', $item->id)}}">Выбрать</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                        </span>@endif</td>
+                                        <td><button href="{{route('item', $item->id)}}">Выбрать</button></td>
+                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -266,7 +286,7 @@
                                         </button>
                                         <div class="product-card__image product-image">
                                             <a href="{{route('product', $product, true)}}" class="product-image__body">
-                                                <img 
+                                                <img
                                                     class="product-image__img"
                                                     src="{{secure_asset($product->galleries->first()->image ?? "")}}"
                                                     alt="{{$product->galleries->first()->image ?? ""}}"

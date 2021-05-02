@@ -5,10 +5,10 @@
         />
       <div class="input_container" v-show="show">
         <ul>
-          <li v-bind:class="{ is_valid: contains_eight_characters }">8 переменных</li>
-          <li v-bind:class="{ is_valid: contains_number }">Содержит числа</li>
+          <li v-bind:class="{ is_valid: contains_eight_characters }">Содержит 8 символов</li>
+          <li v-bind:class="{ is_valid: contains_number }">Содержит число</li>
           <li v-bind:class="{ is_valid: contains_uppercase }">Содержит заглавную</li>
-          <li v-bind:class="{ is_valid: contains_special_character }">Имеет знак</li>
+          <li v-bind:class="{ is_valid: contains_special_character }">Содержит специальный символ</li>
         </ul>
 
         <div class="checkmark_container" v-bind:class="{ show_checkmark: valid_password }">

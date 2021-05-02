@@ -16,6 +16,7 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             DB::connection('mysql_local')->table('categories')->insert([
                 'id' => $category->id,
+                'image'=>$category -> image,
                 'title'=> $category->title,
                 'parent_id'=>$category->parent_id
             ]);
