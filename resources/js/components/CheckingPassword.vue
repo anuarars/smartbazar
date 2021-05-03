@@ -1,8 +1,21 @@
 <template>
 
     <div class="input_password">
-        <input type="password" @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password" required
-        />
+      <div class="field">
+           <div class="control">
+              <input type="password" v-if="showPassword" @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password" required
+              />
+              <input type="password" v-else @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password"
+              />
+           </div>
+           <div class="control">
+                <button class="form-control" @click="toggleShow"><span class="icon is-small is-right">
+                <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
+                </span>
+                </button>
+            </div>
+
+      </div>      
       <div class="input_container" v-show="show">
         <ul>
           <li v-bind:class="{ is_valid: contains_eight_characters }">Содержит 8 символов</li>
@@ -38,7 +51,8 @@ export default {
                 contains_uppercase: false,
                 contains_special_character: false,
                 valid_password: false,
-                show: false
+                show: false,
+                showPassword: false
 
             };
         },
@@ -88,6 +102,16 @@ export default {
   .password {
     width: 50%;
     margin: 25px auto;
+  }
+
+  .field{
+    display: grid;
+    grid-template-columns: 6fr 1fr ;
+    position: relative;
+  }
+
+  .form-control{
+      height: 100%;
   }
 
   ul {

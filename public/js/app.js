@@ -9768,6 +9768,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // MESS
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -9779,7 +9792,8 @@ __webpack_require__.r(__webpack_exports__);
       contains_uppercase: false,
       contains_special_character: false,
       valid_password: false,
-      show: false
+      show: false,
+      showPassword: false
     };
   },
   methods: {
@@ -11666,7 +11680,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.password[data-v-73b41a80] {\n    width: 50%;\n    margin: 25px auto;\n}\nul[data-v-73b41a80] {\n  padding-left: 20px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n}\nli[data-v-73b41a80] {\n  margin-bottom: 8px;\n  color: #525f7f;\n  position: relative;\n}\nli[data-v-73b41a80]:before {\n  content: \"\";\n  width: 0%; height: 2px;\n  background: #2ecc71;\n  position: absolute;\n  left: 0; top: 50%;\n  display: block;\n  transition: all .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.input_container[data-v-73b41a80] {\n  position: relative;\n  padding: 30px;\n  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);\n  border-radius: 6px;\n  background: #FFF;\n}\ninput[type=\"password\"][data-v-73b41a80] {\n  line-height: 1.5;\n  display: block;\n  color: rgba(136, 152, 170, 1);\n  font-weight: 300;\n  width: 100%;\n  height: calc(2.75rem + 2px);\n  padding: .625rem .75rem;\n  border-radius: .25rem;\n  background-color: #fff;\n  transition: border-color .4s ease;\n  border: 1px solid #cad1d7;\n  outline: 0;\n}\ninput[type=\"password\"][data-v-73b41a80]:focus {\n  border-color: rgba(50, 151, 211, .45);\n}\n\n\n/* Checkmark & Strikethrough --------- */\n.is_valid[data-v-73b41a80] { color: rgba(136, 152, 170, 0.8);\n}\n.is_valid[data-v-73b41a80]:before { width: 100%;\n}\n.checkmark_container[data-v-73b41a80] {\n  border-radius: 50%;\n  position: absolute;\n  top: -15px; right: -15px;\n  background: #2ecc71;\n  width: 50px; height: 50px;\n  visibility: hidden;\n  opacity: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  transition: opacity .4s ease;\n}\n.show_checkmark[data-v-73b41a80] {\n  visibility: visible;\n  opacity: 1;\n}\n.checkmark[data-v-73b41a80] {\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: white;\n  stroke-width: 15;\n  stroke-linecap: round;\n  stroke-dasharray: 180;\n  stroke-dashoffset: 180;\n}\n.checked[data-v-73b41a80] { -webkit-animation: draw-data-v-73b41a80 0.5s ease forwards; animation: draw-data-v-73b41a80 0.5s ease forwards;\n}\n@-webkit-keyframes draw-data-v-73b41a80 {\nto { stroke-dashoffset: 0;\n}\n}\n@keyframes draw-data-v-73b41a80 {\nto { stroke-dashoffset: 0;\n}\n}\n", ""]);
+exports.push([module.i, "\n.password[data-v-73b41a80] {\n    width: 50%;\n    margin: 25px auto;\n}\n.field[data-v-73b41a80]{\n    display: grid;\n    grid-template-columns: 6fr 1fr ;\n    position: relative;\n}\n.form-control[data-v-73b41a80]{\n      height: 100%;\n}\nul[data-v-73b41a80] {\n  padding-left: 20px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n}\nli[data-v-73b41a80] {\n  margin-bottom: 8px;\n  color: #525f7f;\n  position: relative;\n}\nli[data-v-73b41a80]:before {\n  content: \"\";\n  width: 0%; height: 2px;\n  background: #2ecc71;\n  position: absolute;\n  left: 0; top: 50%;\n  display: block;\n  transition: all .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n}\n.input_container[data-v-73b41a80] {\n  position: relative;\n  padding: 30px;\n  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);\n  border-radius: 6px;\n  background: #FFF;\n}\ninput[type=\"password\"][data-v-73b41a80] {\n  line-height: 1.5;\n  display: block;\n  color: rgba(136, 152, 170, 1);\n  font-weight: 300;\n  width: 100%;\n  height: calc(2.75rem + 2px);\n  padding: .625rem .75rem;\n  border-radius: .25rem;\n  background-color: #fff;\n  transition: border-color .4s ease;\n  border: 1px solid #cad1d7;\n  outline: 0;\n}\ninput[type=\"password\"][data-v-73b41a80]:focus {\n  border-color: rgba(50, 151, 211, .45);\n}\n\n\n/* Checkmark & Strikethrough --------- */\n.is_valid[data-v-73b41a80] { color: rgba(136, 152, 170, 0.8);\n}\n.is_valid[data-v-73b41a80]:before { width: 100%;\n}\n.checkmark_container[data-v-73b41a80] {\n  border-radius: 50%;\n  position: absolute;\n  top: -15px; right: -15px;\n  background: #2ecc71;\n  width: 50px; height: 50px;\n  visibility: hidden;\n  opacity: 0;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  transition: opacity .4s ease;\n}\n.show_checkmark[data-v-73b41a80] {\n  visibility: visible;\n  opacity: 1;\n}\n.checkmark[data-v-73b41a80] {\n  width: 100%;\n  height: 100%;\n  fill: none;\n  stroke: white;\n  stroke-width: 15;\n  stroke-linecap: round;\n  stroke-dasharray: 180;\n  stroke-dashoffset: 180;\n}\n.checked[data-v-73b41a80] { -webkit-animation: draw-data-v-73b41a80 0.5s ease forwards; animation: draw-data-v-73b41a80 0.5s ease forwards;\n}\n@-webkit-keyframes draw-data-v-73b41a80 {\nto { stroke-dashoffset: 0;\n}\n}\n@keyframes draw-data-v-73b41a80 {\nto { stroke-dashoffset: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -39880,36 +39894,88 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "input_password" }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.password,
-          expression: "password"
-        }
-      ],
-      staticClass: "form-control",
-      attrs: {
-        type: "password",
-        autocomplete: "off",
-        id: "password",
-        name: "password",
-        required: ""
-      },
-      domProps: { value: _vm.password },
-      on: {
-        input: [
-          function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.password = $event.target.value
-          },
-          _vm.checkPassword
-        ]
-      }
-    }),
+    _c("div", { staticClass: "field" }, [
+      _c("div", { staticClass: "control" }, [
+        _vm.showPassword
+          ? _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                autocomplete: "off",
+                id: "password",
+                name: "password",
+                required: ""
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value
+                  },
+                  _vm.checkPassword
+                ]
+              }
+            })
+          : _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.password,
+                  expression: "password"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "password",
+                autocomplete: "off",
+                id: "password",
+                name: "password"
+              },
+              domProps: { value: _vm.password },
+              on: {
+                input: [
+                  function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.password = $event.target.value
+                  },
+                  _vm.checkPassword
+                ]
+              }
+            })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c(
+          "button",
+          { staticClass: "form-control", on: { click: _vm.toggleShow } },
+          [
+            _c("span", { staticClass: "icon is-small is-right" }, [
+              _c("i", {
+                staticClass: "fas",
+                class: {
+                  "fa-eye-slash": _vm.showPassword,
+                  "fa-eye": !_vm.showPassword
+                }
+              })
+            ])
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -65082,8 +65148,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\smartbazar\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\smartbazar\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
