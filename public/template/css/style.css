@@ -5429,13 +5429,13 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 .departments__body {
+    border-radius: 15px;
   width: 100%;
   padding-top: 42px;
   position: absolute;
   background: #fff;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border-radius: 2px;
   top: 0;
 }
 
@@ -6125,6 +6125,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   .megamenu {
     -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
             box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+
   }
 }
 
@@ -6133,6 +6134,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   background-repeat: no-repeat;
   width: 100%;
   min-height: 100%;
+
 }
 
 [dir=ltr] .megamenu__body {
@@ -6158,6 +6160,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   [dir=rtl] .megamenu--departments {
     padding-left: 32px;
   }
+
 }
 
 .megamenu__links {
@@ -7442,7 +7445,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   width: calc(100% + 24px);
   padding-top: 60px;
   padding-bottom: 10px;
-  border-radius: 2px;
+  border-radius:15px;
   visibility: visible;
   opacity: 1;
   -webkit-transition: opacity 0.2s, visibility 0s 0.2s;
