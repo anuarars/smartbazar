@@ -6147,6 +6147,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 
 [dir=ltr] .megamenu--departments {
   padding-right: 31px;
+    border-radius:0 0 0 15px;
 }
 
 [dir=rtl] .megamenu--departments {
@@ -17303,6 +17304,9 @@ footer .popular .popular_inner li a {
 .content_table td, th {
     padding: 25px;
     text-align: left;
+}
+.content_table a{
+    color: white;
 }
  table button{
     border-radius:15px;

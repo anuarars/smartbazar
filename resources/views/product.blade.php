@@ -221,7 +221,7 @@
                                                         </span> <span class="product-card__old-price">
                                                             {{$item->priceAfterFee()}} тг.
                                                         </span>@endif</td>
-                                        <td><button href="{{route('item', $item->id)}}">Выбрать</button></td>
+                                        <td><button><a href="{{route('item', $item->id)}}">Выбрать</a></button></td>
                                     </tr>
                                     @endforeach
                                     </tbody>
