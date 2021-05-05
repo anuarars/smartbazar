@@ -10,7 +10,6 @@
             <div slot="slideContent">
                 <button v-on:click="">VOTE</button>
             </div>
-            </vueper-slide>
 
         </vueper-slides>
     </div>
@@ -19,6 +18,7 @@
 <script>
     import { VueperSlides, VueperSlide } from 'vueperslides'
     import 'vueperslides/dist/vueperslides.css'
+
     export default {
     components: { VueperSlides, VueperSlide },
     data: () => ({

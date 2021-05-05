@@ -5,6 +5,7 @@
     <div class="slider mt-3">
         <home-slider-component></home-slider-component>
     </div>
+
     <!-- .block-slideshow -->
 {{--    <div class="block-slideshow block-slideshow--layout--with-departments block">--}}
 {{--        <div class="container">--}}

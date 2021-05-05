@@ -3536,7 +3536,6 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 .product-card--layout--horizontal .product-card__features-list {
   display: none;
 }
-
 .product-card--layout--grid .product-card__image {
   padding: 18px 18px 20px;
 }
