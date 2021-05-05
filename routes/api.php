@@ -31,7 +31,7 @@ Route::group(['middleware' => 'api','prefix' => 'auth','namespace' => 'Api'], fu
     Route::post('verify/code', 'AuthController@verify');
     Route::post('verify/resend', 'AuthController@resend');
     Route::post('verify/reset', 'AuthController@reset');
-    
+
     // Cart APIs
     Route::apiResource('carts', 'CartController')->only('store', 'index');
     Route::post('carts/update', 'CartController@update');
@@ -55,4 +55,5 @@ Route::group(['namespace' => 'Api'], function(){
     Route::get('categories/', 'CategoryController@index');
     Route::apiResource('items', 'ItemController');
     Route::apiResource('companies', 'BoutiqueController')->only('index', 'show');
+    Route::apiResource("pages", 'PageController')->only('index', 'show');
 });

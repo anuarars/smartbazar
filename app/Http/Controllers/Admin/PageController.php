@@ -62,7 +62,7 @@ class PageController extends Controller
     public function show(Page $page, PageService $service)
     {
         if (Gate::allows('see-page', $page)) {
-            $page->body = $service->wrapWith($page->body, "container");
+            $page->body = $service->wrapWith($page->body, "container pt-4");
             return view('admin.page.show', compact('page'));
         }
         // If not active or not admin then not found
