@@ -218,12 +218,12 @@
                     @foreach ($itemsDiscount as $item)
                         <div class="block-products__list-item">
                             <div class="product-card product-card--hidden-actions ">
-                                <button class="product-card__quickview" type="button" data-toggle="modal" data-target="#productView{{$item->id}}">
-                                    <svg width="16px" height="16px">
-                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>
-                                    </svg>
-                                    <span class="fake-svg-icon"></span>
-                                </button>
+{{--                                <button class="product-card__quickview" type="button" data-toggle="modal" data-target="#productView{{$item->id}}">--}}
+{{--                                    <svg width="16px" height="16px">--}}
+{{--                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#quickview-16')}}"></use>--}}
+{{--                                    </svg>--}}
+{{--                                    <span class="fake-svg-icon"></span>--}}
+{{--                                </button>--}}
                                 <div class="product-card__image product-image">
                                     <a href="{{route('item', $item, true)}}" class="product-image__body">
                                         <img class="product-image__img" src="{{secure_asset($item->product->galleries->first()->image)}}" alt="{{$item->product->galleries->first()->image}}">
