@@ -3,19 +3,19 @@
     <div class="input_password">
       <div class="field">
            <div class="control">
-              <input type="password" v-if="showPassword" @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password" required
+              <input type="text" v-if="showPassword" @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password" required
               />
               <input type="password" v-else @input="checkPassword" v-model="password" autocomplete="off" id="password" class="form-control" name="password"
               />
            </div>
            <div class="control">
-                <button class="form-control" @click="toggleShow"><span class="icon is-small is-right">
+                <span type="button" class="form-control" @click="toggleShow"><span class="icon is-small is-right">
                 <i class="fas" :class="{ 'fa-eye-slash': showPassword, 'fa-eye': !showPassword }"></i>
                 </span>
-                </button>
+                </span>
             </div>
 
-      </div>      
+      </div>
       <div class="input_container" v-show="show">
         <ul>
           <li v-bind:class="{ is_valid: contains_eight_characters }">Содержит 8 символов</li>
@@ -61,18 +61,14 @@ export default {
             checkPassword() {
 
               this.password_length = this.password.length;
-              if(this.password == '') {
+              if(this.password === '') {
                 this.show = false;
                 return
               }
               this.show = true;
               const format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
 
-              if (this.password_length > 8) {
-                this.contains_eight_characters = true;
-              } else {
-                this.contains_eight_characters = false;
-              }
+              this.contains_eight_characters = this.password_length > 8;
 
               this.contains_number = /\d/.test(this.password);
               this.contains_uppercase = /[A-Z]/.test(this.password);
@@ -86,8 +82,10 @@ export default {
               } else {
                 this.valid_password = false;
               }
+            },
 
-
+            toggleShow() {
+                this.showPassword = !this.showPassword;
             }
 
 
