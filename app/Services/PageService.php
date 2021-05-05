@@ -14,7 +14,7 @@ class PageService
         libxml_use_internal_errors(true);
         $dom = new DOMDocument();
         $bodyDom = new DOMDocument();
-        $bodyDom->loadHTML($body);
+        $bodyDom->loadHTML(mb_convert_encoding($body, 'HTML-ENTITIES', 'UTF-8'));
 
         $container = $dom->createElement("div");
         $container->setAttribute("class", $wrapperClass);
