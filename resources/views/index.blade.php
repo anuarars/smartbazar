@@ -244,6 +244,7 @@
                                         <div class="product-card__rating-legend">Просмотров: {{$item->views}}</div>
                                     </div>
                                 </div>
+
                                 <div class="product-card__actions">
                                     <div class="product-card__prices">
                                         @if ($item->discount == null)
