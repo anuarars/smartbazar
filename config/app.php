@@ -1,5 +1,7 @@
 <?php
 
+use Kyslik\ColumnSortable\ColumnSortableServiceProvider;
+
 return [
 
     /*
@@ -165,9 +167,9 @@ return [
         /*
          * Package Service Providers...
          */
-        \Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        ColumnSortableServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
-
+        JamesDordoy\LaravelVueDatatable\Providers\LaravelVueDatatableServiceProvider::class,
         /*
          * Application Service Providers...
          */
