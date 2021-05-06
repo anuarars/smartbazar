@@ -3,9 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 
 class Company extends Model
 {
+    use LaravelVueDatatableTrait;
+
+    protected $dataTableColumns = [
+        'name' => [
+            'searchable' => true,
+        ],
+        'phone' => [
+            'searchable' => true,
+        ],
+    ];
+
     protected $fillable = [
         'name','code', 'phone','email', 'description', 'bin', 'image'
     ];
