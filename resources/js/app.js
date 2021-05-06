@@ -53,6 +53,7 @@ Vue.component('carousel-component', require('./components/CarouselComponent.vue'
 Vue.component('item-component', require('./components/ItemComponent.vue').default);
 Vue.component('subscribe-component', require('./components/SubscribeComponent.vue').default);
 Vue.component('checking-password-component', require('./components/CheckingPassword.vue').default);
+Vue.component('company-data-table', require('./components/data-tables/CompanyDataTable.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -60,7 +61,11 @@ Vue.component('checking-password-component', require('./components/CheckingPassw
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import VueMask from 'v-mask'
+import { VuejsDatatableFactory } from 'vuejs-datatable';
+import DataTable from 'laravel-vue-datatable';
+Vue.use(DataTable);
 Vue.use(VueMask);
+Vue.use( VuejsDatatableFactory );
 
 import vClickOutside from 'v-click-outside'
 import ItemQuantityComponent from "../js/components/ItemQuantityComponent";
