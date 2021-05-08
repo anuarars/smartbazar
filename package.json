@@ -11,16 +11,18 @@
     },
     "devDependencies": {
         "axios": "^0.21.1",
-        "bootstrap": "^4.0.0",
-        "cross-env": "^7.0",
-        "laravel-mix": "^5.0.1",
+        "bootstrap": "^4.6.0",
+        "cross-env": "^7.0.3",
+        "laravel-mix": "^5.0.9",
         "lodash": "^4.17.21",
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
+        "sass": "^1.32.12",
         "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue": "^2.6.12",
+        "vue-faq-accordion": "^1.6.2",
+        "vue-template-compiler": "^2.6.12",
+        "vue2-transitions": "^0.3.0"
     },
     "dependencies": {
         "@pusher/push-notifications-web": "^1.1.0",
@@ -29,6 +31,7 @@
         "@trevoreyre/autocomplete-vue": "^2.2.0",
         "hooper": "^0.3.4",
         "laravel-echo": "^1.10.0",
+        "laravel-vue-datatable": "^0.6.0",
         "pusher-js": "^7.0.3",
         "v-click-outside": "^3.1.2",
         "v-mask": "^2.2.4",

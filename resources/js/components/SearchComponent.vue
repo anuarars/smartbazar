@@ -2,14 +2,14 @@
     <div class="search search--location--header ">
         <div class="search__body">
             <div class="search__form">
-                <input 
-                    class="search__input" 
-                    name="search" 
-                    placeholder="Найти" 
-                    aria-label="Site search" 
-                    type="text" 
+                <input
+                    class="search__input"
+                    name="search"
+                    placeholder="Найти"
+                    aria-label="Site search"
+                    type="text"
                     autocomplete="off"
-                    v-on:focus="searchFocused = true" 
+                    v-on:focus="searchFocused = true"
                     v-on:blur="searchFocused = !searchFocused"
                     v-model="searchInput"
                     v-on:keyup="searchProduct"
@@ -38,13 +38,13 @@
                         <div class="suggestions__item-price">
                             {{result.items[0].price.toLocaleString()}} тг.
                         </div>
-                        <div class="suggestions__item-actions">
-                            <button type="button" title="В корзину" class="btn btn-primary btn-sm btn-svg-icon" v-on:click="addToCart(result.id)">
-                                <svg width="16px" height="16px">
-                                    <use v-bind="{'xlink:href': home_url + 'template/images/sprite.svg#cart-16'}"></use>
-                                </svg>
-                            </button>
-                        </div>
+<!--                        <div class="suggestions__item-actions">-->
+<!--                            <button type="button" title="В корзину" class="btn btn-primary btn-sm btn-svg-icon" v-on:click="addToCart(result.id)">-->
+<!--                                <svg width="16px" height="16px">-->
+<!--                                    <use v-bind="{'xlink:href': home_url + 'template/images/sprite.svg#cart-16'}"></use>-->
+<!--                                </svg>-->
+<!--                            </button>-->
+<!--                        </div>-->
                     </li>
                 </ul>
             </div>

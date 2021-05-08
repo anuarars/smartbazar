@@ -290,6 +290,8 @@
     </div> --}}
     <!-- .block-products / end -->
     <!-- .block-categories -->
+<div class="accordion"><accordion-component></accordion-component></div>
+
     <div class="block block--highlighted block-categories block-categories--layout--classic">
         <div class="container">
             <div class="block-header">
@@ -458,3 +460,4 @@
 @endforeach --}}
 
 @endsection
+
