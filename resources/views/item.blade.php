@@ -358,7 +358,7 @@
                                         </button>
                                         <div class="product-card__image product-image">
                                             <a href="{{route('item', $item, true)}}" class="product-image__body">
-                                                <img 
+                                                <img
                                                     class="product-image__img"
                                                     src="{{secure_asset($item->product->galleries->first()->image ?? "")}}"
                                                     alt="{{$item->product->galleries->first()->image ?? ""}}"
