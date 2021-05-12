@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubscribesTable extends Migration
+class CreateNotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateSubscribesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subscribes', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
+            $table->foreignId('order_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->text('description')->nullable();
+            $table->string('phone')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateSubscribesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subscribes');
+        Schema::dropIfExists('notes');
     }
 }

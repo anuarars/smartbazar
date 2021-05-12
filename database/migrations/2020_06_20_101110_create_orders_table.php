@@ -15,15 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('isFinished')->default(0);
             $table->integer('status_id')->default(1);
             $table->bigInteger('user_id');
             $table->bigInteger('packer_id')->nullable();
             $table->bigInteger('delivery_id')->nullable();
-            $table->string('phone')->nullable();
-            $table->text('infoByUser')->nullable();
-            $table->text('infoByPacker')->nullable();
-            $table->boolean('isPickup')->default(0);
             $table->timestamps();
         });
     }
