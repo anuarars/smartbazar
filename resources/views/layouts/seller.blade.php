@@ -56,13 +56,13 @@
               <a href="{{route('seller.company.dashboard', true)}}" class="nav-link"><i data-feather="monitor"></i><span>Главная</span></a>
             </li>
             <li>
-                <a class="nav-link" href="{{route('seller.product.index', true)}}">
+                <a class="nav-link" href="{{route('seller.items.index', true)}}">
                     <i data-feather="gift"></i>
                     <span>Товары</span>
                 </a>
             </li>
             <li>
-              <a class="nav-link" href="{{route('seller.product.index', true)}}">
+              <a class="nav-link" href="{{route('seller.items.index', true)}}">
                   <i data-feather="shopping-cart"></i>
                   <span>Продажи</span>
               </a>
