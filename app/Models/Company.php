@@ -16,11 +16,20 @@ class Company extends Model
         'phone' => [
             'searchable' => true,
         ],
+
     ];
 
+    protected $appends = [
+        'email_name',
+    ];
     protected $fillable = [
         'name','code', 'phone','email', 'description', 'bin', 'image'
     ];
+
+    public function getEmailNameAttribute()
+    {
+        return optional($this->email)->name;
+    }
 
     public function users(){
         return $this->hasMany(User::class);

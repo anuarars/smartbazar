@@ -18,17 +18,23 @@ export default {
             perPage: ['10'],
             columns: [
                 {
-                    label: 'Name',
+                    label: 'Название компании',
                     name: 'name',
                     searchable: true,
                     orderable: true,
                 },
                 {
-                    label: 'Phone',
+                    label: 'Телефон',
                     name: 'phone',
                     searchable: true,
                     orderable: true,
 
+                },
+                {
+                    label: 'Почта',
+                    name: 'email_name',
+                    searchable: true,
+                    orderable: true,
                 },
 
             ]

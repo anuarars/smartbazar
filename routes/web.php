@@ -110,7 +110,7 @@ Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'
 
 /*-------------SALE GROUP ROUTES--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 Route::group(['middleware'=>['auth', 'seller'], 'namespace'=>'Sale', 'prefix'=>'company'], function(){
-    Route::resource('product', 'ProductController')->names('seller.product');
+    Route::resource('items', 'ItemController')->names('seller.items');
     Route::resource('gallery', 'GalleryController')->names('seller.gallery');
     Route::get('profile', 'CompanyController@index')->name('seller.company.dashboard');
     Route::get('profile/edit/', 'CompanyController@edit')->name('seller.company.edit');

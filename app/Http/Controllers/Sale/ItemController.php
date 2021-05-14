@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoryResource;
+use App\Models\Item;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class ProductController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,9 +29,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::id();
-        $products = Product::where('user_id', $user_id)->paginate(15);
-        return view('seller.product.index', compact('products'));
+        $company_id = Auth::user()->company->id;
+        return view('seller.item.index', compact('company_id'));
     }
 
     /**
@@ -98,25 +98,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return Application|Factory|Response|View
      */
-    public function show(Product $product)
+    public function show(Item $item)
     {
         //Product::where('id', $product->id)->increment('views');
         $measures = Measure::all();
         $countries = Country::all();
         $brands = Brand::all();
         $categories = CategoryResource::collection(Category::with('children')->where('parent_id', 0)->get());
-        return view('seller.product.show', compact('product', 'brands', 'countries', 'categories', 'measures'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-
+        return view('seller.item.show', compact('item', 'brands', 'countries', 'categories', 'measures'));
     }
 
     /**
@@ -126,41 +115,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Item $item)
     {
 
-        $productId = $product->id;
-
-        // dd($request->gallery);
-
-        if($request->hasFile('gallery')) {
-            foreach ($request->gallery as $gallery_image) {
-                $path = $gallery_image->store('images', 's3');
-                Storage::disk('s3')->setVisibility($path, 'public');
-
-                $gallery = new Gallery([
-                    'image' => Storage::disk('s3')->url($path),
-                    'product_id' => $productId,
-                    'user_id' => Auth::id()
-                ]);
-                $gallery->save();
-            }
-        }
-
         $updateRequest = $request->validate([
-            'category_id'  => 'required',
-            'brand_id'  => 'required',
-            'country_id'  => 'required',
-            'measure_id'  => 'required',
-            'title'  => 'required',
-            'description'  => 'required',
             'price'  => 'required',
             'count'  => 'required',
             'discount'  => 'required',
         ]);
-        $product = $product->update($updateRequest);
+        return $updateRequest;
+        $item = $item->update($updateRequest);
 
-        return redirect()->back()->with('product', $product);
+        return redirect()->back()->with('item', $item);
     }
 
     /**
@@ -174,7 +140,7 @@ class ProductController extends Controller
         $product->delete();
 
         foreach ($product->galleries as $gallery) {
-            Storage::disk('s3')->delete($gallery->image); 
+            Storage::disk('s3')->delete($gallery->image);
             $gallery->delete();
         }
 

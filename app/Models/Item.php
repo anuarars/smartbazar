@@ -3,12 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
 
 class Item extends Model
 {
-    use Sortable;
+    use Sortable, LaravelVueDatatableTrait;
+
+    protected $dataTableColumns = [
+        'id' => [
+            'searchable' => false
+        ],
+        'count' => [],
+        'price' => [
+            'orderable' => true
+        ],
+        'discount' => []
+    ];
+
+    protected $dataTableRelationships = [
+        "belongsTo" => [
+            "product" => [
+                'model' => Product::class,
+                "foreign_key" => "product_id",
+                'columns' => [
+                    'title' => [
+                        'searchable' => true,
+                        'orderable' => true,
+                    ],
+
+                ],
+            ],
+
+        ]
+    ];
+
     protected $table = 'company_product';
     protected $fillable = ['views'];
 
@@ -27,11 +57,11 @@ class Item extends Model
     public function orders(){
         return $this->belongsToMany(Order::class);
     }
-    
+
     public function reviews(){
         return $this->hasMany(Review::class);
     }
-    
+
     // Цена после коммисии от смартабазара
     public function priceAfterFee(){
         return $this->price+(($this->price*env('FEE'))/100);
@@ -41,7 +71,7 @@ class Item extends Model
     public function getafterDiscountAttribute(){
         return ceil($this->priceAfterFee() - (($this->priceAfterFee() * $this->discount)/100));
     }
-    
+
     // Добавлен ли товар в избранное
     public function isFavoritedBy(){
         if ($user = User::find(Auth::id())) {

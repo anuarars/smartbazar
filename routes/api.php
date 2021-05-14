@@ -53,7 +53,8 @@ Route::group(['middleware' => 'api','prefix' => 'auth','namespace' => 'Api'], fu
 Route::group(['namespace' => 'Api'], function(){
     Route::get('products', 'ProductController@index');
     Route::get('categories/', 'CategoryController@index');
-    Route::apiResource('items', 'ItemController');
+    Route::apiResource('items', 'ItemController')->names('api.items');
     Route::apiResource('companies', 'BoutiqueController')->only('index', 'show');
     Route::apiResource("pages", 'PageController')->only('index', 'show');
+    Route::get('companies/{company}/items', 'BoutiqueController@showItems')->name('api.boutique.items');
 });

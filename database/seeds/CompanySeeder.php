@@ -20,7 +20,8 @@ class CompanySeeder extends Seeder
                     'name'=>$company->name,
                     'code'=>$company->code,
                     'phone'=>$company->phone,
-                    'description'=>$company->description
+                    'description'=>$company->description,
+                    'city_id' => $company->city_id
                 ]);
             }
 
