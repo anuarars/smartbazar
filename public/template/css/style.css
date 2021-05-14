@@ -502,7 +502,7 @@ h6 {
       border-image: linear-gradient(to bottom, #FF3A44,#C31162) 1 100%;
   }
   [dir=rtl] .account-nav__item--active a {
-    border-right: 2px solid #47991f;
+    border-right: 2px solid #C31162;
   }
 }
 
@@ -739,8 +739,8 @@ h6 {
 
 .block-header__group--active, .block-header__group--active:focus, .block-header__group--active:hover {
   cursor: default;
-  -webkit-box-shadow: 0 0 0 2px #47991f inset;
-          box-shadow: 0 0 0 2px #47991f inset;
+  -webkit-box-shadow: 0 0 0 2px #C31162 inset;
+          box-shadow: 0 0 0 2px #C31162 inset;
 }
 
 .block-header__arrows-list {
@@ -777,14 +777,14 @@ h6 {
 }
 
 .block-header__arrow:focus, .block-header__arrow:hover {
-  background: #47991f;
+  background: -webkit-linear-gradient(#FF3A44, #C31162);
   fill: #fff;
 }
 
 .block-header__arrow:active {
   -webkit-transition-duration: 0s;
           transition-duration: 0s;
-  background: #57bb26;
+  background: -webkit-linear-gradient(#FF3A44, #C31162);
   fill: #fff;
 }
 
@@ -904,7 +904,7 @@ h6 {
   padding: 0;
   font-size: 14px;
   line-height: 20px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
 }
 
 .breadcrumb-item {
@@ -2049,7 +2049,7 @@ select.form-control-lg.is-invalid {
 }
 
 .input-radio__input:checked ~ .input-radio__circle {
-  background: #47991f;
+  background: #C31162;
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
           box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08) inset;
 }
@@ -2249,7 +2249,7 @@ select.form-control-lg.is-invalid {
 
 .input-radio-label__list input:checked ~ span {
   cursor: default;
-  background: #47991f;
+  background: #C31162;
   color: #fff;
   -webkit-transition-duration: .08s, .08s;
           transition-duration: .08s, .08s;
@@ -2505,7 +2505,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
   width: 16px;
   height: 16px;
   border-radius: 8px;
-  background: #47991f;
+  background: #C31162;
   -webkit-box-shadow: 0 0 0 0 rgba(71, 153, 31, 0);
           box-shadow: 0 0 0 0 rgba(71, 153, 31, 0);
   -webkit-transition: -webkit-box-shadow .2s;
@@ -2704,7 +2704,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 .post-card__category a:hover {
-  color: #47991f;
+  color: #C31162;
 }
 
 .post-card__date {
@@ -2725,7 +2725,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 .post-card__name a:hover {
-  color: #47991f;
+  color: #C31162;
 }
 
 .post-card__content {
@@ -2746,7 +2746,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
 }
 
 .post-card--layout--related .post-card__name a:hover {
-  color: #47991f;
+  color: #C31162;
 }
 
 .post-card--layout--related .post-card__date {
@@ -18217,4 +18217,74 @@ footer .subscribe .subscribe_inner .subscribe_info .subscribe_info_form form but
         font-size: 14px;
     }
 }
-delete it
+a{
+    text-decoration: none;
+}
+body{
+    margin:0;
+    font-family: sans-serif;
+
+}
+
+.categories{
+    width: max-content;
+    margin: 25px;
+
+    border-radius: 200px;
+    display: inline-block;
+}
+.categories:hover{
+    box-shadow: 0 0 10px #184d47;
+}
+.item-image{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    padding: 10px;
+}
+
+
+/* body select.select_box */
+body select {
+    display: block;
+    padding: 10px 70px 10px 13px !important;
+    max-width: 100%;
+    height: auto !important;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    background: #fff url("https://i.ibb.co/b7xjLrB/selectbox-arrow.png") no-repeat right center;
+    color: #444444;
+    font-size: 12px;
+    line-height: 16px !important;
+    appearance: none;
+    /* this is must */ -webkit-appearance: none;
+    -moz-appearance: none;
+}
+/* body select.select_box option */
+body select option {
+    padding: 0 4px;
+    font-size: 14px;
+}
+/* for IE and Edge */
+
+select::-ms-expand {
+    display: none;
+}
+select:disabled::-ms-expand {
+    background: linear-gradient(#FF3A44, #C31162);
+}
+select.decorated option:hover {
+    box-shadow: 0 0 10px 100px #000000 inset;
+}
+option:hover {
+    background: linear-gradient(#FF3A44, #C31162);
+}
+option {
+
+    color:#C31162;
+}
+
+select:focus > option:checked{
+    background: red;
+}
+

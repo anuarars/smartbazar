@@ -17,9 +17,7 @@
                         </ol>
                     </nav>
                 </div>
-                <div class="page-header__title">
-                    <h1>Каталог</h1>
-                </div>
+
             </div>
         </div>
         <div class="container">
@@ -144,12 +142,15 @@
                                     </div>
                                     <div class="view-options__divider"></div>
                                     <div class="view-options__control">
-                                        <label for="">Сортировать по</label>
-                                        <div>
-                                            @sortablelink('created_at', 'Дате')
-                                            @sortablelink('title', 'Названию (A-Z)')
-                                            @sortablelink('price', 'Цене')
-                                        </div>
+                                        <label for="">Сортировать </label>
+                                        <label>
+                                            <select class="select_box" >
+                                                <option value="1">По дате</option>
+                                                <option value="2">По названию</option>
+                                                <option value="3">По цене</option>
+                                            </select>
+                                        </label>
+
                                     </div>
                                 </div>
                             </div>
