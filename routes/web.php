@@ -60,7 +60,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('/cart/get', 'CartController@getData')->name('cart.get');
     Route::post('/cart/destroy', 'CartController@destroy')->name('cart.destroy');
     Route::post('/cart/unlike/{id}', 'CartController@unlike')->name('cart.unlike');
-    //------------------------------------------------------------------------ 
+    //------------------------------------------------------------------------
 
     // Profile---------------------------------------------------
     Route::get('/profile', 'ProfileController@index')->name('profile.index');
@@ -83,7 +83,7 @@ Route::group(['middleware'=>['auth']], function(){
     Route::get('checkout/{orderId}', 'CheckoutController@show')->name('checkout.show')->middleware('phoneVerified');
     Route::get('checkout/{orderId}/success', 'CheckoutController@success')->name('checkout.success');
     Route::post('checkout/update/order', 'CheckoutController@updateOrderByUser');
-    
+
 
     // Companies controllers
     Route::resource('boutique', 'BoutiqueController')->names('boutique')->only(['show', 'index']);

@@ -18,6 +18,7 @@ window.Vue = require('vue');
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
 Vue.component('packer-component', require('./components/PackerComponent.vue').default);
 Vue.component('wishlist-component', require('./components/WishlistComponent.vue').default);
 Vue.component('slider-component', require('./components/Sale/SliderComponent.vue').default);
@@ -53,7 +54,7 @@ Vue.component('item-component', require('./components/ItemComponent.vue').defaul
 Vue.component('subscribe-component', require('./components/SubscribeComponent.vue').default);
 Vue.component('checking-password-component', require('./components/CheckingPassword.vue').default);
 Vue.component('company-data-table', require('./components/data-tables/CompanyDataTable.vue').default);
-Vue.component('accordion-component', require('./components/AccordionComponent.vue').default);
+Vue.component('product-data-table', require('./components/data-tables/ProductDataTable.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
