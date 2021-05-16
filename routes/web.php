@@ -157,3 +157,8 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');
+<<<<<<< Updated upstream
+=======
+
+Route::get('test', 'TestController@index2');
+>>>>>>> Stashed changes

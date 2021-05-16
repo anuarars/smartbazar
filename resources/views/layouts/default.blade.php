@@ -494,7 +494,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 col-lg-4">
+                                <div class="col-6 col-md-3 col-lg-2">
                                     <div class="site-footer__widget footer-links">
                                         <h5 class="footer-links__title">Информация</h5>
                                         <ul class="footer-links__list">
@@ -508,18 +508,18 @@
                                         </ul>
                                     </div>
                                 </div>
-    {{--                                <div class="col-6 col-md-3 col-lg-2">--}}
-    {{--                                    <div class="site-footer__widget footer-links">--}}
-    {{--                                        <h5 class="footer-links__title">Аккаунт</h5>--}}
-    {{--                                        <ul class="footer-links__list">--}}
-    {{--                                            <li class="footer-links__item"><a href="" class="footer-links__link">Покупки</a></li>--}}
-    {{--                                            <li class="footer-links__item"><a href="" class="footer-links__link">Избранное</a></li>--}}
-    {{--                                            <li class="footer-links__item"><a href="" class="footer-links__link">Рассылка</a></li>--}}
-    {{--                                            <li class="footer-links__item"><a href="" class="footer-links__link">Конкурсы</a></li>--}}
-    {{--                                            <li class="footer-links__item"><a href="" class="footer-links__link">Сертификаты</a></li>--}}
-    {{--                                        </ul>--}}
-    {{--                                    </div>--}}
-    {{--                                </div>--}}
+                                <div class="col-6 col-md-3 col-lg-2">
+                                    <div class="site-footer__widget footer-links">
+                                        <h5 class="footer-links__title">Аккаунт</h5>
+                                        <ul class="footer-links__list">
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Покупки</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Избранное</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Рассылка</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Конкурсы</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Сертификаты</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div class="col-12 col-md-12 col-lg-4">
                                     <div class="site-footer__widget footer-newsletter">
                                         <div class="helpdesk">
@@ -613,7 +613,6 @@
                     </button>
                 </div>
                 <div class="mobilemenu__content">
-
                     <ul class="mobile-links mobile-links--level--0" data-collapse data-collapse-opened-class="mobile-links__item--open">
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
