@@ -17201,8 +17201,8 @@ footer .popular .popular_inner li a {
 @media screen and (max-width: 700px){
     footer .subscribe .subscribe_inner{
         display: flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-evenly;
     }
 }
