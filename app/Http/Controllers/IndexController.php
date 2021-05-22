@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Pusher\PushNotifications\PushNotifications;
-use App\Models\{Category, Order, Product, Rating, Item};
+use App\Models\{Category, City, Order, Product, Rating, Item};
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -50,5 +50,12 @@ class IndexController extends Controller
                 'rate' => $rate
             ]);
         }
+    }
+
+    public function change_city(City $city) {
+        session()->put('city', $city);
+
+        return redirect()->back();
+
     }
 }

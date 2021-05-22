@@ -15,7 +15,7 @@ class CitySeeder extends Seeder
         DB::table('cities')->truncate();
 
         $cities = [
-            ['name' => 'Город Нур-Султан'],
+            ['name' => 'Нур-Султан'],
             ['name' => 'Алматы'],
             ['name' => 'Шымкент'],
             ['name' => 'Караганда'],

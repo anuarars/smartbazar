@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +15,7 @@ class Item extends Model
 
     protected $dataTableColumns = [
         'id' => [
-            'searchable' => false
+            'searchable' => true
         ],
         'count' => [],
         'price' => [
@@ -118,5 +120,16 @@ class Item extends Model
     public function isReviewedByAuthUser(): bool
     {
         return $this->reviews()->where('user_id', Auth::id())->get()->isNotEmpty();
+    }
+
+    protected static function booted()
+    {
+        $city = session('city');
+        static::addGlobalScope('city', function (Builder $builder) use ($city) {
+            $builder
+                ->join('companies', 'company_product.company_id', '=', 'companies.id')
+                ->addSelect(DB::raw('company_product.*'))
+                ->where('companies.city_id', '=', $city->id);
+        });
     }
 }

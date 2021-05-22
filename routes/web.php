@@ -29,6 +29,7 @@ Route::get('/', 'IndexController@index')->name('index');
 //Route::get('/{page:slug}', 'PageController@show')->name('page.show');
 Route::get('/items/{id}', 'IndexController@item')->name('item');
 Route::get('/products/{id}', 'IndexController@product')->name('product');
+Route::get('/change/city/{city}', 'IndexController@change_city')->name('change.city');
 
 Route::get('/info/delivery', 'InfoController@delivery')->name('info.delivery');
 Route::get('/info/faq', 'InfoController@faq')->name('info.faq');
@@ -157,8 +158,5 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');
-<<<<<<< Updated upstream
-=======
 
 Route::get('test', 'TestController@index2');
->>>>>>> Stashed changes

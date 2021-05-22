@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\City;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
@@ -32,5 +33,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('layouts.default', function ($view) {
             $view->with('categories', Category::where('parent_id', 0)->with('children')->get())->with('homeUrl', env('APP_URL'));
         });
+        view()->composer('layouts.default', function ($view) {
+            $view->with('cities', City::all());
+        });
+        session()->put('city', City::first());
     }
 }

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
-    <!-- CSRF Token -->
+{{-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> --}}
+<!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
@@ -13,7 +13,7 @@
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
     <!-- css -->
-<link rel="stylesheet" href="{{secure_asset('template/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{secure_asset('template/vendor/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{secure_asset('template/vendor/owl-carousel/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{secure_asset('template/vendor/photoswipe/photoswipe.css')}}">
     <link rel="stylesheet" href="{{secure_asset('template/vendor/photoswipe/default-skin/default-skin.css')}}">
@@ -28,253 +28,277 @@
 </head>
 
 <body>
-    <!-- site -->
-    <div id="app">
-        <div class="site">
-            <!-- mobile site__header -->
-            <header class="site__header d-lg-none">
-                <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
-                <div class="mobile-header mobile-header--sticky" data-sticky-mode="pullToShow">
-                    <div class="mobile-header__panel">
-                        <div class="container">
-                            <div class="mobile-header__body">
-                                <button class="mobile-header__menu-button">
-                                    <svg width="18px" height="14px">
-                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
-                                    </svg>
-                                </button>
-                                <a class="mobile-header__logo" href="/">
-                                    <!-- mobile-logo -->
-                                    <h3>Smart Bazar</h3>
-                                    <!-- mobile-logo / end -->
-                                </a>
-                                <div class="search search--location--mobile-header mobile-header__search">
-                                    <div class="search__body">
-                                        <div class="search__form">
-                                            <input
-                                                class="search__input"
-                                                name="search"
-                                                placeholder="Найти..."
-                                                aria-label="Site search"
-                                                type="text"
-                                                autocomplete="off"
-                                                v-model="search.searchInput"
-                                                v-on:keyup="searchProduct"
-                                            >
-                                            <button class="search__button search__button--type--submit" type="submit">
-                                                <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
-                                                </svg>
-                                            </button>
-                                            <button class="search__button search__button--type--close" type="button">
-                                                <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
-                                                </svg>
-                                            </button>
-                                            <div class="search__border"></div>
-                                        </div>
-                                        <mobile-search-component
-                                            v-if="search.searchShow"
-                                            v-click-outside="hideSearch"
-                                            :search = "search.searchResult"
-                                            :home_url = "homeUrl"
+<!-- site -->
+<div id="app">
+    <div class="site">
+        <!-- mobile site__header -->
+        <header class="site__header d-lg-none">
+            <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
+            <div class="mobile-header mobile-header--sticky" data-sticky-mode="pullToShow">
+                <div class="mobile-header__panel">
+                    <div class="container">
+                        <div class="mobile-header__body">
+                            <button class="mobile-header__menu-button">
+                                <svg width="18px" height="14px">
+                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
+                                </svg>
+                            </button>
+                            <a class="mobile-header__logo" href="/">
+                                <!-- mobile-logo -->
+                                <h3>Smart Bazar</h3>
+                                <!-- mobile-logo / end -->
+                            </a>
+                            <div class="search search--location--mobile-header mobile-header__search">
+                                <div class="search__body">
+                                    <div class="search__form">
+                                        <input
+                                            class="search__input"
+                                            name="search"
+                                            placeholder="Найти..."
+                                            aria-label="Site search"
+                                            type="text"
+                                            autocomplete="off"
+                                            v-model="search.searchInput"
+                                            v-on:keyup="searchProduct"
                                         >
-                                        </mobile-search-component>
+                                        <button class="search__button search__button--type--submit" type="submit">
+                                            <svg width="20px" height="20px">
+                                                <use
+                                                    xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
+                                            </svg>
+                                        </button>
+                                        <button class="search__button search__button--type--close" type="button">
+                                            <svg width="20px" height="20px">
+                                                <use
+                                                    xlink:href="{{secure_asset('template/images/sprite.svg#cross-20')}}"></use>
+                                            </svg>
+                                        </button>
+                                        <div class="search__border"></div>
                                     </div>
+                                    <mobile-search-component
+                                        v-if="search.searchShow"
+                                        v-click-outside="hideSearch"
+                                        :search="search.searchResult"
+                                        :home_url="homeUrl"
+                                    >
+                                    </mobile-search-component>
                                 </div>
-                                <div class="mobile-header__indicators">
-                                    <div class="indicator indicator--mobile-search indicator--mobile d-md-none">
-                                        <button class="indicator__button">
+                            </div>
+                            <div class="mobile-header__indicators">
+                                <div class="indicator indicator--mobile-search indicator--mobile d-md-none">
+                                    <button class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
+                                                    <use
+                                                        xlink:href="{{secure_asset('template/images/sprite.svg#search-20')}}"></use>
                                                 </svg>
                                             </span>
-                                        </button>
-                                    </div>
-                                    <div class="indicator indicator--mobile d-sm-flex">
-                                        <a href="{{route('wishlist.index', true)}}" class="indicator__button">
+                                    </button>
+                                </div>
+                                <div class="indicator indicator--mobile d-sm-flex">
+                                    <a href="{{route('wishlist.index', true)}}" class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
+                                                    <use
+                                                        xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
                                                 </svg>
                                                 <span class="indicator__value" v-text="wishlist"></span>
                                             </span>
-                                        </a>
-                                    </div>
-                                    <div class="indicator indicator--mobile">
-                                        <a href="{{route('cart.index', true)}}" class="indicator__button">
+                                    </a>
+                                </div>
+                                <div class="indicator indicator--mobile">
+                                    <a href="{{route('cart.index', true)}}" class="indicator__button">
                                             <span class="indicator__area">
                                                 <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
+                                                    <use
+                                                        xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                 </svg>
                                                 <span class="indicator__value" v-text="itemCount"></span>
                                             </span>
-                                        </a>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </header>
-            <!-- mobile site__header / end -->
-            <!-- desktop site__header -->
-            <header class="site__header d-lg-block d-none">
-                <div class="site-header">
-                    <div class="top-header grey-bg">
-                        <div class="container">
-                            <div class="top_header_nav">
-                                <ul class="about">
-                                    <li>
-                                        <a href="#">О компании</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Доставка</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Гарантии, обмен и возврат</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Оплата</a>
-                                    </li>
-                                </ul>
-                                <ul class="account">
-                                    <li>
-                                        <img src="{{asset('icons/location.svg')}}" alt="location">
-                                        <a href="#">Нур-Султан (Астана)</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- .topbar -->
-                    {{-- <div class="site-header__topbar topbar">
-                        <div class="topbar__container container">
-                            <div class="topbar__row">
-                                <div class="topbar__item topbar__item--link">
-                                    <a class="topbar-link" href="#">О нас</a>
-                                </div>
-                                <div class="topbar__item topbar__item--link">
-                                    <a class="topbar-link" href="#">Контакты</a>
-                                </div>
-                                <div class="topbar__item topbar__item--link">
-                                    <a class="topbar-link" href="#">Блог</a>
-                                </div>
-                                <div class="topbar__spring"></div>
-                                <div class="topbar__item">
-                                    <div class="topbar-dropdown">
-                                        <button class="topbar-dropdown__btn" type="button">
-                                            Аккаунт
-                                            <svg width="7px" height="5px">
-                                                <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-7x5')}}"></use>
-                                            </svg>
-                                        </button>
-                                        <div class="topbar-dropdown__body">
-                                            <!-- .menu -->
-                                            <div class="menu menu--layout--topbar ">
-                                                <div class="menu__submenus-container"></div>
-                                                <ul class="menu__list">
-                                                    <li class="menu__item">
-                                                        <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
-                                                        <div class="menu__item-submenu-offset"></div>
-                                                        <a class="menu__item-link" href="{{route('profile.index')}}">
-                                                            Профиль
-                                                        </a>
-                                                    </li>
-                                                    <li class="menu__item">
-                                                        <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
-                                                        <div class="menu__item-submenu-offset"></div>
-                                                        <a class="menu__item-link" href="account-profile.html">
-                                                            Изменить профиль
-                                                        </a>
-                                                    </li>
-                                                    <li class="menu__item">
-                                                        <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
-                                                        <div class="menu__item-submenu-offset"></div>
-                                                        <a class="menu__item-link" href="account-orders.html">
-                                                            История покупок
-                                                        </a>
-                                                    </li>
-                                                    <li class="menu__item">
-                                                        <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
-                                                        <div class="menu__item-submenu-offset"></div>
-                                                        <a class="menu__item-link" href="account-addresses.html">
-                                                            Адрес
-                                                        </a>
-                                                    </li>
-                                                    <li class="menu__item">
-                                                        <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
-                                                        <div class="menu__item-submenu-offset"></div>
-                                                        <a class="menu__item-link" href="account-login.html">
-                                                            Выйти
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .menu / end -->
+            </div>
+        </header>
+        <!-- mobile site__header / end -->
+        <!-- desktop site__header -->
+        <header class="site__header d-lg-block d-none">
+            <div class="site-header">
+                <div class="top-header grey-bg">
+                    <div class="container">
+                        <div class="top_header_nav">
+                            <ul class="about">
+                                <li>
+                                    <a href="#">О компании</a>
+                                </li>
+                                <li>
+                                    <a href="#">Доставка</a>
+                                </li>
+                                <li>
+                                    <a href="#">Гарантии, обмен и возврат</a>
+                                </li>
+                                <li>
+                                    <a href="#">Оплата</a>
+                                </li>
+                            </ul>
+                            <ul class="account">
+                                <li>
+                                    <div class="dropdown show">
+                                        <a class="dropdown-toggle" href="#" role="button"
+                                           id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                           aria-expanded="false">
+                                            <img src="{{asset('icons/location.svg')}}" alt="location">
+                                            {{ $cities->find(session('city'))->name }}
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                            @foreach($cities as $city)
+                                                <a class="dropdown-item" href="{{ route('change.city', $city) }}">{{ $city->name }}</a>
+                                            @endforeach
+
                                         </div>
                                     </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- .topbar -->
+            {{-- <div class="site-header__topbar topbar">
+                <div class="topbar__container container">
+                    <div class="topbar__row">
+                        <div class="topbar__item topbar__item--link">
+                            <a class="topbar-link" href="#">О нас</a>
+                        </div>
+                        <div class="topbar__item topbar__item--link">
+                            <a class="topbar-link" href="#">Контакты</a>
+                        </div>
+                        <div class="topbar__item topbar__item--link">
+                            <a class="topbar-link" href="#">Блог</a>
+                        </div>
+                        <div class="topbar__spring"></div>
+                        <div class="topbar__item">
+                            <div class="topbar-dropdown">
+                                <button class="topbar-dropdown__btn" type="button">
+                                    Аккаунт
+                                    <svg width="7px" height="5px">
+                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-7x5')}}"></use>
+                                    </svg>
+                                </button>
+                                <div class="topbar-dropdown__body">
+                                    <!-- .menu -->
+                                    <div class="menu menu--layout--topbar ">
+                                        <div class="menu__submenus-container"></div>
+                                        <ul class="menu__list">
+                                            <li class="menu__item">
+                                                <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
+                                                <div class="menu__item-submenu-offset"></div>
+                                                <a class="menu__item-link" href="{{route('profile.index')}}">
+                                                    Профиль
+                                                </a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
+                                                <div class="menu__item-submenu-offset"></div>
+                                                <a class="menu__item-link" href="account-profile.html">
+                                                    Изменить профиль
+                                                </a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
+                                                <div class="menu__item-submenu-offset"></div>
+                                                <a class="menu__item-link" href="account-orders.html">
+                                                    История покупок
+                                                </a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
+                                                <div class="menu__item-submenu-offset"></div>
+                                                <a class="menu__item-link" href="account-addresses.html">
+                                                    Адрес
+                                                </a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <!-- This is a synthetic element that allows to adjust the vertical offset of the submenu using CSS. -->
+                                                <div class="menu__item-submenu-offset"></div>
+                                                <a class="menu__item-link" href="account-login.html">
+                                                    Выйти
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- .menu / end -->
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
-                    <!-- .topbar / end -->
-                    <div class="site-header__middle container">
-                        <div class="site-header__logo">
-                            <a href="{{route('index', true)}}">
-                                <!-- logo -->
-                                {{-- <img src="{{secure_asset('img/logo/logo.svg')}}" alt="logo.svg"> --}}
-                                <h1>Smart Bazar</h1>
-                                <!-- logo / end -->
-                            </a>
-                        </div>
-                        <div class="site-header__search">
-                            <search-component :home_url="homeUrl"></search-component>
-                        </div>
-                        <div class="site-header__phone">
-                            <div class="site-header__phone-title">Служба поддержки</div>
-                            <div class="site-header__phone-number">+7 (771) 222 9777</div>
-                        </div>
                     </div>
-                    <div class="site-header__nav-panel">
-                        <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
-                        <div class="nav-panel nav-panel--sticky" data-sticky-mode="pullToShow">
-                            <div class="nav-panel__container container">
-                                <div class="nav-panel__row">
-                                    <div class="nav-panel__departments">
-                                        <!-- .departments -->
-                                        <div class="departments " data-departments-fixed-by="">
-                                            <div class="departments__body">
-                                                <div class="departments__links-wrapper">
-                                                    <div class="departments__submenus-container"></div>
-                                                    <ul class="departments__links">
-                                                        @foreach ($categories as $category)
+                </div>
+            </div> --}}
+            <!-- .topbar / end -->
+                <div class="site-header__middle container">
+                    <div class="site-header__logo">
+                        <a href="{{route('index', true)}}">
+                            <!-- logo -->
+                            {{-- <img src="{{secure_asset('img/logo/logo.svg')}}" alt="logo.svg"> --}}
+                            <h1>Smart Bazar</h1>
+                            <!-- logo / end -->
+                        </a>
+                    </div>
+                    <div class="site-header__search">
+                        <search-component :home_url="homeUrl"></search-component>
+                    </div>
+                    <div class="site-header__phone">
+                        <div class="site-header__phone-title">Служба поддержки</div>
+                        <div class="site-header__phone-number">+7 (771) 222 9777</div>
+                    </div>
+                </div>
+                <div class="site-header__nav-panel">
+                    <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
+                    <div class="nav-panel nav-panel--sticky" data-sticky-mode="pullToShow">
+                        <div class="nav-panel__container container">
+                            <div class="nav-panel__row">
+                                <div class="nav-panel__departments">
+                                    <!-- .departments -->
+                                    <div class="departments " data-departments-fixed-by="">
+                                        <div class="departments__body">
+                                            <div class="departments__links-wrapper">
+                                                <div class="departments__submenus-container"></div>
+                                                <ul class="departments__links">
+                                                    @foreach ($categories as $category)
                                                         <li class="departments__item">
-                                                            <a class="departments__item-link" href="{{ route('catalog.index', ['category' => $category->id], true) }}">
+                                                            <a class="departments__item-link"
+                                                               href="{{ route('catalog.index', ['category' => $category->id], true) }}">
                                                                 {{$category->title}}
-                                                                <svg class="departments__item-arrow" width="6px" height="9px">
-                                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
+                                                                <svg class="departments__item-arrow" width="6px"
+                                                                     height="9px">
+                                                                    <use
+                                                                        xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-right-6x9')}}"></use>
                                                                 </svg>
                                                             </a>
-                                                            <div class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--xl">
+                                                            <div
+                                                                class="departments__submenu departments__submenu--type--megamenu departments__submenu--size--xl">
                                                                 <!-- .megamenu -->
                                                                 <div class="megamenu  megamenu--departments ">
                                                                     <div class="megamenu__body">
                                                                         <div class="row">
                                                                             @foreach ($category->children as $child)
-                                                                            <div class="col-3">
-                                                                                <ul class="megamenu__links megamenu__links--level--0">
-                                                                                    <li class="megamenu__item  megamenu__item--with-submenu ">
-                                                                                        <a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a>
-                                                                                        <ul class="megamenu__links megamenu__links--level--1">
-                                                                                            @foreach ($child->children->take(3) as $grandchild)
-                                                                                                <li class="megamenu__item"><a href="{{ route('catalog.index', ['category' => $grandchild->id], true) }}">{{$grandchild->title}}</a></li>
-                                                                                            @endforeach
-                                                                                        </ul>
-                                                                                    </li>
-                                                                                </ul>
-                                                                            </div>
+                                                                                <div class="col-3">
+                                                                                    <ul class="megamenu__links megamenu__links--level--0">
+                                                                                        <li class="megamenu__item  megamenu__item--with-submenu ">
+                                                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a>
+                                                                                            <ul class="megamenu__links megamenu__links--level--1">
+                                                                                                @foreach ($child->children->take(3) as $grandchild)
+                                                                                                    <li class="megamenu__item">
+                                                                                                        <a href="{{ route('catalog.index', ['category' => $grandchild->id], true) }}">{{$grandchild->title}}</a>
+                                                                                                    </li>
+                                                                                                @endforeach
+                                                                                            </ul>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </div>
                                                                             @endforeach
                                                                         </div>
                                                                     </div>
@@ -282,77 +306,81 @@
                                                                 <!-- .megamenu / end -->
                                                             </div>
                                                         </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                            <button class="departments__button" v-on:click.prevent="hiddenCategory = !hiddenCategory">
-                                                <svg class="departments__button-icon" width="18px" height="14px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
-                                                </svg>
-                                                Категории
-                                                <svg class="departments__button-arrow" width="9px" height="6px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-9x6')}}"></use>
-                                                </svg>
-                                            </button>
                                         </div>
-                                        <!-- .departments / end -->
+                                        <button class="departments__button"
+                                                v-on:click.prevent="hiddenCategory = !hiddenCategory">
+                                            <svg class="departments__button-icon" width="18px" height="14px">
+                                                <use
+                                                    xlink:href="{{secure_asset('template/images/sprite.svg#menu-18x14')}}"></use>
+                                            </svg>
+                                            Категории
+                                            <svg class="departments__button-arrow" width="9px" height="6px">
+                                                <use
+                                                    xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-9x6')}}"></use>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <!-- .nav-links -->
-                                    <div class="nav-panel__nav-links nav-links">
-                                        <ul class="nav-links__list">
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('index', true)}}">
-                                                    <div class="nav-links__item-body">
-                                                        Главная
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            {{-- <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="#">
-                                                    <div class="nav-links__item-body">
-                                                        Аккаунт
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="#">
-                                                    <div class="nav-links__item-body">
-                                                        Блог
-                                                    </div>
-                                                </a>
-                                            </li> --}}
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('catalog.index', true)}}">
-                                                    <div class="nav-links__item-body">
-                                                        Каталог
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('info.faq', true)}}">
-                                                    <div class="nav-links__item-body">
-                                                        FAQ
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li class="nav-links__item  nav-links__item--has-submenu ">
-                                                <a class="nav-links__item-link" href="{{route('boutique.index', true)}}">
-                                                    <div class="nav-links__item-body">
-                                                        Бутики
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- .nav-links / end -->
-                                    <div class="nav-panel__indicators">
-                                        @auth
+                                    <!-- .departments / end -->
+                                </div>
+                                <!-- .nav-links -->
+                                <div class="nav-panel__nav-links nav-links">
+                                    <ul class="nav-links__list">
+                                        <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="{{route('index', true)}}">
+                                                <div class="nav-links__item-body">
+                                                    Главная
+                                                </div>
+                                            </a>
+                                        </li>
+                                        {{-- <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="#">
+                                                <div class="nav-links__item-body">
+                                                    Аккаунт
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="#">
+                                                <div class="nav-links__item-body">
+                                                    Блог
+                                                </div>
+                                            </a>
+                                        </li> --}}
+                                        <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="{{route('catalog.index', true)}}">
+                                                <div class="nav-links__item-body">
+                                                    Каталог
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="{{route('info.faq', true)}}">
+                                                <div class="nav-links__item-body">
+                                                    FAQ
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="nav-links__item  nav-links__item--has-submenu ">
+                                            <a class="nav-links__item-link" href="{{route('boutique.index', true)}}">
+                                                <div class="nav-links__item-body">
+                                                    Бутики
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- .nav-links / end -->
+                                <div class="nav-panel__indicators">
+                                    @auth
                                         <div class="indicator">
                                             <a href="{{route('wishlist.index', true)}}" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
+                                                        <use
+                                                            xlink:href="{{secure_asset('template/images/sprite.svg#heart-20')}}"></use>
                                                     </svg>
                                                     <span class="indicator__value" v-text="wishlist"></span>
                                                 </span>
@@ -362,7 +390,8 @@
                                             <a href="{{route('cart.index', true)}}" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                        <use xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
+                                                        <use
+                                                            xlink:href="{{secure_asset('template/images/sprite.svg#cart-20')}}"></use>
                                                     </svg>
                                                     <span class="indicator__value" v-text="itemCount"></span>
                                                 </span>
@@ -374,45 +403,52 @@
                                                 </div>
                                             </div> --}}
                                         </div>
-                                        @endauth
-                                        <div class="indicator indicator--trigger--click">
-                                            <a href="#" class="indicator__button">
+                                    @endauth
+                                    <div class="indicator indicator--trigger--click">
+                                        <a href="#" class="indicator__button">
                                                 <span class="indicator__area">
                                                     <svg width="20px" height="20px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#person-20')}}"></use>
+                                                    <use
+                                                        xlink:href="{{secure_asset('template/images/sprite.svg#person-20')}}"></use>
                                                     </svg>
                                                 </span>
-                                            </a>
-                                            <div class="indicator__dropdown">
-                                                <div class="account-menu">
-                                                     @guest
-                                                        <form method="POST" action="{{secure_url('login')}}" class="account-menu__form">
-                                                            @csrf
-                                                            <div class="account-menu__form-title">Войти в аккаунт</div>
-                                                            <div class="form-group">
-                                                                <input
-                                                                    id="header-signin-email" type="text"
-                                                                    class="form-control form-control-sm @error('phone') is-invalid @enderror" placeholder="Телефон"
-                                                                    name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus
-                                                                    v-mask="'+7 (###) ### ####'"
-                                                                    v-model="auth.loginNumber"
-                                                                >
-                                                                @error('phone')
-                                                                    <span class="invalid-feedback" role="alert">
+                                        </a>
+                                        <div class="indicator__dropdown">
+                                            <div class="account-menu">
+                                                @guest
+                                                    <form method="POST" action="{{secure_url('login')}}"
+                                                          class="account-menu__form">
+                                                        @csrf
+                                                        <div class="account-menu__form-title">Войти в аккаунт</div>
+                                                        <div class="form-group">
+                                                            <input
+                                                                id="header-signin-email" type="text"
+                                                                class="form-control form-control-sm @error('phone') is-invalid @enderror"
+                                                                placeholder="Телефон"
+                                                                name="phone" value="{{ old('phone') }}" required
+                                                                autocomplete="phone" autofocus
+                                                                v-mask="'+7 (###) ### ####'"
+                                                                v-model="auth.loginNumber"
+                                                            >
+                                                            @error('phone')
+                                                            <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="header-signin-password" class="sr-only">Пароль</label>
-                                                                <div class="account-menu__form-forgot">
-                                                                    <input
-                                                                        id="header-signin-password" type="password"
-                                                                        v-model="auth.loginPassword"
-                                                                        class="form-control form-control-sm @error('password') is-invalid @enderror" name="password" required placeholder="Пароль" autocomplete="current-password"
-                                                                    >
-                                                                    @error('password')
-                                                                        <span class="invalid-feedback" role="alert">
+                                                            @enderror
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="header-signin-password"
+                                                                   class="sr-only">Пароль</label>
+                                                            <div class="account-menu__form-forgot">
+                                                                <input
+                                                                    id="header-signin-password" type="password"
+                                                                    v-model="auth.loginPassword"
+                                                                    class="form-control form-control-sm @error('password') is-invalid @enderror"
+                                                                    name="password" required placeholder="Пароль"
+                                                                    autocomplete="current-password"
+                                                                >
+                                                                @error('password')
+                                                                <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
                                                                         </span>
                                                                     @enderror
@@ -527,7 +563,8 @@
                                                 <div class="helpdesk_inner">
                                                     <div class="helpdesk_contact">
 
-                                                        <span style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
+                                                    <span
+                                                        style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
 
                                                         <div class="helpdesk_contact_img_wrap">
                                                             <img src="{{secure_asset('icons/apple.svg')}}" alt="apple">
@@ -675,10 +712,13 @@
                                     @foreach ($categories as $category)
                                     <li class="mobile-links__item" data-collapse-item>
                                         <div class="mobile-links__item-title">
-                                            <a href="{{ route('catalog.index', ['category' => $category->id], true) }}" class="mobile-links__item-link">{{$category->title}}</a>
-                                            <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
+                                            <a href="{{ route('catalog.index', ['category' => $category->id], true) }}"
+                                               class="mobile-links__item-link">{{$category->title}}</a>
+                                            <button class="mobile-links__item-toggle" type="button"
+                                                    data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                                    <use
+                                                        xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -687,108 +727,109 @@
                                                 @foreach ($category->children as $child)
                                                     <li class="mobile-links__item" data-collapse-item>
                                                         <div class="mobile-links__item-title">
-                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}" class="mobile-links__item-link">{{$child->title}}</a>
+                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}"
+                                                               class="mobile-links__item-link">{{$child->title}}</a>
                                                         </div>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                        @guest
-                        @else
-                            <li class="mobile-links__item" data-collapse-item>
-                                <div class="mobile-links__item-title">
-                                    <a href="blog-classic.html" class="mobile-links__item-link" onclick="event.preventDefault();
+                                @endforeach
+                            </ul>
+                        </div>
+                    </li>
+                    @guest
+                    @else
+                        <li class="mobile-links__item" data-collapse-item>
+                            <div class="mobile-links__item-title">
+                                <a href="blog-classic.html" class="mobile-links__item-link" onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();" id="logoutMobile">Выйти</a>
-                                </div>
-                            </li>
-                        @endguest
-                        <li>
-                            <div class="container">
-                                <div class="categories">
-                                    <img src="anime/vegetables/3kpvMsQtWTk.jpg" class="item-image" alt="">
-                                </div>
-                                <a href="https://www.google.com" target="_blank" style="">
-                                    <div class="categories">
-                                        <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="" >
-                                    </div>
-                                </a>
-                                <div class="categories">
-                                    <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
-                                </div>
-                                <div class="categories">
-                                    <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
-                                </div>
                             </div>
                         </li>
-                    </ul>
-                </div>
+                    @endguest
+                    <li>
+                        <div class="container">
+                            <div class="categories">
+                                <img src="anime/vegetables/3kpvMsQtWTk.jpg" class="item-image" alt="">
+                            </div>
+                            <a href="https://www.google.com" target="_blank" style="">
+                                <div class="categories">
+                                    <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
+                                </div>
+                            </a>
+                            <div class="categories">
+                                <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
+                            </div>
+                            <div class="categories">
+                                <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
-        <!-- mobilemenu / end -->
-        <!-- photoswipe -->
-        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="pswp__bg"></div>
-            <div class="pswp__scroll-wrap">
-                <div class="pswp__container">
-                    <div class="pswp__item"></div>
-                    <div class="pswp__item"></div>
-                    <div class="pswp__item"></div>
-                </div>
-                <div class="pswp__ui pswp__ui--hidden">
-                    <div class="pswp__top-bar">
-                        <div class="pswp__counter"></div>
-                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                        <!--<button class="pswp__button pswp__button&#45;&#45;share" title="Share"></button>-->
-                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                        <div class="pswp__preloader">
-                            <div class="pswp__preloader__icn">
-                                <div class="pswp__preloader__cut">
-                                    <div class="pswp__preloader__donut"></div>
-                                </div>
+    </div>
+    <!-- mobilemenu / end -->
+    <!-- photoswipe -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <!--<button class="pswp__button pswp__button&#45;&#45;share" title="Share"></button>-->
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                        <div class="pswp__share-tooltip"></div>
-                    </div>
-                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-                    <div class="pswp__caption">
-                        <div class="pswp__caption__center"></div>
-                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
                 </div>
             </div>
         </div>
     </div>
-    <span>{!! json_encode(env('APP_URL')) !!}</span>
-    @if (Auth::check())
-        <script>window.authUser={!! json_encode(Auth::user()); !!};</script>
-    @else
-        <script>window.authUser=null;</script>
-    @endif
-    <!-- photoswipe / end -->
-    <!-- js -->
-    <script>window.homeUrl={!! json_encode(env('APP_URL')); !!};</script>
-    <script src="{{secure_asset('template/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/nouislider/nouislider.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/photoswipe/photoswipe.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/photoswipe/photoswipe-ui-default.min.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/select2/js/select2.min.js')}}"></script>
-    <script src="{{secure_asset('template/js/number.js')}}"></script>
-    <script src="{{secure_asset('template/js/main.js')}}"></script>
-    <script src="{{secure_asset('template/js/header.js')}}"></script>
-    <script src="{{secure_asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
-    <script>
-        svg4everybody();
-    </script>
+</div>
+<span>{!! json_encode(env('APP_URL')) !!}</span>
+@if (Auth::check())
+    <script>window.authUser = {!! json_encode(Auth::user()); !!};</script>
+@else
+    <script>window.authUser = null;</script>
+@endif
+<!-- photoswipe / end -->
+<!-- js -->
+<script>window.homeUrl = {!! json_encode(env('APP_URL')); !!};</script>
+<script src="{{secure_asset('template/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/nouislider/nouislider.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/photoswipe/photoswipe.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/photoswipe/photoswipe-ui-default.min.js')}}"></script>
+<script src="{{secure_asset('template/vendor/select2/js/select2.min.js')}}"></script>
+<script src="{{secure_asset('template/js/number.js')}}"></script>
+<script src="{{secure_asset('template/js/main.js')}}"></script>
+<script src="{{secure_asset('template/js/header.js')}}"></script>
+<script src="{{secure_asset('template/vendor/svg4everybody/svg4everybody.min.js')}}"></script>
+<script>
+    svg4everybody();
+</script>
 </body>
 
 </html>

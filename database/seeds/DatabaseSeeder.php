@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         //disable foreign key check for this connection before running seeders
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
+
         $this->call(RoleSeeder::class);
         $this->call(CountrySeeder::class);
         $this->call(BrandSeeder::class);
@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatusSeeder::class);
         $this->call(ProductSeeder::class);
         $this->call(GallerySeeder::class);
+        $this->call(CitySeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
