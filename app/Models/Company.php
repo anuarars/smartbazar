@@ -23,7 +23,7 @@ class Company extends Model
         'email_name',
     ];
     protected $fillable = [
-        'name','code', 'phone','email', 'description', 'bin', 'image'
+        'name','code', 'phone','email', 'description', 'bin', 'image', 'city_id'
     ];
 
     public function getEmailNameAttribute()

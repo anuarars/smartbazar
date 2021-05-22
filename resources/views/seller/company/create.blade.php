@@ -1,14 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.default')
 
 @section('content')
-    <section class="section">
-        <div class="section-body">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between">
-                            <h4>Добавить Бутик</h4>
-                        </div>
+    <register-component></register-component>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">Регистрация компании</div>
+
+                    <div class="card-body">
                         <form action="{{route('admin.company.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
@@ -34,10 +34,13 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Телефон</label>
-                                        <input type="text" class="form-control"
-                                               name="phone" value="{{ old('phone') }}" required autocomplete="phone"
-                                               autofocus
-                                               v-mask="'+7 (###) ### ####'"/>
+                                        <input id="header-signin-email" type="text"
+                                               class="form-control @error('phone') is-invalid @enderror"
+                                               placeholder="Телефон"
+                                               name="phone" value="{{ old('phone') }}" required
+                                               autocomplete="phone" autofocus
+                                               v-mask="'+7 (###) ### ####'"
+                                               v-model="auth.loginNumber"/>
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Код</label>
@@ -61,18 +64,18 @@
                                         </label>
                                     </div>
                                     <div class="form-group col-md-6 col-6">
-                                        <select class="form-control form-control-sm" name="city">
+                                        <select class="form-control form-control-sm" name="city_id">
                                             @foreach($cities as $city)
                                                 <option value="{{ $city->id }}">{{ $city->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
                                 </div>
                             </div>
 
                             <div class="card-footer text-right">
                                 <button class="btn btn-primary mr-1" type="submit">Сохранить</button>
-                                <button class="btn btn-secondary" type="reset">Заново</button>
                             </div>
 
                         </form>
@@ -80,5 +83,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 @endsection

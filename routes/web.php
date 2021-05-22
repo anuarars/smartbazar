@@ -99,13 +99,15 @@ Route::group(['middleware'=>['auth']], function(){
 Route::group(['middleware'=>['auth', 'admin'], 'namespace'=>'Admin', 'prefix'=>'admin'], function(){
     Route::resource('users', 'UserController')->names('admin.user');
     Route::resource('category', 'CategoryController')->names('admin.category');
-    Route::resource('company', 'CompanyController')->names('admin.company');
+    Route::resource('company', 'CompanyController')->names('admin.company')->except('store');
     Route::resource('page', 'PageController')->names('admin.page')->parameters([
         'page' => 'page:slug',
     ])->except("show");
     Route::get('/reviews', 'ReviewController@index')->name("review.index");
     Route::delete('/reviews/{review}', 'ReviewController@destroy')->name("review.destroy");
 });
+// Пока не разобрался с доступом либо для админа либо для продавца
+Route::post('company', 'Admin\CompanyController@store')->name('admin.company.store')->middleware(['auth']);
 /*----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
@@ -160,3 +162,4 @@ Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('ca
 Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');
 
 Route::get('test', 'TestController@index2');
+Route::post('test2', 'TestController@storeCompany')->name('test.store.company')->middleware(['auth']);
