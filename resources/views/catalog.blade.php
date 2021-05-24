@@ -150,7 +150,8 @@
 
                                     </div>
                                     <div class="view-options__divider"></div>
-                                    <form action="{{ route('catalog.index') }}">
+
+                                    <form action="{{ Request::url() }}">
                                         <div class="view-options__control">
                                             <label for="">Сортировать </label>
 
