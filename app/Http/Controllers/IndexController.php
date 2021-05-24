@@ -19,7 +19,7 @@ class IndexController extends Controller
     }
 
     public function item($id = null){
-        $item = Item::where('id', $id)->with('product.measure', 'product.galleries')->first();// находим товар
+        $item = Item::with('product.measure', 'product.galleries')->find($id);// находим товар
         // $reviews = $product->reviews()->paginate(3);// отзывы товара
         $item->views += 1;//добавляем просмотр
         $item->update([

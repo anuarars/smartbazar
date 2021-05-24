@@ -161,5 +161,4 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');
 
-Route::get('test', 'TestController@index2');
-Route::post('test2', 'TestController@storeCompany')->name('test.store.company')->middleware(['auth']);
+Route::get('company/register/{user}', 'TestController@index2');
