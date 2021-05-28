@@ -44,11 +44,9 @@
 
                                             <div class="widget-filters__item">
                                                 <div class="filter filter--opened" data-collapse-item>
-                                                    <button type="button" class="filter__title" data-collapse-trigger>
-                                                        {{$category->title}}
+                                                    <button type="button" class="filter__title" data-collapse-trigger>{{$category->title}}
                                                         <svg class="filter__arrow" width="12px" height="7px">
-                                                            <use
-                                                                xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                                            <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                                         </svg>
                                                     </button>
                                                     <div class="filter__body" data-collapse-content>
@@ -213,8 +211,8 @@
                                                     <div class="product-card__name">
                                                         <a href="{{ route('product', $product) }}">{{ $product->title }}</a>
                                                     </div>
-                                                    <div class="product-card__name">
-                                                        <p>{{ $product->minimumPrice }}</p>
+                                                    <div class="product-card__real_price">
+                                                        <p>{{ $product->minimumPrice}} тг.</p>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__actions">
