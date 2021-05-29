@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company;
+use App\Models\Role;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
@@ -44,6 +46,12 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->hasAnyRoles(['seller', 'packer', 'delivery'])) {
+            return response()->json(null, 403);
+        }
+        $role = Role::select('id')->where('name', 'seller')->first();
+        Auth::user()->role()->attach($role);
+
         $company = Company::create($request->except('email', 'address'));
 
         $company->email()->create([

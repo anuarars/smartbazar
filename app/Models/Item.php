@@ -13,6 +13,7 @@ class Item extends Model
 {
     use Sortable, LaravelVueDatatableTrait;
 
+
     protected $dataTableColumns = [
         'id' => [
             'searchable' => true
@@ -43,6 +44,7 @@ class Item extends Model
 
     protected $table = 'company_product';
     protected $fillable = ['views'];
+
 
     public function product(){
         return $this->belongsTo(Product::class);
@@ -127,9 +129,9 @@ class Item extends Model
         $city = session('city');
         static::addGlobalScope('city', function (Builder $builder) use ($city) {
             $builder
-                ->join('companies', 'company_product.company_id', '=', 'companies.id')
-                ->addSelect(DB::raw('company_product.*'))
-                ->where('companies.city_id', '=', $city->id);
+               ->whereHas('company', function ($query) use ($city) {
+                   $query->where('city_id', $city->id);
+               });
         });
     }
 }

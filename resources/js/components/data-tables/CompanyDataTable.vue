@@ -18,6 +18,11 @@ export default {
             perPage: ['10'],
             columns: [
                 {
+                    label: 'ID',
+                    name: 'id',
+                    searchable: true,
+                    orderable: true,
+                },{
                     label: 'Название компании',
                     name: 'name',
                     searchable: true,
@@ -31,10 +36,27 @@ export default {
 
                 },
                 {
-                    label: 'Почта',
-                    name: 'email_name',
+                    label: 'Код',
+                    name: 'code',
                     searchable: true,
                     orderable: true,
+                },
+                {
+                    label: 'БИН',
+                    name: 'bin',
+                    searchable: true,
+                    orderable: true,
+                },
+                {
+                    label: 'Город',
+                    name: 'city.name',
+                    columnName: 'cities.name',
+                },
+                {
+                    label: 'Почта',
+                    name: 'email_name',
+                    columnName: 'emails.name',
+                    searchable: true,
                 },
 
             ]

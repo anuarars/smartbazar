@@ -30,7 +30,7 @@ class Order extends Model
     }
 
     public function items(){
-        return $this->belongsToMany(Item::class)->withPivot('count', 'id')->withTimestamps();;
+        return $this->belongsToMany(Item::class)->withPivot('count', 'id')->withTimestamps();
     }
 
     public function fullPrice(){
@@ -82,5 +82,10 @@ class Order extends Model
     public function address()
     {
         return $this->morphMany('App\Models\Address', 'addressable');
+    }
+
+    public function orderInfo()
+    {
+        return $this->hasOne(OrderInfo::class);
     }
 }

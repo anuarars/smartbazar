@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
-use App\Models\Company;
 use JamesDordoy\LaravelVueDatatable\Http\Resources\DataTableCollectionResource;
 
 class BoutiqueController extends Controller
@@ -18,11 +17,19 @@ class BoutiqueController extends Controller
         $orderBy = $request->input('column'); //Index
         $orderByDir = $request->input('dir', 'asc');
         $searchValue = $request->input('search');
-        DB::connection()->enableQueryLog();
 
-        $query = Company::query();
+        $query = Company::query()->eloquentQuery(null, null, $searchValue, [
+            'city'
+        ]);
+
+        $byEmail = Company::query()->whereHas('email', function ($query) use ($searchValue) {
+            $query->where('name', 'like', '%' . $searchValue . '%');
+        })->eloquentQuery(null, null, null, [
+            'city'
+        ]);
 
 
+        $query = $query->union($byEmail)->with('city', 'email')->orderBy($orderBy, $orderByDir);
 
         $data = $query->paginate($length);
 
@@ -32,7 +39,7 @@ class BoutiqueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show(Company $company)
@@ -42,8 +49,6 @@ class BoutiqueController extends Controller
 
     public function showItems(Company $company, Request $request)
     {
-        DB::connection()->enableQueryLog();
-
         $items = $company->items()->with('product.measure', 'product.category', 'product.galleries', 'company');
         $length = $request->input('length');
         $orderBy = $request->input('column'); //Index
@@ -56,11 +61,13 @@ class BoutiqueController extends Controller
             ]
         ]);
 
-//        $items->whereHas('product.category', function (Builder $query) use($searchValue) {
-//            if ($query->first()) {
-//
-//            }
-//        });
+        $byCategory = $items->eloquentQuery($orderBy, $orderByDir, '', [
+            "product",
+        ])->whereHas('product.category', function (Builder $query) use ($searchValue) {
+            if ($query->first()) {
+
+            }
+        });
 
 
         $items = $items->paginate($length);

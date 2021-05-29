@@ -23,6 +23,7 @@ class CreateCompaniesTable extends Migration
             $table->string('phone');
             $table->string('description');
             $table->string('image')->nullable();
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

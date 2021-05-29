@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\DB;
 
 class CatalogController extends Controller
 {
-    public function index($category = null)
+    public function index(Category $category = null)
     {
-        $products = Product::sortable();
+        $products = Product::has('items')->sortable();
         $categories = Category::with('children')->where('parent_id',0)->get();
 
         if ($category) {
-            $products->whereIn('category_id', Category::find($category)->getAllChildren()->pluck('id')->push($category));
+            $products->whereIn('category_id', $category->getAllChildren()->pluck('id')->push($category));
         }
 
         $latest_products = Product::latest()->limit(5)->get();

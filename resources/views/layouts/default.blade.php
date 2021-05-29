@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="format-detection" content="telephone=no">
     <title>Smart Bazar</title>
+
     <link rel="icon" href="{{secure_asset('img/logo/logo.svg')}}" type="image/x-icon">
     <!-- fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i">
@@ -23,8 +24,10 @@
     <link rel="stylesheet" href="{{secure_asset('template/vendor/fontawesome/css/all.min.css')}}">
     <!-- font - stroyka -->
     <link rel="stylesheet" href="{{secure_asset('template/fonts/stroyka/stroyka.css')}}">
-    <script src="https://proxyd.tarlanpayments.kz/tarlan/widget-new.js"></script>
     <script src="{{ secure_asset('js/app.js') }}" defer></script>
+    <!-- cloudpayments widget -->
+    <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+
 </head>
 
 <body>

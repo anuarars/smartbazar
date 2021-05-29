@@ -83,7 +83,7 @@ Route::group(['middleware'=>['auth']], function(){
 
     Route::get('checkout/{orderId}', 'CheckoutController@show')->name('checkout.show')->middleware('phoneVerified');
     Route::get('checkout/{orderId}/success', 'CheckoutController@success')->name('checkout.success');
-    Route::post('checkout/update/order', 'CheckoutController@updateOrderByUser');
+    Route::post('checkout/{orderId}', 'CheckoutController@updateOrderByUser');
 
 
     // Companies controllers
@@ -160,5 +160,7 @@ Route::get('/user', 'User\UserController@index')->name('User')->middleware(['aut
 // Route::get('/catalog', 'CatalogController@index')->name('catalog.index');
 Route::get('/catalog/{category?}', 'Defaults\CatalogController@index')->name('catalog.index');
 Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@show')->name('page.show');
+
+
 
 Route::get('company/register/{user}', 'TestController@index2');

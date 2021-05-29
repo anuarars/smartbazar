@@ -21,7 +21,8 @@ class CompanySeeder extends Seeder
                     'code'=>$company->code,
                     'phone'=>$company->phone,
                     'description'=>$company->description,
-                    'city_id' => $company->city_id
+                    'city_id' => $company->city_id,
+                    'active' => 1
                 ]);
             }
 

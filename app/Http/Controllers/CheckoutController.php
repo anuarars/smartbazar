@@ -68,9 +68,9 @@ class CheckoutController extends Controller
                 $sale[] = $userId;
             }
         }
-        
+
         $saleUsers = array_unique($sale);
-        
+
         $publishToSeller = $beamsClient->publishToUsers(
             $saleUsers,//Buyer Id
             [
@@ -95,19 +95,18 @@ class CheckoutController extends Controller
 
         return view('checkout.success', compact('order'));
     }
-    
-    public function updateOrderByUser(Request $request)
-    {
-        $order = Order::find($request->order_id);
 
-        $order->address()->create([
+    public function updateOrderByUser(Order $orderId, Request $request)
+    {
+        $orderId->address()->create([
             'description' => implode(', ', $request->description),
         ]);
 
-        $order->infoByUser = $request->infoByUser;
-        $order->phone = $request->orderPhone;
-        $order->save();
+        $orderId->orderInfo()->updateOrCreate([
+            'description' => $request->infoByUser,
+            'phone' =>$request->orderPhone
+        ]);
 
-        return $order;
+        return $orderId;
     }
 }
