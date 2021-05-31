@@ -82,6 +82,7 @@ class Product extends Model
             ->groupBy('product_id')
             ->orderBy("minPrice", $direction);
     }
+
     public function getMinimumPriceAttribute()
     {
         return $this->items()->min('price');

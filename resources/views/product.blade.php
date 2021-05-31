@@ -240,7 +240,6 @@
                             <div class="spec">
                                 <h3 class="spec__header">Отзывы</h3>
                                 <div class="spec__section">
-
                                 </div>
                             </div>
                         </div>

@@ -231,17 +231,17 @@
                                 </div>
                                 <div class="product-card__info">
                                     <div class="product-card__name">
-                                        <a href="{{route('item', $item, true)}}">{{$item->product->title}}</a>
+                                        <a href="{{route('item', $item)}}">{{$item->product->title}}</a>
                                     </div>
                                     <div class="product-card__rating">
                                         <div class="product-card__rating-stars">
                                             <div class="rating">
-                                                {{-- <div class="rating__body">
-                                                    <star-component :rating="{{$product->reviews->pluck('rate')->avg() ?? 5}}"></star-component>
-                                                </div> --}}
+                                                <star-component
+                                                    :rating="{{ $item->avgRating() }}"
+                                                ></star-component>
                                             </div>
+                                            <div class="product-card__rating-legend">Просмотров: {{$item->views}}</div>
                                         </div>
-                                        <div class="product-card__rating-legend">Просмотров: {{$item->views}}</div>
                                     </div>
                                 </div>
 

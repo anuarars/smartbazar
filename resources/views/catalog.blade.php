@@ -203,8 +203,8 @@
                                                     <a href="{{route('product', $product->id, true)}}"
                                                        class="product-image__body">
                                                         <img class="product-image__img"
-                                                             src="{{secure_asset($product->galleries->first()->image)}}"
-                                                             alt="{{$product->galleries->first()->image}}">
+                                                             src="{{secure_asset($product->galleries()->first()->image)}}"
+                                                             alt="{{$product->galleries()->first()->image}}">
                                                     </a>
                                                 </div>
                                                 <div class="product-card__info">
