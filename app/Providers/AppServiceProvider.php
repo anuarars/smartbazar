@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         URL::forceScheme('https');
-        view()->composer('layouts.default', function ($view) {
+        view()->composer(['layouts.default', 'catalog'], function ($view) {
             $view->with('categories', Category::where('parent_id', 0)->with('children')->get())->with('homeUrl', env('APP_URL'));
         });
         view()->composer('*', function ($view) {
