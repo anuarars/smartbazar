@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use Kyslik\ColumnSortable\Sortable;
-use Illuminate\Support\Facades\Auth;
 
 class Item extends Model
 {
@@ -46,64 +45,48 @@ class Item extends Model
     protected $fillable = ['views'];
 
 
-    public function product(){
+    public function product()
+    {
         return $this->belongsTo(Product::class);
     }
 
-    public function company(){
+    public function company()
+    {
         return $this->belongsTo(Company::class);
     }
 
-    public function wishlist(){
+    public function wishlist()
+    {
         return $this->hasMany(Wishlist::class);
     }
 
-    public function orders(){
+    public function orders()
+    {
         return $this->belongsToMany(Order::class);
     }
 
-    public function reviews(){
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
 
-    // Цена после коммисии от смартабазара
-    public function priceAfterFee(){
-        return $this->price+(($this->price*env('FEE'))/100);
-    }
-
     // ACCESSOR
-    public function getafterDiscountAttribute(){
-        return ceil($this->priceAfterFee() - (($this->priceAfterFee() * $this->discount)/100));
-    }
-
-    // Добавлен ли товар в избранное
-    public function isFavoritedBy(){
-        if ($user = User::find(Auth::id())) {
-            return (bool) $user->wishlist()->where('item_id', $this->id)->first();
-        }
-    }
-
-    // Добавлен ли товар в корзину
-    public function isAddedToCartBy(): bool
+    public function getAfterDiscountAttribute()
     {
-        if ($user = User::find(Auth::id())) {
-            $order = $user->order()->where('status_id', 1)->get()->first();
-        } else {
-            return false;
-        }
-        if ($order == null) {
-            return false;
-        } else if ($order->items->contains($this->id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return ceil($this->priceAfterFee() - (($this->priceAfterFee() * $this->discount) / 100));
+    }
+
+    // Цена после коммисии от смартабазара
+    public function priceAfterFee()
+    {
+        return $this->price + (($this->price * env('FEE')) / 100);
     }
 
     // Цена за товар со скидкой
-    public function priceForCount(){
-        if(!is_null($this->pivot)){
-            if(!empty($this->discount)){
+    public function priceForCount()
+    {
+        if (!is_null($this->pivot)) {
+            if (!empty($this->discount)) {
                 return $this->pivot->count * $this->getafterDiscountAttribute();
             }
             return ceil($this->pivot->count * $this->priceAfterFee());
@@ -112,11 +95,33 @@ class Item extends Model
     }
 
     // Цена за товар без скидки
-    public function priceForCountNoDiscount(){
-        if(!is_null($this->pivot)){
+    public function priceForCountNoDiscount()
+    {
+        if (!is_null($this->pivot)) {
             return ceil($this->pivot->count * $this->priceAfterFee());
         }
         return ceil($this->priceAfterFee());
+    }
+
+
+    // Добавлен ли товар в избранное
+    public function isFavoritedBy(): bool
+    {
+
+        return Auth::check() ? $this
+            ->wishlist()
+            ->where('user_id', Auth::id())
+            ->get()->isNotEmpty() : false;
+    }
+
+    // Добавлен ли товар в корзину
+    public function isAddedToCartBy(): bool
+    {
+        return Auth::check() ? $this
+            ->orders()
+            ->where('status_id', 1)
+            ->where('user_id', Auth::id())
+            ->get()->isNotEmpty() : false;
     }
 
     public function isReviewedByAuthUser(): bool
@@ -124,14 +129,15 @@ class Item extends Model
         return $this->reviews()->where('user_id', Auth::id())->get()->isNotEmpty();
     }
 
+
     protected static function booted()
     {
         $city = session('city');
         static::addGlobalScope('city', function (Builder $builder) use ($city) {
             $builder
-               ->whereHas('company', function ($query) use ($city) {
-                   $query->where('city_id', $city->id);
-               });
+                ->whereHas('company', function ($query) use ($city) {
+                    $query->where('city_id', $city->id);
+                });
         });
     }
 }
