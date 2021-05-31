@@ -15,14 +15,13 @@ class CatalogController extends Controller
     public function index(Category $category = null)
     {
         $products = Product::has('items')->sortable();
-        $categories = Category::with('children')->where('parent_id',0)->get();
 
         if ($category) {
             $products->whereIn('category_id', $category->getAllChildren()->pluck('id')->push($category));
         }
 
         $latest_products = Product::latest()->limit(5)->get();
-        return view('catalog', compact('categories', 'latest_products'))
+        return view('catalog', compact( 'latest_products'))
             ->with('products', $products->paginate(12));
     }
 }
