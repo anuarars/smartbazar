@@ -61,13 +61,13 @@ class BoutiqueController extends Controller
             ]
         ]);
 
-        $byCategory = $items->eloquentQuery($orderBy, $orderByDir, '', [
-            "product",
-        ])->whereHas('product.category', function (Builder $query) use ($searchValue) {
-            if ($query->first()) {
-
-            }
-        });
+//        $byCategory = $items->eloquentQuery($orderBy, $orderByDir, '', [
+//            "product",
+//        ])->whereHas('product.category', function (Builder $query) use ($searchValue) {
+//            if ($query->first()) {
+//
+//            }
+//        });
 
 
         $items = $items->paginate($length);

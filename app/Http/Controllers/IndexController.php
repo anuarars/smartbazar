@@ -19,17 +19,16 @@ class IndexController extends Controller
     }
 
     public function item($id = null){
-        $item = Item::with('product.measure', 'product.galleries')->find($id);// находим товар
-        // $reviews = $product->reviews()->paginate(3);// отзывы товара
+        $item = Item::with('product.measure', 'product.galleries', 'reviews')->find($id);// находим товар
+         $reviews = $item->reviews()->paginate(3);// отзывы товара
         $item->views += 1;//добавляем просмотр
         $item->update([
             'views' => $item->views
         ]);
-
         $company_items = Item::where('company_id', $item->company_id)->inRandomOrder()->limit(10)->get();
         // $cat_products = Item::where('category_id', $product->category_id)->orderBy('views', 'desc')->get()->take(10);
 
-        return view('item', compact('item', 'company_items'));
+        return view('item', compact('item', 'company_items', 'reviews'));
     }
 
     public function product($id = null){

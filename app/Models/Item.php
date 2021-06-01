@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use JamesDordoy\LaravelVueDatatable\Traits\LaravelVueDatatableTrait;
 use Kyslik\ColumnSortable\Sortable;
 
@@ -32,7 +34,6 @@ class Item extends Model
                 'columns' => [
                     'title' => [
                         'searchable' => true,
-                        'orderable' => true,
                     ],
 
                 ],
@@ -109,9 +110,9 @@ class Item extends Model
     {
 
         return Auth::check() ? $this
-            ->wishlist()
-            ->where('user_id', Auth::id())
-            ->get()->isNotEmpty() : false;
+        ->wishlist()
+        ->where('user_id', Auth::id())
+        ->get()->isNotEmpty() : false;
     }
 
     // Добавлен ли товар в корзину
@@ -124,9 +125,23 @@ class Item extends Model
             ->get()->isNotEmpty() : false;
     }
 
-    public function isReviewedByAuthUser(): bool
+    public function isReviewedByAuthUser($order): bool
     {
-        return $this->reviews()->where('user_id', Auth::id())->get()->isNotEmpty();
+        return $this->reviews()->where('user_id', Auth::id())->where('order_id', $order->id)->get()->isNotEmpty();
+    }
+
+    public function avgRating(){
+        $ratings = $this->reviews()->select(DB::raw('rate, COUNT(*) as count'))->groupBy('rate')->get();
+
+        $average_rating = $ratings->isEmpty() ? null : $ratings->sum(function ($value) {
+            return $value['rate'] * $value['count'];
+        }) / count($ratings);
+
+        if($average_rating == null){
+            return 0;
+        }else{
+            return $average_rating;
+        }
     }
 
 

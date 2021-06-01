@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="product-tabs__pane" id="tab-reviews">
+                        <div class="product-tabs__pane" id="tab-reviews">
                             <div class="reviews-view">
                                 <div class="reviews-view__list">
                                     <h3 class="reviews-view__header">Отзывы</h3>
@@ -253,24 +253,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @guest
-                                    <div class="row mt-5">
-                                        <div class="col-md-12 text-center">
-                                            <a href="#" class="reviews-view__header text-success">Войти, чтобы оставить
-                                                отзыв</a>
-                                        </div>
-                                    </div>
-                                @else
-                                    <h3 class="reviews-view__header">Оставить отзыв</h3>
-                                    <div class="row">
-                                        <rate-component
-                                            :home_url="homeUrl"
-                                            :product="{{$product}}"
-                                        ></rate-component>
-                                    </div>
-                                @endguest
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="product-tabs__pane" id="tab-company">
                             <div class="spec">
                                 <h3 class="spec__header">Продавец</h3>
@@ -287,35 +271,35 @@
         <div class="container">
             <table class="content-table">
                 <thead>
-                    <tr>
-                        <th>Магазин</th>
-                        <th>Доступен</th>
-                        <th>Цена</th>
-                        <th>Купить</th>
-                    </tr>
+                <tr>
+                    <th>Магазин</th>
+                    <th>Доступен</th>
+                    <th>Цена</th>
+                    <th>Купить</th>
+                </tr>
                 </thead>
                 <tbody>
-                    @foreach ($item->product->items->except($item->id) as $i)
-                        <tr class="active-row">
-                            <td>{{$i->company->name}}</td>
-                            <td>{{$i->isPublished}}</td>
-                            <td>
-                                @if ($i->discount == null)
-                                    {{$i->priceAfterFee()}} тг.
-                                @else
-                                    <span class="product-card__new-price">
+                @foreach ($item->product->items->except($item->id) as $i)
+                    <tr class="active-row">
+                        <td>{{$i->company->name}}</td>
+                        <td>{{$i->isPublished}}</td>
+                        <td>
+                            @if ($i->discount == null)
+                                {{$i->priceAfterFee()}} тг.
+                            @else
+                                <span class="product-card__new-price">
                                         {{$i->afterDiscount}} тг.
                                     </span>
-                                    <span class="product-card__old-price">
+                                <span class="product-card__old-price">
                                         {{$i->priceAfterFee()}} тг.
                                     </span>
-                                @endif
-                            </td>
-                            <td class="cart-button">
-                                <a href="{{route('item', $i->id)}}">Выбрать</a>
-                            </td>
-                        </tr>
-                    @endforeach
+                            @endif
+                        </td>
+                        <td class="cart-button">
+                            <a href="{{route('item', $i->id)}}">Выбрать</a>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
