@@ -19324,3 +19324,13 @@ a:hover {
     line-height: 1;
     font-weight: 700;
 }
+span.history_pr {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+.his_img{
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}

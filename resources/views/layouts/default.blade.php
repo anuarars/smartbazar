@@ -751,25 +751,9 @@
                             </div>
                         </li>
                     @endguest
-                    <li>
-                        <div class="container">
-                            <div class="categories">
-                                <img src="anime/vegetables/3kpvMsQtWTk.jpg" class="item-image" alt="">
-                            </div>
-                            <a href="https://www.google.com" target="_blank" style="">
-                                <div class="categories">
-                                    <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
-                                </div>
-                            </a>
-                            <div class="categories">
-                                <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
-                            </div>
-                            <div class="categories">
-                                <img src="anime/vegetables/3UQv9Ve2EzI.jpg" class="item-image" alt="">
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

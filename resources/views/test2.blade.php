@@ -1,39 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
-
-    <a href="https://smartbazar.kz/">
-        <div class="contained">
-            <span class="category_name">Рыба</span>
-            <div class="cards">
-                <div class="carding">
-                    <div class="circular_image">
-                        <img src="https://smartbazar-gallery.s3.eu-north-1.amazonaws.com/images/FtT8qpMrwojRVyGYMxTBwzRtlGXPLXUgKv48p3aX.jpg" alt=""/>
-                    </div>
-                    <div class="card__content">
-                        <span> Икринки </span>
-                    </div>
-                </div>
-
-                <div class="carding">
-                    <div class="circular_image">
-                    <img  src="https://arbuz.kz/image/f/233097-krevetki_kingfisher_v_pancire_bez_glazuri_1_kg.jpg?w=260&h=260&_c=1620713344" alt="" >
-                    </div>
-                    <div class="card__content">
-                        <span> Креветки </span>
-                    </div>
-                </div>
-
-                <div class="carding">
-                    <div class="circular_image">
-                        <img  src="https://arbuz.kz/image/f/233097-krevetki_kingfisher_v_pancire_bez_glazuri_1_kg.jpg?w=260&h=260&_c=1620713344" alt="">
-                    </div>
-                    <div class="card__content">
-                        <span> Креветки </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
+    <div data-collapse-item="" class="filter"><button type="button" data-collapse-trigger="" class="filter__title">
+            Продукты питания
+            <svg width="12px" height="7px" class="filter__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-down-12x7"></use></svg></button> <div data-collapse-content="" class="filter__body" style=""><div class="filter__container"><div class="filter-categories"><ul class="filter-categories__list"><li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/2">Бакалея</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/3">Напитки</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/4">Хлебобулочные, кондитерские изделия</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/5">Молочные продукты</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/6">Спортивное питание и препараты</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/7">Рыба и морепродукты</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/8">Мясо и мясная продукция</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/9">Овощи, фрукты, ягоды, грибы</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/10">Продукты питания, общее</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/11">Детское питание</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/12">Замороженные полуфабрикаты</a></li> <li class="filter-categories__item filter-categories__item--parent"><svg width="6px" height="9px" class="filter-categories__arrow"><use xlink:href="https://smartbazar.test/template/images/sprite.svg#arrow-rounded-left-6x9"></use></svg> <a href="https://smartbazar.test/catalog/13">Яйца</a></li></ul></div></div></div></div>
 
 @endsection

@@ -53,7 +53,7 @@
                                                         <th>{{ $order->status->name }}</th>
                                                         <th>{{$order->fullPrice()}} тг.</th>
                                                         <th>
-                                                            <button class="btn btn-sm btn-outline-success" data-toggle="modal" data-target="#orderModal-{{$order->id}}">Увидеть продукты</button>
+                                                            <button class="" data-toggle="modal" data-target="#orderModal-{{$order->id}}">Увидеть продукты</button>
                                                         </th>
 
                                                     </tr>
@@ -70,8 +70,8 @@
                                                                     <div class="modal-body">
                                                                         <ul class="list-group">
                                                                             <li class="list-group-item">
-                                                                                {{ $item->product->title }}
-                                                                                <img src="{{ $item->product->galleries()->first()->image }}" width="70px"/>
+                                                                                <span class="history_pr"> {{ $item->product->title }}</span>
+                                                                                <img  class="his_img" src="{{ $item->product->galleries()->first()->image }}"  alt=""/>
                                                                                 <rate-component
                                                                                     :home_url="homeUrl"
                                                                                     :item="{{$item}}"
