@@ -119,6 +119,7 @@
                                                 <div class="widget-products__info">
                                                     <div class="widget-products__name">
                                                         <a href="{{route('product', $product->id, true)}}">{{$product->title}}</a>
+                                                        <p class="recent_product" ><span style="color: black; padding-right: 10px;" > От </span>{{ $product->minPrice}} ₸</p>
                                                     </div>
 
                                                 </div>
@@ -212,8 +213,9 @@
                                                         <a href="{{ route('product', $product) }}">{{ $product->title }}</a>
                                                     </div>
                                                     <div class="product-card__real_price">
-                                                        <p>{{ $product->minPrice}} тг.</p>
-                                                        <p>{{ $product->maxPrice}} тг.</p>
+                                                        <p class="from_span">От</p>
+                                                        <p class="min_price">{{ $product->minPrice}} ₸</p>
+
                                                     </div>
                                                 </div>
                                                 <div class="product-card__actions">

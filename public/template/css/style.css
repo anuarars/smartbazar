@@ -3343,6 +3343,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     color: inherit;
     -webkit-transition: .15s;
     transition: .15s;
+    display: flex;
+    justify-content: center;
 }
 
 .product-card__name a:hover {
@@ -19318,11 +19320,13 @@ a:hover {
     padding: 10px;
 }
 .product-card__real_price{
-
+display: flex;
+    justify-content: center;
     color: #ff2626;
     margin-top: 14px;
     line-height: 1;
     font-weight: 700;
+    gap: 10px;
 }
 span.history_pr {
     display: flex;
@@ -19333,4 +19337,30 @@ span.history_pr {
     width: 100%;
     max-width: 400px;
     height: auto;
+}
+.min_price{
+font-style: italic;
+}
+.from_span{
+    color:black;
+}
+
+@media (max-width: 369px) {
+
+    .mr-2, .mx-2{
+        margin-right: 0!important;
+    }
+    .filter-by-catalog {
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+.recent_product{
+ margin-top: 10px;
+    color:#ff2626 ;
+    font-weight: 700;
+}
+.italic_price{
+    font-style: italic;
 }
