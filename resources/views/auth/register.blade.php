@@ -107,7 +107,7 @@
                                         </span>
                                     </span>
                                     <label class="form-check-label" for="checkout-terms">
-                                        Я согласен с <a target="_blank" href="#">условиями</a>*
+                                        Я согласен с <a target="_blank" href="#" style="color: #C31162">условиями</a>*
                                     </label>
                                 </div>
                             </div>

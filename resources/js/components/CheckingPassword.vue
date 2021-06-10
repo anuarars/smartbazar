@@ -97,70 +97,71 @@ export default {
 </script>
 
 <style scoped>
-  .password {
+.password {
     width: 50%;
     margin: 25px auto;
-  }
+}
 
-  .field{
+.field{
     display: grid;
     grid-template-columns: 6fr 1fr ;
     position: relative;
-  }
+}
 
-  .form-control{
-      height: 100%;
-  }
+.form-control{
+    height: 100%;
+}
 
-  ul {
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+ul {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 li {
-  margin-bottom: 8px;
-  color: #525f7f;
-  position: relative;
+    margin-bottom: 8px;
+    color: #525f7f;
+    position: relative;
+    list-style-type:none ;
 }
 
 li:before {
-  content: "";
-  width: 0%; height: 2px;
-  background: #2ecc71;
-  position: absolute;
-  left: 0; top: 50%;
-  display: block;
-  transition: all .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    content: "";
+    width: 0%; height: 2px;
+    background: #2ecc71;
+    position: absolute;
+    left: 0; top: 50%;
+    display: block;
+    transition: all .6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 
-    .input_container {
-  position: relative;
-  padding: 30px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  border-radius: 6px;
-  background: #FFF;
+.input_container {
+    position: relative;
+    padding: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 6px;
+    background: #FFF;
 }
 
 input[type="password"] {
-  line-height: 1.5;
-  display: block;
-  color: rgba(136, 152, 170, 1);
-  font-weight: 300;
-  width: 100%;
-  height: calc(2.75rem + 2px);
-  padding: .625rem .75rem;
-  border-radius: .25rem;
-  background-color: #fff;
-  transition: border-color .4s ease;
-  border: 1px solid #cad1d7;
-  outline: 0;
+    line-height: 1.5;
+    display: block;
+    color: rgba(136, 152, 170, 1);
+    font-weight: 300;
+    width: 100%;
+    height: calc(2.75rem + 2px);
+    padding: .625rem .75rem;
+    border-radius: .25rem;
+    background-color: #fff;
+    transition: border-color .4s ease;
+    border: 1px solid #cad1d7;
+    outline: 0;
 }
 
 input[type="password"]:focus {
-  border-color: rgba(50, 151, 211, .45);
+    border-color: rgba(50, 151, 211, .45);
 }
 
 
@@ -170,38 +171,42 @@ input[type="password"]:focus {
 .is_valid:before { width: 100%; }
 
 .checkmark_container {
-  border-radius: 50%;
-  position: absolute;
-  top: -15px; right: -15px;
-  background: #2ecc71;
-  width: 50px; height: 50px;
-  visibility: hidden;
-  opacity: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity .4s ease;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    background: #2ecc71;
+    width: 25px; height: 25px;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity .4s ease;
 }
 
 .show_checkmark {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .checkmark {
-  width: 100%;
-  height: 100%;
-  fill: none;
-  stroke: white;
-  stroke-width: 15;
-  stroke-linecap: round;
-  stroke-dasharray: 180;
-  stroke-dashoffset: 180;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: white;
+    stroke-width: 15;
+    stroke-linecap: round;
+    stroke-dasharray: 180;
+    stroke-dashoffset: 180;
 }
 
 .checked { animation: draw 0.5s ease forwards; }
 
 @keyframes draw {
-  to { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: 0; }
+}
+dl, ol, ul {
+    margin-bottom: 0;
 }
 </style>

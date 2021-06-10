@@ -401,10 +401,10 @@ h6 {
     padding-top: 6px;
 }
 
-.page-header__title h1 {
-    margin-bottom: 0;
+/*.page-header__title h1 {*/
+/*    margin-bottom: 0;*/
 
-}
+/*}*/
 
 @media (min-width: 768px) and (max-width: 991px) {
     .page-header__title {
@@ -426,7 +426,7 @@ h6 {
     }
 
     .page-header__title h1 {
-        margin-bottom: 0;
+        /*margin-bottom: 0;*/
         font-size: 30px;
     }
 }
@@ -13270,7 +13270,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
         position: relative;
         width: 100%;
         display: block;
-        border: 1px solid #ebebeb;
+        border: 1px solid #cc5f5f;
         border-radius: 2px;
         padding: 20px 20px 24px;
     }

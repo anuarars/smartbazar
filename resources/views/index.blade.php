@@ -145,7 +145,7 @@
     <div class="block block-products block-products--layout--large-first" data-mobile-grid-columns="2">
         <div class="container">
             <div class="block-header">
-                <h3 class="block-header__title">Скидки</h3>
+                <h1 class="block-header__title">Скидки</h1>
                 <div class="block-header__divider"></div>
             </div>
             <div class="block-products__body">
@@ -295,7 +295,7 @@
     <div class="block block--highlighted block-categories block-categories--layout--classic">
         <div class="container">
             <div class="block-header">
-                <h3 class="block-header__title">Популярные категории</h3>
+                <h1 class="block-header__title">Популярные категории</h1>
                 <div class="block-header__divider"></div>
             </div>
             <div class="block-categories__list">
