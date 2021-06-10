@@ -83,9 +83,14 @@ class Product extends Model
             ->orderBy("minPrice", $direction);
     }
 
-    public function getMinimumPriceAttribute()
+    public function getMinPriceAttribute()
     {
         return $this->items()->min('price');
+    }
+
+    public function getMaxPriceAttribute()
+    {
+        return $this->items()->max('price');
     }
 
     public function delete()

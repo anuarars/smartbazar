@@ -212,7 +212,8 @@
                                                         <a href="{{ route('product', $product) }}">{{ $product->title }}</a>
                                                     </div>
                                                     <div class="product-card__real_price">
-                                                        <p>{{ $product->minimumPrice}} тг.</p>
+                                                        <p>{{ $product->minPrice}} тг.</p>
+                                                        <p>{{ $product->maxPrice}} тг.</p>
                                                     </div>
                                                 </div>
                                                 <div class="product-card__actions">
