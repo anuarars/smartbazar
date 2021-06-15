@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Auth::routes();
 Route::get('/verify/phone', 'Auth\PhoneVerificationController@index')->name('verify.phone');
 Route::post('/verify/phone', 'Auth\PhoneVerificationController@code')->name('verify.code');
@@ -164,3 +163,4 @@ Route::get('/bazar/{page:slug}', '\App\Http\Controllers\Admin\PageController@sho
 
 
 Route::get('company/register/{user}', 'TestController@index2');
+

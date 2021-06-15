@@ -19333,11 +19333,7 @@ span.history_pr {
     /* align-items: center; */
     justify-content: center;
 }
-.his_img{
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-}
+
 .min_price{
 font-style: italic;
 }
@@ -19364,3 +19360,14 @@ font-style: italic;
 .italic_price{
     font-style: italic;
 }
+@media (max-width: 415px) {
+.his_img{
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    display: flex;
+
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}}

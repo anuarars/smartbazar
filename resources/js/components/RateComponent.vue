@@ -9,7 +9,7 @@
                 <div class="stars">
                     <star-rating
                         v-if="!rate"
-                        active-color="#47991f"
+                        active-color="#ff2626"
                         :star-size="30"
                         :show-rating="false"
                         @rating-selected="setRating"
@@ -18,7 +18,7 @@
                     <star-rating
                         v-else
                         :star-size="30"
-                        active-color="#47991f"
+                        active-color="#ff2626"
                         :read-only = "true"
                         :rating = "rate"
                         :show-rating="false"
