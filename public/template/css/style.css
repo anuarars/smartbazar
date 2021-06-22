@@ -5372,7 +5372,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     color: #3d464d;
 }
 
-.account-menu__form-forgot-link:active {
+.account-naccs__form-forgot-link:active {
     background: #e5e5e5;
     color: #3d464d;
 }
@@ -7996,6 +7996,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    gap: 20px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -19371,3 +19372,190 @@ font-style: italic;
     align-items: center;
     justify-content: center;
 }}
+
+
+
+
+
+
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+
+
+
+.accordion-item {
+    background-color: #fff;
+    color: #111;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+}
+
+.accordion-item-header {
+    padding: 0.5rem 3rem 0.5rem 1rem;
+    min-height: 3.5rem;
+    line-height: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.accordion-item-header::after {
+    content: "\002B";
+    font-size: 2rem;
+    position: absolute;
+    right: 1rem;
+}
+
+.accordion-item-header.active::after {
+    content: "\2212";
+}
+
+.accordion-item-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accordion-item-body-content {
+    padding: 1rem;
+    line-height: 1.5rem;
+    border-top: 1px solid;
+    border-image: linear-gradient(to right, transparent, #34495e, transparent) 1;
+}
+
+
+
+
+
+
+
+
+::selection{
+    background: #6d50e2;
+    color: #fff;
+}
+
+.content{
+    padding-top: 25px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.content .list{
+    background: #f1f1f1;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin-right: 20px;
+    position: relative;
+}
+.content .list label{
+    height: 57px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 60px;
+    cursor: pointer;
+    padding-left: 10px;
+    transition: all 0.5s ease;
+    color: #333;
+    z-index: 12;
+
+}
+#home:checked ~ .list label.home,
+#blog:checked ~ .list label.blog,
+#help:checked ~ .list label.help,
+#code:checked ~ .list label.code,
+#about:checked ~ .list label.about{
+    color:#C31162;
+}
+.content .list label:hover{
+    color: #C31162  ;
+}
+/*.content .slider{*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    height: 35px;*/
+/*    width: 90px;*/
+/*    border-radius: 12px;*/
+/*    background: #6d50e2;*/
+/*    transition: all 0.4s ease;*/
+/*}*/
+#home:checked ~ .list .slider{
+    top: 0;
+}
+#blog:checked ~ .list .slider{
+    top: 60px;
+}
+#help:checked ~ .list .slider{
+    top: 120px;
+}
+#code:checked ~ .list .slider{
+    top: 180px;
+}
+#about:checked ~ .list .slider{
+    top: 240px;
+}
+.content .text-content{
+    width: 80%;
+    height: 100%;
+}
+.content .text{
+    display: none;
+}
+.content .text .title{
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.content .text-content .home{
+    display: block;
+}
+#home:checked ~ .text-content .home,
+#blog:checked ~ .text-content .blog,
+#help:checked ~ .text-content .help,
+#code:checked ~ .text-content .code,
+#about:checked ~ .text-content .about{
+    display: block;
+}
+#blog:checked ~ .text-content .home,
+#help:checked ~ .text-content .home,
+#code:checked ~ .text-content .home,
+#about:checked ~ .text-content .home{
+    display: none;
+}
+.content input{
+    display: none;
+}
+#Компонент_207_1{
+    color: red;
+}
+@media (max-width: 768px) {
+
+    .content .list{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding-top: 15px;
+    }
+    .fa, .fas{
+        font-size: 20px;
+    }
+    span{
+        display: none;
+    }
+    .content .list label{
+        padding: 0;
+    }
+}

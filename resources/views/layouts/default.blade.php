@@ -132,42 +132,24 @@
             <div class="site-header">
                 <div class="top-header grey-bg">
                     <div class="container">
-                        <div class="top_header_nav">
-                            <ul class="about">
-                                <li>
-                                    <a href="#">О компании</a>
-                                </li>
-                                <li>
-                                    <a href="#">Доставка</a>
-                                </li>
-                                <li>
-                                    <a href="#">Гарантии, обмен и возврат</a>
-                                </li>
-                                <li>
-                                    <a href="#">Оплата</a>
-                                </li>
-                            </ul>
-                            <ul class="account">
-                                <li>
-                                    <div class="dropdown show">
-                                        <a class="dropdown-toggle" href="#" role="button"
-                                           id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                           aria-expanded="false">
-                                            <img src="{{asset('icons/location.svg')}}" alt="location">
-                                            {{ $cities->find(session('city'))->name }}
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+{{--                        <div class="top_header_nav">--}}
+{{--                            <ul class="about">--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">О компании</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Доставка</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Гарантии, обмен и возврат</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Оплата</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
 
-                                            @foreach($cities as $city)
-                                                <a class="dropdown-item" href="{{ route('change.city', $city) }}">{{ $city->name }}</a>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <!-- .topbar -->
             {{-- <div class="site-header__topbar topbar">
@@ -253,10 +235,21 @@
                     <div class="site-header__search">
                         <search-component :home_url="homeUrl"></search-component>
                     </div>
-                    <div class="site-header__phone">
-                        <div class="site-header__phone-title">Служба поддержки</div>
-                        <div class="site-header__phone-number">+7 (771) 222 9777</div>
-                    </div>
+
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle" href="#" role="button"
+                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <img src="{{asset('icons/location.svg')}}" alt="location">
+                                    {{ $cities->find(session('city'))->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    @foreach($cities as $city)
+                                        <a class="dropdown-item" href="{{ route('change.city', $city) }}">{{ $city->name }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+
                 </div>
                 <div class="site-header__nav-panel">
                     <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->
@@ -497,27 +490,7 @@
             <!-- site__body / end -->
             <!-- site__footer -->
             <footer class="site__footer">
-                <div class="subscribe">
-                    <div class="container">
-                        <div class="subscribe_inner">
-                            <div class="subscribe_banner">
-                              <img style="width: 100%;" src="{{secure_asset('icons/banner_phone.svg')}}">
-                            </div>
-                            <div class="subscribe_info">
-                                <div class="subscribe_info_text">
-                                    <strong><h6>Покупать легко со SmartBazar.kz!</h6>
-                                    </strong> <p>Подпишитесь на рассылку об акциях и скидках</p>
-                                </div> <div class="subscribe_info_form"><form action="" method="POST">
-                                        @csrf
-                                        <input type="text" placeholder="Введите ваш email адрес">
-                                        <button type="submit">Подпишитесь</button>
-                                    </form></div></div>
-                            <div class="subscribe_banner">
-                                <img style="width: 100%" src="{{secure_asset('icons/banner_basket.svg')}}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{-- <subscribe-component :home_url = "homeUrl"></subscribe-component> --}}
                 <div class="site-footer">
                     <div class="container">
                         <div class="site-footer__widgets">
@@ -537,13 +510,13 @@
                                     <div class="site-footer__widget footer-links">
                                         <h5 class="footer-links__title">Информация</h5>
                                         <ul class="footer-links__list">
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">О нас</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Доставка</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Конфиденциальность</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Брэнды</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/bazar/o-nas" class="footer-links__link">О нас</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/bazar/dostavka" class="footer-links__link">Доставка</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/bazar/politika-konfidencialnosti" class="footer-links__link">Конфиденциальность</a></li>
+                                            {{-- <li class="footer-links__item"><a href="" class="footer-links__link">Брэнды</a></li>
                                             <li class="footer-links__item"><a href="" class="footer-links__link">Контакты</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Возврат</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Карта Сайта</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/bazar/vozvrat" class="footer-links__link">Возврат</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Карта Сайта</a></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -551,11 +524,11 @@
                                     <div class="site-footer__widget footer-links">
                                         <h5 class="footer-links__title">Аккаунт</h5>
                                         <ul class="footer-links__list">
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Покупки</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Избранное</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Рассылка</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/cart" class="footer-links__link">Покупки</a></li>
+                                            <li class="footer-links__item"><a href="https://smartbazar.kz/wishlist" class="footer-links__link">Избранное</a></li>
+                                            {{-- <li class="footer-links__item"><a href="" class="footer-links__link">Рассылка</a></li>
                                             <li class="footer-links__item"><a href="" class="footer-links__link">Конкурсы</a></li>
-                                            <li class="footer-links__item"><a href="" class="footer-links__link">Сертификаты</a></li>
+                                            <li class="footer-links__item"><a href="" class="footer-links__link">Сертификаты</a></li> --}}
                                         </ul>
                                     </div>
                                 </div>
@@ -566,15 +539,14 @@
                                                 <div class="helpdesk_inner">
                                                     <div class="helpdesk_contact">
 
-                                                    <span
-                                                        style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
+                                                        <span style="font-weight:900; font-size:20px; ">Всегда рядом !</span>
 
                                                         <div class="helpdesk_contact_img_wrap">
                                                             <img src="{{secure_asset('icons/apple.svg')}}" alt="apple">
                                                         </div>
-                                                        <div class="helpdesk_contact_img_wrap">
+                                                        <a href="https://play.google.com/store/apps/details?id=smartbazar.shop" class="helpdesk_contact_img_wrap">
                                                             <img src="{{secure_asset('icons/playmarket.svg')}}" alt="playmarket">
-                                                        </div>
+                                                        </a>
                                                     </div>
                                         <div class="footer-newsletter__text footer-newsletter__text--social">
                                             Мы в социальных сетях
@@ -700,35 +672,6 @@
                                     </ul>
                                 </div>
                             </li>
-
-{{--                            <div class="widget-filters__item">--}}
-{{--                                <div class="filter filter--opened" data-collapse-item>--}}
-{{--                                    <button type="button" class="filter__title" data-collapse-trigger>{{$category->title}}--}}
-{{--                                        <svg class="filter__arrow" width="12px" height="7px">--}}
-{{--                                            <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>--}}
-{{--                                        </svg>--}}
-{{--                                    </button>--}}
-{{--                                    <div class="filter__body" data-collapse-content>--}}
-{{--                                        <div class="filter__container">--}}
-{{--                                            <div class="filter-categories">--}}
-{{--                                                <ul class="filter-categories__list">--}}
-{{--                                                    @foreach ($category->children as $child)--}}
-{{--                                                        <li class="filter-categories__item filter-categories__item--parent">--}}
-{{--                                                            <svg class="filter-categories__arrow"--}}
-{{--                                                                 width="6px" height="9px">--}}
-{{--                                                                <use--}}
-{{--                                                                    xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-left-6x9')}}"></use>--}}
-{{--                                                            </svg>--}}
-{{--                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}">{{$child->title}}</a>--}}
-{{--                                                        </li>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </ul>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
                         @endguest
                         <li class="mobile-links__item" data-collapse-item>
                             <div class="mobile-links__item-title">
@@ -744,13 +687,10 @@
                                     @foreach ($categories as $category)
                                     <li class="mobile-links__item" data-collapse-item>
                                         <div class="mobile-links__item-title">
-                                            <a href="{{ route('catalog.index', ['category' => $category->id], true) }}"
-                                               class="mobile-links__item-link">{{$category->title}}</a>
-                                            <button class="mobile-links__item-toggle" type="button"
-                                                    data-collapse-trigger>
+                                            <a href="{{ route('catalog.index', ['category' => $category->id], true) }}" class="mobile-links__item-link">{{$category->title}}</a>
+                                            <button class="mobile-links__item-toggle" type="button" data-collapse-trigger>
                                                 <svg class="mobile-links__item-arrow" width="12px" height="7px">
-                                                    <use
-                                                        xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
+                                                    <use xlink:href="{{secure_asset('template/images/sprite.svg#arrow-rounded-down-12x7')}}"></use>
                                                 </svg>
                                             </button>
                                         </div>
@@ -759,28 +699,26 @@
                                                 @foreach ($category->children as $child)
                                                     <li class="mobile-links__item" data-collapse-item>
                                                         <div class="mobile-links__item-title">
-                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}"
-                                                               class="mobile-links__item-link">{{$child->title}}</a>
+                                                            <a href="{{ route('catalog.index', ['category' => $child->id], true) }}" class="mobile-links__item-link">{{$child->title}}</a>
                                                         </div>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </div>
                                     </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </li>
-                    @guest
-                    @else
-                        <li class="mobile-links__item" data-collapse-item>
-                            <div class="mobile-links__item-title">
-                                <a href="blog-classic.html" class="mobile-links__item-link" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();" id="logoutMobile">Выйти</a>
+                                    @endforeach
+                                </ul>
                             </div>
                         </li>
-                    @endguest
-
+                        @guest
+                        @else
+                            <li class="mobile-links__item" data-collapse-item>
+                                <div class="mobile-links__item-title">
+                                    <a href="blog-classic.html" class="mobile-links__item-link" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();" id="logoutMobile">Выйти</a>
+                                </div>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -823,15 +761,14 @@
         </div>
     </div>
 </div>
-<span>{!! json_encode(env('APP_URL')) !!}</span>
 @if (Auth::check())
-    <script>window.authUser = {!! json_encode(Auth::user()); !!};</script>
+    <script>window.authUser={!! json_encode(Auth::user()); !!};</script>
 @else
-    <script>window.authUser = null;</script>
+    <script>window.authUser=null;</script>
 @endif
 <!-- photoswipe / end -->
 <!-- js -->
-<script>window.homeUrl = {!! json_encode(env('APP_URL')); !!};</script>
+<script>window.homeUrl={!! json_encode($configs[1]->value); !!};</script>
 <script src="{{secure_asset('template/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{secure_asset('template/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{secure_asset('template/vendor/owl-carousel/owl.carousel.min.js')}}"></script>

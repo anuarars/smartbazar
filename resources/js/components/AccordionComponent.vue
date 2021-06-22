@@ -81,9 +81,7 @@
 <script>
 export default {
     mounted() {
-        console.log('Hllo')
         const accordionItemHeaders = document.querySelectorAll(".accordion-item-header");
-
         accordionItemHeaders.forEach(accordionItemHeader => {
             accordionItemHeader.addEventListener("click", () => {
                 const currentlyActiveAccordionItemHeader = document.querySelector(".accordion-item-header.active");
