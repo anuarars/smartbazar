@@ -10,29 +10,19 @@
         <input type="radio" name="slider" id="about">
         <div class="list">
             <label for="home" class="home">
-                <i class="fas fa-question-circle"></i> <span class="title">FAQ</span>
+                <i class="fas fa-question-circle"></i> <span class="title"> FAQ</span>
             </label>
             <label for="blog" class="blog">
-                <i class="fas fa-truck"></i> <span class="title">Доставка</span>
+                <i class="fas fa-truck"></i> <span class="title"> Доставка</span>
             </label>
             <label for="help" class="help">
-                <img src="{{ secure_asset('icons/logo.svg')}}" alt="">
-<span class="title">О компании</span>   
+                <i class="fab fa-stripe-s"></i><span class="title"> О компании</span>
             </label>
-
-
-
-
-
-
-
-
-
             <label for="code" class="code">
-                <i class="fas fa-file-contract"></i>  <span class="title">Гарантия/обмен</span>
+                <i class="fas fa-file-contract"></i>  <span class="title"> Гарантия/обмен</span>
             </label>
             <label for="about" class="about">
-                <i class="fas fa-wallet"></i> <span class="title">Оплата</span>
+                <i class="fas fa-wallet"></i> <span class="title"> Оплата</span>
             </label>
             <div class="slider"></div>
         </div>
@@ -52,7 +42,7 @@
                 </ul>
             </div>
             <div class="help text">
-                <div class="title">Гарантия обмен возврат</div>
+                <div class="title"> О компании</div>
                 <p>Высокое качество продукции</p>
                 <p>Мы &ndash; специализированная торговая площадка интернет магазинов. Даем возможность продавцу и покупателю совершать сделки по покупке-продаже того или иного вида товаров через Интернет. В SmartBazar широкий ассортимент товаров &ndash; от 3000 до 10000 наименований в интернет магазине.</p>
                 <p>Мы предлагаем доступные цены и широкий ассортимент товара. Линейка продукции включает в себя (более &hellip;.) Или (от &hellip;. До &hellip;&hellip;) &nbsp;наименований.</p>

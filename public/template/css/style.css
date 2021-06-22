@@ -19536,6 +19536,9 @@ font-style: italic;
 .content input{
     display: none;
 }
+#Компонент_207_1{
+    color: red;
+}
 @media (max-width: 768px) {
 
     .content .list{
@@ -19546,7 +19549,7 @@ font-style: italic;
         padding-top: 15px;
     }
     .fa, .fas{
-        font-size: 30px;
+        font-size: 20px;
     }
     span{
         display: none;
