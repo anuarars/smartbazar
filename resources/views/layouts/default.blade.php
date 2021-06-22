@@ -132,42 +132,24 @@
             <div class="site-header">
                 <div class="top-header grey-bg">
                     <div class="container">
-                        <div class="top_header_nav">
-                            <ul class="about">
-                                <li>
-                                    <a href="#">О компании</a>
-                                </li>
-                                <li>
-                                    <a href="#">Доставка</a>
-                                </li>
-                                <li>
-                                    <a href="#">Гарантии, обмен и возврат</a>
-                                </li>
-                                <li>
-                                    <a href="#">Оплата</a>
-                                </li>
-                            </ul>
-                            <ul class="account">
-                                <li>
-                                    <div class="dropdown show">
-                                        <a class="dropdown-toggle" href="#" role="button"
-                                           id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                           aria-expanded="false">
-                                            <img src="{{asset('icons/location.svg')}}" alt="location">
-                                            {{ $cities->find(session('city'))->name }}
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+{{--                        <div class="top_header_nav">--}}
+{{--                            <ul class="about">--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">О компании</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Доставка</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Гарантии, обмен и возврат</a>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <a href="#">Оплата</a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
 
-                                            @foreach($cities as $city)
-                                                <a class="dropdown-item" href="{{ route('change.city', $city) }}">{{ $city->name }}</a>
-                                            @endforeach
-
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
                 <!-- .topbar -->
             {{-- <div class="site-header__topbar topbar">
@@ -253,10 +235,21 @@
                     <div class="site-header__search">
                         <search-component :home_url="homeUrl"></search-component>
                     </div>
-                    <div class="site-header__phone">
-                        <div class="site-header__phone-title">Служба поддержки</div>
-                        <div class="site-header__phone-number">+7 (771) 222 9777</div>
-                    </div>
+
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle" href="#" role="button"
+                                   id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <img src="{{asset('icons/location.svg')}}" alt="location">
+                                    {{ $cities->find(session('city'))->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    @foreach($cities as $city)
+                                        <a class="dropdown-item" href="{{ route('change.city', $city) }}">{{ $city->name }}</a>
+                                    @endforeach
+                                </div>
+                            </div>
+
                 </div>
                 <div class="site-header__nav-panel">
                     <!-- data-sticky-mode - one of [pullToShow, alwaysOnTop] -->

@@ -7996,6 +7996,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-origin {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    gap: 20px;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
