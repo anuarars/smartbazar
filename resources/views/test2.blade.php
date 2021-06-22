@@ -1,7 +1,6 @@
 @extends('layouts.default')
 
 @section('content')
-
 <div class="container">
     <div class="content">
         <input type="radio" name="slider" checked id="home">
@@ -17,7 +16,8 @@
                 <i class="fas fa-truck"></i> <span class="title">Доставка</span>
             </label>
             <label for="help" class="help">
-                <span class="title">О компании</span>   <svg><use xlink:href="{{ secure_asset('icons/logo.svg')}}"></use></svg>
+                <img src="{{ secure_asset('icons/logo.svg')}}" alt="">
+<span class="title">О компании</span>   
             </label>
 
 
@@ -124,12 +124,11 @@
         </div>
     </div>
 </div>
-
-
-@endsection
 <script>
     import AccordionComponent from "../js/components/AccordionComponent";
     export default {
         components: {AccordionComponent}
     }
 </script>
+
+@endsection
