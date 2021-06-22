@@ -19459,7 +19459,7 @@ font-style: italic;
 }
 .content .list label{
     height: 57px;
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 60px;
     cursor: pointer;
@@ -19535,4 +19535,23 @@ font-style: italic;
 }
 .content input{
     display: none;
+}
+@media (max-width: 768px) {
+
+    .content .list{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding-top: 15px;
+    }
+    .fa, .fas{
+        font-size: 30px;
+    }
+    span{
+        display: none;
+    }
+    .content .list label{
+        padding: 0;
+    }
 }
