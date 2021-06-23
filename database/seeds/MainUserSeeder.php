@@ -1,12 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class UserSeeder extends Seeder
+class MainUserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +12,9 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $users = DB::connection('mysql_main')->table('users')->get();
+        $users = DB::connection('mysql_local')->table('users')->get();
         foreach ($users as $user) {
-            DB::connection('mysql_local')->table('users')->insert([
+            DB::connection('mysql_main')->table('users')->insert([
                 'id' => $user->id,
                 'firstname' => $user->firstname,
                 'lastname' => $user->lastname,
@@ -28,9 +25,9 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        $items = DB::connection('mysql_main')->table('role_user')->get();
+        $items = DB::connection('mysql_local')->table('role_user')->get();
         foreach ($items as $item) {
-            DB::connection('mysql_local')->table('role_user')->insert([
+            DB::connection('mysql_main')->table('role_user')->insert([
                 'id' => $item->id,
                 'role_id' => $item->role_id,
                 'user_id' => $item->user_id,

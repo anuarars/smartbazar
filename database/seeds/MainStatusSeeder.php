@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class StatusSeeder extends Seeder
+class MainStatusSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +12,12 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        $statuses = DB::connection('mysql_main')->table('statuses')->get();
+        $statuses = DB::connection('mysql_local')->table('statuses')->get();
         foreach ($statuses as $status) {
-            DB::connection('mysql_local')->table('statuses')->insert([
+            DB::connection('mysql_main')->table('statuses')->insert([
                 'id'=>$status->id,
                 'name'=> $status->name
             ]);
         }
-        
     }
 }

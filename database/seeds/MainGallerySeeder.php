@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GallerySeeder extends Seeder
+class MainGallerySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class GallerySeeder extends Seeder
      */
     public function run()
     {
-        $galleries = DB::connection('mysql_main')->table('galleries')->get();
+        $galleries = DB::connection('mysql_local')->table('galleries')->get();
         foreach ($galleries as $gallery) {
-            DB::connection('mysql_local')->table('galleries')->insert([
+            DB::connection('mysql_main')->table('galleries')->insert([
                 'id' => $gallery->id,
                 'image' => $gallery->image,
                 'product_id' => $gallery->product_id,

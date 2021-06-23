@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\Weekday;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class WeekdaySeeder extends Seeder
+class MainWeekdaySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,9 +12,9 @@ class WeekdaySeeder extends Seeder
      */
     public function run()
     {
-        $weekdays = DB::connection('mysql_main')->table('weekdays')->get();
+        $weekdays = DB::connection('mysql_local')->table('weekdays')->get();
         foreach ($weekdays as $weekday) {
-            DB::connection('mysql_local')->table('weekdays')->insert([
+            DB::connection('mysql_main')->table('weekdays')->insert([
                 'id'=>$weekday->id,
                 'name'=> $weekday->name
             ]);

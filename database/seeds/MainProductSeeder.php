@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ProductSeeder extends Seeder
+class MainProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $products = DB::connection('mysql_main')->table('products')->get();
+        $products = DB::connection('mysql_local')->table('products')->get();
         foreach ($products as $product) {
-            DB::connection('mysql_local')->table('products')->insert([
+            DB::connection('mysql_main')->table('products')->insert([
                 'id' => $product->id,
                 'category_id' => $product->category_id,
                 'user_id' => $product->user_id,
@@ -25,9 +25,9 @@ class ProductSeeder extends Seeder
             ]);
         }
 
-        $items = DB::connection('mysql_main')->table('company_product')->get();
+        $items = DB::connection('mysql_local')->table('company_product')->get();
         foreach ($items as $item) {
-            DB::connection('mysql_local')->table('company_product')->insert([
+            DB::connection('mysql_main')->table('company_product')->insert([
                 'id' => $item->id,
                 'company_id' => $item->company_id,
                 'product_id' => $item->id,

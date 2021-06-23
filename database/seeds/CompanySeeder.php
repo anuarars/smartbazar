@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,7 @@ class CompanySeeder extends Seeder
             foreach ($companies as $company) {
                 DB::connection('mysql_local')->table('companies')->insert([
                     'id' => $company->id,
+                    'user_id' => $company->user_id,
                     'bin'=> $company->bin,
                     'name'=>$company->name,
                     'code'=>$company->code,

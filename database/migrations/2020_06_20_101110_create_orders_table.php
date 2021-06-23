@@ -19,6 +19,8 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('packer_id')->nullable();
             $table->bigInteger('delivery_id')->nullable();
+            $table->timestamp('packet_at')->nullable();
+            $table->timestamp('accepted_at')->nullable();
             $table->timestamps();
         });
     }

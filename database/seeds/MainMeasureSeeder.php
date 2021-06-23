@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class MeasureSeeder extends Seeder
+class MainMeasureSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,9 +12,9 @@ class MeasureSeeder extends Seeder
      */
     public function run()
     {
-        $measures = DB::connection('mysql_main')->table('measures')->get();
+        $measures = DB::connection('mysql_local')->table('measures')->get();
         foreach ($measures as $measure) {
-            DB::connection('mysql_local')->table('measures')->insert([
+            DB::connection('mysql_main')->table('measures')->insert([
                 'id' => $measure->id,
                 'title' => $measure->title,
                 'code' => $measure->code
